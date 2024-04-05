@@ -12,6 +12,7 @@ function App() {
         <Routes>
         <Route path='/giahantamtru' element={<_GiaHanTamTru/>} />
         <Route path='/HomeUser' element={<HomeUser/>} />
+        <Route path='/test' element={<Test/>} />
         <Route path='/thongtinuser' element={<thongtinuser/>} />
         <Route path='/thutucgiahantamtru' element={<ThuTucGiaHanTamTru/>} />
         </Routes>

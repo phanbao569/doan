@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import logo from './img/footer.jpg'
+import logo from '../img/footer.jpg'
 
 
 export default function GiaHanTamTru() {

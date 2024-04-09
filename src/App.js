@@ -23,12 +23,16 @@ import TTVBPL from './component/Admin/VBPL/TTVBPL';
 import XemVB from './component/Admin/VBPL/XemVB';
 import GetUserById from './component/Admin/user/GetUserById';
 import CreateManager from './component/Admin/user/CreateManager';
-
-
-import _GiaHanTamTru from './component/User/_GiaHanTamTru'
-import ThuTucGiaHanTamTru from './component/User/ThuTucGiaHanTamTru'
-import thongtinuser from './component/User/ThongTinUser'
+import logo from '../src/component/User/img/footer.jpg';
+import ChonThuTuc from './component/User/ThuTucs/ChonThuTuc';
+import _GiaHanTamTru from './component/User/ThuTucs/_GiaHanTamTru'
+import ThuTucGiaHanTamTru from './component/User/ThuTucs/ThuTucGiaHanTamTru'
+import thongtinuser1 from './component/User/ThongTinUser'
 import HomeUser from './component/User/HomeUser'
+import ThuTuc from './component/User/ThuTucs/ThuTuc';
+import NavUser from './component/User/Nav';
+import ThongTinCaNhan from './component/User/ThongTinCaNhan';
+import QuanLyHoSo from './component/User/QuanLyHoSo';
 function App() {
   const [role, setRole] = useState('Admin');
 
@@ -45,11 +49,25 @@ function App() {
     <div className="App">
     {role === 'Admin' ? (
      
-       <div className='grid-container'>
+      //  <div className='grid-container'>
+       <div className=''>
         {/* <AdminDashboard /> */}
-       <SideBar/>
-        <Header/>
-        <Routes> 
+       {/* <SideBar/> */}
+        {/* <Header/> */}
+       <NavUser/>
+
+       <div className="container mx-auto mb-24 h-screen ">
+       <Routes> 
+        <Route path="/ChonThuTuc" element={<ChonThuTuc/>}/>
+        <Route path="/thutuc/:id" element={<ThuTuc/>}/>
+        <Route path="/thuTucGiahantamtru" element={<ThuTucGiaHanTamTru/>}/>
+        <Route path="/thongtincuauser" element={<thongtinuser1/>}/>
+        <Route path="/giahantamtru" element={<_GiaHanTamTru/>}/>
+        <Route path="/HomeUser" element={<HomeUser/>}/>
+        <Route path="/quanlyhoso" element={<QuanLyHoSo/>}/>
+        <Route path="/thongtincanhan" element={<ThongTinCaNhan/>}/> 
+
+        {/* bao thongtinuser */}
         <Route path="/homedash" element={<HomeDash/>}/>
         <Route path="/thongkedoanhthu" element={<ThongkeDT/>} />
         <Route path="/thongkehoso" element={<ThongkeHS/>} />
@@ -64,19 +82,26 @@ function App() {
         <Route path='/xem-user/:idUser' element={<GetUserById/>} />
         <Route path='/createmanager' element={<CreateManager/>}/>
         </Routes>
+      </div>
+      <footer className="  ">
+            <img src={logo} alt="Logo" />
+
+          </footer>
+       
         
       </div>
     ) : (
       <>
-        <Nav />
-        <Routes>
-          <Route path="/test" element={<Test />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgotpass" element={<ForgotPass />} />
-        </Routes>
+       <Nav />
+      <Routes>
+        <Route path="/test" element={<Test />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgotpass" element={<ForgotPass />} />
+      </Routes>
       </>
     )}
+
   </div>
 );
 }

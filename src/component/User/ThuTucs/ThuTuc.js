@@ -141,7 +141,7 @@ function ThuTuc() {
                 <div className='bg-gray-200 flex' >
                     <label className='w-5/6 flex'><strong className='item-start ml-24 '>Yêu cầu điều kiện</strong></label>
                     <button className='item-end' onClick={() => handleClickVBPL(7)}>
-                        {(listShow.includes(7)) ? '' : <AiFillCaretDown />}
+                        {(listShow.includes(7)) ? <AiFillCaretUp /> : <AiFillCaretDown />}
                     </button>
                 </div>
                 {(listShow.includes(7)) && (

@@ -11,7 +11,7 @@ export default class HomeUser extends Component {
           {/* NavBar */}
 
 
-          <NavUser />
+     
           {/* div */}
           <div className="container mx-auto py-8 h-screen ">
             <h1 className="text-3xl font-bold text-gray-800 mb-4">

@@ -1,8 +1,9 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import logodang from './img/logodang.png'
 import logo from './img/footer.jpg'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import { FaUserAlt } from "react-icons/fa";
+import { getFullNameFromToken,isTokenExpired  } from '../../util/jwtUtils';
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,34 @@ export default function Nav() {
   const handleMouseLeave = () => {
       setIsOpen(false);
   };
+
+  const navigate = useNavigate();
+    const fullName = getFullNameFromToken();
+    
+    const tokenExpired = isTokenExpired();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
+
+    useEffect(() => {
+        if (!tokenExpired) {
+            const expirationTime = localStorage.getItem('exp');
+            const timeLeft = expirationTime - Date.now();
+                if (timeLeft){
+                const timeout = setTimeout(() => {
+                    handleLogout();
+                }, timeLeft);
+                return () => clearTimeout(timeout);
+            }
+        }
+    }, [tokenExpired, handleLogout]);
+console.log(localStorage.getItem('exp')+": "+Date.now())
+   
+
+
   return (
     <nav className=" py-4 bg-yellow-100">
       <div className="container mx-auto flex justify-center items-center gap-4 px-4">
@@ -36,7 +65,8 @@ export default function Nav() {
           </a>
           <li>
             <a href="#" className="text-gray hover:text-gray-500">
-              Tra cứ hồ sơ
+            <Link to="/quanlyhoso" > Tra cứu hồ sơ </Link>
+
             </a>
           </li>
           <li>
@@ -57,7 +87,14 @@ export default function Nav() {
         </ul>
         <div class="text-gray font-bold w-1/4 flex justify-end text-lg">
 
-        <div className="relative w-3/4 ">
+
+        {tokenExpired ? (
+                        <>
+                            <Link to="/login" className="text-white bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded mr-4" style={{ textDecoration: 'none' }}>Đăng nhập</Link>
+                            <Link to="/register" className="text-white bg-red-500 hover:bg-red-700 py-2 px-4 rounded" style={{ textDecoration: 'none' }}>Đăng ký</Link>
+                        </>
+                    ) : (
+                      <div className="relative w-3/4 ">
             <div className="" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                 <div className="bg-gray-100 is-bordered  px-8 py-2 rounded-md cursor-pointer  flex ">
                     <FaUserAlt className='mr-2 mt-2' /> 
@@ -77,6 +114,9 @@ export default function Nav() {
                 )}
             </div>
         </div>
+                    )}
+
+       
 
         </div>
 

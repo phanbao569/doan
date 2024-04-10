@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(false);
     const handleUserClick = () => {
-        setIsOpen(!isOpen); // Khi click vào "Thông tin user", đảo ngược trạng thái của submenu
+        setIsOpen(!isOpen);
     };
 
   return (
@@ -16,7 +16,10 @@ export default function SideBar() {
 <aside id="sidebar" className="">
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
+                <Link to="/">
                 <RiAdminFill  className='icon_header'/> MYADMIN
+                </Link>
+                
             </div>
             <span className='icon close_icon'>X</span>
         </div>

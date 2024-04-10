@@ -3,11 +3,22 @@ import {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify}
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { getFullNameFromToken, isTokenExpired,getRoleFromToken } from '../../../util/jwtUtils';
+import SideBar from './Sidebar';
 function Header() {
   const navigate = useNavigate();
     const fullName = getFullNameFromToken();
-    
-
+    // const toggleSidebar = () => {
+    //     const sidebar = document.getElementById('sidebar');
+    //     if (sidebar.classList.contains('sidebar-responsive')) {
+    //         sidebar.classList.remove('sidebar-responsive');
+    //     } else {
+    //         sidebar.classList.add('sidebar-responsive');
+    //     }
+    // };
+    // const closeSidebar = () => {
+    //     const sidebar = document.getElementById('sidebar');
+    //     sidebar.classList.remove('sidebar-responsive');
+    // };
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
@@ -38,7 +49,7 @@ function Header() {
     
     <header className='header'>
         <div className='menu-icon'>
-            <BsJustify className='icon'/>
+            <BsJustify  className='icon'/>
         </div>
         <div className='header-left'>
             <BsSearch  className='icon'/>
@@ -49,6 +60,7 @@ function Header() {
             <BsPersonCircle className='icon'/>
             <button onClick={handleLogout}>logout</button>
         </div>
+        
     </header>
   )
 }

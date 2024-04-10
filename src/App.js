@@ -45,8 +45,9 @@ function App() {
         {/* <AdminDashboard /> */}
        <SideBar/>
         <Header/>
-        <Routes> 
-        <Route path="/homedash" element={<HomeDash/>}/>
+        <Routes>
+        
+        <Route path="/" element={<HomeDash/>}/>
         <Route path="/thongkedoanhthu" element={<ThongkeDT/>} />
         <Route path="/thongkehoso" element={<ThongkeHS/>} />
         <Route path="/thongketaikhoan" element={<ThongkeTK/>} />
@@ -62,7 +63,7 @@ function App() {
         </Routes>
         
       </div>
-    ) : (
+    ) :(
       <>
         <Nav />
         <Routes>

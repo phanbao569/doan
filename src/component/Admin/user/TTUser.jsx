@@ -53,7 +53,7 @@ const [user,setUser]=useState([]
     <div className='container' style={{ width: "100%", padding: "20px", borderRadius: "5px"}}>
               <table style={{ width:"90%", margin: "0 auto", borderCollapse: "collapse" }}>
                 
-                <tr style={{ height: "50px",background:"" }}>
+                <tr style={{ height: "50px",background:"#E0E0E0" }}>
                   <th  style={{ margin:"5 px", padding: "5px 10px", border: "1px dashed #ddd" }}>Id user</th>
                   <th  style={{ padding: "5px 10px",border: "1px dashed #ddd" }}>Họ tên user</th>
                   <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Chức vụ</th>

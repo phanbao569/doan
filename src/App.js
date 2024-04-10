@@ -34,7 +34,7 @@ import NavUser from './component/User/Nav';
 import ThongTinCaNhan from './component/User/ThongTinCaNhan';
 import QuanLyHoSo from './component/User/QuanLyHoSo';
 function App() {
-  const [role, setRole] = useState('Admin');
+  const [role, setRole] = useState('');
 
   useEffect(() => {
     const isValidToken = !isTokenExpired();

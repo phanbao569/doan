@@ -13,7 +13,7 @@ export default function TTUser() {
 const [user,setUser]=useState([]
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 10;
+  const usersPerPage = 8;
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -49,50 +49,59 @@ const [user,setUser]=useState([]
   };
   
   return (
-    <div className='container' style={{ display: "flex", justifyContent: "space-between", flexDirection: "row-reverse",color:"#000" }}>
-    <div className='container' style={{ width: "100%", padding: "20px", borderRadius: "5px"}}>
-              <table style={{ width:"90%", margin: "0 auto", borderCollapse: "collapse" }}>
-                
-                <tr style={{ height: "50px",background:"#E0E0E0" }}>
-                  <th  style={{ margin:"5 px", padding: "5px 10px", border: "1px dashed #ddd" }}>Id user</th>
-                  <th  style={{ padding: "5px 10px",border: "1px dashed #ddd" }}>Họ tên user</th>
-                  <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Chức vụ</th>
-                  <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Email</th>
-                  <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Số điện thoại</th>
-                </tr>
-      {/* <tbody>
-                  {formData.map((item, index) => (
-      <tr key={index}>
-          <td  style={{  padding: "5px 10px", border: "1px dashed #ddd" }}>{item.idUser}</td>
-          <td  style={{  padding: "5px 10px", border: "1px dashed #ddd" }}>{item.hoTen}</td>
-          <td  style={{  padding: "5px 10px", border: "1px dashed #ddd" }}>{item.role}</td>
-          <img src="" alt="Ảnh minh họa" />
-          <td  style={{  padding: "5px 10px", border: "1px dashed #ddd" }}>{item.email}</td>
-          <td  style={{  padding: "5px 10px", border: "1px dashed #ddd" }}>{item.sdt}</td>
-          <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>
-                <Link to={`/xem-user/${item.idUser}`} className='button-xemvb'>Xem</Link>
-                
-              </td>
+
+    <div className="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-500">
+    <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-600">
+        <tr>
+          <th scope="col" className="px-6 py-3">
+            Họ tên
+          </th>
+          <th scope="col" className="px-6 py-3">
+            iduser
+          </th>
+          <th scope="col" className="px-6 py-3">
+            chức vụ
+          </th>
+          <th scope="col" className="px-6 py-3">
+           Email
+          </th>
+          <th scope="col" className="px-6 py-3">
+            sdt
+          </th>
+          <th scope="col" className="px-6 py-3">
+            
+          </th>
           
-      </tr>
-  ))}
-</tbody> */}
- <tbody>
-            {currentUsers.map((item, index) => (
-              <tr key={index}>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.idUser}</td>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.hoTen}</td>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.role}</td>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.email}</td>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.sdt}</td>
-                <td >
-                  <Link to={`/xem-user/${item.idUser}`} className='button-xemvb'>Xem</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <Pagination
+        </tr>
+      </thead>
+      <tbody>
+      {currentUsers.map((item, index) => (
+        <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          {item.hoTen}
+          </th>
+          <td className="px-6 py-4">
+          {item.idUser}
+          </td>
+          <td className="px-6 py-4">
+          {item.role}
+          </td>
+          <td className="px-6 py-4">
+          {item.email}
+          </td>
+          <td className="px-6 py-4">
+          {item.sdt}
+          </td>
+          <td className="px-6 py-4">
+          <Link to={`/xem-user/${item.idUser}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+          </td>
+        </tr>
+           ))}
+       </tbody>
+       
+    </table>
+    <Pagination className=" relative overflow-x-auto shadow-md sm:rounded-lg"
           currentPage={currentPage}
           usersPerPage={usersPerPage}
           totalUsers={users.length}
@@ -100,10 +109,7 @@ const [user,setUser]=useState([]
           prevPage={prevPage}
           goToPage={goToPage}
         />
-            {/* </table> */}
-
-          </div>
-  
-      </div>
+  </div>
+ 
   )
 }

@@ -50,8 +50,9 @@ function Login() {
         if (response.data) {
           localStorage.setItem('token', responseData.token)
           console.log("role la : " + kiemTra)
-          navigate('/test')
-          window.location.reload();
+          
+        if (kiemTra = 'Admin ') window.location.reload();
+        else navigate('/test')
           console.log(timeToken()+" : "+ Date.now()/1000)
          
         } else {

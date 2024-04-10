@@ -256,11 +256,7 @@ export default function Register() {
     const reader = new FileReader();
 
     reader.onload = (event) => {
-      // Tạo URL từ dữ liệu của ảnh
       const imageUrl = URL.createObjectURL(file);
-
-      // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với URL này
-      // Ví dụ: cập nhật state formData
       setFormData({
         ...formData,
         anhCCCD: {
@@ -283,7 +279,7 @@ export default function Register() {
         <div className="flex justify-center items-center">
           <img src={leftImage} alt="Left" className="w-1/4" />
           <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-            <h1 className="text-2xl font-bold text-center mb-4">Đăng kí</h1>
+           
             <form action="#">
               <div className="mb-6">
                 <label htmlFor="username" className="text-sm block mb-2 font-medium text-gray-700">CCCD đăng kí</label>
@@ -321,7 +317,7 @@ export default function Register() {
                   setFormData({ ...formData, diaChiDKTK: { ...formData.diaChiDKTK, xa: wardId } });
                 }}
               />
-              <div className="mb-6 flex flex-row justify-between">
+              <div className="mt-4 mb-6 flex flex-row justify-between">
                 <div className="w-1/3">
                   <label htmlFor="anhMat" className="text-sm block mb-2 font-medium text-gray-700">Ảnh khuôn mặt của bạn</label>
                   <input type="file" id="anhMat" name="anhMat" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleAnhMatChange} />
@@ -338,7 +334,7 @@ export default function Register() {
               <button type="submit" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng kí</button>
 
             </form>
-            <Link to="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn đã có tài khoản đăng nhập! Đăng nhập ngay</Link>
+            <Link to="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
           </div>
           <img src={leftImage} alt="Right" className="w-1/4" />
         </div>

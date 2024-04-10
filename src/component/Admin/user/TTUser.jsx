@@ -53,11 +53,10 @@ const [user,setUser]=useState([]
     <div className='container' style={{ width: "100%", padding: "20px", borderRadius: "5px"}}>
               <table style={{ width:"90%", margin: "0 auto", borderCollapse: "collapse" }}>
                 
-                <tr style={{ height: "50px" }}>
+                <tr style={{ height: "50px",background:"" }}>
                   <th  style={{ margin:"5 px", padding: "5px 10px", border: "1px dashed #ddd" }}>Id user</th>
                   <th  style={{ padding: "5px 10px",border: "1px dashed #ddd" }}>Họ tên user</th>
                   <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Chức vụ</th>
-                  <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Ảnh</th>
                   <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Email</th>
                   <th  style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>Số điện thoại</th>
                 </tr>
@@ -84,10 +83,9 @@ const [user,setUser]=useState([]
                 <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.idUser}</td>
                 <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.hoTen}</td>
                 <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.role}</td>
-                <img src="https://thietkevungtau.com/wp-content/uploads/2021/09/the-nhan-vien-chat-lieu-giay-vung-tau.jpg.webp" alt="Ảnh minh họa"  style={{width: "auto", height: "70px"}}/>
                 <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.email}</td>
                 <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>{item.sdt}</td>
-                <td style={{ padding: "5px 10px", border: "1px dashed #ddd" }}>
+                <td >
                   <Link to={`/xem-user/${item.idUser}`} className='button-xemvb'>Xem</Link>
                 </td>
               </tr>

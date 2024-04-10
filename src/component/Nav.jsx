@@ -27,7 +27,10 @@ export default function Nav() {
         }
     }, [tokenExpired, handleLogout]);
 console.log(localStorage.getItem('exp')+": "+Date.now())
-    return (
+   
+
+
+return (
         <nav className="bg-gray-800 p-4">
             <div className="container mx-auto flex justify-between items-center">
                 <Link to="/" className="text-white font-bold" style={{ textDecoration: 'none' }}>

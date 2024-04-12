@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.2.25:8888';
+const baseUrl = 'http://172.21.2.113:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -23,7 +23,9 @@ const ApiConfig = {
   createTTAdmin:'/TTNV/create',
   updateTTAdmin:'/TTNV/update',
   updateUser:'/admin/updateUser',
-  createManager:'/admin/createUser'
+  createManager:'/admin/createUser',
+  napthutucgiahantamtru: '/GiaHanTamTru/create'
+ // thutucvanban : '/GetVBPL/'
 };
 
 export const apiUrl = (endpoint) => {

@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {FaCaretDown } from "react-icons/ai";
 import { AiFillCaretUp,AiFillCaretDown  } from "react-icons/ai";
+import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import { Axios } from 'axios';
 function ThuTuc() {
-    let { id } = useParams();
-    const [VBPL, SetVBPL] = useState(null);
+    let { idVBPL } = useParams();
+    const [VBPL, SetVBPL] = useState({});
     const [listShow, SetlistShow] = useState([]);
     const handleClickVBPL = (data) => {
         SetlistShow((prevList) => prevList.includes(data) ? prevList.filter(item => item !== data) : [...prevList, data]);
     };
+    
+    
+    const fetchdata = async () => {
+        try {
+
+  
+            const response = await Axios.get( apiUrl(ApiConfig.getVBPL(idVBPL)));
+            //const responseTT = await axios.get('http://172.21.3.169:8888/TTUser/0c6b4326');
+          
+            //   console.log(user);
+        } catch (error) {
+            console.error('sai gi do :', error);
+        }
+    };
+
     // Sử dụng biến id ở đây để thực hiện công việc cần thiết
 
     return (
@@ -24,14 +41,15 @@ function ThuTuc() {
                     {/* Replace placeholders with actual data */}
                     {/* {TTuser.hoTen} */}
                     {/* {user.diaChiCuThe} */}
-                    {/* {VBPL.tenThuTuc} */}
-                    Tên thủ tục
+                    {VBPL.tenThuTuc}
                 </div>
+                <Link to={'/napthutuc/{id}'} >
                 <button
                     className="absolute bottom-0 right-0 m-4  bg-red-500  text-white px-8 py-4 rounded"
                 >
                     Nộp hồ sơ
                 </button>
+                    </Link>
             </div>
 
             {/* Văn bản pháp luật */}
@@ -49,7 +67,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(1)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.coQuanThucHien} */} 
+                        {VBPL.coQuanThucHien} 
                     </div>
                 )}
             </div>
@@ -69,7 +87,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(2)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.cachThucThucHien} */}
+                        {VBPL.cachThucThucHien}
                     </div>
                 )}
             </div>
@@ -84,7 +102,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(3)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.cachThucThucHien} */}
+                        {VBPL.cachThucThucHien}
 
                     </div>
                 )}
@@ -101,7 +119,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(4)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.thoiHanGiaiQuyet} */}
+                        {VBPL.thoiHanGiaiQuyet}
                     </div>
                 )}
             </div>
@@ -116,7 +134,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(5)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.lePhi} VNĐ */}
+                        {VBPL.lePhi} VNĐ
                     </div>
                 )}
             </div>
@@ -131,7 +149,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(6)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.thanhPhanHoSo} VNĐ */} 
+                        {VBPL.thanhPhanHoSo} 
                     </div>
                 )}
             </div>
@@ -146,7 +164,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(7)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.yeuCauDieuKien} */}
+                        {VBPL.yeuCauDieuKien}
                     </div>
                 )}
             </div>
@@ -176,7 +194,7 @@ function ThuTuc() {
                 </div>
                 {(listShow.includes(9)) && (
                     <div className="dropdown-content">
-                        {/* {VBPL.canCuPhapLy} */}
+                        {VBPL.canCuPhapLy}
                     </div>
                 )}
             </div>

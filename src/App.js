@@ -33,6 +33,7 @@ import ThuTuc from './component/User/ThuTucs/ThuTuc';
 import NavUser from './component/User/Nav';
 import ThongTinCaNhan from './component/User/ThongTinCaNhan';
 import QuanLyHoSo from './component/User/QuanLyHoSo';
+import NapThuTuc from './component/User/ThuTucs/NapThuTuc';
 function App() {
   const [role, setRole] = useState('User');
 
@@ -76,7 +77,7 @@ function App() {
 
 
       ) : role === 'User' ? (
-        <div>
+        <div className='flex flex-col'>
           <div className=''>
             {/* <AdminDashboard /> */}
             {/* <SideBar/> */}
@@ -84,11 +85,12 @@ function App() {
 
             <NavUser />
 
-            <div className="container mx-auto mb-24 h-screen ">
+            <div className="container mx-auto mb-24  ">
               <Routes>
-
                 {/* bao thongtinuser */}
                 <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+                <Route path="/" element={<ChonThuTuc />} />
+                <Route path="/napthutuc/:id" element={<NapThuTuc />} />
                 <Route path="/thutuc/:id" element={<ThuTuc />} />
                 <Route path="/thuTucGiahantamtru" element={<ThuTucGiaHanTamTru />} />
                 <Route path="/thongtincuauser" element={<thongtinuser1 />} />
@@ -96,7 +98,6 @@ function App() {
                 <Route path="/HomeUser" element={<HomeUser />} />
                 <Route path="/quanlyhoso" element={<QuanLyHoSo />} />
                 <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
-
                 <Route path="/test" element={<Test />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />

@@ -35,7 +35,7 @@ import ThongTinCaNhan from './component/User/ThongTinCaNhan';
 import QuanLyHoSo from './component/User/QuanLyHoSo';
 import NapThuTuc from './component/User/ThuTucs/NapThuTuc';
 function App() {
-  const [role, setRole] = useState('User');
+  const [role, setRole] = useState('');
 
   useEffect(() => {
     const isValidToken = !isTokenExpired();

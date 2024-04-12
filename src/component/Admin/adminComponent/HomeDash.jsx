@@ -56,7 +56,7 @@ function HomeDash() {
   return (
     <main className='main-container'>
         <div className='main-title'>
-            <h3>H</h3>
+            <h3></h3>
         </div>
 
         <div className='main-cards'>

@@ -103,7 +103,7 @@ export default function Register() {
     try {
       setTimeLeft(60);
 
-      const response = await axios.post(apiUrl(ApiConfig.registerConfirmAgain, formData));
+      const response = await axios.post(apiUrl(ApiConfig.registerConfirmAgain), formData);
       console.log('Response from server:', response.data);
       formData.codeHashed = response.data;
       // Hiển thị hộp thoại xác nhận thành công
@@ -158,7 +158,7 @@ export default function Register() {
     try {
       
 
-      const response = await axios.post(apiUrl(ApiConfig.registerCheck, formData));
+      const response = await axios.post(apiUrl(ApiConfig.registerCheck), formData);
       console.log('Response from server:', response.data);
       formData.codeHashed = response.data;
       

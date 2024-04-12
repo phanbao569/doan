@@ -51,7 +51,7 @@ function Login() {
           localStorage.setItem('token', responseData.token)
           console.log("role la : " + kiemTra)
           
-          if(kiemTra ==="Admin") console.log("true"); else  console.log("false");
+          if(kiemTra ==="Admin") {window.location.reload()}  else if (kiemTra='User')  navigate('/test');
          
 
         console.log(timeToken()+" : "+ Date.now()/1000)

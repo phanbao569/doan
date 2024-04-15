@@ -36,7 +36,7 @@ useEffect(() => {
         if (tokenExpired) {
             handleLogout();
         }
-    }, [tokenExpired, handleLogout]);
+    }, [tokenExpired]);
 // console.log(localStorage.getItem('exp')+": "+Date.now())
 // useEffect(() => {
 //   fetchdata()

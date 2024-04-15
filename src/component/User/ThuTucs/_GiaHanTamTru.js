@@ -63,7 +63,7 @@ export default function NapThuTuc() {
             console.log(form);
       //    await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
           console.log("thanh cong");
-          navigate('/');
+          navigate('/test');
         } catch (error) {
           console.error('Lỗi khi gửi dữ liệu:', error);
         }

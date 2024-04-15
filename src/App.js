@@ -42,7 +42,7 @@ function App() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(false);
+  const [checkthongtin, setcheckthongtin] = useState(true);
 
 
   const handleLogout = () => {
@@ -61,9 +61,9 @@ useEffect(() => {
       const userRole = getRoleFromToken();
       setRole(userRole);
     } else {localStorage.removeItem('token');
-
+    checkTTUser();
   }
-  }, []);
+  }, [ttuser]);
   const checkTTUser = () => {
     if (ttuser?.hoTen !== "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
   }
@@ -119,7 +119,7 @@ useEffect(() => {
                     <Route path="/HomeUser" element={<HomeUser />} />
                     <Route path="/quanlyhoso" element={<QuanLyHoSo />} />
                     <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
-                    <Route path="/test" element={<Test />} />
+                    <Route path="/test" element={<ChonThuTuc />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />

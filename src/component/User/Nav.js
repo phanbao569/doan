@@ -43,8 +43,8 @@ export default function Nav() {
       console.error('sai gi do :', error);
     }
   };
-
     useEffect(() => {
+      fetchdata();
         if (!tokenExpired) {
             const expirationTime = localStorage.getItem('exp');
             const timeLeft = expirationTime - Date.now()/1000;

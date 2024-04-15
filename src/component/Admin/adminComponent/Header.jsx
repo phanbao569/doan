@@ -32,7 +32,8 @@ function Header() {
         if (tokenExpired) {
             handleLogout();
         }
-    }, [tokenExpired, handleLogout]);
+        
+    }, [tokenExpired]);
     
 //     const currentTime = new Date().getTime()/1000;
 //     const thoigiantutoken= timeToken()

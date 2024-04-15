@@ -11,6 +11,7 @@ export default function Nav() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
+        // window.location.reload();
     };
 
     // useEffect(() => {
@@ -37,7 +38,7 @@ return (
                     ) : (
                         <>
                             <p className="text-white mr-4">Chào mừng, {fullName}</p>
-                            <button onClick={handleLogout} className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-4 rounded" style={{ textDecoration: 'none' }}>Đăng xuất</button>
+                            <button onClick={()=>{handleLogout()}} className="text-white bg-gray-500 hover:bg-gray-700 py-2 px-4 rounded" style={{ textDecoration: 'none' }}>Đăng xuất</button>
                             
                         </>
                     )}

@@ -42,26 +42,16 @@ function App() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(false);
+  const [checkthongtin, setcheckthongtin] = useState(true,true);
 
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-   <Link to='regiser'></Link>
-};
-const tokenExpired = isTokenExpired();
-useEffect(() => {
-    if (tokenExpired) {
-        handleLogout();
-    }
-}, [tokenExpired, handleLogout]);
   useEffect(() => {
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
       setRole(userRole);
     } else {localStorage.removeItem('token');
-
+    // checkTTUser()
   }
   }, []);
   const checkTTUser = () => {
@@ -159,7 +149,7 @@ useEffect(() => {
 
         ) : (
           <div>
-            <Nav />
+             <NavUser />
             <Routes>
               <Route path="/test" element={<Test />} />
               <Route path="/register" element={<Register />} />

@@ -14,7 +14,7 @@ import TTUser from './component/Admin/user/TTUser';
 import ThongkeDT from './component/Admin/thongke/ThongkeDT';
 import ThongkeHS from './component/Admin/thongke/ThongkeHS';
 import ThongkeTK from './component/Admin/thongke/ThongkeTK';
-import { getRoleFromToken, isTokenExpired } from './util/jwtUtils';
+import { getIDNguoiThayDoi, getRoleFromToken, isTokenExpired } from './util/jwtUtils';
 import { useEffect } from 'react';
 import TTEmploy from './component/Admin/user/TTEmploy';
 import TTManager from './component/Admin/user/TTManager';
@@ -37,15 +37,18 @@ import THongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 import NhapThongTinUser from './component/User/ThongTinUser';
 import CapNhatThongTin from './component/User/CapNhatThongTin';
 import _ThongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
+import ApiConfig, { apiUrl } from './ApiConfig';
+import axios from 'axios';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(true,true);
-
+  const idUser= getIDNguoiThayDoi();
 
   useEffect(() => {
+    fetchdata(); // hàm lấy thông tin ngưỜi đăng nhập
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
@@ -54,6 +57,19 @@ function App() {
     // checkTTUser()
   }
   }, []);
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
+      setUser(()=>response.data);
+      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
+      setTTUser(()=>responseTT.data)
+    if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
+      console.log(ttuser);
+    } catch (error) {
+      console.error('sai gi do :', error);
+    }
+  };
   const checkTTUser = () => {
     if (ttuser?.hoTen !== "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
   }

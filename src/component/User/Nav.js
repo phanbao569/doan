@@ -42,18 +42,7 @@ useEffect(() => {
 //   fetchdata()
 // })
 
-  const fetchdata = async () => {
-    try {
-      const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-      setUser(()=>response.data);
-      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
-      setTTUser(()=>responseTT.data)
-    if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-      console.log(ttuser);
-    } catch (error) {
-      console.error('sai gi do :', error);
-    }
-  };
+ 
   // console.log(localStorage.getItem('exp') + ": " + Date.now())
 
 

@@ -5,24 +5,22 @@ import { AiFillCaretUp,AiFillCaretDown  } from "react-icons/ai";
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import axios, { Axios } from 'axios';
 function ThuTuc() {
-    const [idVBPL,setIdVBPL] = useState();
-    const [idVB,setIdVB] = useState();
     const [VBPL, SetVBPL] = useState({});
     const [listShow, SetlistShow] = useState([]);
+    const currentUrl = window.location.href;
+    const idFromUrl = currentUrl.split('/').pop();
     const handleClickVBPL = (data) => {
         SetlistShow((prevList) => prevList.includes(data) ? prevList.filter(item => item !== data) : [...prevList, data]);
     };
     useEffect(() => {
-        const currentUrl = window.location.href;
-        const idFromUrl = currentUrl.split('/').pop();
-        setIdVBPL(idFromUrl);
-        console.log(idFromUrl+"???");
-       if(VBPL) fetchdata();
-    }, [idVBPL]);
+       fetchdata();
+    }, []);
     
     const fetchdata = async () => {
         try {
-            const response = await axios.get(apiUrl(ApiConfig.getVBPL(idVBPL)));
+            const currentUrl = window.location.href;
+              const idFromUrl = currentUrl.split('/').pop();
+            const response = await axios.get(apiUrl(ApiConfig.getVBPL(idFromUrl)));
             console.table(response.data);
             SetVBPL(response.data);
         } catch (error) {
@@ -49,7 +47,7 @@ function ThuTuc() {
                     {/* {user.diaChiCuThe} */}
                     {VBPL.tenThuTuc} 
                 </div>
-                <Link to={`/napthutuc/${idVBPL}`} >
+                <Link to={`/napthutuc/${idFromUrl}`} >
                 <button
                     className="absolute bottom-0 right-0 m-4  bg-red-500  text-white px-8 py-4 rounded"
                 >

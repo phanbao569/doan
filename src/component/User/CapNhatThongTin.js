@@ -37,9 +37,8 @@ export default function CapNhatThongTin() {
         const {name,value} =event.target
         console.log(name,value);
         setformttuer(prevState =>({...prevState,[name]:value}))}
-
-
-    const handleSubmit = async ()=>{
+   
+        const handleSubmit = async ()=>{
         try{
             setformttuer(prevState => ({
                 ...prevState,
@@ -75,8 +74,10 @@ export default function CapNhatThongTin() {
                         {/* Họ Tên */}
                         <label htmlFor="large-input" className=" text-start block mb-2 text-sm font-medium text-gray-900 dark:text-white">Họ Tên</label>
 
-                        <input type="text" aria-label="disabled input" value={ttuser?.hoTen} className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                             disabled />
+                        <input type="text" aria-label="disabled input" value={ttuser?.hoTen} 
+                        className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                             disabled
+                              />
 
                     </div>
                     <div>

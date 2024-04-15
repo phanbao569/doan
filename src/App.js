@@ -26,7 +26,6 @@ import CreateManager from './component/Admin/user/CreateManager';
 import logo from '../src/component/User/img/footer.jpg';
 import ChonThuTuc from './component/User/ThuTucs/ChonThuTuc';
 import _GiaHanTamTru from './component/User/ThuTucs/_GiaHanTamTru'
-import ThuTucGiaHanTamTru from './component/User/ThuTucs/ThuTucGiaHanTamTru'
 import thongtinuser1 from './component/User/ThongTinUser'
 import HomeUser from './component/User/HomeUser'
 import ThuTuc from './component/User/ThuTucs/ThuTuc';
@@ -37,6 +36,7 @@ import NapThuTuc from './component/User/ThuTucs/NapThuTuc';
 import THongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 import NhapThongTinUser from './component/User/ThongTinUser';
 import CapNhatThongTin from './component/User/CapNhatThongTin';
+import _ThongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('');
@@ -102,7 +102,6 @@ function App() {
                     <Route path="/" element={<ChonThuTuc />} />
                     <Route path="/napthutuc/:id" element={<NapThuTuc />} />
                     <Route path="/thutuc/:id" element={<ThuTuc />} />
-                    <Route path="/thuTucGiahantamtru" element={<ThuTucGiaHanTamTru />} />
                     <Route path="/thongtincuauser" element={<thongtinuser1 />} />
                     <Route path="/thongbaoluutru" element={<THongBaoLuuTru />} />
                     <Route path="/giahantamtru" element={<_GiaHanTamTru />} />
@@ -112,6 +111,12 @@ function App() {
                     <Route path="/test" element={<Test />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
+                    <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                   </Routes>
                 </div>

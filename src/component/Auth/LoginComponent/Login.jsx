@@ -47,11 +47,12 @@ function Login() {
      try {
         const response = await axios.post(apiUrl(ApiConfig.login), formLogin);
         const responseData = response.data
+        console.log(responseData);
         if (response.data) {
           localStorage.setItem('token', responseData.token)
           console.log("role la : " + kiemTra)
           
-          if(kiemTra ==="Admin") {window.location.reload()}  else if (kiemTra='User')  navigate('/test');
+            if (kiemTra==='User')  navigate('/test');
          
 
         console.log(timeToken()+" : "+ Date.now()/1000)
@@ -72,6 +73,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      
       console.log(formLogin)
       const response = await axios.post(apiUrl(ApiConfig.sendEmailLogin), formLogin);
       const responseData = response.data;

@@ -1,17 +1,22 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import logodang from './img/logodang.png'
 import logo from './img/footer.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaUserAlt } from "react-icons/fa";
 import NapThuTuc from './ThuTucs/NapThuTuc';
-import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
+import { getFullNameFromToken, getIDNguoiThayDoi, isTokenExpired } from '../../util/jwtUtils';
+import axios from 'axios';
+import ApiConfig, { apiUrl } from '../../ApiConfig';
+import { GlobalContext } from '../../App';
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const idUser = getIDNguoiThayDoi();
+  const { setUser, setTTUser,setqueQuan,setcheckthongtin ,ttuser } = useContext(GlobalContext)
 
   const handleMouseEnter = () => {
     setIsOpen(true);
-  };
+  }
 
   const handleMouseLeave = () => {
     setIsOpen(false);
@@ -26,9 +31,21 @@ export default function Nav() {
     localStorage.removeItem('token');
     navigate('/login');
   };
-
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
+      setUser(()=>response.data);
+      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
+      setTTUser(()=>responseTT.data)
+    if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
+      console.log(ttuser);
+    } catch (error) {
+      console.error('sai gi do :', error);
+    }
+  };
 
   useEffect(() => {
+    fetchdata();
     if (!tokenExpired) {
       const expirationTime = localStorage.getItem('exp');
       const timeLeft = expirationTime - Date.now();
@@ -39,8 +56,8 @@ export default function Nav() {
         return () => clearTimeout(timeout);
       }
     }
-  }, [tokenExpired, handleLogout]);
-  console.log(localStorage.getItem('exp') + ": " + Date.now())
+  }, []);
+  // console.log(localStorage.getItem('exp') + ": " + Date.now())
 
 
 
@@ -90,8 +107,8 @@ export default function Nav() {
 
 
           {tokenExpired ? (
-            < div  className=' flex ' >
-              <Link   to="/login" style={{ textDecoration: 'none' }}>
+            < div className=' flex ' >
+              <Link to="/login" style={{ textDecoration: 'none' }}>
                 <button class=" mr-4 text-xs bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                   Đăng nhập
                 </button>
@@ -100,7 +117,7 @@ export default function Nav() {
 
               </Link>
               <Link to="/register" >
-              <button class=" text-xs bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
+                <button class=" text-xs bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
                   Đăng ký
                 </button>
 
@@ -121,7 +138,7 @@ export default function Nav() {
                     <div className="  py-1">
                       <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
                       <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
-                      <div onClick={() => {handleLogout()}} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
+                      <div onClick={() => { handleLogout() }} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
                     </div>
                   </div>
                 )}

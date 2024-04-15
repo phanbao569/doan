@@ -157,28 +157,15 @@ export default function NapThuTuc() {
 
                             <label className='text-xl font-family-sans mx-auto' >
 
-                                THÔNG TIN ĐỀ NGHỊ ĐĂNG KÝ TRẠM TRÚ
+                                THÔNG TIN NGƯỜI THÔNG BÁO
+
                             </label>
                         </div>
+                       
                         <div className='flex  py-8  '>
                             <div class="w-full flex flex-col ">
                                 <div>
-                                    <label className='font-bold' > Tỉnh/Thành phố </label>
-                                    <label className='text-red-500' > (*) </label>
-
-                                </div>
-                                <Field name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
-
-
-                            </div>
-
-
-                        </div>
-                        <div className='flex  py-8  '>
-                            <div class="w-full flex flex-col ">
-                                <div>
-                                    <label  className='font-bold' > Họ tên </label>
-                                    <label className='text-red-500' > (*) </label>
+                                    <label  className='font-bold' > Họ và Tên </label>
 
                                 </div>
                                 <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên ' 
@@ -189,41 +176,32 @@ export default function NapThuTuc() {
                             <div class="w-full flex flex-col ">
                                 <div>
                                     <label className='font-bold' > Ngày tháng năm sinh </label>
-                                    <label className='text-red-500' > (*) </label>
 
                                 </div>
                                 <Field value={TTuser.ngaysinh} a class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"  />
                             </div>
                             <div class="w-full flex flex-col ">
                                 <div>
-                                    <label className='font-bold' > giới tính </label>
-                                    <label className='text-red-500' > (*) </label>
+                                    <label className='font-bold' > Số điện thoại </label>
 
                                 </div>
-                                <Field as="select" name="" class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-                                    <option value="1">Nam</option>
-                                    <option value="2">Nữ</option>
-                                    <option value="3">Khác</option>
-                                </Field >
-
-
+                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên ' 
+                                value={user.sdt} />
                             </div>
                         </div>
                         <div class=" flex p-8 ">
                             <div class="w-full flex flex-col ">
                                 <div>
-                                    <label className='font-bold' > số định danh cá nhân </label>
-                                    <label className='text-red-500' > (*) </label>
+                                    <label className='font-bold' > Tỉnh/Thành phố </label>
 
                                 </div>
-                                <input class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' pattern='' />
+                                <input  class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' pattern='' />
 
 
                             </div>
                             <div class="w-full flex flex-col ">
                                 <div>
-                                    <label className='font-bold' > Số điện thoại liên hệ </label>
-                                    <label className='text-red-500' > (*) </label>
+                                    <label className='font-bold' > Quận/Huyện </label>
 
                                 </div>
                                 <input class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
@@ -232,8 +210,7 @@ export default function NapThuTuc() {
                             </div>
                             <div class="w-full flex flex-col ">
                                 <div>
-                                    <label className='font-bold' > Email </label>
-                                    <label className='text-red-500' > (*) </label>
+                                    <label className='font-bold' > Phường/Xã </label>
 
                                 </div>
                                 <input class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Nhập email ' type='email' />
@@ -242,6 +219,72 @@ export default function NapThuTuc() {
                             </div>
 
                         </div>
+                    </div>
+                        {/* Thong tin co so luu tru  */}
+                    <div className='' >
+                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
+
+                            <label className='text-xl font-family-sans mx-auto' >
+
+                               THÔNG TIN CƠ SỞ LƯU TRÚ
+                            </label>
+                        </div>
+                        <div className='flex  py-8  '>
+                            <div class="w-full flex flex-col ">
+                            <div>
+                                    <label className='font-bold' > Loại hình cơ sở lưu trú </label>
+
+                                </div>
+                                <Field as="select" name="" class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
+                                    <option value="1">Ký túc sinh viên</option>
+                                    <option value="2">Nhà ngăn phòng cho thuê </option>
+                                    <option value="3">Cơ sở du lịch</option>
+                                    <option value="3">Cơ sở khám bệnh</option>
+                                    <option value="3">Cơ sở khác</option>
+                                </Field >
+
+
+                            </div>
+                            <div class="w-full flex flex-col ">
+                                <div className=''>
+                                    <label className='font-bold' > Tên cơ sở lưu trú</label>
+
+                                </div>
+                                <Field name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
+
+
+                            </div>
+
+                        </div>
+                        <div className='flex  py-8  '>
+                            <div class="w-full flex flex-col ">
+                                <div>
+                                    <label  className='font-bold' > Tỉnh/Thành phố </label>
+
+                                </div>
+                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên ' 
+                                value={selectedCity} />
+
+
+                            </div>
+                            <div class="w-full flex flex-col ">
+                                <div>
+                                    <label className='font-bold' > Quận /huyện</label>
+
+                                </div>
+                                <Field value={selectedDistrict} a class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"  />
+                            </div>
+                            <div class="w-full flex flex-col ">
+                                <div>
+                                    <label className='font-bold' > Phường /Xã</label>
+
+                                </div>
+                                <Field value={selectedWard} a class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"  />
+                            </div>
+                        </div>
+
+
+                   
                     </div>
 
                     <div className='' >
@@ -256,20 +299,13 @@ export default function NapThuTuc() {
                                 <div>
                                     <label className='font-bold' > Hình thức nhận thông báo </label>
                                     <label className='text-red-500' > (*) </label>
-
                                 </div>
                                 <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
                                     <option value="1">Email</option>
                                 </select>
-
                             </div>
-
-
                         </div>
-
                     </div>
-
-
                     <button type="submit"  class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                         Nạp hồ sơ
 

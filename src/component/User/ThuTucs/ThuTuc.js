@@ -1,35 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {FaCaretDown } from "react-icons/ai";
 import { AiFillCaretUp,AiFillCaretDown  } from "react-icons/ai";
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
-import { Axios } from 'axios';
+import axios, { Axios } from 'axios';
 function ThuTuc() {
-    let { idVBPL } = useParams();
+    const [idVBPL,setIdVBPL] = useState();
+    const [idVB,setIdVB] = useState();
     const [VBPL, SetVBPL] = useState({});
     const [listShow, SetlistShow] = useState([]);
     const handleClickVBPL = (data) => {
         SetlistShow((prevList) => prevList.includes(data) ? prevList.filter(item => item !== data) : [...prevList, data]);
     };
-    
+    useEffect(() => {
+        const currentUrl = window.location.href;
+        const idFromUrl = currentUrl.split('/').pop();
+        setIdVBPL(idFromUrl);
+        console.log(idFromUrl+"???");
+       if(VBPL) fetchdata();
+    }, [idVBPL]);
     
     const fetchdata = async () => {
         try {
-
-  
-            const response = await Axios.get( apiUrl(ApiConfig.getVBPL(idVBPL)));
-            //const responseTT = await axios.get('http://172.21.3.169:8888/TTUser/0c6b4326');
-          
-            //   console.log(user);
+            const response = await axios.get(apiUrl(ApiConfig.getVBPL(idVBPL)));
+            console.table(response.data);
+            SetVBPL(response.data);
         } catch (error) {
-            console.error('sai gi do :', error);
+            console.error('Lỗi khi lấy dữ liệu:', error);
         }
     };
+    
+    
 
     // Sử dụng biến id ở đây để thực hiện công việc cần thiết
 
     return (
-        <div className="grid grid-cols-5 gap-4 h-screen">
+        <div className="grid grid-cols-5 gap-4 ">
         {/* Left column */}
         <div className="bg-white p-4 col-span-1"></div>
 
@@ -41,9 +47,9 @@ function ThuTuc() {
                     {/* Replace placeholders with actual data */}
                     {/* {TTuser.hoTen} */}
                     {/* {user.diaChiCuThe} */}
-                    {VBPL.tenThuTuc}
+                    {VBPL.tenThuTuc} 
                 </div>
-                <Link to={'/napthutuc/{id}'} >
+                <Link to={`/napthutuc/${idVBPL}`} >
                 <button
                     className="absolute bottom-0 right-0 m-4  bg-red-500  text-white px-8 py-4 rounded"
                 >

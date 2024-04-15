@@ -15,7 +15,7 @@ export default function ChonThuTuc() {
             <div className="grid grid-cols-2 md:grid-cols-4 h-screen  gap-4">
                 {/* Khối 1 */}
                 <div    >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/594ac7fe`} >
                         <img src={giahantamtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
 
                     </Link>
@@ -23,7 +23,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 2 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/43424481`} >
 
                         <img src={xoadangkytamtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>
@@ -31,7 +31,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 3 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/21ab430d`} >
 
                         <img src={khaibaotamtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>
@@ -39,7 +39,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 4 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/c3033865`} >
 
                         <img src={khaibaotamvang} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>
@@ -47,7 +47,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 5 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/8cbcd99d`} >
 
                         <img src={thongbaoluutru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>
@@ -63,7 +63,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 7 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/5d49167e`} >
 
                         <img src={xoadangkythuongtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>

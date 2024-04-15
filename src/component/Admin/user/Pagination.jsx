@@ -29,32 +29,42 @@ const Pagination = ({ currentPage, usersPerPage, totalUsers, nextPage, prevPage,
 
   return (
     <div style={{ marginTop: "20px", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <button onClick={prevPage} disabled={currentPage === 1}>
-        <GrLinkPrevious />
+      <button className='flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' onClick={prevPage} disabled={currentPage === 1}>
+        <GrLinkPrevious/>
+        
       </button>
       <div style={{ display: "flex", alignItems: "center" }}>
         {startPage > 1 && (
           <>
-            <button onClick={() => goToPage(1)}>1</button>
+            <button className='flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' onClick={() => goToPage(1)}>1</button>
             <span>...</span>
           </>
         )}
         {pageNumbers.map((number) => (
-          <button key={number} onClick={() => goToPage(number)} style={{ fontWeight: currentPage === number ? "bold" : "normal" }}>
-            {number}
-          </button>
+          <button 
+          className={`flex items-center justify-center px-3 h-8 mg-4 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+            currentPage === number ? "text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white" : ""
+          }`} 
+          key={number} 
+          onClick={() => goToPage(number)}
+        >
+          {number}
+        </button>
         ))}
         {endPage < totalPages && (
           <>
             <span>...</span>
-            <button onClick={() => goToPage(totalPages)}>{totalPages}</button>
+            <button className='flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' onClick={() => goToPage(totalPages)}>{totalPages}</button>
           </>
         )}
       </div>
-      <button onClick={nextPage} disabled={currentPage === totalPages}>
+      <button className='flex items-center justify-center px-3 h-8 mg-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' onClick={nextPage} disabled={currentPage === totalPages}>
         <GrLinkNext />
       </button>
+      
+
     </div>
+    
   );
 }
 

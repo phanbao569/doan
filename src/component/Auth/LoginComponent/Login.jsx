@@ -14,7 +14,7 @@ function Login() {
     matKhau: "",
 
   });
-  const kiemTra = getRoleFromToken();
+  
   const [code, setCode] = useState('');
   const [codeHash, setCodeHash] = useState('');
   const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
@@ -43,26 +43,29 @@ function Login() {
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
  const check = await bcrypt.compare(code, codeHash)
-    if (check || !check)
+ console.log(check)
+    if (check || !check){
      try {
         const response = await axios.post(apiUrl(ApiConfig.login), formLogin);
         const responseData = response.data
-        if (response.data) {
+        // if (response.data) {
           localStorage.setItem('token', responseData.token)
+          const kiemTra = getRoleFromToken();
           console.log("role la : " + kiemTra)
           
-        if (kiemTra = 'Admin ') window.location.reload();
-        else navigate('/test')
-          console.log(timeToken()+" : "+ Date.now()/1000)
+          if(kiemTra ==="Admin") {window.location.reload()}  else if (kiemTra==='User')  navigate('/test');
          
-        } else {
-          console.error('Đăng nhập thất bại:' + responseData.message);
-          alert('Đăng nhập thất bại ở trong try:' + responseData.message)
-        }
+
+        console.log(timeToken()+" : "+ Date.now()/1000)
+         
+        // } else {
+        //   console.error('Đăng nhập thất bại:' + responseData.message);
+        //   alert('Đăng nhập thất bại ở trong try:' + responseData.message)
+        // }
       } catch (error) {
-        console.error('Xác nhận thất bại:', error);
+        console.error('Xác nhận thất bại:', error.data);
         // Hiển thị thông báo lỗi cho người dùng
-        alert('mã xác nhận xác nhận sai.' + error.data);
+        alert('xác nhận thất bại.' + error.data);}
       } else {
       alert("bạn nhập mã xác nhận chưa đúng")
     }
@@ -71,6 +74,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      
       console.log(formLogin)
       const response = await axios.post(apiUrl(ApiConfig.sendEmailLogin), formLogin);
       const responseData = response.data;
@@ -142,10 +146,13 @@ function Login() {
             <div className="bg-white p-8 rounded-lg shadow-md">
               <div>
                 <p>Thời gian còn lại: {timeLeft} giây</p>
-
+              <div>
+                
+              </div>
                 <h2 className="text-lg font-semibold mb-4">Nhập mã xác nhận từ Gmail</h2>
                 <input
-                  type="text"
+                  type="text-number"
+                  maxLength={6}
                   placeholder="Mã xác nhận"
                   className="border rounded py-2 px-3 mb-4"
                   value={code}

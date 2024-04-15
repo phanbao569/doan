@@ -16,6 +16,7 @@ export default function GetUserById() {
           try {
             const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
             setFormData(response.data);
+            console(response.data)
           } catch (error) {
             console.error('Fetch VB info error:', error);
           }
@@ -82,10 +83,38 @@ export default function GetUserById() {
                       <label htmlFor="chucVu" className="font-bold mb-2">Chức vụ</label>
                       <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="chucVu" value={formData.chucVu} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
                   </div> */}
-                  <div className="flex flex-col">
-                      <label htmlFor="tinhTrangTK" className="font-bold mb-2">Tình Trạng TK</label>
-                      <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="tinhTranTK" value={formData.tinhTrangTK} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
-                  </div>
+                 {isEditable ? (
+    <div className="flex flex-col">
+        <label htmlFor="tinhTrangTK" className="font-bold mb-2">Tình Trạng TK</label>
+        <select
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="tinhTrangTK"
+            value={formData.tinhTrangTK}
+            onChange={(e) => handleChange(e)}
+        >
+            <option value="Locked">Locked</option>
+            <option value="Active">Active</option>
+            <option value="Checking">Checking</option>
+        </select>
+        
+    </div>
+) : (
+    <div className="flex flex-col">
+        <label htmlFor="tinhTrangTK" className="font-bold mb-2">Tình Trạng TK
+        </label>
+        <input
+            type="text"
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="tinhTrangTK"
+            value={formData.tinhTrangTK}
+            onChange={(e) => handleChange(e)}
+            readOnly={!isEditable}
+        />
+       
+           
+      
+    </div>
+)}
                   <div className="flex flex-col">
                       <label htmlFor="sdt" className="font-bold mb-2">Số điện thoại</label>
                       <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sdt" value={formData.sdt} onChange={(e) => { handleChange(e)}} readOnly={!isEditable} />
@@ -95,7 +124,39 @@ export default function GetUserById() {
                       <input type="email" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" value={formData.email} onChange={(e) => { handleChange(e); }} readOnly={!isEditable} />
                   </div>
               </div>
-
+              {isEditable ? (
+    <div className="flex flex-col">
+        <label htmlFor="tinhTrangTK" className="font-bold mb-2">Chức vụ</label>
+        <select
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="role"
+            value={formData.role}
+            onChange={(e) => handleChange(e)}
+        >
+            <option value="User">User</option>
+            <option value="Employee">Employee</option>
+            <option value="Mangager">Mangager</option>
+            <option value="Admin">Admin</option>
+        </select>
+        
+    </div>
+) : (
+    <div className="flex flex-col">
+        <label htmlFor="tinhTrangTK" className="font-bold mb-2">Chức vụ
+        </label>
+        <input
+            type="text"
+            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="tinhTrangTK"
+            value={formData.role}
+            onChange={(e) => handleChange(e)}
+            readOnly={!isEditable}
+        />
+       
+           
+      
+    </div>
+)}
               <div className="flex justify-end mt-4">
                   <button type="button" className={`btn ${isEditable ? "btn-secondary me-2" : "btn-primary"}`} onClick={handleEditClick}>
                       {isEditable ? "Hủy" : "Sửa"}

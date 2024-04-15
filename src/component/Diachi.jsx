@@ -39,7 +39,7 @@ const DiaChi = ({ onSelectCity, onSelectDistrict, onSelectWard }) => {
   };
 
   return (
-    <div>
+    <div className='flex gap-4'>
       <select className="form-select form-select-sm mb-3" onChange={handleCityChange}>
         <option value="" selected>Chọn thành phố</option>
         {cities.map(city => (
@@ -52,7 +52,7 @@ const DiaChi = ({ onSelectCity, onSelectDistrict, onSelectWard }) => {
           <option key={district.Id} value={district.Id}>{district.Name}</option>
         ))}
       </select>
-      <select className="form-select form-select-sm" onChange={handleWardChange}>
+      <select className="form-select form-select-sm mb-3" onChange={handleWardChange}>
         <option value="" selected>Chọn phường xã</option>
         {wards.map(ward => (
           <option key={ward.Id} value={ward.Id}>{ward.Name}</option>

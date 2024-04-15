@@ -74,6 +74,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      
       console.log(formLogin)
       const response = await axios.post(apiUrl(ApiConfig.sendEmailLogin), formLogin);
       const responseData = response.data;

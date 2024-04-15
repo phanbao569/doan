@@ -26,6 +26,8 @@ export default function CreateManager() {
         const handleInputChange = (event)=>{
             const {name,value} =event.target
             setFormData(prevState =>({...prevState,[name]:value}))}
+
+            
          const  handleSubmit= async(event)=>{
         event.preventDefault();
         console.log("dữ liệu gửi đi:", JSON.stringify(formData))

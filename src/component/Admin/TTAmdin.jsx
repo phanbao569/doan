@@ -4,6 +4,7 @@ import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../ApiConfig';
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
 export default function TTAmdin() {
+    const [isLoading,setIsLoading] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
     const [check, setCheck] = useState(false)
     const [formTTNV, setFormTTNV] = useState({
@@ -18,12 +19,13 @@ export default function TTAmdin() {
         coQuan: {
             tinh: '',
             huyen: '',
-            xa: ''
+            xa: '',
         },
         diaChi: '',
         idUser: ''
 
     });
+
     const [formData, setFormData] = useState({});
     const id = getIDNguoiThayDoi();
 
@@ -32,6 +34,7 @@ export default function TTAmdin() {
     useEffect(() => {
         fetchData();
         fetchTTNV();
+        setIsLoading(true)
     }, []);
 
     const fetchData = async () => {
@@ -40,26 +43,22 @@ export default function TTAmdin() {
             const response = await axios.get(apiUrl(ApiConfig.getAdmin(id)));
             const data = response.data;
             setFormData(data);
-            setFormTTNV({
-                ...formTTNV,
-                hoTen: data.hoTen,
-                cccd: data.cccd,
-                sdt: data.sdt,
-                email: data.email,
-                idUser: id
-            });
+            setIsLoading(true)
         } catch (error) {
             console.error('Lỗi khi lấy dữ liệu từ API:', error);
         }
     };
     const fetchTTNV = async () => {
+        setIsLoading(false)
         try {
             // const response = await axios.get(`http://172.16.0.147:8888/TTNV/get/${id}`);
             const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
             const data = response.data;
+
             setFormTTNV(data)
             console.log("thông tin: " + data)
-            if (data == null) {
+            setIsLoading(true)
+            if (data === null) {
                 // Nếu dữ liệu không tồn tại hoặc là một mảng rỗng, setCheck(true)
                 setCheck(true);
             }
@@ -98,23 +97,7 @@ export default function TTAmdin() {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (check) {
-            const kiemtra = formTTNV
-            console.log("du lieu gui di" + JSON.stringify(kiemtra))
-            try {
-
-                // const response = await axios.post('http://172.16.0.147:8888/TTNV/create', formTTNV);
-                const response = await axios.post(apiUrl(ApiConfig.createTTAdmin), formTTNV)
-                const data = response.data;
-                console.log(data)
-                alert("thành công")
-
-                //xử lí tạo post thông tin từ fromNV đưa đến backend
-            } catch (error) {
-                console.error('Lỗi khi lấy dữ liệu từ API:' + error);
-            }
-        }
-        else {
+       
             try {
 
                 const response = await axios.put(apiUrl(ApiConfig.updateTTAdmin), formTTNV);
@@ -126,10 +109,11 @@ export default function TTAmdin() {
                 console.error('Lỗi khi lấy dữ liệu từ API:', error);
             }
         }
-    }
+    
 
 
     return (
+       
         // <div className="flex justify-center items-center h-screen">
         //     <div className="w-full max-w-screen-md mx-auto">
         //         <div className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
@@ -208,7 +192,8 @@ export default function TTAmdin() {
         //         </div>
         //     </div>
         // </div>
-        <div className=" py-1 bg-blueGray-50">
+        <div> { isLoading ? (
+<div className=" py-1 bg-blueGray-50">
             <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
                     <div className="rounded-t bg-white mb-0 px-6 py-6">
@@ -332,6 +317,12 @@ export default function TTAmdin() {
 
             </div>
         </div>
+        ):(     <div> <h1>loading</h1></div>
+           
 
+        ) 
+        }
+        
+        </div>
     );
 }

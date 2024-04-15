@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, Navigate } from 'react-router-dom';
 import './App.css';
 import Login from './component/Auth/LoginComponent/Login';
 import Test from './component/Test'
@@ -35,13 +35,24 @@ import ThongTinCaNhan from './component/User/ThongTinCaNhan';
 import QuanLyHoSo from './component/User/QuanLyHoSo';
 function App() {
   const [role, setRole] = useState('');
-
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+   <Link to='regiser'></Link>
+};
+const tokenExpired = isTokenExpired();
+useEffect(() => {
+    if (tokenExpired) {
+        handleLogout();
+    }
+}, [tokenExpired, handleLogout]);
   useEffect(() => {
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
       setRole(userRole);
-    }
+    } else {localStorage.removeItem('token');
+
+  }
   }, []);
 
   return (

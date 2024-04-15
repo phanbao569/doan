@@ -13,20 +13,12 @@ export default function Nav() {
         navigate('/login');
     };
 
-
-    useEffect(() => {
-        if (!tokenExpired) {
-            const expirationTime = localStorage.getItem('exp');
-            const timeLeft = expirationTime - Date.now();
-                if (timeLeft){
-                const timeout = setTimeout(() => {
-                    handleLogout();
-                }, timeLeft);
-                return () => clearTimeout(timeout);
-            }
-        }
-    }, [tokenExpired, handleLogout]);
-console.log(localStorage.getItem('exp')+": "+Date.now())
+    // useEffect(() => {
+    //     if (tokenExpired) {
+    //         handleLogout();
+    //     }
+    // }, [tokenExpired, handleLogout]);
+// console.log(localStorage.getItem('exp')+": "+Date.now())
    
 
 

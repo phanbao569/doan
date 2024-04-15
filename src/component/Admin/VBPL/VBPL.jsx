@@ -41,7 +41,7 @@ export default function VBPL() {
        const response = await axios.post(apiUrl(ApiConfig.createVBPL), formData);
       console.log('Response from server:', response.data);
     } catch (error) {
-      alert('đăng kí thất bại do ' + error.response.data);
+      alert('Thêm thất bại do ' + error.data);
       
     }
   }

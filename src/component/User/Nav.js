@@ -30,7 +30,7 @@ export default function Nav() {
     useEffect(() => {
         if (!tokenExpired) {
             const expirationTime = localStorage.getItem('exp');
-            const timeLeft = expirationTime - Date.now();
+            const timeLeft = expirationTime - Date.now()/1000;
                 if (timeLeft){
                 const timeout = setTimeout(() => {
                     handleLogout();
@@ -39,7 +39,7 @@ export default function Nav() {
             }
         }
     }, [tokenExpired, handleLogout]);
-console.log(localStorage.getItem('exp')+": "+Date.now())
+// console.log(localStorage.getItem('exp')+": "+Date.now())
    
 
 
@@ -108,7 +108,7 @@ console.log(localStorage.getItem('exp')+": "+Date.now())
                         <div className="  py-1">
                             <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
                             <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
-                            <div className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
+                            <div onClick={handleLogout} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
                         </div>
                     </div>
                 )}

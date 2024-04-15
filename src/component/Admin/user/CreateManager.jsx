@@ -20,7 +20,6 @@ export default function CreateManager() {
           anhMatTruoc: null,
           anhMatSau: null,
         },
-        role:'Manager',
         tinhTrangTK:'Active',
       },
      );
@@ -29,13 +28,21 @@ export default function CreateManager() {
             setFormData(prevState =>({...prevState,[name]:value}))}
          const  handleSubmit= async(event)=>{
         event.preventDefault();
-        console.log("dữ liệu gửi đi:"+ formData)
+        console.log("dữ liệu gửi đi:", JSON.stringify(formData))
         try {
             const response = await axios.post(apiUrl(ApiConfig.createManager),formData)
-            const data= response.data
-            console.log("đăng kí thành công"+data)
+            const respondata= response.data
+            console.log("đăng kí thành công"+respondata)
         } catch (error) {
-            alert("đăng kí ko thành công do"+ error.response.data)
+          if (error.response) {
+            // Nếu có phản hồi từ server
+            console.error("Đăng ký không thành công do lỗi phản hồi từ server: ", JSON.stringify(error.response.data));
+            alert("Đăng ký không thành công do lỗi phản hồi từ server: " + error.response.data);
+        } else {
+            // Nếu không có phản hồi từ server (có thể là lỗi mạng hoặc lỗi khác)
+            console.error("Đăng ký không thành công do lỗi không có phản hồi từ server: ", error);
+            alert("Đăng ký không thành công do lỗi không có phản hồi từ server: " + error.message);
+        }
         }
     }
   return (

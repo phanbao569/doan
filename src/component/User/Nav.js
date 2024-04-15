@@ -27,10 +27,21 @@ export default function Nav() {
 
   const tokenExpired = isTokenExpired();
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+        // window.location.reload();
+    };
+useEffect(() => {
+        if (tokenExpired) {
+            handleLogout();
+        }
+    }, [tokenExpired, handleLogout]);
+// console.log(localStorage.getItem('exp')+": "+Date.now())
+// useEffect(() => {
+//   fetchdata()
+// })
+
   const fetchdata = async () => {
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
@@ -43,21 +54,8 @@ export default function Nav() {
       console.error('sai gi do :', error);
     }
   };
+  // console.log(localStorage.getItem('exp') + ": " + Date.now())
 
-    useEffect(() => {
-        if (!tokenExpired) {
-            const expirationTime = localStorage.getItem('exp');
-            const timeLeft = expirationTime - Date.now()/1000;
-                if (timeLeft){
-                const timeout = setTimeout(() => {
-                    handleLogout();
-                }, timeLeft);
-                return () => clearTimeout(timeout);
-            }
-        }
-    }, [tokenExpired, handleLogout]);
-// console.log(localStorage.getItem('exp')+": "+Date.now())
-   
 
 
   return (
@@ -133,13 +131,13 @@ export default function Nav() {
                 </div>
 
                 {isOpen && (
-                    <div className="absolute w-full bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
-                        <div className="  py-1">
-                            <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
-                            <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
-                            <div onClick={handleLogout} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
-                        </div>
+                  <div className="absolute w-full bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
+                    <div className="  py-1">
+                      <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
+                      <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
+                      <div onClick={() => { handleLogout() }} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
                     </div>
+                  </div>
                 )}
               </div>
             </div>

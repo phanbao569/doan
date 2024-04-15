@@ -61,7 +61,7 @@ export default function NapThuTuc() {
     const HandleSubmit = async () => {
         try {
             console.log(form);
-      //    await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
+          await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
           console.log("thanh cong");
           navigate('/');
         } catch (error) {
@@ -218,7 +218,7 @@ export default function NapThuTuc() {
                                 <div className='flex' >
 
                                 <Field  onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
-                                <Field type="number" min="0" name="diaChiCuThe" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
+                                <Field  onChange={handleInputChange}  type="number" min="0" name="thoiHanTamTru" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
 
                                 </div>
 

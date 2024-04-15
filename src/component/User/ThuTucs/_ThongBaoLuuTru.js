@@ -115,7 +115,6 @@ export default function NapThuTuc() {
 
                         <div className='flex  py-8 mx-auto  '>
                             <div className='mx-auto w-full px-8 ' >
-
                                 <DiaChi
                                     onSelectCity={handleSelectCity}
                                     onSelectDistrict={handleSelectDistrict}

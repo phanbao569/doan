@@ -36,6 +36,9 @@ const ApiConfig = {
   thongbaoluutru :'/ThongBaoLuuTru/create',
   napthutucgiahantamtru: '/GiaHanTamTru/create',
   getThongTinUser: (id) => `/TTUser/${id}`,
+  getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
+  getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
+  ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`
 };
 
 export const apiUrl = (endpoint) => {

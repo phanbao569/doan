@@ -13,7 +13,7 @@ import TTAmdin from './component/Admin/TTAmdin';
 import TTUser from './component/Admin/user/TTUser';
 import ThongkeDT from './component/Admin/thongke/ThongkeDT';
 import ThongkeHS from './component/Admin/thongke/ThongkeHS';
-import ThongkeTK from './component/Admin/thongke/ThongkeTK';
+
 import { getIDNguoiThayDoi, getRoleFromToken, isTokenExpired } from './util/jwtUtils';
 import { useEffect } from 'react';
 import TTEmploy from './component/Admin/user/TTEmploy';
@@ -41,6 +41,9 @@ import _KhaiBaoTamTru from './component/User/ThuTucs/_KhaiBaoTamTru';
 import _KhaiBaoThuongTru from './component/User/ThuTucs/_KhaiBaoThuongTru';
 import ApiConfig, { apiUrl } from './ApiConfig';
 import axios from 'axios';
+import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
+import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
+import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
 export const GlobalContext = createContext();
 import HeaderLong from './Manager/component/Header';
 import Home from './Manager/component/Home';
@@ -56,7 +59,6 @@ function App() {
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
   useEffect(() => {
-    fetchdata(); // hàm lấy thông tin ngưỜi đăng nhập
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
@@ -99,7 +101,7 @@ function App() {
               <Route path="/" element={<HomeDash />} />
               <Route path="/thongkedoanhthu" element={<ThongkeDT />} />
               <Route path="/thongkehoso" element={<ThongkeHS />} />
-              <Route path="/thongketaikhoan" element={<ThongkeTK />} />
+              <Route path="/thongketaikhoan" element={<ThongkeTKAll />} />
               <Route path="/thongtinadmin" element={<TTAmdin />} />
               <Route path="/thongtinuser" element={<TTUser />} />
               <Route path="/thongtinmanager" element={<TTManager />} />
@@ -109,6 +111,9 @@ function App() {
               <Route path='/xem-vb/:id' element={<XemVB />} />
               <Route path='/xem-user/:idUser' element={<GetUserById />} />
               <Route path='/createmanager' element={<CreateManager />} />
+              <Route path='/xem-tinh/' element={<CreateManager />} />
+              <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
+              <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
             </Routes>
 
           </div>

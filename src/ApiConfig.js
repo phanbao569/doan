@@ -21,9 +21,21 @@ const ApiConfig = {
   getUserById: (id) => `/getUserById/${id}`,
   updateVBPL: '/updateVBPL',
   createTTAdmin:'/TTNV/create',
-  updateTTAdmin:'/TTNV/update',
+  updateTTAdmin:'/TTNV/update', 
   updateUser:'/admin/updateUser',
-  createManager:'/admin/createUser'
+  createManager:'/admin/createManager',
+  filter:'/FilterUser',
+  thongkeUser:'/ThongKeUser',
+  oderByHigh:'/ThongKeUserGiamDan',
+  oderByLow:'/ThongKeUserTangDan',
+ // createManager:'/admin/createUser',
+  createGiaHanTamTru : '/GiaHanTamTru/create',
+  updatethongtinuser:'/TTUser/update',
+  khaibaotamtru:'/KhaiBaoTamTru/create',
+  khaibaothuongtru :'/KhaiBaoThuongTru/create',
+  thongbaoluutru :'/ThongBaoLuuTru/create',
+  napthutucgiahantamtru: '/GiaHanTamTru/create',
+  getThongTinUser: (id) => `/TTUser/${id}`,
 };
 
 export const apiUrl = (endpoint) => {

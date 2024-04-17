@@ -28,8 +28,8 @@ const ThuTucGiaHanTamTru = () => { // Functional component
     };
 
     if (!VBPL) {
-        return <div>Loading...</div>;
-    }
+        return <div className='h-screen' >Loading...</div>;
+    } 
     else {
 
         return (

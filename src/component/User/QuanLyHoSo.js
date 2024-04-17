@@ -21,7 +21,7 @@ export default function QuanLyHoSo() {
     return (
 
 
-        <div>
+        <div className='h-screen mt-12' >
             <DiaChi
                 onSelectCity={handleSelectCity}
                 onSelectDistrict={handleSelectDistrict}
@@ -29,7 +29,7 @@ export default function QuanLyHoSo() {
             />
 
             <label> {selectedCity} - {selectedDistrict} - {selectedWard} </label>
-            <section id="list-wrapper">
+            <section id="list-wrapper  ">
                 <p>Tìm thấy tổng số <strong>0</strong> hồ sơ</p>
                 <div>
                     <table className="table table-hover" id="tbl-search-result">

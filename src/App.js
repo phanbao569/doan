@@ -1,4 +1,4 @@
-import { Route, Routes, Link, Navigate } from 'react-router-dom';
+import { Route, Routes, Link, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import Login from './component/Auth/LoginComponent/Login';
 import Test from './component/Test'
@@ -37,15 +37,18 @@ import THongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 import NhapThongTinUser from './component/User/ThongTinUser';
 import CapNhatThongTin from './component/User/CapNhatThongTin';
 import _ThongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
+import _KhaiBaoTamTru from './component/User/ThuTucs/_KhaiBaoTamTru';
+import _KhaiBaoThuongTru from './component/User/ThuTucs/_KhaiBaoThuongTru';
 import ApiConfig, { apiUrl } from './ApiConfig';
 import axios from 'axios';
 export const GlobalContext = createContext();
 function App() {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('User');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(true,true);
   const idUser= getIDNguoiThayDoi();
+  const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
   useEffect(() => {
     fetchdata(); // hàm lấy thông tin ngưỜi đăng nhập
@@ -53,9 +56,12 @@ function App() {
     if (isValidToken) {
       const userRole = getRoleFromToken();
       setRole(userRole);
-    } else {localStorage.removeItem('token');
+    } else {
+      
+      localStorage.removeItem('token');
+      navigate('/login');
     // checkTTUser()
-  }
+  } 
   }, []);
 
   const fetchdata = async () => {
@@ -64,15 +70,13 @@ function App() {
       setUser(()=>response.data);
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
       setTTUser(()=>responseTT.data)
-    if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-      console.log(ttuser);
+     if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
+
     } catch (error) {
       console.error('sai gi do :', error);
     }
   };
-  const checkTTUser = () => {
-    if (ttuser?.hoTen !== "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-  }
+
 
   return (
     <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
@@ -131,7 +135,8 @@ function App() {
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
+                    <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />

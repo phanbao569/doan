@@ -12,7 +12,7 @@ import { GlobalContext } from '../../App';
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const idUser = getIDNguoiThayDoi();
-  const { setUser, setTTUser,setqueQuan,setcheckthongtin ,ttuser } = useContext(GlobalContext)
+  const { setUser, setTTUser, setqueQuan, setcheckthongtin, ttuser } = useContext(GlobalContext)
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -27,23 +27,23 @@ export default function Nav() {
 
   const tokenExpired = isTokenExpired();
 
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        navigate('/login');
-        // window.location.reload();
-    };
-useEffect(() => {
-        if (tokenExpired) {
-            handleLogout();
-        }
-    
-    }, [tokenExpired]);
-// console.log(localStorage.getItem('exp')+": "+Date.now())
-// useEffect(() => {
-//   fetchdata()
-// })
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+    // window.location.reload();
+  };
+  useEffect(() => {
+    if (tokenExpired) {
+      handleLogout();
+    }
 
- 
+  }, [tokenExpired]);
+  // console.log(localStorage.getItem('exp')+": "+Date.now())
+  // useEffect(() => {
+  //   fetchdata()
+  // })
+
+
   // console.log(localStorage.getItem('exp') + ": " + Date.now())
 
 

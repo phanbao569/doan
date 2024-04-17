@@ -19,7 +19,7 @@ function ThuTuc() {
     const fetchdata = async () => {
         try {
             const currentUrl = window.location.href;
-              const idFromUrl = currentUrl.split('/').pop();
+            const idFromUrl = currentUrl.split('/').pop();
             const response = await axios.get(apiUrl(ApiConfig.getVBPL(idFromUrl)));
             console.table(response.data);
             SetVBPL(response.data);

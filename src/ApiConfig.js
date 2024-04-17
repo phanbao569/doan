@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.1.109:8888';
+const baseUrl = 'http://172.21.2.72:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -31,6 +31,9 @@ const ApiConfig = {
  // createManager:'/admin/createUser',
   createGiaHanTamTru : '/GiaHanTamTru/create',
   updatethongtinuser:'/TTUser/update',
+  khaibaotamtru:'/KhaiBaoTamTru/create',
+  khaibaothuongtru :'/KhaiBaoThuongTru/create',
+  thongbaoluutru :'/ThongBaoLuuTru/create',
   napthutucgiahantamtru: '/GiaHanTamTru/create',
   getThongTinUser: (id) => `/TTUser/${id}`,
 };

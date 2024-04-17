@@ -11,16 +11,15 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export default function NapThuTuc() {
 
 
- //   const idUser = getIDNguoiThayDoi();
+ //   const iduser? = getIDNguoiThayDoi();
  const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
- const [isLoaded, setIsLoaded] = useState(false);
+ const [isLoaded, setIsLoaded] = useState(true);
  const handleInputChange = (event)=>{
     const {name,value} =event.target
     console.log(name,value);
     setForm(prevState =>({...prevState,[name]:value}))}
 
-     const idUser = getIDNguoiThayDoi();
      const [form,setForm] = useState({
         tenThuTuc: "Gia hạn tạm trú",
         coQuanThucHien: {
@@ -39,7 +38,7 @@ export default function NapThuTuc() {
         thoiHanTamTru: 0,
         fileHoSoLienQuan: {},
         lePhi: 10000,
-        idUser: getIDNguoiThayDoi(),
+        iduser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
@@ -50,7 +49,8 @@ export default function NapThuTuc() {
      const { user, ttuser } = useContext(GlobalContext)
 
     useEffect(() => {
-     console.log(ttuser);
+       // window.location.reload();
+        console.log(ttuser);
         if(ttuser !== undefined ) setIsLoaded(true);
     }, [ttuser]);
 
@@ -235,7 +235,7 @@ export default function NapThuTuc() {
                                 </div>
                                 <Field      className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                              disabled placeholder='Họ tên ' 
-                                value={user.hoTen} />
+                                value={user?.hoTen} />
 
 
                             </div>
@@ -245,7 +245,7 @@ export default function NapThuTuc() {
                                     <label className='text-red-500' >  </label>
 
                                 </div>
-                                <Field value={ttuser.ngaySinh} type="date"       className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <Field value={ttuser?.ngaySinh} type="date"       className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                              disabled  />
                             </div>
                             <div class="w-full flex flex-col ">
@@ -270,7 +270,7 @@ export default function NapThuTuc() {
                                     <label className='text-red-500' >  </label>
 
                                 </div>
-                                <input value={ttuser.cccd}      className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <input value={ttuser?.cccd}      className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                              disabled placeholder='Địa chỉ đăng ký tạm trú ' pattern='' />
 
 
@@ -281,7 +281,7 @@ export default function NapThuTuc() {
                                     <label className='text-red-500' >  </label>
 
                                 </div>
-                                <input  value={user.sdt }   className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <input  value={user?.sdt }   className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                              disabled placeholder='Địa chỉ đăng ký tạm trú ' />
 
 
@@ -292,7 +292,7 @@ export default function NapThuTuc() {
                                     <label className='text-red-500' >  </label>
 
                                 </div>
-                                <input  value={user.email }      className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                <input  value={user?.email }      className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                              disabled placeholder='Nhập email ' type='email' />
 
 
@@ -319,7 +319,20 @@ export default function NapThuTuc() {
                                 </select>
                             </div>
                         </div>
+                        <div className='flex  py-8  '>
+                                            <div class="w-full flex flex-col ">
+                                                <div>
+                                                    <label className='font-bold' > Nội dung đề nghị </label>
+                                                    
+                                                </div>
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" 
+                                                    name ="noiDungDeNghi"
+                                                    onChange={handleInputChange} 
+                                                     />
+                                            </div>
+                                        </div>
                     </div>
+                    
                     <button type="submit"  class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                         Nạp hồ sơ
 

@@ -15,8 +15,10 @@ export default function NapThuTuc() {
     const [form, setForm] = useState({});
     const [user, setUser] = useState();
     const [TTuser, setTTUser] = useState();
+    const currentUrl = window.location.href;
+    const idFromUrl = currentUrl.split('/').pop();
     useEffect(() => {
-        fetchdata();
+       
         const currentUrl = window.location.href;
         const idFromUrl = currentUrl.split('/').pop();
        // console.log(idFromUrl);
@@ -24,53 +26,53 @@ export default function NapThuTuc() {
         if (idFromUrl === "594ac7fe") {
             const newUrl = currentUrl.replace(idFromUrl, 'giahantamtru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
 
         }
         if (idFromUrl === "21ab430d") {
             const newUrl = currentUrl.replace(idFromUrl, 'dangkytamtru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
 
         }
         if (idFromUrl === "c3033865") {
             const newUrl = currentUrl.replace(idFromUrl, 'dangkytamvang');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
 
         }
         if (idFromUrl === "b0d416c7") {
             const newUrl = currentUrl.replace(idFromUrl, 'khaibaothuongtru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
 
         }
         if (idFromUrl === "43424481") {
             const newUrl = currentUrl.replace(idFromUrl, 'xoadangkytamtru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
         }
         if (idFromUrl === "5d49167e") {
             const newUrl = currentUrl.replace(idFromUrl, 'xoadangkythuongtru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
+
 
         }
         if (idFromUrl === "8cbcd99d") {
             const newUrl = currentUrl.replace(idFromUrl, 'thongbaoluutru');
             window.history.pushState({}, '', newUrl);
+            window.location.reload();
 
         }
-    }, []);
+    }, [idFromUrl]);
 
-    const fetchdata = async () => {
-        try {
-            const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-            const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
-            //    const responseTT = await axios.get('http://172.21.3.169:8888/TTUser/0c6b4326');
-            setTTUser(responseTT.data)
-            const responseData = response.data;
-            setUser(responseData);
-            setIsLoaded(true);
-            //   console.log(user);
-        } catch (error) {
-            console.error('sai gi do :', error);
-        }
-    };
+  
 
     const [selectedCity, setSelectedCity] = useState("");
     const [selectedDistrict, setSelectedDistrict] = useState("");

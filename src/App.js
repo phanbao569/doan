@@ -33,7 +33,7 @@ import ThuTuc from './component/User/ThuTucs/ThuTuc';
 import NavUser from './component/User/Nav';
 import ThongTinCaNhan from './component/User/ThongTinCaNhan';
 import QuanLyHoSo from './component/User/QuanLyHoSo';
-import Header from './Manager/component/Header';
+import HeaderLong from './Manager/component/Header';
 import Home from './Manager/component/Home';
 import Menu from './Manager/component/Menu';
 import Footer from './Manager/component/Footer';
@@ -108,10 +108,10 @@ function App() {
                 <Route path="/forgotpass" element={<ForgotPass />} />
               </Routes>
             </div>
-            <footer className="  ">
+            {/* <footer className="  ">
               <img src={logo} alt="Logo" />
 
-            </footer>
+            </footer> */}
 
 
           </div>

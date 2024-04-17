@@ -182,7 +182,7 @@ export default function TTUser() {
                   {item.sdt}
                 </td>
                 <td className="px-6 py-4">
-                  <Link to={`/xem-user/${item.idUser}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                <Link to={`/xem-user/${item.idUser}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
                 </td>
               </tr>
             ))}

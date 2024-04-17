@@ -6,19 +6,6 @@ import { getFullNameFromToken, isTokenExpired,getRoleFromToken, timeToken } from
 import SideBar from './Sidebar';
 function Header() {
   const navigate = useNavigate();
-    const fullName = getFullNameFromToken();
-    // const toggleSidebar = () => {
-    //     const sidebar = document.getElementById('sidebar');
-    //     if (sidebar.classList.contains('sidebar-responsive')) {
-    //         sidebar.classList.remove('sidebar-responsive');
-    //     } else {
-    //         sidebar.classList.add('sidebar-responsive');
-    //     }
-    // };
-    // const closeSidebar = () => {
-    //     const sidebar = document.getElementById('sidebar');
-    //     sidebar.classList.remove('sidebar-responsive');
-    // };
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');

@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.1.109:8888';
+const baseUrl = 'http://172.21.2.72:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -33,6 +33,9 @@ const ApiConfig = {
   updatethongtinuser:'/TTUser/update',
   napthutucgiahantamtru: '/GiaHanTamTru/create',
   getThongTinUser: (id) => `/TTUser/${id}`,
+  getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
+  getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
+  ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`
 };
 
 export const apiUrl = (endpoint) => {

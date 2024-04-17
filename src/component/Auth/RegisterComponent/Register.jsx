@@ -30,8 +30,9 @@ export default function Register() {
     codeHashed: '0'
 
   },
-
+  
   );
+  const [contextErr, setContextErr] = useState(false)
   const [checkMK, setCheckMK] = useState('')
   //xử lí thông tin trong giao giện
   // state xử lí hộp thoại
@@ -178,12 +179,14 @@ export default function Register() {
     const { name, value, files } = event.target;
     if (name === 'nhapLaiMatKhau') {
       setCheckMK(value);
+      
     } else {
       setFormData(prevState => ({
         ...prevState,
         [name]: files ? files[0] : value
       }));
     }
+    kiemTraMKSai()
   }
   //hàm chuyển file ảnh thanh string
 
@@ -229,7 +232,7 @@ export default function Register() {
         }
       });
     };
-
+   
     reader.readAsDataURL(file);
   };
   // const handleAnhCccdMatTruocChange = (event) => {
@@ -269,7 +272,11 @@ export default function Register() {
     reader.readAsDataURL(file);
   };
   //xử lí thông tin trong giao giện
-
+  //check mật khẩu
+  const kiemTraMKSai=()=>{
+   if (formData.matKhau!==null && formData.matKhau!== checkMK)  setContextErr(true)
+   else setContextErr(false)
+}
 
   return (
 
@@ -293,6 +300,7 @@ export default function Register() {
               <div className="mb-6">
                 <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Nhập lại mật khẩu</label>
                 <input type="password" id="password" placeholder="Nhập lại mật khẩu" name="nhapLaiMatKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+              {contextErr?(<h1 className='text-xs block pt-2 font-medium text-red-700' >Mật khẩu nhập lại khonong khớp</h1>):null}
               </div>
               <div className="mb-6">
                 <label htmlFor="hoten" className="text-sm block mb-2 font-medium text-gray-700">Họ và tên</label>

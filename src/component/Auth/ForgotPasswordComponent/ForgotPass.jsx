@@ -3,13 +3,14 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 export default function ForgotPass() {
+   
    const [code, setCode] = useState('');
     const [formQuenMatKhau, setFormQuenMatKhau] = useState({
         cccd: '',
         code: '0',
         codeHashed: '0',
         matKhauMoi: '0'
-})
+})  
     const [checkMK, setCheckMK] = useState('')
     const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
     const [showNhapMKDialog, setShowNhapMKDialog] = useState(false);
@@ -150,7 +151,7 @@ export default function ForgotPass() {
         }
     };
  //kiểm tra mật khẩu
-
+  
     //xử lí api
     return (
         <div className='h-atuo'  >

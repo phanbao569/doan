@@ -13,7 +13,7 @@ import TTAmdin from './component/Admin/TTAmdin';
 import TTUser from './component/Admin/user/TTUser';
 import ThongkeDT from './component/Admin/thongke/ThongkeDT';
 import ThongkeHS from './component/Admin/thongke/ThongkeHS';
-import ThongkeTK from './component/Admin/thongke/ThongkeTK';
+
 import { getIDNguoiThayDoi, getRoleFromToken, isTokenExpired } from './util/jwtUtils';
 import { useEffect } from 'react';
 import TTEmploy from './component/Admin/user/TTEmploy';
@@ -39,6 +39,9 @@ import CapNhatThongTin from './component/User/CapNhatThongTin';
 import _ThongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 import ApiConfig, { apiUrl } from './ApiConfig';
 import axios from 'axios';
+import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
+import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
+import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('');
@@ -48,11 +51,12 @@ function App() {
   const idUser= getIDNguoiThayDoi();
 
   useEffect(() => {
-    fetchdata(); // hàm lấy thông tin ngưỜi đăng nhập
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
       setRole(userRole);
+    // fetchdata(); // hàm lấy thông tin ngưỜi đăng nhập
+
     } else {localStorage.removeItem('token');
     // checkTTUser()
   }
@@ -90,7 +94,7 @@ function App() {
               <Route path="/" element={<HomeDash />} />
               <Route path="/thongkedoanhthu" element={<ThongkeDT />} />
               <Route path="/thongkehoso" element={<ThongkeHS />} />
-              <Route path="/thongketaikhoan" element={<ThongkeTK />} />
+              <Route path="/thongketaikhoan" element={<ThongkeTKAll />} />
               <Route path="/thongtinadmin" element={<TTAmdin />} />
               <Route path="/thongtinuser" element={<TTUser />} />
               <Route path="/thongtinmanager" element={<TTManager />} />
@@ -100,6 +104,9 @@ function App() {
               <Route path='/xem-vb/:id' element={<XemVB />} />
               <Route path='/xem-user/:idUser' element={<GetUserById />} />
               <Route path='/createmanager' element={<CreateManager />} />
+              <Route path='/xem-tinh/' element={<CreateManager />} />
+              <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
+              <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
             </Routes>
 
           </div>
@@ -132,9 +139,7 @@ function App() {
                     <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
+
                   </Routes>
                 </div>
                 <footer className="  ">

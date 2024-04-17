@@ -138,7 +138,7 @@ export default function _KhaiBaoTamTru() {
                                             <div class="w-2/3 flex flex-col ">
                                                 <div className=''>
                                                     <label className='font-bold' > Cơ quan thực hiện </label>
-                                                    <label className='text-red-500' > (*) </label>
+                                                 
                                                 </div>
                                                 <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
 
@@ -148,7 +148,7 @@ export default function _KhaiBaoTamTru() {
                                             <div class="w-1/3 flex flex-col ">
                                                 <div>
                                                     <label className='font-bold' > Số điện thoại </label>
-                                                    <label className='text-red-500' > (*) </label>
+                                                 
 
                                                 </div>
                                                 <Field className="border w-2/3 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='số điện thoại ' value={"0363361994"} />
@@ -284,7 +284,7 @@ export default function _KhaiBaoTamTru() {
 
                                             <label className='text-xl font-family-sans mx-auto' >
 
-                                                THÔNG TIN CƠ SỞ LƯU TRÚ
+                                                THÔNG TIN CƠ SỞ TẠM TRÚ
                                             </label>
                                         </div>
                                         <div className='flex  py-8  '>
@@ -402,7 +402,7 @@ export default function _KhaiBaoTamTru() {
                                             <div class="w-full flex flex-col ">
                                                 <div>
                                                     <label className='font-bold' > Hình thức nhận thông báo </label>
-                                                    <label className='text-red-500' > (*) </label>
+                                                 
                                                 </div>
                                                 <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
                                                     <option value="1">Email</option>

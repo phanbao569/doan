@@ -13,7 +13,7 @@ import TTAmdin from './component/Admin/TTAmdin';
 import TTUser from './component/Admin/user/TTUser';
 import ThongkeDT from './component/Admin/thongke/ThongkeDT';
 import ThongkeHS from './component/Admin/thongke/ThongkeHS';
-
+import _XoaDangKyTamTru from './component/User/ThuTucs/_XoaDangKyTamTru';
 import { getIDNguoiThayDoi, getRoleFromToken, isTokenExpired } from './util/jwtUtils';
 import { useEffect } from 'react';
 import TTEmploy from './component/Admin/user/TTEmploy';
@@ -31,7 +31,7 @@ import HomeUser from './component/User/HomeUser'
 import ThuTuc from './component/User/ThuTucs/ThuTuc';
 import NavUser from './component/User/Nav';
 import ThongTinCaNhan from './component/User/ThongTinCaNhan';
-import QuanLyHoSo from './component/User/QuanLyHoSo';
+import QuanLyHoSo from './component/User/QuanLyHoSo/QuanLyHoSo';
 import NapThuTuc from './component/User/ThuTucs/NapThuTuc';
 import THongBaoLuuTru from './component/User/ThuTucs/_ThongBaoLuuTru';
 import NhapThongTinUser from './component/User/ThongTinUser';
@@ -44,6 +44,8 @@ import axios from 'axios';
 import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
 import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
 import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
+import _KhaiBaoTamVang from './component/User/ThuTucs/_KhaiBaoTamVang';
+import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('User');
@@ -54,6 +56,7 @@ function App() {
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
   useEffect(() => {
+    fetchdata();
     const isValidToken = !isTokenExpired();
     if (isValidToken) {
       const userRole = getRoleFromToken();
@@ -142,9 +145,9 @@ function App() {
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
                     <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
+                    <Route path="/napthutuc/xoadangkytamtru" element={<_XoaDangKyTamTru />} />
+                    <Route path="/napthutuc/xoadangkythuongtru" element={<_XoaDangKyThuongTru />} />
                   </Routes>
                 </div>
                 <footer className="  ">

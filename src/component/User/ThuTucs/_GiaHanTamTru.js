@@ -38,7 +38,7 @@ export default function NapThuTuc() {
         thoiHanTamTru: 0,
         fileHoSoLienQuan: {},
         lePhi: 10000,
-        iduser: getIDNguoiThayDoi(),
+        idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
@@ -47,16 +47,13 @@ export default function NapThuTuc() {
 
      });
      const { user, ttuser } = useContext(GlobalContext)
-
+     const [listDS,setlistDS] = useState(Object);
     useEffect(() => {
        // window.location.reload();
         console.log(ttuser);
+        console.log(user);
         if(ttuser !== undefined ) setIsLoaded(true);
     }, [ttuser]);
-
-
-
-   
 
     const HandleSubmit = async () => {
         try {
@@ -78,7 +75,7 @@ export default function NapThuTuc() {
 <Formik
     initialValues={{
     }}
-    onSubmit={()=>HandleSubmit()}
+    onSubmit={()=>HandleSubmit()} 
 >
             <Form>
                 <div class='  gap-4 mt-10 '>

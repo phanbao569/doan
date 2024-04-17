@@ -4,65 +4,65 @@ import React, { useContext, useEffect, useState } from 'react'
 import logo from '../img/footer.jpg'
 import { Field, Form, Formik } from 'formik';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils.js';
-//mport  ApiCon,{baseUrl} from '../../../ApiConfig.js'
-import ApiConfig, { apiUrl } from '../../../ApiConfig.js'
-import moment from 'moment';
 import { GlobalContext } from '../../../App.js';
-export default function NapThuTuc() {
+import ApiConfig, { apiUrl } from '../../../ApiConfig.js';
+import moment from 'moment';
+import { Navigate, useNavigate } from 'react-router-dom';
+export default function _KhaiBaoTamVang() {
 
+    const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
+    const [isLoaded, setIsLoaded] = useState(true);
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
-    const { user, ttuser } = useContext(GlobalContext)
 
-    const [isLoaded, setIsLoaded] = useState(true);
-    const idUser = getIDNguoiThayDoi();
     const [form, setForm] = useState({
-        tenThuTuc: "Thông báo lưu trú",
+        tenThuTuc: "Khai báo tạm vắng",
         coQuanThucHien: {
             tinh: "",
             huyen: "",
             xa: '',
         },
-        loaiHinhCoSo: "",
-        tenCoSo: "",
-        diaChiLuuTru: {
+        diaChi: {
             tinh: "",
             huyen: "",
             xa: '',
         },
         diaChiCuThe: "",
-        idUser: getIDNguoiThayDoi(),
+        ngayVang: '',
+        ngayVe: '',
+        lyDoTamVang: "",
         fileHoSoLienQuan: {},
-        lePhi: "",
+        lePhi: 10000,
+        idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
         created_at: moment().toDate(),
         created_end: '',
+
     });
+    const { user, ttuser } = useContext(GlobalContext)
 
     useEffect(() => {
-        //   fetchdata();
-
-    }, []);
+        // window.location.reload();
+        console.log(ttuser);
+        if (ttuser !== undefined) setIsLoaded(true);
+    }, [ttuser]);
 
     const HandleSubmit = async () => {
         try {
-     await axios.post(apiUrl(ApiConfig.thongbaoluutru),form);
-        console.table(form);
-        console.log("thanh cong");
+            console.table(form);
+           await axios.post(apiUrl(ApiConfig.khaibaotamvang), form);
+            console.log("thanh cong");
+            navigate('/');
         } catch (error) {
-        console.log("an loz");
-            
+            console.error('Lỗi khi gửi dữ liệu:', error);
         }
-   
-
     };
-
     return (
         <div>
             {isLoaded ? (
@@ -70,11 +70,17 @@ export default function NapThuTuc() {
                     <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
 
                         <Formik
-
+                            initialValues={{
+                            }}
                             onSubmit={() => HandleSubmit()}
                         >
                             <Form>
                                 <div class='  gap-4 mt-10 '>
+                                    <h1 className='text-xl' >
+                                        Khai báo tạm vắng
+
+
+                                    </h1>
                                     {/* co quan thuc hien  */}
                                     <div className='' >
                                         <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
@@ -86,6 +92,7 @@ export default function NapThuTuc() {
 
                                         <div className='flex  py-8 mx-auto  '>
                                             <div className='mx-auto w-full px-8 ' >
+
                                                 <DiaChi
                                                     onSelectCity={(cityId) => {
                                                         setForm(prevState => ({
@@ -120,7 +127,6 @@ export default function NapThuTuc() {
                                                         }));
 
                                                     }}
-
                                                 />
                                             </div>
 
@@ -130,16 +136,18 @@ export default function NapThuTuc() {
                                             <div class="w-2/3 flex flex-col ">
                                                 <div className=''>
                                                     <label className='font-bold' > Cơ quan thực hiện </label>
-
+                                                    <label className='text-red-500' >  </label>
                                                 </div>
                                                 <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-
+                                                    <option value="1"> Công an </option>
                                                 </select>
 
                                             </div>
                                             <div class="w-1/3 flex flex-col ">
                                                 <div>
                                                     <label className='font-bold' > Số điện thoại </label>
+                                                    <label className='text-red-500' >  </label>
+
                                                 </div>
                                                 <Field className="border w-2/3 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='số điện thoại ' value={"0363361994"} />
 
@@ -154,50 +162,79 @@ export default function NapThuTuc() {
 
                                             <label className='text-xl font-family-sans mx-auto' >
 
-                                                THÔNG TIN NGƯỜI THÔNG BÁO
-
+                                                THÔNG TIN NƠI Ở  TẠM VẮNG
                                             </label>
                                         </div>
-
-
-
-                                        <div class=" flex p-8 ">
+                                        <div className='flex  py-8  '>
                                             <div class="w-full flex flex-col ">
+                                                <DiaChi
+                                                    onSelectCity={(cityId) => {
+                                                        setForm(prevState => ({
+                                                            ...prevState,
+                                                            diaChi: {
+                                                                ...prevState.diaChi,
+                                                                tinh: cityId
+                                                            }
+                                                        }));
+
+                                                    }}
+                                                    onSelectDistrict={(districtId) => {
+                                                        setForm(prevState => ({
+                                                            ...prevState,
+                                                            diaChi: {
+                                                                ...prevState.diaChi,
+                                                                huyen: districtId
+
+
+                                                            }
+                                                        }));
+
+
+                                                    }}
+                                                    onSelectWard={(wardId) => {
+                                                        setForm(prevState => ({
+                                                            ...prevState,
+                                                            diaChi: {
+                                                                ...prevState.diaChi,
+                                                                xa: wardId
+                                                            }
+                                                        }));
+
+                                                    }}
+                                                />
                                                 <div>
-                                                    <label className='font-bold' > Tỉnh/Thành phố </label>
+                                                    <label className='font-bold' > Địa chỉ cụ thể  </label>
+                                                    <label className='text-red-500' >  </label>
 
                                                 </div>
-                                                <Field className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value={ttuser?.queQuan?.tinh}
-                                                />
+                                                    <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
+                                                <div className='flex gap-10 py-8 mx-auto ' >
+                                                    <div>
+                                                        <label className='font-bold' > Ngày đi vắng   </label>
 
-                                            </div>
-                                            <div class="w-full flex flex-col ">
+                                                        <Field onChange={handleInputChange} type="date" min="0" name="ngayVang" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
+                                                    </div>
+                                                    <div>
+                                                        <label className='font-bold' > Ngày trở về    </label>
+
+                                                        <Field onChange={handleInputChange} type="date" min="0" name="ngayVe" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
+                                                    </div>
+                                                </div>
                                                 <div>
-                                                    <label className='font-bold' > Quận/Huyện </label>
+                                                    <label className='font-bold' > Lý do tạm vắng  </label>
+                                                    <label className='text-red-500' >  </label>
+                                                    <Field onChange={handleInputChange} name="lyDoTamVang" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
 
                                                 </div>
-                                                <Field className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value={ttuser?.queQuan?.huyen}
-                                                />
-
 
                                             </div>
-                                            <div class="w-full flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold' > Phường/Xã </label>
 
-                                                </div>
-                                                <Field className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value={ttuser?.queQuan?.xa}
-                                                />
-                                            </div>
 
                                         </div>
                                         <div className='flex  py-8  '>
                                             <div class="w-full flex flex-col ">
                                                 <div>
-                                                    <label className='font-bold' > Họ tên  </label>
+                                                    <label className='font-bold' > Họ tên </label>
                                                     <label className='text-red-500' >  </label>
 
                                                 </div>
@@ -216,20 +253,7 @@ export default function NapThuTuc() {
                                                 <Field value={ttuser?.ngaySinh} type="date" className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     disabled />
                                             </div>
-                                            <div class="w-full flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold' > giới tính </label>
-                                                    <label className='text-red-500' >  </label>
 
-                                                </div>
-                                                <Field as="select" name="" class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-                                                    <option value="1">Nam</option>
-                                                    <option value="2">Nữ</option>
-                                                    <option value="3">Khác</option>
-                                                </Field >
-
-
-                                            </div>
                                         </div>
                                         <div class=" flex p-8 ">
                                             <div class="w-full flex flex-col ">
@@ -238,7 +262,7 @@ export default function NapThuTuc() {
                                                     <label className='text-red-500' >  </label>
 
                                                 </div>
-                                                <input className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                <input value={ttuser?.cccd} className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     disabled placeholder='Địa chỉ đăng ký tạm trú ' pattern='' />
 
 
@@ -249,7 +273,7 @@ export default function NapThuTuc() {
                                                     <label className='text-red-500' >  </label>
 
                                                 </div>
-                                                <input className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                <input value={user?.sdt} className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     disabled placeholder='Địa chỉ đăng ký tạm trú ' />
 
 
@@ -260,97 +284,13 @@ export default function NapThuTuc() {
                                                     <label className='text-red-500' >  </label>
 
                                                 </div>
-                                                <input className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                <input value={user?.email} className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     disabled placeholder='Nhập email ' type='email' />
 
 
                                             </div>
 
                                         </div>
-                                    </div>
-                                    {/* Thong tin co so luu tru  */}
-                                    <div className='' >
-                                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
-
-                                            <label className='text-xl font-family-sans mx-auto' >
-
-                                                THÔNG TIN CƠ SỞ LƯU TRÚ
-                                            </label>
-                                        </div>
-                                        <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold' > Loại hình cơ sở lưu trú </label>
-
-                                                </div>
-                                                <select onChange={handleInputChange} name="loaiHinhCoSo" class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-                                                    <option value="Ký túc sinh viên">Ký túc sinh viên</option>
-                                                    <option value="Nhà ngăn phòng cho thuê">Nhà ngăn phòng cho thuê </option>
-                                                    <option value="Cơ sở du lịch<">Cơ sở du lịch</option>
-                                                    <option value="Cơ sở khám bệnh">Cơ sở khám bệnh</option>
-                                                    <option value="Cơ sở khác">Cơ sở khác</option>
-                                                </select >
-
-
-                                            </div>
-                                            <div class="w-full flex flex-col ">
-                                                <div className=''>
-                                                    <label className='font-bold' > Tên cơ sở lưu trú</label>
-
-                                                </div>
-                                                <Field onChange={handleInputChange} name="tenCoSo" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
-
-
-                                            </div>
-
-                                        </div>
-                                        <div class="flex flex-col py-8 ">
-                                            <div className=''>
-                                                <label className='font-bold' > Địa chỉ cụ thể</label>
-
-                                            </div>
-                                            <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ cụ thể ' />
-
-
-                                        </div>
-                                        <DiaChi
-                                            onSelectCity={(cityId) => {
-                                                setForm(prevState => ({
-                                                    ...prevState,
-                                                    diaChiLuuTru: {
-                                                        ...prevState.diaChiLuuTru,
-                                                        tinh: cityId
-                                                    }
-                                                }));
-
-                                            }}
-                                            onSelectDistrict={(districtId) => {
-                                                setForm(prevState => ({
-                                                    ...prevState,
-                                                    diaChiLuuTru: {
-                                                        ...prevState.diaChiLuuTru,
-                                                        huyen: districtId
-
-
-                                                    }
-                                                }));
-
-
-                                            }}
-                                            onSelectWard={(wardId) => {
-                                                setForm(prevState => ({
-                                                    ...prevState,
-                                                    diaChiLuuTru: {
-                                                        ...prevState.diaChiLuuTru,
-                                                        xa: wardId
-                                                    }
-                                                }));
-
-                                            }}
-                                        />
-
-
-
                                     </div>
 
                                     <div className='' >
@@ -364,26 +304,37 @@ export default function NapThuTuc() {
                                             <div class="w-full flex flex-col ">
                                                 <div>
                                                     <label className='font-bold' > Hình thức nhận thông báo </label>
-
+                                                    <label className='text-red-500' >  </label>
                                                 </div>
                                                 <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
                                                     <option value="1">Email</option>
                                                 </select>
                                             </div>
                                         </div>
+                                        <div className='flex  py-8  '>
+                                            <div class="w-full flex flex-col ">
+                                                <div>
+                                                    <label className='font-bold' > Nội dung đề nghị </label>
+
+                                                </div>
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"
+                                                    name="noiDungDeNghi"
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
 
+                                    <button type="submit" class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        Nạp hồ sơ
+
+
+                                    </button>
 
                                 </div>
                             </Form>
                         </Formik>
-                        <button type="submit"
-                            onClick={HandleSubmit}
-                            class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                            Nạp hồ sơ
 
-
-                        </button>
 
                     </div>
                     <div type="submit" class="bg-white-300 p-4 col-span-1  ">
@@ -393,6 +344,5 @@ export default function NapThuTuc() {
                 <div>Loading...</div>
             )}
         </div>
-
     )
 }

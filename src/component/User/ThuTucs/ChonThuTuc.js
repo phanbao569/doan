@@ -55,7 +55,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 6 */}
                 <div >
-                    <Link to={`/thutuc/khaibaothuongtru`} >
+                    <Link to={`/thutuc/b0d416c7`} >
 
                         <img src={khaibaothuongtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>

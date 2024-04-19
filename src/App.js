@@ -46,6 +46,7 @@ import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
 import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
 import _KhaiBaoTamVang from './component/User/ThuTucs/_KhaiBaoTamVang';
 import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
+import _xemchitiethoso from './component/User/QuanLyHoSo/_XemChiTietHoSo';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('User');
@@ -148,6 +149,8 @@ function App() {
                     <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
                     <Route path="/napthutuc/xoadangkytamtru" element={<_XoaDangKyTamTru />} />
                     <Route path="/napthutuc/xoadangkythuongtru" element={<_XoaDangKyThuongTru />} />
+                    <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
+                    
                   </Routes>
                 </div>
                 <footer className="  ">

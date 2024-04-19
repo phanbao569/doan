@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.2.72:8888';
+const baseUrl = 'http://172.21.1.175:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -37,9 +37,10 @@ const ApiConfig = {
   thongbaoluutru :'/ThongBaoLuuTru/create', 
   xoadangkytamtru :'/XoaDangKyTamTru/create',
   xoadangkythuongtru :'/XoaDangKyThuongTru/create',
-  quanlydanhsachchoxuly: (id) => `/QuanLyHoSoUserChecking/${id}`,
+  getAllQuanLyHoSoUser: (id) => `/getAllQuanLyHoSoUser/${id}`,
   napthutucgiahantamtru: '/GiaHanTamTru/create',
   getThongTinUser: (id) => `/TTUser/${id}`,
+  thanhtoan :(id,lephi)=>`/pay?$price=${id}&lephi=${lephi}`,
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
   ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`

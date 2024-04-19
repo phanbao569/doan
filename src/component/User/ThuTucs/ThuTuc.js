@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import {FaCaretDown } from "react-icons/ai";
 import { AiFillCaretUp,AiFillCaretDown  } from "react-icons/ai";
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import vietnamimg from '../img/vietnam1.png'
 import axios, { Axios } from 'axios';
 function ThuTuc() {
     const [VBPL, SetVBPL] = useState({});
@@ -35,7 +36,11 @@ function ThuTuc() {
     return (
         <div className="grid grid-cols-5 gap-4 ">
         {/* Left column */}
-        <div className="bg-white p-4 col-span-1"></div>
+        <div className="bg-white p-4 col-span-1">
+        <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
+        <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
+
+        </div>
 
         {/* Main content column */}
         <div className="p-4 col-span-3  ">
@@ -211,7 +216,11 @@ function ThuTuc() {
         </div>
 
         {/* Right column */}
-        <div className="bg-white-300 p-4 col-span-1"></div>
+        <div className="bg-white-300 p-4 col-span-1">
+        <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
+        <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
+
+        </div>
 
         {/* Footer with logo */}
         <div className="bg-white-300 p-4 col-span-5">

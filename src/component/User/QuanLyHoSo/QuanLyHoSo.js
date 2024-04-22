@@ -16,9 +16,13 @@ export default function QuanLyHoSo() {
   const [listDS, setlistDS] = useState(Object);
   const [listshow, setlistshow] = useState();
   const [detail,setdetail] = useState();
-  const handleViewDetail = (value) => {
+  const handleViewDetail = async (value) => {
+    
     setdetail(value);
-    navigate("/xemchitiethoso", { state: { value } });
+    const response = await axios.get(apiUrl(ApiConfig.getDanhGiaHoSo(value.id)));
+    console.log(response.data);
+    // console.log();
+    navigate("/xemchitiethoso", { state: { value, value2:response.data } });
   }
   const handleClickPickViewVBPL = (e, value) => {
     setviewDSVL(value);
@@ -31,6 +35,8 @@ export default function QuanLyHoSo() {
     if (value === "5") setlistshow(listDS.khaiBaoTamVangs)
     if (value === "6") setlistshow(listDS.xoaDangKyThuongTrus)
     if (value === "7") setlistshow(listDS.xoaDangKyTamTrus)
+
+    
     console.log(listshow);
   }
   const { user, ttuser } = useContext(GlobalContext)

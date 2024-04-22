@@ -17,7 +17,7 @@ export default function NapThuTuc() {
  const [isLoaded, setIsLoaded] = useState(true);
  const handleInputChange = (event)=>{
     const {name,value} =event.target
-    console.log(name,value);
+ 
     setForm(prevState =>({...prevState,[name]:value}))}
 
      const [form,setForm] = useState({
@@ -57,10 +57,20 @@ export default function NapThuTuc() {
 
     const HandleSubmit = async () => {
         try {
+            if(
+                form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh==="" || form.coQuanThucHien.xa==="" || 
+                form.diaChiTamTru.huyen === "" || form.diaChiTamTru.tinh==="" || form.diaChiTamTru.xa==="" || form.thoiHanTamTru.huyen === "" || form.thoiHanTamTru === 0 ||
+                form.diaChiCuThe === ""
+        ) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }else {
             console.log(form);
-          await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
-          console.log("thanh cong");
-          navigate('/');
+            await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
+            console.log("thanh cong");
+        }
+          
+         // navigate('/');
         } catch (error) {
           console.error('Lỗi khi gửi dữ liệu:', error);
         }

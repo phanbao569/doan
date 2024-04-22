@@ -29,7 +29,7 @@ export default function Nav() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/login');
+   // navigate('/login');
     // window.location.reload();
   };
   useEffect(() => {
@@ -75,15 +75,11 @@ export default function Nav() {
             </a>
           </li>
           <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              Phản ánh - Kiến nghị
-            </a>
+          <Link to="/hotrohoidao" > Hỗ trợ - hỏi đáp </Link>
+            
+              
           </li>
-          <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              Hỗ trợ - hỏi đáp
-            </a>
-          </li>
+         
           <li>
             <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">
               Khảo sát

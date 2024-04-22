@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.1.175:8888';
+const baseUrl = 'http://172.21.2.68:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -36,11 +36,15 @@ const ApiConfig = {
   khaibaotamvang :'/KhaiBaoTamVang/create',
   thongbaoluutru :'/ThongBaoLuuTru/create', 
   xoadangkytamtru :'/XoaDangKyTamTru/create',
+  lichsuhoidapbyId: (id) => `/getAllHoiDapByIdUser/${id}`,
+  guiHoiDap :'/createHoiDap',
   xoadangkythuongtru :'/XoaDangKyThuongTru/create',
   getAllQuanLyHoSoUser: (id) => `/getAllQuanLyHoSoUser/${id}`,
+  getDanhGiaHoSo: (id) => `/DanhGiaHoSoByIdHoSo/${id}`,
   napthutucgiahantamtru: '/GiaHanTamTru/create',
+  taoDanhGiaHoSo: '/createDanhGiaHoSo',
   getThongTinUser: (id) => `/TTUser/${id}`,
-  thanhtoan :(id,lephi)=>`/pay?$price=${id}&lephi=${lephi}`,
+  thanhtoan :(id,lephi)=>`/pay/${id}/${lephi}`,
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
   ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`

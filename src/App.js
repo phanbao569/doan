@@ -47,12 +47,14 @@ import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
 import _KhaiBaoTamVang from './component/User/ThuTucs/_KhaiBaoTamVang';
 import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
 import _xemchitiethoso from './component/User/QuanLyHoSo/_XemChiTietHoSo';
+import DanhGiaHoiDap from './component/User/DanhGiaHoiDap/DanhGiaHoiDap';
+import ThongBaoThanhToan from './component/User/ThongBaoThanhToan'
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('User');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(true,true);
+  const [checkthongtin, setcheckthongtin] = useState(true);
   const idUser= getIDNguoiThayDoi();
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
@@ -65,7 +67,7 @@ function App() {
     } else {
       
       localStorage.removeItem('token');
-      navigate('/login');
+    //  navigate('/login');
     // checkTTUser()
   } 
   }, []);
@@ -77,7 +79,7 @@ function App() {
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
       setTTUser(()=>responseTT.data)
      if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-
+    //  checkthongtin
     } catch (error) {
       console.error('sai gi do :', error);
     }
@@ -120,7 +122,7 @@ function App() {
 
         ) : role === 'User' ? (
           checkthongtin ? (
-            <div className='flex flex-col'>
+            <div className=''>
               <div className=''>
                 {/* Content to render when checkthongtin is true */}
                 <NavUser />
@@ -128,11 +130,11 @@ function App() {
                   <Routes>
                     <Route path="/NhapThongTinUser" element={<NhapThongTinUser />} />
                     <Route path="/CapNhatThongTin" element={<CapNhatThongTin />} />
+                    <Route path="/hotrohoidao" element={<DanhGiaHoiDap />} />
                     <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
                     <Route path="/" element={<ChonThuTuc />} />
                     <Route path="/napthutuc/:id" element={<NapThuTuc />} />
                     <Route path="/thutuc/:id" element={<ThuTuc />} />
-                    <Route path="/thongtincuauser" element={<thongtinuser1 />} />
                     <Route path="/thongbaoluutru" element={<THongBaoLuuTru />} />
                     <Route path="/giahantamtru" element={<_GiaHanTamTru />} />
                     <Route path="/HomeUser" element={<HomeUser />} />
@@ -150,6 +152,9 @@ function App() {
                     <Route path="/napthutuc/xoadangkytamtru" element={<_XoaDangKyTamTru />} />
                     <Route path="/napthutuc/xoadangkythuongtru" element={<_XoaDangKyThuongTru />} />
                     <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
+                    {/* <Route path="/*" element={<ThongBaoThanhToan />} /> */}
+                    <Route path="/payment-callback?*" element={<ThongBaoThanhToan />} />
+                    
                     
                   </Routes>
                 </div>
@@ -176,7 +181,6 @@ function App() {
 
 
           )
-
 
 
         ) : (

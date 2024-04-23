@@ -87,8 +87,6 @@ export default function Nav() {
           </li>
         </ul>
         <div class="text-gray font-bold w-1/4 flex justify-end text-lg">
-
-
           {tokenExpired ? (
             < div className=' flex ' >
               <Link to="/login" style={{ textDecoration: 'none' }}>
@@ -104,27 +102,27 @@ export default function Nav() {
               </Link>
             </div  >
           ) : (
-            <div className="relative w-3/4 ">
-              <div className="" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <div className="bg-gray-100 is-bordered  px-8 py-2 rounded-md cursor-pointer  flex ">
-                  <FaUserAlt className=' mt-2' />
-                  <label className='mt-1' >
-                    {fullName}
-                  </label>
-                </div>
-
-                {isOpen && (
-                  <div className="absolute w-full bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
-                    <div className="  py-1">
-                      <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
-                      <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
-                      <div onClick={() => { handleLogout() }} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
-                    </div>
+              <div className="relative w-3/4 ">
+                <div className="" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                  <div className="bg-gray-100 is-bordered  px-8 py-2 rounded-md cursor-pointer  flex ">
+                    <FaUserAlt className=' mt-2' />
+                    <label className='mt-1' >
+                      {fullName}
+                    </label>
                   </div>
-                )}
+
+                  {isOpen && (
+                    <div className="absolute w-full bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
+                      <div className="  py-1">
+                        <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
+                        <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
+                        <div onClick={() => { handleLogout() }} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+          )}      
         </div>
 
       </div>

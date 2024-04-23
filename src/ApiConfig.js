@@ -19,6 +19,8 @@ const ApiConfig = {
   getAllUser:'/admin/getAlluser',
   getTTAdmin: (id) => `/TTNV/get/${id}`,
   getUserById: (id) => `/getUserById/${id}`,
+  getMaXacNhanByCCCD:(cccd) => `/getMaXacNhanByCCCD/${cccd}`,
+  getAllHoSoByCCCD:(cccd)=>`/getAllHoSoByCCCD/${cccd}`,
   updateVBPL: '/updateVBPL',
   createTTAdmin:'/TTNV/create',
   updateTTAdmin:'/TTNV/update', 

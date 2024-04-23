@@ -49,12 +49,18 @@ import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
 import _xemchitiethoso from './component/User/QuanLyHoSo/_XemChiTietHoSo';
 import DanhGiaHoiDap from './component/User/DanhGiaHoiDap/DanhGiaHoiDap';
 import ThongBaoThanhToan from './component/User/ThongBaoThanhToan'
+import HeaderM from './HomeMaster/component/HeaderMaster';
+import FooterM from './HomeMaster/component/FooterMaster';
+import TraCuuM from './HomeMaster/component/TraCuuMaster';
+import HomeM from './HomeMaster/component/HomeMaster';
+import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
 export const GlobalContext = createContext();
+
 function App() {
-  const [role, setRole] = useState('User');
+  const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(true);
+  const [checkthongtin, setcheckthongtin] = useState(true,true);
   const idUser= getIDNguoiThayDoi();
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
@@ -65,9 +71,9 @@ function App() {
       const userRole = getRoleFromToken();
       setRole(userRole);
     } else {
-      
+
       localStorage.removeItem('token');
-    //  navigate('/login');
+      navigate('/login');
     // checkTTUser()
   } 
   }, []);
@@ -75,11 +81,11 @@ function App() {
   const fetchdata = async () => {
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-      setUser(()=>response.data);
+      setUser(() => response.data);
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
       setTTUser(()=>responseTT.data)
      if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-    //  checkthongtin
+
     } catch (error) {
       console.error('sai gi do :', error);
     }
@@ -88,10 +94,9 @@ function App() {
 
   return (
     <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
-      <div className="App">
+      <div className="App h-screen">
 
         {role === 'Admin' ? (
-
 
           <div className='grid-container'>
             {/* <AdminDashboard /> */}
@@ -148,14 +153,9 @@ function App() {
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
                     <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
-                    <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
-                    <Route path="/napthutuc/xoadangkytamtru" element={<_XoaDangKyTamTru />} />
-                    <Route path="/napthutuc/xoadangkythuongtru" element={<_XoaDangKyThuongTru />} />
-                    <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
-                    {/* <Route path="/*" element={<ThongBaoThanhToan />} /> */}
-                    <Route path="/payment-callback?*" element={<ThongBaoThanhToan />} />
-                    
-                    
+                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/forgotpass" element={<ForgotPass />} />
                   </Routes>
                 </div>
                 <footer className="  ">
@@ -166,32 +166,30 @@ function App() {
           ) : (
             <div>
               <NavUser />
-
               <Routes className="h-screen" >
-
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
-
               </Routes>
               <footer className="  ">
-                  <img src={logo} alt="Logo" />
-                </footer>
+                <img src={logo} alt="Logo" />
+              </footer>
             </div>
-
-
-
           )
 
 
+
         ) : (
-          <div>
-             <NavUser />
+          <div className='h-full'>
+            <HeaderM />
             <Routes>
-              <Route path="/test" element={<Test />} />
-              <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/" element={<HomeM />} />
+              <Route path="/TraCuu" element={<TraCuuM />} />
+              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
+
             </Routes>
+            <FooterM className=''/>
           </div>
         )}
       </div>

@@ -6,19 +6,19 @@ export default function XemVB() {
   const [id, setId] = useState(null);
   const [vb, setVb] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [formData, setFormData] = useState({
-    tenThuTuc: '',
-    coQuanThucHien: '',
-    cachThucThucHien: '',
-    trinhTuThucHien: '',
-    thoiHanGiaiQuyet: '',
-    lePhi: '',
-    thanhPhanHoSo: '',
-    yeuCauDieuKien: '',
-    canCuPhapLy: '',
-    ketQuaThucHien: '',
-    idNguoiThayDoi: '0',
-  });
+    const [formData, setFormData] = useState({
+      tenThuTuc: '',
+      coQuanThucHien: '',
+      cachThucThucHien: '',
+      trinhTuThucHien: '',
+      thoiHanGiaiQuyet: '',
+      lePhi: '',
+      thanhPhanHoSo: '',
+      yeuCauDieuKien: '',
+      canCuPhapLy: '',
+      ketQuaThucHien: '',
+      idNguoiThayDoi: '0',
+    });
 
   useEffect(() => {
     const currentUrl = window.location.href;

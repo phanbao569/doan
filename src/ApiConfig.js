@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.2.68:8888';
+const baseUrl = 'http://172.21.3.188:8888';
 
 const ApiConfig = {
   login: '/login',

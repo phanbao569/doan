@@ -1,11 +1,10 @@
 import React from 'react'
 import Slider from 'react-slick';
+import { FaSistrix,FaHome,FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 
-import { FaSistrix } from "react-icons/fa";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-
-export default function Home() {
+export default function HomeM() {
   const settings = {
     slidesToShow: 1,
     infinite: true,
@@ -16,6 +15,27 @@ export default function Home() {
   };
   return (
     <div className=' z-10 w-full h-auto items-center justify-between mb-4'>
+
+      {/* Nav */}
+      <div className='flex items-center justify-center h-10 bg-stone-200'>
+        <NavLink to={'/'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white" >
+          <FaHome className='size-6' />
+        </NavLink>
+        <NavLink to={'/GioiThieu'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+          Giới thiệu
+        </NavLink>
+        <NavLink to={'/DatLich'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+          Đặt lịch giao dịch
+        </NavLink>
+        <NavLink to={'/TraCuu'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+          Tra cứu
+        </NavLink>
+        
+        <NavLink to={'/PhanAnh'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+          Phản ánh kiến nghị
+        </NavLink>
+      </div>
+
       <div className='flex w-full h-150 bg-my-image bg-cover justify-center content-center pt-12'>
         <input className='w-300 h-12 pl-2 border ' type="" placeholder='Nhập từ khóa tìm kiếm' />
         <button className='bg-white w-150 text-gray-500 h-12  border'>Tìm kiếm nâng cao</button>
@@ -50,14 +70,14 @@ export default function Home() {
         </button>
       </div>
       <div className='flex w-800 h-40 gap-12 justify-center'>
-      <button className='w-375 h-24 bg-stone-200 text-black'>
-          Khai báo giấy khai sinh
+        <button className='w-375 h-24 bg-stone-200 text-black'>
+          Hướng dẫn sử dụng
         </button>
         <button className='w-375 h-24 bg-stone-200 text-black'>
-          Khai báo giấy khai sinh
+          Thống kê
         </button>
       </div>
-      
+
 
     </div>
   )

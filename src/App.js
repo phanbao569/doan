@@ -44,18 +44,19 @@ import axios from 'axios';
 import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
 import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
 import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
+import HeaderM from './HomeMaster/component/HeaderMaster';
+import FooterM from './HomeMaster/component/FooterMaster';
+import TraCuuM from './HomeMaster/component/TraCuuMaster';
+import HomeM from './HomeMaster/component/HomeMaster';
+import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
 export const GlobalContext = createContext();
-import HeaderLong from './Manager/component/Header';
-import Home from './Manager/component/Home';
-import Menu from './Manager/component/Menu';
-import Footer from './Manager/component/Footer';
-import TraCuu from './Manager/component/TraCuu';
+
 function App() {
-  const [role, setRole] = useState('User');
+  const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(true,true);
-  const idUser= getIDNguoiThayDoi();
+  const [checkthongtin, setcheckthongtin] = useState(true, true);
+  const idUser = getIDNguoiThayDoi();
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
   useEffect(() => {
@@ -64,20 +65,20 @@ function App() {
       const userRole = getRoleFromToken();
       setRole(userRole);
     } else {
-      
+
       localStorage.removeItem('token');
       navigate('/login');
-    // checkTTUser()
-  } 
+      // checkTTUser()
+    }
   }, []);
 
   const fetchdata = async () => {
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-      setUser(()=>response.data);
+      setUser(() => response.data);
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
-      setTTUser(()=>responseTT.data)
-     if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
+      setTTUser(() => responseTT.data)
+      if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
 
     } catch (error) {
       console.error('sai gi do :', error);
@@ -87,10 +88,9 @@ function App() {
 
   return (
     <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
-      <div className="App">
+      <div className="App h-screen">
 
         {role === 'Admin' ? (
-
 
           <div className='grid-container'>
             {/* <AdminDashboard /> */}
@@ -146,7 +146,7 @@ function App() {
                     <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
-                    <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
+                    <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
@@ -160,33 +160,27 @@ function App() {
           ) : (
             <div>
               <NavUser />
-
               <Routes className="h-screen" >
-
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
-
               </Routes>
               <footer className="  ">
-                  <img src={logo} alt="Logo" />
-                </footer>
+                <img src={logo} alt="Logo" />
+              </footer>
             </div>
-
-
-
           )
-
-
-
         ) : (
-          <div>
-             <NavUser />
+          <div className='h-full'>
+            <HeaderM />
             <Routes>
-              <Route path="/test" element={<Test />} />
-              <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/" element={<HomeM />} />
+              <Route path="/TraCuu" element={<TraCuuM />} />
+              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
+
             </Routes>
+            <FooterM className=''/>
           </div>
         )}
       </div>

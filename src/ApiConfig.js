@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.2.72:8888';
+const baseUrl = 'http://172.21.3.188:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -19,6 +19,8 @@ const ApiConfig = {
   getAllUser:'/admin/getAlluser',
   getTTAdmin: (id) => `/TTNV/get/${id}`,
   getUserById: (id) => `/getUserById/${id}`,
+  getMaXacNhanByCCCD:(cccd) => `/getMaXacNhanByCCCD/${cccd}`,
+  getAllHoSoByCCCD:(cccd)=>`/getAllHoSoByCCCD/${cccd}`,
   updateVBPL: '/updateVBPL',
   createTTAdmin:'/TTNV/create',
   updateTTAdmin:'/TTNV/update', 

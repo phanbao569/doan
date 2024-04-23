@@ -283,9 +283,9 @@ export default function Register() {
     <div className='h-atuo'  >
 
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
-        <div className="flex justify-center items-center">
-          <img src={leftImage} alt="Left" className="w-1/4" />
-          <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+        <div className="flex justify-center items-center gap-8">
+          <img src={leftImage} alt="Left" className="w-1/4 " />
+          <div className="w-656 max-w-md bg-white rounded-lg shadow-md p-8 mr-12 ">
            
             <form action="#">
               <div className="mb-6">
@@ -344,7 +344,7 @@ export default function Register() {
             </form>
             <Link to="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
           </div>
-          <img src={leftImage} alt="Right" className="w-1/4" />
+          <img src={leftImage} alt="Right" className=" w-1/4" />
         </div>
       </div>
 

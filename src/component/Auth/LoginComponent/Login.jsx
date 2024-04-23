@@ -17,7 +17,6 @@ function Login(onClose) {
   const [formLogin, setFormLogin] = useState({
     cccd: "",
     matKhau: "",
-
   });
 
   const [contextErr, setContextErr] = useState(false)
@@ -77,7 +76,9 @@ function Login(onClose) {
         const kiemTra = getRoleFromToken();
         console.log("role la : " + kiemTra)
 
-        if (kiemTra === "Admin") { window.location.reload() } else if (kiemTra === 'User') { navigate('/') };
+        if (kiemTra === "Admin") { window.location.reload() } else if (kiemTra === 'User'|| kiemTra==='Manager') { 
+          window.location.reload() };
+          navigate('/'); 
 
 
         console.log(timeToken() + " : " + Date.now() / 1000)
@@ -163,11 +164,11 @@ function Login(onClose) {
     }
   };
   return (
-    <div className='h-atuo'  >
-      <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8 mt-32">
+    <div className='h-auto'  >
+      <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8 mt-10">
         <div className="flex justify-center items-center">
           <img src={leftImage} alt="Left" className="w-1/4" />
-          <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+          <div className="text-center w-full max-w-md bg-white rounded-lg shadow-md p-8">
             <h1 className="text-2xl font-bold text-center mb-4">Đăng nhập</h1>
             <form action="#">
               <div className="mb-6">
@@ -197,7 +198,7 @@ function Login(onClose) {
             </form>
             <Link to="/register" className="text-xs text-blue-500 hover:text-blue-700">Bạn chưa có tài khoản? Đăng kí ngay</Link>
           </div>
-          <img src={leftImage} alt="Left" className="w-1/4" />
+          <img src={leftImage} alt="Left" className="ml-12 w-1/4" />
         </div>
 
       </div>

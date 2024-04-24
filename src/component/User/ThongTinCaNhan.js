@@ -15,8 +15,8 @@ export default function ThongTinCaNhan() {
 
   useEffect(() => {
     if(ttuser !== undefined) setIsLoaded(true)
-  }, [ttuser]);
-
+  }, []);
+console.log(user);
   return (
     <div>
       {isLoaded ? (
@@ -37,13 +37,13 @@ export default function ThongTinCaNhan() {
                 </tr>
                 <tr>
                   <th scope="row">Họ và tên</th>
-                  <td>{ttuser?.hoTen}</td>
+                  <td>{user?.hoTen}</td>
                 </tr>
                 <tr>
                   <th scope="row">Quê quán</th>
                   <td>
                     
-                  {`${ttuser.queQuan?.tinh}-${ttuser.queQuan.huyen}-${ttuser.queQuan.xa}`}
+                  {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
 
                   </td>
                 </tr>
@@ -64,7 +64,7 @@ export default function ThongTinCaNhan() {
                 <tr>
                   <th scope="row">Nơi cấp CMND/CCCD</th>
                   <td > 
-                  {`${ttuser.queQuan?.tinh}-${ttuser.queQuan.huyen}-${ttuser.queQuan.xa}`}
+                  {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
                     </td>
                 </tr>
                 <tr>
@@ -91,7 +91,9 @@ export default function ThongTinCaNhan() {
                 </tr>
                 <tr>
                   <th scope="row">Hình ảnh</th>
-                  <td>                                              </td>
+                  <td>  
+                  {/* <img src={user.anhCCCD.anhMat} alt="Ảnh mặt" /> */}
+                   </td>
                 </tr>
               </tbody>
             </table>

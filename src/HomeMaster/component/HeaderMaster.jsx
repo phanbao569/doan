@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../img/logo.png'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from "react-icons/fa";
 
@@ -37,13 +37,43 @@ export default function HeaderM() {
     return (
 
         <div className='flex w-full h-28 content-center items-center bg-gradient-to-r from-white via-white to-zinc-700'  >
+         <div className='flex'> 
             <NavLink to={'/'}>
                 <img src={Logo} className='w-16 h-16 ml-28' alt="logo" />
             </NavLink>
-            <div className='ml-4'>
+            <div className='ml-24'>
                 <p className='text-3xl  text-red-700 font-fontgg '>Quản lý nhân khẩu quốc gia</p>
                 <p className='font-fontgg'>Hành chính phục vụ</p>
             </div>
+            </div>
+            <ul className="flex space-x-4   w-full  justify-center items-center ">
+          <li>
+            <a href="#" className="text-gray hover:text-gray-500">
+              <Link to="/ChonThuTuc" > Thủ tục hành chính</Link>
+            </a>
+          </li>
+          <a href="#" className="text-gray h-42 hover:text-gray-500">
+            <Link to="/ChonThuTuc" > Nộp hồ sơ trực tuyến</Link>
+          </a>
+          <li>
+            <a href="#" className="text-gray hover:text-gray-500">
+              <Link to="/quanlyhoso" > Tra cứu hồ sơ </Link>
+
+            </a>
+          </li>
+          <li>
+          <Link to="/hotrohoidao" > Hỗ trợ - hỏi đáp </Link>
+            
+              
+          </li>
+         
+          <li>
+            <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">
+              Khảo sát
+            </Link>
+          </li>
+        </ul>
+
 
             <div className='w-375 h-14'>
                 {tokenExpired ? (

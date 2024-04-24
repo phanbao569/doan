@@ -60,8 +60,8 @@ function App() {
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(true,true);
-  const idUser= getIDNguoiThayDoi();
+  const [checkthongtin, setcheckthongtin] = useState(false);
+  const [isloading, setisloading] = useState(false);
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
   useEffect(() => {
@@ -71,21 +71,21 @@ function App() {
       const userRole = getRoleFromToken();
       setRole(userRole);
     } else {
-
       localStorage.removeItem('token');
       navigate('/login');
     // checkTTUser()
   } 
-  }, []);
+  }, [isloading]);
 
   const fetchdata = async () => {
     try {
-      const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
+      const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(() => response.data);
-      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
+      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(getIDNguoiThayDoi())));
       setTTUser(()=>responseTT.data)
-     if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-
+     if (ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "" && ttuser !== undefined) setcheckthongtin(true);
+      console.log(ttuser);
+      setisloading(true);
     } catch (error) {
       console.error('sai gi do :', error);
     }
@@ -103,7 +103,6 @@ function App() {
             <SideBar />
             <Header />
             <Routes>
-
               <Route path="/" element={<HomeDash />} />
               <Route path="/thongkedoanhthu" element={<ThongkeDT />} />
               <Route path="/thongkehoso" element={<ThongkeHS />} />
@@ -127,10 +126,11 @@ function App() {
 
         ) : role === 'User' ? (
           checkthongtin ? (
-            <div className=''>
               <div className=''>
                 {/* Content to render when checkthongtin is true */}
-                <NavUser />
+            <HeaderM />
+
+                {/* <NavUser /> */}
                 <div className="container mx-auto mb-24">
                   <Routes>
                     <Route path="/NhapThongTinUser" element={<NhapThongTinUser />} />
@@ -152,17 +152,22 @@ function App() {
                     <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
+                    <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
+                    <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
                     <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    <Route path="/napthutuc/xoadangkytamtru" element={< _XoaDangKyTamTru/>} />
+                    <Route path="/napthutuc/xoadangkythuongtru" element={< _XoaDangKyThuongTru/>} />
+                    <Route path="/payment-callback?*" element={<ThongBaoThanhToan />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                     <Route path="/forgotpass" element={<ForgotPass />} />
                   </Routes>
                 </div>
-                <footer className="  ">
+            <FooterM className=''/>
+
+                {/* <footer className="  ">
                   <img src={logo} alt="Logo" />
-                </footer>
+                </footer> */}
               </div>
-            </div>
           ) : (
             <div>
               <NavUser />

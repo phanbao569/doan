@@ -1,4 +1,4 @@
-const baseUrl = 'http://172.21.3.188:8888';
+const baseUrl = 'http://192.168.10.245:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -47,6 +47,7 @@ const ApiConfig = {
   taoDanhGiaHoSo: '/createDanhGiaHoSo',
   getThongTinUser: (id) => `/TTUser/${id}`,
   thanhtoan :(id,lephi)=>`/pay/${id}/${lephi}`,
+  PayingSuccess :(id,email)=>`/PayingSuccess/${id}/${email}`,
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
   ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`

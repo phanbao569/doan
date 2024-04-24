@@ -76,9 +76,12 @@ function Login(onClose) {
         const kiemTra = getRoleFromToken();
         console.log("role la : " + kiemTra)
 
-        if (kiemTra === "Admin") { window.location.reload() } else if (kiemTra === 'User'|| kiemTra==='Manager') { 
-          window.location.reload() };
-          navigate('/'); 
+        if (kiemTra === "Admin") { window.location.reload() }
+         else if (kiemTra === 'User'|| kiemTra==='Manager') 
+         { 
+           navigate('/'); 
+          window.location.reload() 
+        };
 
 
         console.log(timeToken() + " : " + Date.now() / 1000)

@@ -6,6 +6,7 @@ import _DanhGiaHoSo from '../DanhGiaHoiDap/_DanhGiaHoSo';
 import _XemDanhGiaHoSo from '.././DanhGiaHoiDap/_XemDanhGia';
 import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import ThongTinNguoiKhaiBao from '../ThongTinNguoiKhaiBao';
 
 
 export default function _XemChiTietHoSo() {
@@ -23,8 +24,8 @@ export default function _XemChiTietHoSo() {
       console.log(hoso.id);
       console.log(hoso.lePhi);
 
-      //  const response =   await axios.get(apiUrl(ApiConfig.thanhtoan(hoso.id,hoso.lePhi)));
-      const response = await axios.get(`http://172.21.2.68:8888/pay/${hoso.lePhi}/${hoso.id}`);
+      const response = await axios.get(apiUrl(ApiConfig.thanhtoan(hoso.lePhi, hoso.id)));
+      // const response = await axios.get(`http://172.21.2.68:8888/pay/${hoso.lePhi}/${hoso.id}`);
 
       console.log(response.data);
       // navigate(response.data);
@@ -41,20 +42,15 @@ export default function _XemChiTietHoSo() {
   const [check, setCheck] = useState(location.state.value2);
   console.log(check);
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-8 text-center">{hoso.tenThuTuc} </h1>
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+    <div className="max-w-4xl mx-auto px-4 ">
         <div className="p-6">
-
+      <h1 className="text-3xl mx-auto font-semibold mb-4 text-center">{hoso.tenThuTuc} </h1>
           <div  >
-
-            <label className='text-xl font-family-sans mx-auto' >
-
-              THÔNG TIN NGƯỜI THÔNG BÁO
-              <div className="col-span-2">
-                <label className="block text-sm font-semibold text-gray-600 mb-1">Trạng thái:</label>
-                <p className="text-sm font-semibold">
-                  <span className={`inline-block px-2 py-1 rounded-full ${hoso.trangThai === "Checking" ? "bg-green-500 text-white" :
+            <div className=' font-family-sans mx-auto' >
+              <div className="mx-auto">
+                <label className="block text-center text-sm font-semibold text-gray-600 mb-1">Trạng thái:</label>
+                <p className="text-sm text-center mt-2 font-semibold">
+                  <span className={`inline-block mb-2 px-2 py-1 rounded-full ${hoso.trangThai === "Checking" ? "bg-green-500 text-white" :
                     hoso.trangThai === "Done" ? "bg-green-500 text-white" :
                       hoso.trangThai === "Cancelled" ? "bg-red-500 text-white" :
                         hoso.trangThai === "Paying" ? "bg-yellow-500 text-black" : ""
@@ -77,126 +73,18 @@ export default function _XemChiTietHoSo() {
                 </p>
 
               </div>
-            </label>
-
-
-
-            <div class=" flex gap-12 p-8 ">
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Tỉnh/Thành phố </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  {ttuser?.queQuan?.tinh}
-
-                </label>
-
-              </div>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Quận/Huyện </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  {ttuser?.queQuan?.huyen}
-                </label>
-
-
-              </div>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Phường/Xã </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={ttuser?.queQuan?.xa}
-                >
-                  {ttuser?.queQuan?.xa}
-
-                </label>
-              </div>
-
             </div>
-            <div className='flex gap-12 py-8  '>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Họ tên  </label>
-                  <label className='text-red-500' >  </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  disabled placeholder='Họ tên '
-                >
-                  {ttuser?.hoTen}
-
-                </label>
 
 
-              </div>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Ngày tháng năm sinh </label>
-                  <label className='text-red-500' >  </label>
 
-                </div>
-                <label value={ttuser?.ngaySinh} type="date" className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  disabled >
-                  {ttuser?.ngaySinh}
-
-                </label>
-              </div>
-            </div>
-            <div class=" flex p-8 gap-12  ">
-
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > số định danh cá nhân </label>
-                  <label className='text-red-500' >  </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  disabled placeholder='CCCD ' pattern='' >
-                  {ttuser?.cccd}
-
-                </label>
+            <ThongTinNguoiKhaiBao  ttuser={ttuser} user={user} />
 
 
-              </div>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Số điện thoại liên hệ </label>
-                  <label className='text-red-500' >  </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  disabled  >
-                  {user?.sdt}
-
-                </label>
-
-
-              </div>
-              <div class="w-full flex flex-col ">
-                <div>
-                  <label className='font-bold' > Email </label>
-                  <label className='text-red-500' >  </label>
-
-                </div>
-                <label className=" text-start mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  disabled placeholder='Nhập email ' type='email' >
-                  {user?.email}
-
-                </label>
-
-
-              </div>
-
-            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+
+          <div className="grid grid-cols-1 mt-12 md:grid-cols-2 gap-6">
 
 
 
@@ -229,9 +117,9 @@ export default function _XemChiTietHoSo() {
           </div>
 
         </div>
-      </div>
-      <div className="col-span-2 mt-10">
-        <div>
+
+      <div className="col-span-2  mt-10">
+        <div className='mx-auto text-center '>
           {hoso.trangThai === "Paying" && (
             <button onClick={handlePay} className="text-white bg-blue-500 px-4 py-2 rounded-md">
               Thanh toán
@@ -253,7 +141,7 @@ export default function _XemChiTietHoSo() {
 
 
         {isOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="fixed mt-10 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg shadow-lg">
 
               {hoso.trangThai === "Done" && check !== undefined && (

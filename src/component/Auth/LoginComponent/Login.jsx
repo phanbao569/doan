@@ -136,8 +136,9 @@ function Login(onClose) {
       }
     } catch (error) {
       // setShowErrAlert(true);
-      setContextErr(true)
-      console.error('Đăng nhập thất bại:', error.response?.data || error.message);
+      setShowWarningAlert(true)
+      console.error('Đăng nhập thất bại 2:', error.response?.data || error.message);
+      
       // alert('Đăng nhập thất bại:' + (error.response?.data || error.message));
     }
   };

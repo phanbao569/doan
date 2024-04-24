@@ -50,7 +50,10 @@ const ApiConfig = {
   PayingSuccess :(id,email)=>`/PayingSuccess/${id}/${email}`,
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
-  ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`
+  ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`,
+  ThongKeHoSo:'/getThongKeHoSo',
+  deleteVBPL:(id)=>`/deleteVBPL/${id}`,
+  ThongKeDoanhThu:'/getThongKeDoanhThu',
 };
 
 export const apiUrl = (endpoint) => {

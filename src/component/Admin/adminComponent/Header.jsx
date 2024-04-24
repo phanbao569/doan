@@ -9,7 +9,7 @@ function Header() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
-        window.location.reload();
+        // window.location.reload();
     };
 
     const tokenExpired = isTokenExpired();

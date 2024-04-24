@@ -34,7 +34,7 @@ export default function ThongKeHuyen() {
                           Xã Phường
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Tổng số lượng acc
+                          Tổng 
                         </th>
                         <th scope="col" className="px-6 py-3">
                           User

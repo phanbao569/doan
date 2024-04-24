@@ -195,22 +195,23 @@ export default function Register() {
   const handleAnhMatChange = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
-
+  
     reader.onload = (event) => {
-      // Tạo URL từ dữ liệu của ảnh
-      const imageUrl = URL.createObjectURL(file);
-
-      // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với URL này
+      // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+      const base64Image = event.target.result;
+  
+      // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
       // Ví dụ: cập nhật state formData
       setFormData({
         ...formData,
         anhCCCD: {
           ...formData.anhCCCD,
-          anhMat: imageUrl
+          anhMat: base64Image
         }
       });
     };
-
+  
+    // Đọc dữ liệu ảnh dưới dạng base64
     reader.readAsDataURL(file);
   };
   //ham lay anhmattruoccccd
@@ -220,7 +221,7 @@ export default function Register() {
 
     reader.onload = (event) => {
       // Tạo URL từ dữ liệu của ảnh
-      const imageUrl = URL.createObjectURL(file);
+      const base64Image = event.target.result;
 
       // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với URL này
       // Ví dụ: cập nhật state formData
@@ -228,7 +229,7 @@ export default function Register() {
         ...formData,
         anhCCCD: {
           ...formData.anhCCCD,
-          anhMatTruoc: imageUrl
+          anhMatTruoc: base64Image
         }
       });
     };
@@ -259,12 +260,12 @@ export default function Register() {
     const reader = new FileReader();
 
     reader.onload = (event) => {
-      const imageUrl = URL.createObjectURL(file);
+      const base64Image = event.target.result;
       setFormData({
         ...formData,
         anhCCCD: {
           ...formData.anhCCCD,
-          anhMatSau: imageUrl
+          anhMatSau: base64Image
         }
       });
     };

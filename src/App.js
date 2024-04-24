@@ -42,6 +42,7 @@ import axios from 'axios';
 import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
 import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
 import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
+import UpDateVBPL from './component/Admin/VBPL/UpDateVBPL';
 export const GlobalContext = createContext();
 function App() {
   const [role, setRole] = useState('');
@@ -107,6 +108,7 @@ function App() {
               <Route path='/xem-tinh/' element={<CreateManager />} />
               <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
               <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
+              {/* <Route path='/updateVBPL' element={<UpDateVBPL />} /> */}
             </Routes>
 
           </div>

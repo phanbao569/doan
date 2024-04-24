@@ -83,6 +83,11 @@ export default function GetUserById() {
                       <label htmlFor="chucVu" className="font-bold mb-2">Chức vụ</label>
                       <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="chucVu" value={formData.chucVu} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
                   </div> */}
+                  <div className="flex flex-col">
+  <label htmlFor="cccd" className="font-bold mb-2">Ảnh mặt</label>
+  <img src={formData?.anhCCCD?.anhMat} alt="Ảnh mặt" />
+</div>
+
                  {isEditable ? (
     <div className="flex flex-col">
         <label htmlFor="tinhTrangTK" className="font-bold mb-2">Tình Trạng TK</label>

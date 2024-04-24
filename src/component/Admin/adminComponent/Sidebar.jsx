@@ -10,7 +10,6 @@ export default function SideBar() {
     const handleUserClick = () => {
         setIsOpen(!isOpen);
     };
-
   return (
     
 <aside id="sidebar" className="">
@@ -30,18 +29,21 @@ export default function SideBar() {
                     <BsGrid1X2Fill className='icon'/> THÔNG TIN CỦA TÔI
                 </Link> 
             </li>
-            <li className='sidebar-list-item'onClick={handleUserClick}>
+                        <Link to ='/thongtinuser'>
+                        <li className='sidebar-list-item'onClick={handleUserClick}>
                     <div >
-                        <BsPeopleFill className='icon'/> THÔNG TIN USER
+                        <BsPeopleFill className='icon'/> THÔNG TIN TÀI KHOẢN
                     </div>
                 </li>
-                {isOpen && (
+                        </Link>
+           
+                {/* {isOpen && (
                         <ul className="">
                             <li className='sidebar-list-item'><Link to="/thongtinuser">USER</Link></li>
                             <li className=' sidebar-list-item'><Link to="/thongtinemploy">EMPLOYEE</Link></li>
                             <li className=' sidebar-list-item'><Link to="/thongtinmanager">MANAGER</Link></li>
                         </ul>
-                    )}
+                    )} */}
             <li className='sidebar-list-item'>
                 <Link to="thongketaikhoan">
                     <MdAccountBox className='icon'/> THỐNG KÊ TÀI KHOẢN
@@ -49,7 +51,7 @@ export default function SideBar() {
             </li>
 
             <li className='sidebar-list-item'>
-                <Link to="homedash">
+                <Link to="thongkehoso">
                     <BsFillArchiveFill className='icon'/>THỐNG KÊ HỒ SƠ
                 </Link>
             </li>

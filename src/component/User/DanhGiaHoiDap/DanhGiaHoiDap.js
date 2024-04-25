@@ -7,7 +7,7 @@ import { GlobalContext } from '../../../App';
 import _LichSuHoiDap from './_LichSuHoiDap';
 export default function DanhGiaHoiDap() {
   const { user, ttuser } = useContext(GlobalContext)
-  const [optionView, setoptionView] = useState("");
+  const [optionView, setoptionView] = useState("2");
   const handleClickView = (e, value) => {
     setoptionView(value)
   }

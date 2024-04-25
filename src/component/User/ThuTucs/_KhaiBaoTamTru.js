@@ -60,32 +60,31 @@ export default function _KhaiBaoTamTru() {
             form.diaChiCuThe === "" || form.hoTenChuHo == "" || form.cccdChuHo === "" || form.quanHeChuHo == ""
         ) {
             toast.error("Vui lòng nhập đầy đủ thông tin");
-         //   alert("Vui lòng nhập đầy đủ thông tin");
+            //   alert("Vui lòng nhập đầy đủ thông tin");
             return;
-        } 
+        }
         else {
             await axios.post(apiUrl(ApiConfig.khaibaotamtru), form);
             toast.success("Nạp hồ sơ thành công");
             setTimeout(() => {
                 navigate('/');
-              }, 1000);
+            }, 1000);
         }
 
 
-       
+
     };
     return (
         <div>
-        <ToastContainer />
+            <ToastContainer />
 
             {isLoaded ? (
                 <div className=" p-4 col-span-5 bg-gray-100 rounded">
                     <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
-                        <div>
-                            Đăng ký tạm trú
+                        <div className='text-3xl text-center bg-red-400 rounded-lg  ' >
+                            ĐĂNG KÝ TẠM TRÚ
                         </div>
                         <Formik
-
                             onSubmit={() => HandleSubmit()}
                         >
                             <Form>

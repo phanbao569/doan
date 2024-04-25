@@ -98,12 +98,12 @@ export default function NapThuTuc() {
                             onSubmit={() => HandleSubmit()}
                         >
                             <Form>
-                                <div class=' flex flex-col  gap-4 mt-10 '>
-                                    <h1 className='text-xl' >
+                                <div class=' flex mx-auto text-center flex-col  gap-4 mt-10 '>
+                                    <div className='text-3xl bg-red-400 rounded-lg  ' >
                                         GIA HẠN TẠM TRÚ
 
 
-                                    </h1>
+                                    </div>
                                     {/* co quan thuc hien  */}
                                     <div className='' >
                                         <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>

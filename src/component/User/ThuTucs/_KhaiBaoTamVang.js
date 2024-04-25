@@ -87,17 +87,16 @@ export default function _KhaiBaoTamVang() {
             {isLoaded ? (
                 <div className=" p-4 col-span-5 bg-gray-100 rounded">
                     <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
-
+                        <div className='text-3xl text-center bg-red-400 rounded-lg  ' >
+                            KHAI BÁO TẠM VẮNG
+                        </div>
                         <Formik
 
                         >
+
                             <Form>
                                 <div class='  gap-4 mt-10 '>
-                                    <h1 className='text-xl' >
-                                        Khai báo tạm vắng
 
-
-                                    </h1>
                                     {/* co quan thuc hien  */}
                                     <div className='' >
                                         <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>

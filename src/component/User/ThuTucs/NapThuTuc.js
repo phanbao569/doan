@@ -6,6 +6,7 @@ import { Field, Form, Formik } from 'formik';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils.js';
 //mport  ApiCon,{baseUrl} from '../../../ApiConfig.js'
 import ApiConfig, { apiUrl } from '../../../ApiConfig.js'
+import { useNavigate } from 'react-router-dom';
 export default function NapThuTuc() {
 
 
@@ -17,93 +18,46 @@ export default function NapThuTuc() {
     const [TTuser, setTTUser] = useState();
     const currentUrl = window.location.href;
     const idFromUrl = currentUrl.split('/').pop();
+    const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
+
     useEffect(() => {
-       
+
         const currentUrl = window.location.href;
         const idFromUrl = currentUrl.split('/').pop();
-       // console.log(idFromUrl);
+        // console.log(idFromUrl);
 
         if (idFromUrl === "594ac7fe") {
-            const newUrl = currentUrl.replace(idFromUrl, 'giahantamtru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
+            navigate('/napthutuc/giahantamtru')
+
 
 
         }
         if (idFromUrl === "21ab430d") {
-            const newUrl = currentUrl.replace(idFromUrl, 'dangkytamtru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
+
+            navigate('/napthutuc/dangkytamtru')
+
 
 
         }
         if (idFromUrl === "c3033865") {
-            const newUrl = currentUrl.replace(idFromUrl, 'dangkytamvang');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
-
-
+            navigate('/napthutuc/dangkytamvang')
         }
         if (idFromUrl === "b0d416c7") {
-            const newUrl = currentUrl.replace(idFromUrl, 'khaibaothuongtru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
-
-
+            navigate('/napthutuc/khaibaothuongtru')
         }
         if (idFromUrl === "43424481") {
-            const newUrl = currentUrl.replace(idFromUrl, 'xoadangkytamtru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
-
+            navigate('/napthutuc/xoadangkytamtru')
         }
         if (idFromUrl === "5d49167e") {
-            const newUrl = currentUrl.replace(idFromUrl, 'xoadangkythuongtru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
-
-
+            navigate('/napthutuc/xoadangkythuongtru')
         }
         if (idFromUrl === "8cbcd99d") {
-            const newUrl = currentUrl.replace(idFromUrl, 'thongbaoluutru');
-            window.history.pushState({}, '', newUrl);
-            window.location.reload();
-
+            navigate('/napthutuc/thongbaoluutru')
         }
     }, [idFromUrl]);
-
-  
-
-    const [selectedCity, setSelectedCity] = useState("");
-    const [selectedDistrict, setSelectedDistrict] = useState("");
-    const [selectedWard, setSelectedWard] = useState("");
-
-    const handleSelectCity = (cityName) => {
-        setSelectedCity(cityName);
-    };
-
-    const handleSelectDistrict = (districtName) => {
-        setSelectedDistrict(districtName);
-    };
-
-    const handleSelectWard = (wardName) => {
-        setSelectedWard(wardName);
-    };
-
-    const HandleSubmit = async (values) => {
-        try {
-            console.log(values);
-            setForm(values); // Cập nhật state trước khi gửi yêu cầu axios
-            //   await axios.post(apiUrl(ApiConfig.napthutucgiahantamtru),form);
-            console.log("thanh cong");
-        } catch (error) {
-            console.error('Lỗi khi gửi dữ liệu:', error);
-        }
-    };
-
     return (
         <div>
-       
+
         </div>
 
     )

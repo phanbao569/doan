@@ -7,16 +7,12 @@ import { GlobalContext } from '../../App';
 
 export default function ThongTinCaNhan() {
   const { user, ttuser } = useContext(GlobalContext)
-//  const{user,ttuser,setttuser} = useState()
-
   const idUser = getIDNguoiThayDoi();
-
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
-    if(ttuser !== undefined) setIsLoaded(true)
+    if (ttuser !== undefined) setIsLoaded(true)
   }, []);
-console.log(user);
+  console.log(user);
   return (
     <div>
       {isLoaded ? (
@@ -42,8 +38,8 @@ console.log(user);
                 <tr>
                   <th scope="row">Quê quán</th>
                   <td>
-                    
-                  {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
+
+                    {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
 
                   </td>
                 </tr>
@@ -63,9 +59,9 @@ console.log(user);
                 </tr>
                 <tr>
                   <th scope="row">Nơi cấp CMND/CCCD</th>
-                  <td > 
-                  {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
-                    </td>
+                  <td >
+                    {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Di động</th>
@@ -91,9 +87,12 @@ console.log(user);
                 </tr>
                 <tr>
                   <th scope="row">Hình ảnh</th>
-                  <td>  
-                  {/* <img src={user.anhCCCD.anhMat} alt="Ảnh mặt" /> */}
-                   </td>
+                  <td className='flex gap-4' >
+                    <img src={user.anhCCCD.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                    <img src={user.anhCCCD.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                    <img src={user.anhCCCD.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -104,8 +103,5 @@ console.log(user);
         <div>Loading...</div>
       )}
     </div>
-
-
-
   )
 }

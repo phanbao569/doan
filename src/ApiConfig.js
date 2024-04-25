@@ -51,6 +51,8 @@ const ApiConfig = {
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
   ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`,
+  getDonPheDuyet:`/employee/donPheDuyet`,
+  ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`,
   ThongKeHoSo:'/getThongKeHoSo',
   deleteVBPL:(id)=>`/deleteVBPL/${id}`,
   ThongKeDoanhThu:'/getThongKeDoanhThu',

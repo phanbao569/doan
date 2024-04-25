@@ -5,7 +5,6 @@ import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from "react-icons/fa";
 
 
-
 export default function HeaderM() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -78,7 +77,8 @@ export default function HeaderM() {
 
                 )}
             </div>
-
+            {/* Nav */}
+            
 
 
         </div>

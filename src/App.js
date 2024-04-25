@@ -1,5 +1,6 @@
 import { Route, Routes, Link, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
+import './index.css'
 import Login from './component/Auth/LoginComponent/Login';
 import Test from './component/Test'
 import Register from './component/Auth/RegisterComponent/Register';
@@ -44,11 +45,21 @@ import axios from 'axios';
 import ThongkeTKAll from './component/Admin/thongke/thongKeTK/ThongkeTKAll';
 import ThongKeTKTinh from './component/Admin/thongke/thongKeTK/ThongKeTKTinh';
 import ThongKeTKHuyen from './component/Admin/thongke/thongKeTK/ThongKeHuyen';
-import HeaderM from './HomeMaster/component/HeaderMaster';
-import FooterM from './HomeMaster/component/FooterMaster';
-import TraCuuM from './HomeMaster/component/TraCuuMaster';
-import HomeM from './HomeMaster/component/HomeMaster';
+import HeaderMaster from './HomeMaster/component/HeaderMaster';
+import FooterMaster from './HomeMaster/component/FooterMaster';
+import TraCuuMaster from './HomeMaster/component/TraCuuMaster';
+import HomeMaster from './HomeMaster/component/HomeMaster';
 import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
+import { ImOpt } from 'react-icons/im';
+import HomeM from './Manager/component/HomeM';
+import FooterM from './Manager/component/FooterM';
+import HeaderM from './Manager/component/HeaderM';
+import VBPLM from './Manager/component/VBPLM';
+import XemVBPLM from './Manager/component/XemVBPLM';
+import NavM from './Manager/component/Nav';
+import HoSoM from './Manager/component/PheDuyetM';
+import QLTKM from './Manager/component/PheDuyetTaiKhoan';
+import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
@@ -147,9 +158,7 @@ function App() {
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
                     <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
+                    
                   </Routes>
                 </div>
                 <footer className="  ">
@@ -170,17 +179,26 @@ function App() {
             </div>
           )
         ) : (
+
+
           <div className='h-full'>
             <HeaderM />
+            <NavM/>
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
-              <Route path="/" element={<HomeM />} />
-              <Route path="/TraCuu" element={<TraCuuM />} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
+              <Route path="/" element={<HomeM/>} />
+              <Route path="/VBPL" element={<VBPLM/>} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM/>} />
+              <Route path="/HoSo" element={<HoSoM/>} />
+              <Route path="/QLTKM" element={<QLTKM/>} />
+              <Route path="/TTUserM" element={<TTUserM/>} />
+              {/* <Route path="/TraCuu" element={<TraCuuMaster/>} />
+              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
+
 
             </Routes>
-            <FooterM className=''/>
+            <FooterM/>
           </div>
         )}
       </div>

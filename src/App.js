@@ -200,10 +200,8 @@ function App() {
               <Route path="/register" element={<Register/>} />
               <Route path="/" element={<HomeM />} />
               <Route path="/TraCuu" element={<TraCuuM />} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
-              
-
-           
+              {/* <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
+   
             </Routes>
             <FooterM className=''/>
           </div>

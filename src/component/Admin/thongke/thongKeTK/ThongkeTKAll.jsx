@@ -56,18 +56,18 @@ const [filter, setFilter] = useState('')
         console.error('Lỗi khi lấy dữ liệu từ API:', error);
     }
 };
-const fetchOderByHigh = async () => {
-  try {
+// const fetchOderByHigh = async () => {
+//   try {
       
-      const response = await axios.get(apiUrl(ApiConfig.thongkeUser));
-      const data = response.data;
-      setThongke(data);
+//       const response = await axios.get(apiUrl(ApiConfig.thongkeUser));
+//       const data = response.data;
+//       setThongke(data);
       
-      console.log(data)
-  } catch (error) {
-      console.error('Lỗi khi lấy dữ liệu từ API:', error);
-  }
-};
+//       console.log(data)
+//   } catch (error) {
+//       console.error('Lỗi khi lấy dữ liệu từ API:', error);
+//   }
+// };
 const handleOderByHigh = async () => {
   try {
       
@@ -120,6 +120,8 @@ useEffect(() => {
   fetchThongke()
 }, []);
   return (
+    <div>
+      
     <div>
                <div className=" mt-2 ml-2 ">
       <form className=" relative ">
@@ -202,6 +204,7 @@ useEffect(() => {
           prevPage={prevPage}
           goToPage={goToPage}
         />
+        </div>
         </div>
         </div>
   )

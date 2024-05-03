@@ -46,7 +46,7 @@ export default function ForgotPass() {
         const { name, value } = event.target;
         setFormQuenMatKhau(prevState => ({
             ...prevState,
-            [name]: value // Gán giá trị vào trường tương ứng trong state formQuenMatKhau
+            [name]: value 
         }));
     };
     

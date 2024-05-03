@@ -56,6 +56,9 @@ import FooterMaster from './HomeMaster/component/FooterMaster';
 import TraCuuMaster from './HomeMaster/component/TraCuuMaster';
 import HomeMaster from './HomeMaster/component/HomeMaster';
 import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
+import ChangePassword from './component/Auth/ChangePass/ChangePassword';
+//route bao lam de lay du lieu nhe
+
 import { ImOpt } from 'react-icons/im';
 import HomeM from './Manager/component/HomeM';
 import FooterM from './Manager/component/FooterM';
@@ -69,7 +72,7 @@ import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('User');
+  const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(true);
@@ -90,6 +93,7 @@ function App() {
   }, [isloading]);
 
   const fetchdata = async () => {
+    
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(response.data);
@@ -99,7 +103,7 @@ function App() {
       console.log(ttuser);
       setisloading(true);
     } catch (error) {
-      console.error('sai gi do :', error);
+      console.error( error);
     }
   };
 
@@ -114,6 +118,7 @@ function App() {
             {/* <AdminDashboard /> */}
             <SideBar />
             <Header />
+            {/* <NavBar/> */}
             <Routes>
               <Route path="/" element={<HomeDash />} />
               <Route path="/thongkedoanhthu" element={<ThongkeDT />} />
@@ -131,6 +136,7 @@ function App() {
               <Route path='/xem-tinh/' element={<CreateManager />} />
               <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
               <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
+              <Route path='/changePass' element={<ChangePassword/>} />
               {/* <Route path='/updateVBPL' element={<UpDateVBPL />} /> */}
             </Routes>
 
@@ -188,7 +194,7 @@ function App() {
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
               </Routes>
-              <footer className="  ">
+              <footer className="">
                 <img src={logo} alt="Logo" />
               </footer>
             </div>
@@ -200,6 +206,7 @@ function App() {
 
 
           <div className='h-full'>
+            
             <HeaderM />
             <NavM/>
             <Routes>

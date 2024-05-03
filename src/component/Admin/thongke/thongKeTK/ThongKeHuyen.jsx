@@ -21,9 +21,7 @@ export default function ThongKeHuyen() {
     }, []);
   return (
     <div>
-            <h1>ThongKeTKQuận</h1>
-            <h1>{tinhThanhPho}</h1>
-            <h1>{huyen}</h1>
+          
             <div>
               
               <div className="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">

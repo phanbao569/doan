@@ -24,9 +24,6 @@ export default function ThongKeTKTinh() {
 
     return (
         <div>
-            <h1>ThongKeTKTinh</h1>
-            <h1>{tinhThanhPho}</h1>
-            
             <div>
               
               <div className="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">

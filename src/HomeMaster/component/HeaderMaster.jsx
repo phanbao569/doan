@@ -3,9 +3,6 @@ import Logo from '../img/logo.png'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from "react-icons/fa";
-
-
-
 export default function HeaderM() {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,7 +30,7 @@ export default function HeaderM() {
         }
 
     }, [tokenExpired]);
-
+    
     return (
         <div>
         <div className='flex w-full h-28 content-center items-center bg-gradient-to-r from-white via-white to-zinc-700'  >
@@ -66,6 +63,40 @@ export default function HeaderM() {
             
               
           </li>
+          {/* bao lam get goi dap va .... o day */}
+
+
+          <li>
+          <Link to="/hoidapm" > hoidapm</Link>
+            
+              
+          </li>
+
+          <li>
+          <Link to="/danhgiam" > danhgiam</Link>
+            
+              
+          </li>
+          <li>
+          <Link to="/getallemploy" > employ</Link>
+            
+              
+          </li>
+          <li>
+          <Link to="/thongkehosobaolamcholong" > tkhs</Link>
+            
+              
+          </li>
+          <li>
+          <Link to="/tkdtb" > tkdt</Link>
+            
+              
+          </li>
+  {/* bao lam get goi dap va .... o day */}
+
+
+
+          
          
           <li>
             <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">

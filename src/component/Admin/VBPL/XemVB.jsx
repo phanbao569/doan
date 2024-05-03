@@ -99,7 +99,7 @@ export default function XemVB() {
 
               <div style={{ display: "flex", marginBottom: "10px" }}>
                 <label htmlFor="cachThucThucHien" style={{ marginRight: "10px", minWidth: "200px", marginBottom: "5px", textAlign: "left" }}>Cách Thức Thực Hiện:</label>
-                <input onChange={handleInputChange} type="text" id="cachThucThucHien" name="cachThucThucHien" style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", boxSizing: "border-box" }} value={formData.cachThucThucHien} />
+                <textarea onChange={handleInputChange} type="text" id="cachThucThucHien" name="cachThucThucHien" style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", boxSizing: "border-box" }} value={formData.cachThucThucHien} />
               </div>
 
               <div style={{ display: "flex", marginBottom: "10px" }}>
@@ -163,13 +163,23 @@ export default function XemVB() {
             <p>Cách Thức Thực Hiện: </p>
             <div id="accordion-collapse-body-1" className="" aria-labelledby="accordion-collapse-heading-1">
                 <div className="p-2 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400"> {vb?.cachThucThucHien}</p>
+                  <p className="mb-2 text-gray-500 dark:text-gray-400"> {vb.cachThucThucHien.split(/\r?\n/).map((line, index) => (
+                            <p key={index} style={{ marginLeft: line.includes("+") ? "30px" : "0" }}>{line}</p>
+                        ))}</p>
                 </div>
               </div>
             <p>Trình Tự Thực Hiện: </p>
             <div id="accordion-collapse-body-1" className="" aria-labelledby="accordion-collapse-heading-1">
                 <div className="p-2 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400"> {vb?.trinhTuThucHien}</p>
+                  <p className="mb-2 text-gray-500 dark:text-gray-400"> <div>
+
+                  {vb.trinhTuThucHien.split(/\r?\n/).map((line, index) => (
+            <p key={index} style={{ marginLeft: line.includes("+") ? "30px" : "0" }}>
+                {line}
+            </p>
+        ))}
+
+                    </div></p>
                 </div>
               </div>
             <p>Thời Hạn Giải Quyết: </p>

@@ -5,11 +5,9 @@ import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import GetYears from './GetYears';
 import ProvinceList from './ProvinceList ';
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill}from 'react-icons/bs'
   import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
-  import { MdCancel } from "react-icons/md";
-  import { SlRefresh } from "react-icons/sl";
-  import { FaCheck } from "react-icons/fa";
+  import { FcMoneyTransfer } from "react-icons/fc";
+  import ChartOne from '../Chart/ChartOne';
 export default function ThongkeDT() {
   const[formData, setFormData]= useState('')
   const[formSend,setFormSend]= useState({
@@ -60,7 +58,7 @@ const caculateTotalMonney=(data)=>{
 const totalMonney=caculateTotalMonney(chartData)
 
 console.log(totalMonney+'đây là tổng doanh thu')
-console.log(chartData)
+console.log(chartData,'chartdata')
   return (
     <main className='main-container'>
           <div className='main-title'>
@@ -71,14 +69,13 @@ console.log(chartData)
               <div className='card'>
                   <div className='card-inner'>
                       <h3>TỔNG DOANH THU</h3>
-                      <BsFillArchiveFill className='card_icon'/>
+                      <FcMoneyTransfer className='card_icon'/>
                   </div>
                   <h1>{totalMonney}</h1>
               </div>
              
               <div className='text-black'>
-            <GetYears onChange={handleYearChange} />
-          xin chào</div>
+            <GetYears onChange={handleYearChange} /></div>
           <div className='text-black'>
             <ProvinceList onChange={handleProvinceChange}/>
            
@@ -88,7 +85,7 @@ console.log(chartData)
 
           <div className='charts'>
           <ResponsiveContainer width="100%" height="100%">
-              <BarChart
+              <BarChart className='bg-white pt-4'
               width={500}
               height={300}
               data={chartData}
@@ -110,7 +107,7 @@ console.log(chartData)
               </ResponsiveContainer>
 
               <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
+                  <LineChart className='bg-white pt-4'
                   width={500}
                   height={300}
                   data={chartData}
@@ -132,7 +129,11 @@ console.log(chartData)
               </ResponsiveContainer>
               
           </div>
-       
+          <div className='mt-8'>
+
+          {chartData?(<ChartOne  chartData={chartData} />):(<h1>loading</h1>)}
+          </div>
+          
           
       </main>
   )

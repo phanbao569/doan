@@ -55,10 +55,13 @@ import FooterM from './HomeMaster/component/FooterMaster';
 import TraCuuM from './HomeMaster/component/TraCuuMaster';
 import HomeM from './HomeMaster/component/HomeMaster';
 import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
+import ChangePassword from './component/Auth/ChangePass/ChangePassword';
+//route bao lam de lay du lieu nhe
+
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('Admin');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(false);
@@ -79,6 +82,7 @@ function App() {
   }, [isloading]);
 
   const fetchdata = async () => {
+    
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(() => response.data);
@@ -88,7 +92,7 @@ function App() {
       console.log(ttuser);
       setisloading(true);
     } catch (error) {
-      console.error('sai gi do :', error);
+      console.error( error);
     }
   };
 
@@ -103,6 +107,7 @@ function App() {
             {/* <AdminDashboard /> */}
             <SideBar />
             <Header />
+            {/* <NavBar/> */}
             <Routes>
               <Route path="/" element={<HomeDash />} />
               <Route path="/thongkedoanhthu" element={<ThongkeDT />} />
@@ -120,6 +125,7 @@ function App() {
               <Route path='/xem-tinh/' element={<CreateManager />} />
               <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
               <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
+              <Route path='/changePass' element={<ChangePassword/>} />
               {/* <Route path='/updateVBPL' element={<UpDateVBPL />} /> */}
             </Routes>
 
@@ -177,7 +183,7 @@ function App() {
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
               </Routes>
-              <footer className="  ">
+              <footer className="">
                 <img src={logo} alt="Logo" />
               </footer>
             </div>
@@ -187,6 +193,7 @@ function App() {
 
         ) : (
           <div className='h-full'>
+            
             <HeaderM />
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -194,7 +201,9 @@ function App() {
               <Route path="/" element={<HomeM />} />
               <Route path="/TraCuu" element={<TraCuuM />} />
               <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
+              
 
+           
             </Routes>
             <FooterM className=''/>
           </div>

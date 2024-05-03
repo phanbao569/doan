@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.10.245:8888';
+const baseUrl = 'http://192.168.10.233:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -12,6 +12,7 @@ const ApiConfig = {
   checkCode:'/checkCode',
   checkAcount:'/checkAcount',
   setNewPassword:'/setNewPassword',
+  changePass:'/changePassword',
   createVBPL:'/createVBPL',
   getAdmin: (id) => `/getUserById/${id}`,
   getAllVBPL:'/getAllVBPL',
@@ -54,6 +55,7 @@ const ApiConfig = {
   ThongKeHoSo:'/getThongKeHoSo',
   deleteVBPL:(id)=>`/deleteVBPL/${id}`,
   ThongKeDoanhThu:'/getThongKeDoanhThu',
+  deleteAccount:(id)=>`/admin/deleteUser/${id}`,
 };
 
 export const apiUrl = (endpoint) => {

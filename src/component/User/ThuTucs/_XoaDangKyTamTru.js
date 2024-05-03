@@ -24,6 +24,109 @@ export default function _XoaDangKyTamTru() {
     const [checktt, setchecktt] = useState(false)
     const [isLoaded, setIsLoaded] = useState(true);
     const idUser = getIDNguoiThayDoi();
+    const handleChonhoSo1 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo1: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+
+
+    const handleChonhoSo2 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo2: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo3 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo3: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo4 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo4: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
     const [form, setForm] = useState({
         tenThuTuc: "Xoá đăng ký tạm trú",
         coQuanThucHien: {
@@ -33,11 +136,18 @@ export default function _XoaDangKyTamTru() {
         },
         noiDungDeNghi: "",
         idUser: getIDNguoiThayDoi(),
-        fileHoSoLienQuan: {},
         lePhi: "",
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        fileHoSoLienQuan: {
+            hoSo1: "",
+            hoSo2: "",
+            hoSo3: "",
+            hoSo4: "",
+            hoSo5: "",
+            hoSo6: "",
+        },
         created_at: moment().toDate(),
         created_end: '',
     });
@@ -52,7 +162,7 @@ export default function _XoaDangKyTamTru() {
         navigate('/thutuc/43424481');
     }
     const HandleSubmit = async () => {
-
+        console.log(form);
         try {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
@@ -87,7 +197,7 @@ export default function _XoaDangKyTamTru() {
                         <div className="bg-red-100 rounded-lg p-8 w-full max-w-md">
                             <h2 className="text-lg font-semibold mb-4 text-center">Thông báo</h2>
                             <p className="text-gray-800 mb-4 text-center">Bạn chưa có đăng ký tạm trú.</p>
-                            <div className="flex justify-center"> 
+                            <div className="flex justify-center">
                                 <button onClick={handleBack} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Trở về</button>
                             </div>
                         </div>
@@ -189,14 +299,22 @@ export default function _XoaDangKyTamTru() {
                                                         </label>
                                                     </div>
                                                     <div className='flex  py-8  '>
-                                                        <div class="w-full flex flex-col ">
+                                                        <div class="w-full flex flex-col items-center  ">
                                                             <div>
                                                                 <label className='font-bold text-center' > Nội dung đề nghị </label>
 
                                                             </div>
-
-                                                            <Field onChange={handleInputChange} name="noiDungDeNghi" class="border text-center w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-centerfocus:border-blue-500" placeholder='Nội dung đề nghị' />
-
+                                                            <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên '
+                                                                name="noiDungDeNghi"
+                                                                onChange={handleInputChange}
+                                                            />
+                                                            <label className='mt-2' >Chọn file hồ sơ</label>
+                                                            <div className='flex items-center mt-2 ' >
+                                                                <input type="file" id="hoSo1" name="hoSo1" onChange={handleChonhoSo1} />
+                                                                <input type="file" id="hoSo2" name="hoSo2" onChange={handleChonhoSo2} />
+                                                                <input type="file" id="hoSo3" name="hoSo3" onChange={handleChonhoSo3} />
+                                                                <input type="file" id="hoSo4" name="hoSo4" onChange={handleChonhoSo4} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

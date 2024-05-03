@@ -18,7 +18,109 @@ export default function _KhaiBaoTamTru() {
         console.log(name, value);
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
+    const handleChonhoSo1 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
 
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo1: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+
+
+    const handleChonhoSo2 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo2: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo3 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo3: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo4 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo4: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
     const [isLoaded, setIsLoaded] = useState(true);
     const idUser = getIDNguoiThayDoi();
     const [form, setForm] = useState({
@@ -40,19 +142,26 @@ export default function _KhaiBaoTamTru() {
         noiDungDeNghi: "",
         yKien: "",
         thoiHanTamTru: "",
-        fileHoSoLienQuan: {},
         lePhi: 10000,
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        fileHoSoLienQuan: {
+            hoSo1: "",
+            hoSo2: "",
+            hoSo3: "",
+            hoSo4: "",
+            hoSo5: "",
+            hoSo6: "",
+        },
         created_at: moment().toDate(),
         created_end: '',
     });
     const { user, ttuser } = useContext(GlobalContext)
 
     const HandleSubmit = async () => {
-
+        console.log(form);
 
         if (
             form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
@@ -305,7 +414,7 @@ export default function _KhaiBaoTamTru() {
                                             </div>
                                         </div>
                                         <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
+                                            <div class="w-full items-center flex flex-col ">
                                                 <div>
                                                     <label className='font-bold text-center' > Nội dung đề nghị </label>
 
@@ -314,6 +423,14 @@ export default function _KhaiBaoTamTru() {
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />
+
+                                                <label className='mt-2' >Chọn file hồ sơ</label>
+                                                <div className='flex items-center mt-2 ' >
+                                                    <input type="file" id="hoSo1" name="hoSo1" onChange={handleChonhoSo1} />
+                                                    <input type="file" id="hoSo2" name="hoSo2" onChange={handleChonhoSo2} />
+                                                    <input type="file" id="hoSo3" name="hoSo3" onChange={handleChonhoSo3} />
+                                                    <input type="file" id="hoSo4" name="hoSo4" onChange={handleChonhoSo4} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

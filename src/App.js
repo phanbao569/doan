@@ -72,7 +72,7 @@ import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('User');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(true);
@@ -154,7 +154,7 @@ function App() {
                   <Routes>
                     <Route path="/NhapThongTinUser" element={<NhapThongTinUser />} />
                     <Route path="/CapNhatThongTin" element={<CapNhatThongTin />} />
-                    <Route path="/hotrohoidao" element={<DanhGiaHoiDap />} />
+                    <Route path="/hotrohoidap" element={<DanhGiaHoiDap />} />
                     <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
                     <Route path="/" element={<ChonThuTuc />} />
                     <Route path="/napthutuc/:id" element={<NapThuTuc />} />

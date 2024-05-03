@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils';
 import moment from 'moment';
+import Loading from '../../../Loading';
 
 export default function _LichSuHoiDap() {
     const [isLoading, setisLoading] = useState(false);
@@ -54,7 +55,9 @@ export default function _LichSuHoiDap() {
 
                 </div>
             ) : (
-                <div>Loading...</div>
+                <div>
+                    <Loading/>
+                </div>
             )}
 
         </div>

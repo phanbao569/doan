@@ -10,6 +10,8 @@ import moment from 'moment';
 import { Navigate, useNavigate } from 'react-router-dom';
 import ThongTinNguoiKhaiBao from "../ThongTinNguoiKhaiBao.js"
 import { ToastContainer, toast } from 'react-toastify';
+import { MdDriveFolderUpload } from "react-icons/md";
+
 
 import 'react-toastify/dist/ReactToastify.css';
 export default function NapThuTuc() {
@@ -24,6 +26,109 @@ export default function NapThuTuc() {
 
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
+    const handleChonhoSo1 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo1: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+
+
+    const handleChonhoSo2 = (event) => {
+        const file = event.target.files[0];
+        if(file){
+
+            const reader = new FileReader();
+    
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+    
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo2: base64Image
+                    }
+                });
+            };
+    
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo3 = (event) => {
+        const file = event.target.files[0];
+        if(file){
+
+
+            const reader = new FileReader();
+    
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo3: base64Image
+                    }
+                });
+            };
+    
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhoSo4 = (event) => {
+        const file = event.target.files[0];
+        if(file){
+            const reader = new FileReader();
+    
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+    
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hoSo4: base64Image
+                    }
+                });
+            };
+    
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
 
     const [form, setForm] = useState({
         tenThuTuc: "Gia hạn tạm trú",
@@ -41,12 +146,20 @@ export default function NapThuTuc() {
         noiDungDeNghi: "",
         yKien: "",
         thoiHanTamTru: 0,
-        fileHoSoLienQuan: {},
+
         lePhi: 10000,
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        fileHoSoLienQuan: {
+            hoSo1: null,
+            hoSo2: null,
+            hoSo3: null,
+            hoSo4: null,
+            hoSo5: null,
+            hoSo6: null,
+        },
         created_at: moment().toDate(),
         created_end: '',
 
@@ -59,6 +172,7 @@ export default function NapThuTuc() {
     }, [ttuser]);
 
     const HandleSubmit = async () => {
+        
         try {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
@@ -66,16 +180,16 @@ export default function NapThuTuc() {
                 form.diaChiCuThe === ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
-             //   alert("Vui lòng nhập đầy đủ thông tin");
+                //   alert("Vui lòng nhập đầy đủ thông tin");
                 return;
-            } 
+            }
             else {
-               await axios.post(apiUrl(ApiConfig.createGiaHanTamTru), form);
+                await axios.post(apiUrl(ApiConfig.createGiaHanTamTru), form);
                 toast.success("Nạp hồ sơ thành công");
-              //  navigate('/');
+                //  navigate('/');
                 setTimeout(() => {
                     navigate('/');
-                  }, 1000);
+                }, 1000);
             }
 
             // navigate('/');
@@ -86,8 +200,8 @@ export default function NapThuTuc() {
 
     return (
         <div>
-             
-        <ToastContainer />
+
+            <ToastContainer />
             {isLoaded ? (
                 <div className=" p-4 col-span-5 bg-gray-100 rounded">
                     <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
@@ -227,7 +341,7 @@ export default function NapThuTuc() {
                                                     }}
                                                 />
                                                 <div>
-                                                    <label className='font-bold text-center text-center ' > Địa chỉ cụ thể  </label>
+                                                    <label className='font-bold text-center ' > Địa chỉ cụ thể  </label>
                                                     <label className='text-red-500' >  </label>
 
                                                 </div>
@@ -263,16 +377,29 @@ export default function NapThuTuc() {
                                             </div>
                                         </div>
                                         <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
+                                            <div class="w-full flex flex-col items-center ">
                                                 <div>
                                                     <label className='font-bold text-center' > Nội dung đề nghị </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"
-                                                    name="noiDungDeNghi"
-                                                    onChange={handleInputChange}
-                                                />
+                                                <div className='flex w-2/3'>
+                                                    <Field class="flex-grow border border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500"
+                                                        name="noiDungDeNghi"
+                                                        onChange={handleInputChange}
+                                                    />
+
+                                                    {/* <span id="selectedFileName">{form.}</span> */}
+
+                                                </div>
+                                                <label className='mt-2' >Chọn file hồ sơ</label>
+                                                <div className='flex items-center mt-2 ' >
+                                                    <input type="file" id="hoSo1" name="hoSo1" onChange={handleChonhoSo1} />
+                                                    <input type="file" id="hoSo2" name="hoSo2" onChange={handleChonhoSo2} />
+                                                    <input type="file" id="hoSo3" name="hoSo3" onChange={handleChonhoSo3} />
+                                                    <input type="file" id="hoSo4" name="hoSo4" onChange={handleChonhoSo4} />
+                                                </div>
                                             </div>
+
                                         </div>
                                         <div className='flex w-full'>
                                             <button type="submit "

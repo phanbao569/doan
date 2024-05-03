@@ -102,8 +102,8 @@ export default function HeaderM() {
         <NavLink to={'/quanlyhoso'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
         <Link to="/quanlyhoso" > Tra cứu hồ sơ </Link>
         </NavLink>
-        <NavLink to={'/hotrohoidao'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
-        <Link to="/hotrohoidao" > Hỗ trợ - hỏi đáp </Link>
+        <NavLink to={'/hotrohoidap'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to="/hotrohoidap" > Hỗ trợ - hỏi đáp </Link>
         </NavLink>
         <div className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
         <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">

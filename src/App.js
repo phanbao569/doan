@@ -51,11 +51,7 @@ import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
 import _xemchitiethoso from './component/User/QuanLyHoSo/_XemChiTietHoSo';
 import DanhGiaHoiDap from './component/User/DanhGiaHoiDap/DanhGiaHoiDap';
 import ThongBaoThanhToan from './component/User/ThongBaoThanhToan'
-import HeaderM from './HomeMaster/component/HeaderMaster';
-import FooterM from './HomeMaster/component/FooterMaster';
 import TraCuuM from './HomeMaster/component/TraCuuMaster';
-import HomeM from './HomeMaster/component/HomeMaster';
-import HeaderMaster from './HomeMaster/component/HeaderMaster';
 import FooterMaster from './HomeMaster/component/FooterMaster';
 import TraCuuMaster from './HomeMaster/component/TraCuuMaster';
 import HomeMaster from './HomeMaster/component/HomeMaster';
@@ -73,10 +69,10 @@ import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('User');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(false);
+  const [checkthongtin, setcheckthongtin] = useState(true);
   const [isloading, setisloading] = useState(false);
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 

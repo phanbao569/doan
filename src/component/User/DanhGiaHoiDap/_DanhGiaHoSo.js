@@ -14,7 +14,7 @@ function Form(props) {
         {
             id: "",
             idHoSo: hoSo?.id,
-            tenThuTuc: hoSo.tenThuTuc,
+            tenThuTuc: hoSo?.tenThuTuc,
             coQuanThucHien: hoSo?.coQuanThucHien,
 
             idUser: getIDNguoiThayDoi(),

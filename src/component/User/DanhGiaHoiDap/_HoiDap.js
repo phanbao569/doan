@@ -17,7 +17,7 @@ export default function HoiDap(props) {
             idUser: getIDNguoiThayDoi(),
             noiDung: "",
             phanHoi: "",
-            tenUser: user.hoTen,
+            tenUser: user?.hoTen,
             idNguoiPhanHoi: "",
             tenNguoiPhanHoi: "",
             created_at: moment().toDate(),

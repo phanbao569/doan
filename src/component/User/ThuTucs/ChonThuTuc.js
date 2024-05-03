@@ -11,13 +11,12 @@ import { Link } from 'react-router-dom'
 export default function ChonThuTuc() {
 
     return (
-        <div className="container h-screen mb-10 h-screen  mx-auto py-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 h-screen  gap-4">
+        <div className="container mb-10   mx-auto py-8">
+            <div className="grid grid-cols-2 md:grid-cols-5  gap-4">
                 {/* Khối 1 */}
                 <div    >
                     <Link to={`/thutuc/594ac7fe`} >
                         <img src={giahantamtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
-
                     </Link>
 
                 </div>

@@ -125,14 +125,14 @@ export default function _XemChiTietHoSo() {
               Thanh toán
             </button>
           )}
-          {hoso.trangThai === "Done" && check !== undefined && (
+          {hoso.trangThai === "Done" && check.id == undefined && (
             <button onClick={togglePopup} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Xem đánh giá
+               Đánh giá 
             </button>
           )}
-          {hoso.trangThai === "Done" && check === undefined && (
+          {hoso.trangThai === "Done" && check.id !== undefined && (
             <button onClick={togglePopup} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Đánh giá
+              Xem đánh giá
             </button>
           )}
 
@@ -144,22 +144,23 @@ export default function _XemChiTietHoSo() {
           <div className="fixed mt-10 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg shadow-lg">
 
-              {hoso.trangThai === "Done" && check !== undefined && (
+              {hoso.trangThai === "Done" && check.id == undefined && (
                 <div>
                   <h1 className='text-xl' >
 
-                    XEM ĐÁNH GIÁ HỒ SƠ
-                  </h1>
-
-                  <_XemDanhGiaHoSo user={user} hoSo={hoso} ttuser={ttuser} check={check} />
-                </div>
-              )}
-              {hoso.trangThai === "Done" && check === undefined && (
-                <div>
-                  <h1 className='text-xl' >
-                    ĐÁNH GIÁ HỒ SƠ
+                     ĐÁNH GIÁ HỒ SƠ
                   </h1>
                   <_DanhGiaHoSo user={user} hoSo={hoso} ttuser={ttuser} />
+
+                </div>
+              )}
+              {hoso.trangThai === "Done" && check.id !== undefined && (
+                <div>
+                  <h1 className='text-xl' >
+                    XEM ĐÁNH GIÁ HỒ SƠ
+                  </h1>
+                  <_XemDanhGiaHoSo user={user} hoSo={hoso} ttuser={ttuser} check={check} />
+
                 </div>
 
               )}

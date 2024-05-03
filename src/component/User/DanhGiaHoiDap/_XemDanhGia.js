@@ -55,7 +55,7 @@ function Form(props) {
                                 <label className='font-bold' > Tỉnh/Thành phố </label>
 
                             </div>
-                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value={ttuser?.queQuan?.tinh}
                             />
 
@@ -66,7 +66,7 @@ function Form(props) {
 
                             </div>
                             <input className="
-                             text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                             text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value={ttuser?.queQuan?.huyen}
                             />
 
@@ -77,7 +77,7 @@ function Form(props) {
                                 <label className='font-bold' > Phường/Xã </label>
 
                             </div>
-                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value={ttuser?.queQuan?.xa}
                             />
                         </div>
@@ -90,7 +90,8 @@ function Form(props) {
                                 <label className='text-red-500' >  </label>
 
                             </div>
-                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input
+                                className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 disabled placeholder='Họ tên '
                                 value={user?.hoTen} />
 
@@ -102,7 +103,7 @@ function Form(props) {
                                 <label className='text-red-500' >  </label>
 
                             </div>
-                            <input value={ttuser?.ngaySinh} type="date" className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input value={ttuser?.ngaySinh} type="date" className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 disabled />
                         </div>
 
@@ -114,7 +115,7 @@ function Form(props) {
 
 
                             </div>
-                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 disabled placeholder='Địa chỉ đăng ký tạm trú ' value={user?.cccd} />
 
 
@@ -125,7 +126,7 @@ function Form(props) {
 
                             </div>
                             <input
-                                className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 disabled placeholder='Địa chỉ đăng ký tạm trú ' value={user.sdt} />
 
 
@@ -137,7 +138,7 @@ function Form(props) {
 
 
                             </div>
-                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            <input className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 disabled placeholder='Địa chỉ đăng ký tạm trú ' value={user.email} />
                         </div>
 
@@ -145,21 +146,16 @@ function Form(props) {
                 </div>
                 <div>
                     <label htmlFor="review" className="block">Nội dung đánh giá</label>
-                    <textarea id="review"
-                        value={check.noiDung}
-                        className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    <input
+                        className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
+                        disabled placeholder='Địa chỉ đăng ký tạm trú ' value={check.noiDung} />
 
-                    ></textarea>
                 </div>
                 <div>
                     <label htmlFor="rating" className="block">Mức độ đánh giá</label>
-                    <input
-                        id="rating"
-                        onChange={handleInputChange} name="mucDoDanhGia"
-                        value={check.mucDoDanhGia}
-                        className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                    </input>
+                    <textarea
+                        className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
+                        disabled placeholder='Địa chỉ đăng ký tạm trú ' value={check.mucDoDanhGia} />
                 </div>
             </form>
             <button

@@ -89,7 +89,9 @@ export default function NapThuTuc() {
             {isLoaded ? (
                 <div className=" p-4 col-span-5 bg-gray-100 rounded">
                     <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
-
+                    <div className='text-3xl text-center bg-red-400 rounded-lg  ' >
+                            THÔNG BÁO LƯU TRÚ
+                        </div>
                         <Formik
 
                             onSubmit={() => HandleSubmit()}

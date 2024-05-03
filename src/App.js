@@ -85,9 +85,9 @@ function App() {
     
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
-      setUser(() => response.data);
+      setUser(response.data);
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(getIDNguoiThayDoi())));
-      setTTUser(()=>responseTT.data)
+      setTTUser(responseTT.data)
      if (ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "" && ttuser !== undefined) setcheckthongtin(true);
       console.log(ttuser);
       setisloading(true);
@@ -136,7 +136,7 @@ function App() {
           checkthongtin ? (
               <div className=''>
                 {/* Content to render when checkthongtin is true */}
-            <HeaderM />
+            <NavUser />
 
                 {/* <NavUser /> */}
                 <div className="container mx-auto mb-24">
@@ -198,10 +198,10 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
-              <Route path="/" element={<HomeM />} />
+              {/* <Route path="/" element={<HomeM />} />
               <Route path="/TraCuu" element={<TraCuuM />} />
-              {/* <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
-   
+              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
+
             </Routes>
             <FooterM className=''/>
           </div>

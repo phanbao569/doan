@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Form(props) {
     const { user, ttuser, hoSo } = props;
-    console.log(hoSo);
+    const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
     const [form, setform] = useState(
         {
@@ -29,19 +31,30 @@ function Form(props) {
 
     console.log(user);
     const handleSubmit = async () => {
-         console.table(form);
+        console.table(form);
 
-         try {
-        const respont = await axios.post(apiUrl(ApiConfig.taoDanhGiaHoSo),form);
-        alert("thanh cong");
-           
-          } catch (error) {
+        try {
+            toast.error("Vui lòng nhập đầy đủ thông tin");
+            if (form.noDung == "" || form.mucDoDanhGia == "") {
+                toast.error("Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+            const respont = await axios.post(apiUrl(ApiConfig.taoDanhGiaHoSo), form);
+            toast.success("Đánh giá thành công!");
+            setTimeout(() => {
+                navigate('/quanlyhoso');
+              }, 1000);
+            
+
+        } catch (error) {
             console.log("an lz ");
-          }
+        }
     };
 
     return (
         <div className=" mx-auto mt-5">
+            <ToastContainer />
+
             <form >
                 <div className='' >
                     <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
@@ -66,7 +79,7 @@ function Form(props) {
 
                             </div>
                             <input
-                             className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 value={ttuser?.queQuan?.huyen}
                             />
 
@@ -169,7 +182,7 @@ function Form(props) {
                     </select>
                 </div>
             </form>
-                <button 
+            <button
                 onClick={handleSubmit}
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Gửi</button>
         </div>

@@ -32,7 +32,7 @@ export default function HeaderM() {
     }, [tokenExpired]);
     
     return (
-
+        <div>
         <div className='flex w-full h-28 content-center items-center bg-gradient-to-r from-white via-white to-zinc-700'  >
          <div className='flex'> 
             <NavLink to={'/'}>
@@ -144,5 +144,8 @@ export default function HeaderM() {
 
 
         </div>
+
+        </div>
+        
     )
 }

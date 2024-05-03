@@ -20,7 +20,7 @@ export default function _XoaDangKyThuongTru() {
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
     const { user, ttuser } = useContext(GlobalContext)
-
+    const [checktt, , setchecktt] = useState(false)
     const [isLoaded, setIsLoaded] = useState(true);
     const idUser = getIDNguoiThayDoi();
     const [form, setForm] = useState({
@@ -42,10 +42,14 @@ export default function _XoaDangKyThuongTru() {
     });
 
     useEffect(() => {
+        if (ttuser?.thuongTru?.tinh !== undefined) setchecktt(true)
+
         //   fetchdata();
 
     }, []);
-
+    const handleBack = () => {
+        navigate('/thutuc/5d49167e');
+    }
     const HandleSubmit = async () => {
 
 
@@ -74,154 +78,184 @@ export default function _XoaDangKyThuongTru() {
     return (
 
         <div>
-            <ToastContainer />
-
-            {isLoaded ? (
-                <div className=" p-4 col-span-5 bg-gray-100 rounded">
-                    <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
-
-                        <Formik
-
-                     
-                        >
-                            <Form>
-                                <div class='  gap-4 mt-10 '>
-                                    {/* co quan thuc hien  */}
-                                    <div className='' >
-                                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
-
-                                            <label className='text-xl font-family-sans mx-auto' >
-                                                CƠ QUAN THỰC HIỆN
-                                            </label>
-                                        </div>
-
-                                        <div className='flex  py-8 mx-auto  '>
-                                            <div className='mx-auto w-full px-8 ' >
-                                                <DiaChi
-                                                    onSelectCity={(cityId) => {
-                                                        setForm(prevState => ({
-                                                            ...prevState,
-                                                            coQuanThucHien: {
-                                                                ...prevState.coQuanThucHien,
-                                                                tinh: cityId
-                                                            }
-                                                        }));
-
-                                                    }}
-                                                    onSelectDistrict={(districtId) => {
-                                                        setForm(prevState => ({
-                                                            ...prevState,
-                                                            coQuanThucHien: {
-                                                                ...prevState.coQuanThucHien,
-                                                                huyen: districtId
+            {
+                checktt ? (
+                    <div className='h-screen flex items-center justify-center'>
+                        <div className="bg-red-100 rounded-lg p-8 w-full max-w-md">
+                            <h2 className="text-lg font-semibold mb-4 text-center">Thông báo</h2>
+                            <p className="text-gray-800 mb-4 text-center">Bạn chưa có đăng ký thường trú.</p>
+                            <div className="flex justify-center"> {/* Thêm div này để căn giữa button */}
+                                <button onClick={handleBack} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Trở về</button>
+                            </div>
+                        </div>
+                    </div>
 
 
-                                                            }
-                                                        }));
 
 
-                                                    }}
-                                                    onSelectWard={(wardId) => {
-                                                        setForm(prevState => ({
-                                                            ...prevState,
-                                                            coQuanThucHien: {
-                                                                ...prevState.coQuanThucHien,
-                                                                xa: wardId
-                                                            }
-                                                        }));
+                ) : (
+                    <div>
+                        <ToastContainer />
 
-                                                    }}
-
-                                                />
-                                            </div>
-
-                                        </div>
-                                        <div class=" flex py-8 ">
-
-                                            <div class="w-2/3 flex flex-col ">
-                                                <div className=''>
-                                                    <label className='font-bold text-center' > Cơ quan thực hiện </label>
-
-                                                </div>
-                                                <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-
-                                                </select>
-
-                                            </div>
-                                            <div class="w-1/3 flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold text-center' > Số điện thoại </label>
-                                                </div>
-                                                <Field className="border w-2/3 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='số điện thoại ' value={"0363361994"} />
-
-
-                                            </div>
-
-                                        </div>
+                        {isLoaded ? (
+                            <div className=" p-4 col-span-5 bg-gray-100 rounded">
+                                <div class=" p-4 col-span-5 bg-gray-100 rounded   ">
+                                    <div className='text-3xl text-center bg-red-400 rounded-lg  ' >
+                                        XOÁ ĐĂNG KÝ THƯỜNG TRÚ
                                     </div>
-                                    {/* THÔNG TIN NHẬN THÔNG BÁO , TÌNH TRẠNG HỒ SƠ , KẾT QUẢ GIẢI QUYẾT HỒ SƠ */}
-                                    <ThongTinNguoiKhaiBao user={user} ttuser={ttuser} />
+                                    <Formik
 
 
-                                    {/* Thong tin co so luu tru  */}
-                                    <div className='' >
-                                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
-                                            <label className='text-xl font-family-sans mx-auto' >
-                                                NỘI DUNG ĐỀ NGHỊ XOÁ ĐĂNG KÝ thường trú
-                                            </label>
-                                        </div>
-                                        <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold text-center' > Nội dung đề nghị </label>
+                                    >
+                                        <Form>
+                                            <div class='  gap-4 mt-10 '>
+                                                {/* co quan thuc hien  */}
+                                                <div className='' >
+                                                    <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
 
+                                                        <label className='text-xl font-family-sans mx-auto' >
+                                                            CƠ QUAN THỰC HIỆN
+                                                        </label>
+                                                    </div>
+
+                                                    <div className='flex  py-8 mx-auto  '>
+                                                        <div className='mx-auto w-full px-8 ' >
+                                                            <DiaChi
+                                                                onSelectCity={(cityId) => {
+                                                                    setForm(prevState => ({
+                                                                        ...prevState,
+                                                                        coQuanThucHien: {
+                                                                            ...prevState.coQuanThucHien,
+                                                                            tinh: cityId
+                                                                        }
+                                                                    }));
+
+                                                                }}
+                                                                onSelectDistrict={(districtId) => {
+                                                                    setForm(prevState => ({
+                                                                        ...prevState,
+                                                                        coQuanThucHien: {
+                                                                            ...prevState.coQuanThucHien,
+                                                                            huyen: districtId
+
+
+                                                                        }
+                                                                    }));
+
+
+                                                                }}
+                                                                onSelectWard={(wardId) => {
+                                                                    setForm(prevState => ({
+                                                                        ...prevState,
+                                                                        coQuanThucHien: {
+                                                                            ...prevState.coQuanThucHien,
+                                                                            xa: wardId
+                                                                        }
+                                                                    }));
+
+                                                                }}
+
+                                                            />
+                                                        </div>
+
+                                                    </div>
+                                                    <div class=" flex py-8 ">
+
+                                                        <div class="w-2/3 flex flex-col ">
+                                                            <div className=''>
+                                                                <label className='font-bold text-center' > Cơ quan thực hiện </label>
+
+                                                            </div>
+                                                            <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
+
+                                                            </select>
+
+                                                        </div>
+                                                        <div class="w-1/3 flex flex-col ">
+                                                            <div>
+                                                                <label className='font-bold text-center' > Số điện thoại </label>
+                                                            </div>
+                                                            <Field className="border w-2/3 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='số điện thoại ' value={"0363361994"} />
+
+
+                                                        </div>
+
+                                                    </div>
                                                 </div>
-                                                <Field onChange={handleInputChange} name="noiDungDeNghi" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Nội dung đề nghị' />
+                                                {/* THÔNG TIN NHẬN THÔNG BÁO , TÌNH TRẠNG HỒ SƠ , KẾT QUẢ GIẢI QUYẾT HỒ SƠ */}
+                                                <ThongTinNguoiKhaiBao user={user} ttuser={ttuser} />
+
+
+                                                {/* Thong tin co so luu tru  */}
+                                                <div className='' >
+                                                    <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
+                                                        <label className='text-xl font-family-sans mx-auto' >
+                                                            NỘI DUNG ĐỀ NGHỊ XOÁ ĐĂNG KÝ thường trú
+                                                        </label>
+                                                    </div>
+                                                    <div className='flex  py-8  '>
+                                                        <div class="w-full flex flex-col ">
+                                                            <div>
+                                                                <label className='font-bold text-center' > Nội dung đề nghị </label>
+
+                                                            </div>
+                                                            <Field onChange={handleInputChange} name="noiDungDeNghi" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Nội dung đề nghị' />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className='' >
+                                                    <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
+                                                        <label className='text-xl font-family-sans mx-auto' >
+
+                                                            THÔNG TIN NHẬN THÔNG BÁO , TÌNH TRẠNG HỒ SƠ , KẾT QUẢ GIẢI QUYẾT HỒ SƠ
+                                                        </label>
+                                                    </div>
+                                                    <div className='flex  py-8  '>
+                                                        <div class="w-full flex flex-col ">
+                                                            <div>
+                                                                <label className='font-bold text-center' > Hình thức nhận thông báo </label>
+
+                                                            </div>
+                                                            <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
+                                                                <option value="1">Email</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
                                             </div>
-                                        </div>
+                                        </Form>
+                                    </Formik>
+                                    <div className='flex w-full'>
+                                        <button type="submit "
+                                            onClick={HandleSubmit}
+                                            class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                        >
+                                            Nạp hồ sơ
+                                        </button>
                                     </div>
-
-                                    <div className='' >
-                                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
-                                            <label className='text-xl font-family-sans mx-auto' >
-
-                                                THÔNG TIN NHẬN THÔNG BÁO , TÌNH TRẠNG HỒ SƠ , KẾT QUẢ GIẢI QUYẾT HỒ SƠ
-                                            </label>
-                                        </div>
-                                        <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
-                                                <div>
-                                                    <label className='font-bold text-center' > Hình thức nhận thông báo </label>
-
-                                                </div>
-                                                <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-                                                    <option value="1">Email</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
 
                                 </div>
-                            </Form>
-                        </Formik>
-                        <div className='flex w-full'>
-                            <button type="submit "
-                            onClick={HandleSubmit}
-                                class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                            >
-                                Nạp hồ sơ
-                            </button>
-                        </div>
+                                <div type="submit" class="bg-white-300 p-4 col-span-1  ">
+                                </div>
+                            </div>
+                        ) : (
+                            <div>Loading...</div>
+                        )}
+                    </div>
 
-                    </div>
-                    <div type="submit" class="bg-white-300 p-4 col-span-1  ">
-                    </div>
-                </div>
-            ) : (
-                <div>Loading...</div>
-            )}
+                )
+            }
+
         </div>
+
+
+
+
+
+
     )
 }

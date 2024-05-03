@@ -28,7 +28,7 @@ export default function _LichSuHoiDap() {
 
 
     return (
-        <div>
+        <div className='h-screen'>
 
             {isLoading ? (
                 <div className="flex gap-12 flex-col justify-center items-center ">

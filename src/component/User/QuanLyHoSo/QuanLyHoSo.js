@@ -6,11 +6,12 @@ import { getIDNguoiThayDoi } from '../../../util/jwtUtils';
 import { GlobalContext } from '../../../App';
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../../../Loading';
 
 export default function QuanLyHoSo() {
  const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); //
 
   const [viewDSVB, setviewDSVL] = useState('');
   const [listDS, setlistDS] = useState(Object);
@@ -67,7 +68,7 @@ export default function QuanLyHoSo() {
   return (
     <div>
       {isLoaded ? (
-        <div className="flex h-screen">
+        <div className="flex min-h-screen">
           {/* Sidebar */}
           <div className="w-64 bg-white shadow-md">
             <div className="p-4">
@@ -116,13 +117,13 @@ export default function QuanLyHoSo() {
                   {Object.entries(listshow).map(([id, item]) => (
                     <tr key={id}>
                       <td className="px-6 py-4 whitespace-nowrap">{parseInt(id) + 1}</td>
-                      <td className="px-6  py-4 whitespace-nowrap">{item.tenThuTuc} </td>
+                      <td className="px-6  py-4 whitespace-nowrap">{item?.tenThuTuc} </td>
 
-                      <td className="px-6 py-4 whitespace-nowrap"> {moment(item.created_at).format('DD/MM/YYYY')}  </td>
-                      <td className="px-6 py-4 whitespace-nowrap">{item.diaChiCuThe}</td>
+                      <td className="px-6 py-4 whitespace-nowrap"> {moment(item?.created_at).format('DD/MM/YYYY')}  </td>
+                      <td className="px-6 py-4 whitespace-nowrap">{item?.diaChiCuThe}</td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {(() => {
-                        switch (item.trangThai) {
+                        switch (item?.trangThai) {
                           case "Checking":
                             return "Đang chờ xử lý";
                           case "Done":
@@ -132,7 +133,7 @@ export default function QuanLyHoSo() {
                           case "Paying":
                             return "Đã chờ thanh toán";
                           default:
-                            return item.trangThai;
+                            return item?.trangThai;
                         }
                       })()} 
                       </td>
@@ -157,7 +158,7 @@ export default function QuanLyHoSo() {
         </div>
 
       ) : (
-        <div>Loading...</div>
+        <div><Loading/></div>
       )}
     </div>
 

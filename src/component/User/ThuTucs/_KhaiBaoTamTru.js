@@ -18,7 +18,7 @@ export default function _KhaiBaoTamTru() {
         console.log(name, value);
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
-    const handleChonhoSo1 = (event) => {
+    const handleChonhs1 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -34,7 +34,7 @@ export default function _KhaiBaoTamTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo1: base64Image
+                        hs1: base64Image
                     }
                 });
             };
@@ -47,7 +47,7 @@ export default function _KhaiBaoTamTru() {
 
 
 
-    const handleChonhoSo2 = (event) => {
+    const handleChonhs2 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -63,7 +63,7 @@ export default function _KhaiBaoTamTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo2: base64Image
+                        hs2: base64Image
                     }
                 });
             };
@@ -72,7 +72,7 @@ export default function _KhaiBaoTamTru() {
             reader.readAsDataURL(file);
         }
     };
-    const handleChonhoSo3 = (event) => {
+    const handleChonhs3 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -88,7 +88,7 @@ export default function _KhaiBaoTamTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo3: base64Image
+                        hs3: base64Image
                     }
                 });
             };
@@ -97,7 +97,7 @@ export default function _KhaiBaoTamTru() {
             reader.readAsDataURL(file);
         }
     };
-    const handleChonhoSo4 = (event) => {
+    const handleChonhs4 = (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -112,7 +112,7 @@ export default function _KhaiBaoTamTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo4: base64Image
+                        hs4: base64Image
                     }
                 });
             };
@@ -148,10 +148,10 @@ export default function _KhaiBaoTamTru() {
         idNguoiDuyet: "",
         note: "",
         fileHoSoLienQuan: {
-            hoSo1: "",
-            hoSo2: "",
-            hoSo3: "",
-            hoSo4: "",
+            hs1: "",
+            hs2: "",
+            hs3: "",
+            hs4: "",
             hoSo5: "",
             hoSo6: "",
         },
@@ -174,7 +174,7 @@ export default function _KhaiBaoTamTru() {
         }
         else {
             await axios.post(apiUrl(ApiConfig.khaibaotamtru), form);
-            toast.success("Nạp hồ sơ thành công");
+            toast.success("Nôp hồ sơ thành công");
             setTimeout(() => {
                 navigate('/');
             }, 1000);
@@ -426,10 +426,10 @@ export default function _KhaiBaoTamTru() {
 
                                                 <label className='mt-2' >Chọn file hồ sơ</label>
                                                 <div className='flex items-center mt-2 ' >
-                                                    <input type="file" id="hoSo1" name="hoSo1" onChange={handleChonhoSo1} />
-                                                    <input type="file" id="hoSo2" name="hoSo2" onChange={handleChonhoSo2} />
-                                                    <input type="file" id="hoSo3" name="hoSo3" onChange={handleChonhoSo3} />
-                                                    <input type="file" id="hoSo4" name="hoSo4" onChange={handleChonhoSo4} />
+                                                    <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                    <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                    <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                    <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
                                                 </div>
                                             </div>
                                         </div>
@@ -442,7 +442,7 @@ export default function _KhaiBaoTamTru() {
                                 onClick={HandleSubmit}
                                 class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none text-center focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                             >
-                                Nạp hồ sơ
+                                Nôp hồ sơ
                             </button>
                         </div>
 

@@ -37,17 +37,17 @@ export default function _XoaDangKyThuongTru() {
         idNguoiDuyet: "",
         note: "",
         fileHoSoLienQuan: {
-            hoSo1 : "",
-            hoSo2 : "",
-            hoSo3 : "",
-            hoSo4 : "",
-            hoSo5 : "",
-            hoSo6 : "",
+            hs1: "",
+            hs2: "",
+            hs3: "",
+            hs4: "",
+            hoSo5: "",
+            hoSo6: "",
         },
         created_at: moment().toDate(),
         created_end: '',
     });
-    const handleChonhoSo1 = (event) => {
+    const handleChonhs1 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -63,7 +63,7 @@ export default function _XoaDangKyThuongTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo1: base64Image
+                        hs1: base64Image
                     }
                 });
             };
@@ -76,7 +76,7 @@ export default function _XoaDangKyThuongTru() {
 
 
 
-    const handleChonhoSo2 = (event) => {
+    const handleChonhs2 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -92,7 +92,7 @@ export default function _XoaDangKyThuongTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo2: base64Image
+                        hs2: base64Image
                     }
                 });
             };
@@ -101,7 +101,7 @@ export default function _XoaDangKyThuongTru() {
             reader.readAsDataURL(file);
         }
     };
-    const handleChonhoSo3 = (event) => {
+    const handleChonhs3 = (event) => {
         const file = event.target.files[0];
         if (file) {
 
@@ -117,7 +117,7 @@ export default function _XoaDangKyThuongTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo3: base64Image
+                        hs3: base64Image
                     }
                 });
             };
@@ -126,7 +126,7 @@ export default function _XoaDangKyThuongTru() {
             reader.readAsDataURL(file);
         }
     };
-    const handleChonhoSo4 = (event) => {
+    const handleChonhs4 = (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -141,7 +141,7 @@ export default function _XoaDangKyThuongTru() {
                     ...form,
                     fileHoSoLienQuan: {
                         ...form.fileHoSoLienQuan,
-                        hoSo4: base64Image
+                        hs4: base64Image
                     }
                 });
             };
@@ -173,7 +173,7 @@ export default function _XoaDangKyThuongTru() {
             else {
                 await axios.post(apiUrl(ApiConfig.xoadangkythuongtru), form);
 
-                toast.success("Nạp hồ sơ thành công");
+                toast.success("Nộp hồ sơ thành công");
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);
@@ -188,7 +188,7 @@ export default function _XoaDangKyThuongTru() {
 
         <div>
             {
-                checktt ? (
+                !checktt ? (
                     <div className='h-screen flex items-center justify-center'>
                         <div className="bg-red-100 rounded-lg p-8 w-full max-w-md">
                             <h2 className="text-lg font-semibold mb-4 text-center">Thông báo</h2>
@@ -314,10 +314,10 @@ export default function _XoaDangKyThuongTru() {
                                                             />
                                                             <label className='mt-2' >Chọn file hồ sơ</label>
                                                             <div className='flex items-center mt-2 ' >
-                                                                <input type="file" id="hoSo1" name="hoSo1" onChange={handleChonhoSo1} />
-                                                                <input type="file" id="hoSo2" name="hoSo2" onChange={handleChonhoSo2} />
-                                                                <input type="file" id="hoSo3" name="hoSo3" onChange={handleChonhoSo3} />
-                                                                <input type="file" id="hoSo4" name="hoSo4" onChange={handleChonhoSo4} />
+                                                                <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                                <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                                <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                                <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -352,7 +352,7 @@ export default function _XoaDangKyThuongTru() {
                                             onClick={HandleSubmit}
                                             class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                         >
-                                            Nạp hồ sơ
+                                            Nộp hồ sơ
                                         </button>
                                     </div>
 

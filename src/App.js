@@ -72,10 +72,10 @@ import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('User');
+  const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
-  const [checkthongtin, setcheckthongtin] = useState(true);
+  const [checkthongtin, setcheckthongtin] = useState(false);
   const [isloading, setisloading] = useState(false);
   const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
@@ -145,7 +145,7 @@ function App() {
 
         ) : role === 'User' ? (
           checkthongtin ? (
-              <div className=''>
+              <div className='min-h-screen'>
                 {/* Content to render when checkthongtin is true */}
             <NavUser />
 
@@ -194,15 +194,14 @@ function App() {
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
               </Routes>
-              <footer className="">
-                <img src={logo} alt="Logo" />
-              </footer>
+           
             </div>
           )
 
 
 
         ) : (
+          
 
 
           <div className='h-full'>

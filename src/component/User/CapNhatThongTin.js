@@ -68,7 +68,7 @@ export default function CapNhatThongTin() {
     }
 
     return (
-        <div>
+        <div className='h-screen'> 
         <ToastContainer />
 
 

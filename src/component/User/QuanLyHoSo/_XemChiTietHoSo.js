@@ -19,10 +19,12 @@ export default function _XemChiTietHoSo() {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+
   const handlePay = async () => {
     try {
       console.log(hoso.id);
       console.log(hoso.lePhi);
+
 
       const response = await axios.get(apiUrl(ApiConfig.thanhtoan(hoso.lePhi, hoso.id)));
       // const response = await axios.get(`http://172.21.2.68:8888/pay/${hoso.lePhi}/${hoso.id}`);
@@ -40,83 +42,110 @@ export default function _XemChiTietHoSo() {
 
   const [hoso, sethoso] = useState(location.state.value);
   const [check, setCheck] = useState(location.state.value2);
+  const handleclick = () => {
+    console.log(hoso);
+  }
   console.log(check);
   return (
     <div className="max-w-4xl mx-auto px-4 ">
-        <div className="p-6">
-      <h1 className="text-3xl mx-auto font-semibold mb-4 text-center">{hoso.tenThuTuc} </h1>
-          <div  >
-            <div className=' font-family-sans mx-auto' >
-              <div className="mx-auto">
-                <label className="block text-center text-sm font-semibold text-gray-600 mb-1">Trạng thái:</label>
-                <p className="text-sm text-center mt-2 font-semibold">
-                  <span className={`inline-block mb-2 px-2 py-1 rounded-full ${hoso.trangThai === "Checking" ? "bg-green-500 text-white" :
-                    hoso.trangThai === "Done" ? "bg-green-500 text-white" :
-                      hoso.trangThai === "Cancelled" ? "bg-red-500 text-white" :
-                        hoso.trangThai === "Paying" ? "bg-yellow-500 text-black" : ""
-                    }`}>
-                    {(() => {
-                      switch (hoso.trangThai) {
-                        case "Checking":
-                          return "Đang chờ xử lý";
-                        case "Done":
-                          return "Đã hoàn tất";
-                        case "Cancelled":
-                          return "Đã bị huỷ";
-                        case "Paying":
-                          return "Đã chờ thanh toán";
-                        default:
-                          return hoso.trangThai;
-                      }
-                    })()}
-                  </span>
-                </p>
+      <div className="p-6">
+        <h1 className="text-3xl mx-auto font-semibold mb-4 text-center">{hoso.tenThuTuc} </h1>
+        <div  >
+          <div className=' font-family-sans mx-auto' >
+            <div className="mx-auto">
+              <label className="block text-center text-sm font-semibold text-gray-600 mb-1">Trạng thái:</label>
+              <p className="text-sm text-center mt-2 font-semibold">
+                <span className={`inline-block mb-2 px-2 py-1 rounded-full ${hoso.trangThai === "Checking" ? "bg-green-500 text-white" :
+                  hoso.trangThai === "Done" ? "bg-green-500 text-white" :
+                    hoso.trangThai === "Cancelled" ? "bg-red-500 text-white" :
+                      hoso.trangThai === "Paying" ? "bg-yellow-500 text-black" : ""
+                  }`}>
+                  {(() => {
+                    switch (hoso.trangThai) {
+                      case "Checking":
+                        return "Đang chờ xử lý";
+                      case "Done":
+                        return "Đã hoàn tất";
+                      case "Cancelled":
+                        return "Đã bị huỷ";
+                      case "Paying":
+                        return "Đã chờ thanh toán";
+                      default:
+                        return hoso.trangThai;
+                    }
+                  })()}
+                </span>
+              </p>
 
-              </div>
             </div>
-
-
-
-            <ThongTinNguoiKhaiBao  ttuser={ttuser} user={user} />
-
-
           </div>
 
 
 
-          <div className="grid grid-cols-1 mt-12 md:grid-cols-2 gap-6">
+          <ThongTinNguoiKhaiBao ttuser={ttuser} user={user} />
+
+
+        </div>
 
 
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Cơ quan thực hiện:</label>
-              <p className="text-sm text-gray-900">{`${hoso.coQuanThucHien.tinh}, ${hoso.coQuanThucHien.huyen}, ${hoso.coQuanThucHien.xa}`}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ khai báo:</label>
-              <p className="text-sm text-gray-900">{hoso.diaChiKhaiBao}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ cụ thể:</label>
-              <p className="text-sm text-gray-900">{hoso.diaChiCuThe}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Nội dung đề nghị:</label>
-              <p className="text-sm text-gray-900">{hoso.noiDungDeNghi}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Thời hạn:</label>
-              <p className="text-sm text-gray-900">{hoso.thoiHan}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-600 mb-1">Lệ phí:</label>
-              <p className="text-sm text-gray-900">{hoso.lePhi} VND</p>
-            </div>
+        <div className="grid grid-cols-1 mt-12 md:grid-cols-2 gap-6">
 
+
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Cơ quan thực hiện:</label>
+            <p className="text-sm text-gray-900">{`${hoso.coQuanThucHien.tinh}, ${hoso.coQuanThucHien.huyen}, ${hoso.coQuanThucHien.xa}`}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ khai báo:</label>
+            <p className="text-sm text-gray-900">{hoso.diaChiKhaiBao}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ cụ thể:</label>
+            <p className="text-sm text-gray-900">{hoso.diaChiCuThe}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Nội dung đề nghị:</label>
+            <p className="text-sm text-gray-900">{hoso.noiDungDeNghi}</p>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Thời hạn:</label>
+            <p className="text-sm text-gray-900">{hoso.thoiHan}</p>
+          </div>
+          <div onClick={handleclick} >
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Lệ phí:</label>
+            <p className="text-sm text-gray-900">{hoso.lePhi} VND</p>
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Hồ sơ liên quan</label>
+            <div>
+              <div>
+                {hoso && hoso.fileHoSoLienQuan && (
+                  <>
+                    {hoso.fileHoSoLienQuan.hs1 && (
+                      <img src={hoso.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
+                    )}
+                    {hoso.fileHoSoLienQuan.hs2 && (
+                      <img src={hoso.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
+                    )}
+                    {hoso.fileHoSoLienQuan.hs3 && (
+                      <img src={hoso.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
+                    )}
+                    {hoso.fileHoSoLienQuan.hs4 && (
+                      <img src={hoso.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
+                    )}
+                  </>
+                )}
+              </div>
+
+            </div>
 
           </div>
 
         </div>
+
+      </div>
 
       <div className="col-span-2  mt-10">
         <div className='mx-auto text-center '>
@@ -127,7 +156,7 @@ export default function _XemChiTietHoSo() {
           )}
           {hoso.trangThai === "Done" && check.id == undefined && (
             <button onClick={togglePopup} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-               Đánh giá 
+              Đánh giá
             </button>
           )}
           {hoso.trangThai === "Done" && check.id !== undefined && (
@@ -148,7 +177,7 @@ export default function _XemChiTietHoSo() {
                 <div>
                   <h1 className='text-xl' >
 
-                     ĐÁNH GIÁ HỒ SƠ
+                    ĐÁNH GIÁ HỒ SƠ
                   </h1>
                   <_DanhGiaHoSo user={user} hoSo={hoso} ttuser={ttuser} />
 

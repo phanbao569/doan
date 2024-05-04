@@ -88,9 +88,9 @@ export default function ThongTinCaNhan() {
                 <tr>
                   <th scope="row">Hình ảnh</th>
                   <td className='flex gap-4' >
-                    <img src={user.anhCCCD.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
-                    <img src={user.anhCCCD.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
-                    <img src={user.anhCCCD.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                    <img src={user?.anhCCCD?.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                    <img src={user?.anhCCCD?.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                    <img src={user?.anhCCCD?.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
 
                   </td>
                 </tr>

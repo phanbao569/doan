@@ -166,7 +166,7 @@ export default function _XoaDangKyTamTru() {
         try {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
-                form.noiDungDeNghi === ""
+                form.noiDungDeNghi.trim() === ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 return;

@@ -15,7 +15,7 @@ function PinInputForm({ onChange }) {
     const newPinValues = [...pinValues];
     newPinValues[index] = value;
     setPinValues(newPinValues);
-    
+
     if (value && index < inputRefs.current.length - 1) {
       // Nếu ô input có giá trị và không phải là ô cuối cùng, chuyển trỏ đến ô input tiếp theo
       inputRefs.current[index + 1].focus();
@@ -23,7 +23,7 @@ function PinInputForm({ onChange }) {
       // Nếu ô input trống và không phải là ô đầu tiên, chuyển trỏ đến ô input trước đó
       inputRefs.current[index - 1].focus();
     }
-  
+
     // Gọi hàm callback onChange và truyền giá trị pinValues lên component cha
     onChange(newPinValues.join(''));
   };
@@ -46,8 +46,8 @@ function PinInputForm({ onChange }) {
               type="text"
               maxLength="1"
               id={`code-${index + 1}`}
-              className="block w-9 h-9 py-3 text-sm font-extrabold text-center text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              required
+              className="block w-9 h-9 py-3 text-sm font-extrabold text-center text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500
+"              required
               value={pinValues[index]}
               onChange={(e) => handleInputChange(index, e)}
               onKeyDown={(e) => handleBackspace(index, e)}
@@ -55,7 +55,7 @@ function PinInputForm({ onChange }) {
           </div>
         ))}
       </div>
-      <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">Please introduce the 6 digit code we sent via email.</p>
+      <p id="helper-text-explanation" className="mt-2 text-sm text-gray-500 dark:text-gray-400">Vui lòng nhập 6 số được nhận từ email của bạn .</p>
     </form>
   );
 }

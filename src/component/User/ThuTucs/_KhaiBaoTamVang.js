@@ -170,7 +170,7 @@ export default function _KhaiBaoTamVang() {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
                 form.diaChi.huyen === "" || form.diaChi.tinh === "" || form.diaChi.xa === "" || form.thoiHanTamTru === "" || form.thoiHanTamTru === 0 ||
-                form.diaChiCuThe === "" || form.lyDoTamVang == "" || form.ngayVang === "" || form.ngayVe == ""
+                form.diaChiCuThe.trim() === "" || form.lyDoTamVang.trim() == "" || form.ngayVang === "" || form.ngayVe == ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 //   alert("Vui lòng nhập đầy đủ thông tin");

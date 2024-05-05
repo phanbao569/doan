@@ -30,7 +30,7 @@ export default function HoiDap(props) {
     }
     const handleSubmit = async () => {
         try {
-            if(form.noiDung === "" || form.noiDung === undefined) {
+            if(form.noiDung.trim() === "" || form.noiDung.trim() === undefined) {
                 toast.error("Vui lòng nhập nội dung");
             } else{
                 const respont = await axios.post(apiUrl(ApiConfig.guiHoiDap), form);

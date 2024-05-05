@@ -166,7 +166,7 @@ export default function _KhaiBaoTamTru() {
         if (
             form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
             form.diaChiTamTru.huyen === "" || form.diaChiTamTru.tinh === "" || form.diaChiTamTru.xa === "" || form.thoiHanTamTru === "" || form.thoiHanTamTru === 0 ||
-            form.diaChiCuThe === "" || form.hoTenChuHo == "" || form.cccdChuHo === "" || form.quanHeChuHo == ""
+            form.diaChiCuThe.trim() === "" || form.hoTenChuHo.trim() == "" || form.cccdChuHo.trim() === "" || form.quanHeChuHo.trim() == ""
         ) {
             toast.error("Vui lòng nhập đầy đủ thông tin");
             //   alert("Vui lòng nhập đầy đủ thông tin");

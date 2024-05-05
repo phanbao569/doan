@@ -36,14 +36,14 @@ export default function _LichSuHoiDap() {
                     {
                         allPhanHoi.map((phanHoi, index) => (
                             <div key={index} className="max-w-md w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                                <h2 className="text-start font-bold mb-4">Nội dung Hỏi đáp - {moment(phanHoi.created_at).format('DD/MM/YYYY')}</h2>
-                                <p className="text-start mb-4">{phanHoi.noiDung} </p>
+                                <h2 className="text-start font-bold mb-4">Nội dung Hỏi đáp - {moment(phanHoi?.created_at).format('DD/MM/YYYY')}</h2>
+                                <p className="text-start mb-4">{phanHoi?.noiDung} </p>
                                 <h2 className="text-start font-bold mb-4">Nội dung phản hồi:</h2>
-                                {phanHoi.phanHoi === "" ? (
+                                {phanHoi?.phanHoi === "" ? (
 
                                     <p className="text-start italic mb-4">Chưa có phản hồi</p>
                                 ) : (
-                                    <p className="text-start mb-4">Người hồi đáp: {phanHoi.phanHoi}</p>
+                                    <p className="text-start mb-4">Người hồi đáp: {phanHoi?.phanHoi}</p>
 
                                 )
 

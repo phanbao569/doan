@@ -47,7 +47,7 @@ export default function _XemChiTietHoSo() {
   }
   console.log(check);
   return (
-    <div className="max-w-4xl mx-auto px-4 ">
+    <div className="max-w-4xl min-h-screen mx-auto px-4 ">
       <div className="p-6">
         <h1 className="text-3xl mx-auto font-semibold mb-4 text-center">{hoso.tenThuTuc} </h1>
         <div  >
@@ -171,11 +171,11 @@ export default function _XemChiTietHoSo() {
 
         {isOpen && (
           <div className="fixed mt-10 top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+            <div className="bg-white p-6 items-center text-center rounded-lg shadow-lg">
 
               {hoso.trangThai === "Done" && check.id == undefined && (
                 <div>
-                  <h1 className='text-xl' >
+                  <h1 className='text-xl text-center ' >
 
                     ĐÁNH GIÁ HỒ SƠ
                   </h1>
@@ -185,7 +185,7 @@ export default function _XemChiTietHoSo() {
               )}
               {hoso.trangThai === "Done" && check.id !== undefined && (
                 <div>
-                  <h1 className='text-xl' >
+                  <h1 className='text-xl text-center  ' >
                     XEM ĐÁNH GIÁ HỒ SƠ
                   </h1>
                   <_XemDanhGiaHoSo user={user} hoSo={hoso} ttuser={ttuser} check={check} />

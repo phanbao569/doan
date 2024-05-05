@@ -178,7 +178,7 @@ export default function NapThuTuc() {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
                 form.diaChiTamTru.huyen === "" || form.diaChiTamTru.tinh === "" || form.diaChiTamTru.xa === "" || form.thoiHanTamTru.huyen === "" || form.thoiHanTamTru === 0 ||
-                form.diaChiCuThe === ""
+                form.diaChiCuThe.trim() === ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 //   alert("Vui lòng nhập đầy đủ thông tin");

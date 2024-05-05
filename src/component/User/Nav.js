@@ -4,6 +4,10 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
+import { CiLogout } from "react-icons/ci";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { MdManageSearch } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 
 
 export default function HeaderM() {
@@ -38,13 +42,13 @@ export default function HeaderM() {
     <div>
       <div className='flex w-full h-28 content-center items-center bg-gradient-to-r from-white via-white to-zinc-700'  >
         <div className='flex'>
-          <NavLink to={'/'}>
-            <img src={Logo} className='w-16 h-16 ml-28' alt="logo" />
-          </NavLink>
-          <div className='ml-24'>
-            <p className='text-3xl  text-red-700 font-fontgg '>Quản lý nhân khẩu quốc gia</p>
-            <p className='font-fontgg'>Hành chính phục vụ</p>
-          </div>
+        <NavLink to={'/'}>
+                <img src={Logo} className='w-16 h-16 ml-28' alt="logo" />
+            </NavLink>
+            <div className='ml-4'>
+                <p className='text-3xl  text-red-700 font-fontgg '>Quản lý nhân khẩu quốc gia</p>
+                <p className='font-fontgg'>Hành chính phục vụ</p>
+            </div>
         </div>
       
 
@@ -71,10 +75,11 @@ export default function HeaderM() {
 
                 {isOpen && (
                   <div className="absolute w-225 bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
-                    <div className="py-1 w-96 h-28">
-                      <NavLink to='/thongtincanhan' className=" w-full px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</NavLink>
-                      <p className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</p>
-                      <p onClick={() => { handleLogout() }} className="w-full px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</p>
+                    <div className="py-1 w-96 h-36 flex flex-col">
+                      <NavLink to='/thongtincanhan' className="w-1/2 gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs "><FaRegUser/>  Thông tin cá nhân</NavLink>
+                      <NavLink to='/quanlyhoso' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><MdManageSearch /> Quản lý hồ sơ</NavLink>
+                      <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><RiLockPasswordLine /> Đổi mật khẩu</NavLink>
+                      <div onClick={() => { handleLogout() }} className="gap-2 w-1/2 flex px-4 py-2 text-gray-800 hover:bg-red-200 text-xs "><CiLogout />  Đăng xuất</div>
                     </div>
                   </div>
                 )}

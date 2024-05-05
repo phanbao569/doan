@@ -169,7 +169,7 @@ export default function _KhaiBaoThuongTru() {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
                 form.diaChiThuongTru.huyen === "" || form.diaChiThuongTru.tinh === "" || form.diaChiThuongTru.xa === "" || form.thoiHanTamTru === "" || form.thoiHanTamTru === 0 ||
-                form.diaChiCuThe === "" || form.tenChuHo == "" || form.cccdChuHo === "" || form.quanHeChuHo == ""
+                form.diaChiCuThe.trim() === "" || form.tenChuHo.trim() == "" || form.cccdChuHo.trim() === "" || form.quanHeChuHo.trim() == ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 //   alert("Vui lòng nhập đầy đủ thông tin");

@@ -41,7 +41,7 @@ function Form(props) {
     };
 
     return (
-        <div className=" mx-auto mt-5">
+        <div className=" mx-auto">
             <form >
                 <div className='' >
                     <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
@@ -155,12 +155,10 @@ function Form(props) {
                     <label htmlFor="rating" className="block">Mức độ đánh giá</label>
                     <textarea
                         className=" text-start  bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
-                        disabled placeholder='Địa chỉ đăng ký tạm trú ' value={check.mucDoDanhGia} />
+                        disabled placeholder='Địa chỉ đăng ký tạm trú ' value={check.mucDoDanhGia + "⭐"} />
                 </div>
             </form>
-            <button
-                onClick={handleSubmit}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Gửi</button>
+           
         </div>
     );
 }

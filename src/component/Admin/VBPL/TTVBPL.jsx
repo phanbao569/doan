@@ -107,7 +107,7 @@ export default function TTVBPL() {
                   {item.updated_at}
                 </td>
                 <td className="px-6 py-4 text-center">
-                  <Link to={`/xem-vb/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
+                  <Link to={`/xem-vb/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
                   <button onClick={() => handleDelete(item.id)}  className="ml-2 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
                 </td>
                

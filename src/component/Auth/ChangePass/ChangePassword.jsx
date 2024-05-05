@@ -56,13 +56,18 @@ export default function ChangePassword() {
             if(response.data=='Đổi mật khẩu thành công!')
             toast.success(response.data);
         else toast.warning(response.data)
+            if(response.data=='Đổi mật khẩu thành công!')
+            toast.success(response.data);
+        else toast.warning(response.data)
             // Hiển thị hộp thoại xác nhận thành công
         } catch (error) {
             console.error( error);
             // Hiển thị thông báo lỗi cho người dùng
             toast.error(error);
+            toast.error(error);
         }}
         else {
+            toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
             toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
         }
     };

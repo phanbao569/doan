@@ -73,6 +73,7 @@ import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
+
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
@@ -209,11 +210,12 @@ function App() {
 
 
           <div className='h-full'>
-
+            
             <HeaderM />
-            <NavM />
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/forgotpass" element={<ForgotPass/>} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<HomeM />} />
               <Route path="/VBPL" element={<VBPLM />} />

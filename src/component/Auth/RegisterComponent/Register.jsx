@@ -215,7 +215,7 @@ export default function Register() {
   
       if (!phoneNumberRegex.test(value)) {
         setPhoneError('Số điện thoại không hợp lệ');
-        return;
+        // return;
       } else {
         setPhoneError('');
       }

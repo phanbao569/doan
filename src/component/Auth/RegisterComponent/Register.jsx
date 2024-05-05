@@ -6,8 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import leftImage from '../../../image/vietnam1.png';
 import DiaChi from '../../Diachi';
 import ApiConfig,{apiUrl} from '../../../ApiConfig';
+import { ToastContainer, toast } from 'react-toastify';
+import PinInputForm from '../PinInputForm';
+import bcrypt from 'bcryptjs'
 export default function Register() {
   //xử lí thông tin trong giao giện
+  const [errPass,setErrPass]=useState('')
   const navigate = useNavigate();
   const [code, setCode] = useState('');
   const [formData, setFormData] = useState({
@@ -32,7 +36,9 @@ export default function Register() {
   },
   
   );
-  const [contextErr, setContextErr] = useState(false)
+  const phoneNumberRegex = /^(0|\+84)\d{9,10}$/;
+  const [phoneError, setPhoneError] = useState('');
+  const [contextErr, setContextErr] = useState('')
   const [checkMK, setCheckMK] = useState('')
   //xử lí thông tin trong giao giện
   // state xử lí hộp thoại
@@ -77,22 +83,43 @@ export default function Register() {
 
   const handleConfirmationSubmit = async (event) => {
     formData.code = code;
-    
+    // if (!phoneNumberRegex.test(formData.matKhau.toString()) || (formData.matKhau!=checkMK)){
+    //     alert('sai mk roi')
+    //     return
+    // }
     event.preventDefault();
+    const check = await bcrypt.compare(code, formData.codeHashed.toString())
+     console.log(code)
+    console.log(check)
+
+    if (code.length !== 6) {
+
+      toast.warning('Bạn chưa nhập đủ 6 số');
+
+      return;
+    }
+    if(check){
     try {
       const response = await axios.post(apiUrl(ApiConfig.register), formData);
 
       console.log('Tình trạng:' + response.data);
       // Chuyển hướng người dùng đến trang chính của ứng dụng
-      alert('Đắng kí thành công! ');
+
+    toast.success('Đăng ký thành công')
       setShowConfirmationDialog(false);
-      navigate('/login')
+      
+      setTimeout(() => {
+        navigate('/login');
+      }, 1000);
       // Hiển thị thông báo xác nhận thành công cho người dùng
 
     } catch (error) {
       console.error('Xác nhận thất bại:', error);
       // Hiển thị thông báo lỗi cho người dùng
-      alert('mã xác nhận xác nhận sai.');
+      toast.error('Lỗi máy chủ:'+error);
+    }}
+    else{
+      toast.error('mã xác nhận xác nhận sai');
     }
   };
 
@@ -113,7 +140,7 @@ export default function Register() {
     } catch (error) {
       console.error('Xác nhận thất bại:', error);
       // Hiển thị thông báo lỗi cho người dùng
-      alert('Xác nhận thất bại. Vui lòng thử lại .');
+      toast.error('Xác nhận thất bại. Vui lòng thử lại .');
     }
   };
 
@@ -130,7 +157,8 @@ export default function Register() {
     for (const key in formData) {
       if (formData.hasOwnProperty(key)) {
         if (!formData[key]) {
-          alert(`Bạn phải nhập đầy đủ thông tin ở ${key}`);
+          toast.warning(`Vui lòng nhập đầy đủ thông tin ${key}`);
+
           return;
         }
       }
@@ -141,18 +169,21 @@ export default function Register() {
     for (const key in formData.anhCCCD) {
       if (formData.anhCCCD.hasOwnProperty(key)) {
         if (!formData.anhCCCD[key]) {
-          alert(`Bạn phải tải lên ảnh ở ${key}`);
+          toast.warning(`Bạn phải tải lên ảnh ở ${key}`);
           return;
         }
       }
     }
-
+    if (!phoneNumberRegex.test(formData.sdt)) {
+      toast.error('Số điện thoại không hợp lệ');
+      return; 
+    }
     // Kiểm tra mật khẩu và nhập lại mật khẩu
     if (formData.matKhau !== checkMK) {
-      alert('Mật khẩu và nhập lại mật khẩu không khớp');
+      toast.error('Mật khẩu và nhập lại mật khẩu không khớp');
       return;
     }
-
+    
     // Gửi dữ liệu khi mật khẩu và nhập lại mật khẩu khớp
     console.log('Dữ liệu được gửi đi:', formData);
     
@@ -167,7 +198,7 @@ export default function Register() {
       // Hiển thị hộp thoại xác nhận thành công
       setShowConfirmationDialog(true);
     } catch (error) {
-      alert('đăng kí thất bại do ' + error.response.data);
+      toast.error('đăng kí thất bại do ' + error.response.data);
       
     }
   }
@@ -177,8 +208,32 @@ export default function Register() {
   // ham lay thongtin tu form
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
+  
+    if (name === 'sdt') {
+      // Biểu thức chính quy để kiểm tra số điện thoại
+      
+  
+      if (!phoneNumberRegex.test(value)) {
+        setPhoneError('Số điện thoại không hợp lệ');
+        return;
+      } else {
+        setPhoneError('');
+      }
+    }
+    if (name === 'matKhau'){
+    if (!kiemTraMatKhau(value)) {
+      setErrPass('Mật khẩu phải có ít nhất 8 kí tự và bao gồm cả chữ và số.');
+    } else {
+      setErrPass('');
+    }}
     if (name === 'nhapLaiMatKhau') {
       setCheckMK(value);
+      // Kiểm tra mật khẩu nhập lại
+      if (formData.matKhau !== value) {
+        setContextErr('Mật khẩu nhập lại không khớp'); 
+      } else {
+        setContextErr(''); 
+      }
       
     } else {
       setFormData(prevState => ({
@@ -186,7 +241,7 @@ export default function Register() {
         [name]: files ? files[0] : value
       }));
     }
-    kiemTraMKSai()
+    
   }
   //hàm chuyển file ảnh thanh string
 
@@ -194,6 +249,7 @@ export default function Register() {
 
   const handleAnhMatChange = (event) => {
     const file = event.target.files[0];
+    if(file){
     const reader = new FileReader();
   
     reader.onload = (event) => {
@@ -213,10 +269,12 @@ export default function Register() {
   
     // Đọc dữ liệu ảnh dưới dạng base64
     reader.readAsDataURL(file);
+  }
   };
   //ham lay anhmattruoccccd
   const handleAnhCccdMatTruocChange = (event) => {
     const file = event.target.files[0];
+    if(file){
     const reader = new FileReader();
 
     reader.onload = (event) => {
@@ -235,6 +293,7 @@ export default function Register() {
     };
    
     reader.readAsDataURL(file);
+  }
   };
   // const handleAnhCccdMatTruocChange = (event) => {
   //   setFormData({
@@ -257,6 +316,7 @@ export default function Register() {
   // };
   const handleAnhCccdMatSauChange = (event) => {
     const file = event.target.files[0];
+    if(file){
     const reader = new FileReader();
 
     reader.onload = (event) => {
@@ -271,17 +331,24 @@ export default function Register() {
     };
 
     reader.readAsDataURL(file);
+  }
   };
   //xử lí thông tin trong giao giện
   //check mật khẩu
   const kiemTraMKSai=()=>{
-   if (formData.matKhau!==null && formData.matKhau!== checkMK)  setContextErr(true)
-   else setContextErr(false)
+   if (formData.matKhau!==null && formData.matKhau!== checkMK)   return false
+   return true
 }
-
+const kiemTraMatKhau = (password) => {
+  if (password.length < 8 || !/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+    return false; // Mật khẩu không đáp ứng các yêu cầu
+  }
+  return true; // Mật khẩu hợp lệ
+};
   return (
 
     <div className='h-atuo'  >
+        <ToastContainer />
 
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center gap-8">
@@ -297,11 +364,12 @@ export default function Register() {
               <div className="mb-6">
                 <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Mật khẩu</label>
                 <input type="password" id="password" placeholder="Mật khẩu" name="matKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+                {errPass && <p className="text-xs text-red-600">{errPass}</p>}
               </div>
               <div className="mb-6">
                 <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Nhập lại mật khẩu</label>
-                <input type="password" id="password" placeholder="Nhập lại mật khẩu" name="nhapLaiMatKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
-              {contextErr?(<h1 className='text-xs block pt-2 font-medium text-red-700' >Mật khẩu nhập lại khonong khớp</h1>):null}
+                <input type="password" id="nhapLaiMatKhau" placeholder="Nhập lại mật khẩu" name="nhapLaiMatKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+                {contextErr && <p className="text-xs text-red-600">{contextErr}</p>}
               </div>
               <div className="mb-6">
                 <label htmlFor="hoten" className="text-sm block mb-2 font-medium text-gray-700">Họ và tên</label>
@@ -314,6 +382,7 @@ export default function Register() {
               <div className="mb-6">
                 <label htmlFor="sdt" className="text-sm block mb-2 font-medium text-gray-700">Số điện thoại</label>
                 <input type="text" id="sdt" placeholder="Số điện thoại" name="sdt" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+                {phoneError && <p className="text-xs text-red-600">{phoneError}</p>}
               </div>
               <DiaChi
                 onSelectCity={(cityId) => {
@@ -329,7 +398,9 @@ export default function Register() {
               <div className="mt-4 mb-6 flex flex-row justify-between">
                 <div className="w-1/3">
                   <label htmlFor="anhMat" className="text-sm block mb-2 font-medium text-gray-700">Ảnh khuôn mặt của bạn</label>
-                  <input type="file" id="anhMat" name="anhMat" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleAnhMatChange} />
+                  <input type="file" id="anhMat" name="anhMat"  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50 ${
+            formData.anhCCCD.anhMat ? 'bg-slate-500' : ''
+          }`} onChange={handleAnhMatChange} />
                 </div>
                 <div className="w-1/3 ml-4">
                   <label htmlFor="anhCccdMatTruoc" className="text-sm block mb-2 font-medium text-gray-700">Ảnh mặt trước CCCD</label>
@@ -358,13 +429,14 @@ export default function Register() {
               <p>Thời gian còn lại: {timeLeft} giây</p>
               
               <h2 className="text-lg font-semibold mb-4">Nhập mã xác nhận từ Gmail</h2>
-              <input
+              {/* <input
                 type="text"
                 placeholder="Mã xác nhận"
                 className="border rounded py-2 px-3 mb-4"
                 value={code}
                 onChange={(event) => setCode(event.target.value)}
-              />
+              /> */}
+                <PinInputForm onChange={(value) => setCode(value)} />
               <button
                 onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
                 className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}

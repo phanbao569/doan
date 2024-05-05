@@ -61,7 +61,7 @@ import ChangePassword from './component/Auth/ChangePass/ChangePassword';
 export const GlobalContext = createContext();
 
 function App() {
-  const [role, setRole] = useState('Admin');
+  const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
   const [checkthongtin, setcheckthongtin] = useState(false);
@@ -194,10 +194,11 @@ function App() {
         ) : (
           <div className='h-full'>
             
-            <HeaderM />
+            <NavUser />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
+              <Route path="/forgotpass" element={<ForgotPass/>} />
               {/* <Route path="/" element={<HomeM />} />
               <Route path="/TraCuu" element={<TraCuuM />} />
               <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}

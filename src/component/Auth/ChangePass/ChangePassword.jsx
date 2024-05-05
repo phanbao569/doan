@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import {getIDNguoiThayDoi} from '../../../util/jwtUtils'
+import { ToastContainer, toast } from 'react-toastify';
 export default function ChangePassword() {
     const [newPassAgain,setNewPassAgain]= useState('')
     const [error,setError]= useState('')
@@ -51,21 +52,23 @@ export default function ChangePassword() {
         try {
             const response = await axios.post(apiUrl(ApiConfig.changePass), formChange);
             console.log('Response from server:', response.data);
-            alert(response.data);
+            if(response.data=='Đổi mật khẩu thành công!')
+            toast.success(response.data);
+        else toast.warning(response.data)
             // Hiển thị hộp thoại xác nhận thành công
         } catch (error) {
             console.error( error);
             // Hiển thị thông báo lỗi cho người dùng
-            alert(error+' :(((');
+            toast.error(error);
         }}
         else {
-            alert('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
+            toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
         }
     };
   return (
    
          <div className='h-atuo'  >
-            
+             <ToastContainer />
             <div className="container mx-auto px-4 py-8 mt-32">
                 <div className="flex justify-center items-center">
 

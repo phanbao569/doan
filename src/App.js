@@ -86,7 +86,6 @@ import TKDTB from './Manager/component/TKDTB';
 import XoaDangKyTamTruM from './Manager/component/thutuc/XoaDangKyTamTruM';
 import XoaDangKyThuongTruM from './Manager/component/thutuc/XoaDangKyThuongTruM';
 import ThongBaoLuuTruM from './Manager/component/thutuc/ThongBaoLuuTruM';
-import TraCuuM from './HomeMaster/component/TraCuuMaster';
 import NavMaster from './HomeMaster/component/NavMaster';
 
 export const GlobalContext = createContext();

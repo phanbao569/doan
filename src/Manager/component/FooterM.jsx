@@ -6,6 +6,5 @@ export default function FooterM() {
     <div className='flex'>
         <img src={logo} className=' '/>
     </div>
-    </div>
   )
 }

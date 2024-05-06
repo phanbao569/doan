@@ -4,13 +4,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from 'react-icons/fa';
 
-export default function HeaderM() {
+export default function HeaderE() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleMouse = () => {
-        setIsOpen(!isOpen);
+    const handleMouseEnter = () => {
+        setIsOpen(true);
     };
 
+    const handleMouseLeave = () => {
+        setIsOpen(false);
+    };
 
     const navigate = useNavigate();
     const fullName = getFullNameFromToken();
@@ -29,20 +32,20 @@ export default function HeaderM() {
     }, [tokenExpired]);
 
     return (
-        <div className="flex font-fontgg sm:flex-row w-full bg-gradient-to-r from-white via-white to-zinc-700">
-            <div className="flex flex-1 ml-28 justify-center sm:justify-start items-center p-4">
-                <NavLink to={'/'} onClick={handleLogout}>
+        <div className="flex flex-col sm:flex-row w-full bg-gradient-to-r from-white via-white to-zinc-700">
+            <div className="flex justify-center sm:justify-start items-center p-4">
+                <NavLink to={'/'}>
                     <img src={Logo} className="w-16 h-16" alt="logo" />
                 </NavLink>
-                <div className="flex-1 ml-4">
-                    <p className="text-3xl text-red-700  ">Quản lý nhân khẩu quốc gia</p>
-                    <p >Hành chính phục vụ</p>
+                <div className="ml-4">
+                    <p className="text-3xl text-red-700 font-fontgg ">Quản lý nhân khẩu quốc gia</p>
+                    <p className="font-fontgg">Hành chính phục vụ</p>
                 </div>
             </div>
 
-            <div className="flex flex-1 justify-center items-center sm:mt-0">
+            <div className="ml-auto mr-4 mt-4 sm:mt-0">
                 {tokenExpired ? (
-                    <div className="flex ml-16 justify-center gap-4 ">
+                    <div className="flex">
                         <NavLink
                             to="/login"
                             className="w-32 h-10 flex p-1 border-2 border-solid rounded-md justify-center items-center mr-2 hover:bg-zinc-700 hover:text-gray-100 hover:border-white"
@@ -57,17 +60,17 @@ export default function HeaderM() {
                         </NavLink>
                     </div>
                 ) : (
-                    <div className="">
-                        <div className="flex items-center relative">
-                            <div onClick={handleMouse} className=" px-8 py-2 rounded-md cursor-pointer flex items-center gap-3 ">
+                    <div className="relative">
+                        <div className="flex items-center">
+                            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="px-8 py-2 rounded-md cursor-pointer flex items-center gap-3">
                                 <FaUserAlt />
-                                <label className='hover:cursor-pointer'>{fullName}</label>
+                                <label>{fullName}</label>
                             </div>
                             {isOpen && (
-                                <div className=" absolute right-0 top-[2px] mt-10 w-48 bg-white border border-gray-300 rounded-md shadow-lg" >
-                                    {/* <NavLink to="/thongtincanhan" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg" onMouseLeave={handleMouseLeave}>
+                                    <NavLink to="/thongtincanhan" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">
                                         Thông tin cá nhân
-                                    </NavLink> */}
+                                    </NavLink>
                                     <p onClick={handleLogout} className="block px-4 py-2 text-gray-800 hover:bg-red-200 text-sm cursor-pointer">
                                         Đăng xuất
                                     </p>

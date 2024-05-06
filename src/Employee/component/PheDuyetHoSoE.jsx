@@ -1,12 +1,12 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import ApiConfig, { apiUrl } from '../../ApiConfig';
+import axios from 'axios';
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { MdManageAccounts } from "react-icons/md";
 import { FaCaretRight, FaEye } from "react-icons/fa";
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
 
-export default function PheDuyetHoSoM() {
+export default function PheDuyetHoSoE() {
 
   const [giaHanTamTrus, setGiaHanTamTrus] = useState([]);
   const [thongBaoLuuTrus, setThongBaoLuuTrus] = useState([]);
@@ -19,6 +19,10 @@ export default function PheDuyetHoSoM() {
   const id = getIDNguoiThayDoi();
   const [danhSach, setDanhSach] = useState([]);
   const navigate = useNavigate();
+
+  // const handleViewDetail = (value) => {
+  //   navigate("/GiaHanTamTruM", { state: { value } });
+  // }
   const [type, setType] = useState('');
   const handleViewDetail = (value) => {
     switch (type) {
@@ -62,6 +66,8 @@ export default function PheDuyetHoSoM() {
         const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
         let data = response.data.coQuan;
         const response2 = await axios.post(apiUrl(ApiConfig.getAllHoSoCheckingByCoQuan), data);
+        console.log(response2.data);
+        console.log(response2.data.giaHanTamTrus);
         setGiaHanTamTrus(response2.data.giaHanTamTrus);
         setThongBaoLuuTrus(response2.data.thongsetthongBaoLuuTrus);
         setKhaiBaoTamVangs(response2.data.khaiBaoTamVangs);
@@ -81,6 +87,11 @@ export default function PheDuyetHoSoM() {
     // Cập nhật trạng thái của form
     setShowDanhSach(!showDanhSach);
   };
+
+
+  useEffect(() => {
+    console.log(type);
+  }, [type]);
   const handleClick = (type) => {
     switch (type) {
       // Xử lý hiển thị dữ liệu tương ứng với giaHanTamTrus
@@ -137,10 +148,11 @@ export default function PheDuyetHoSoM() {
           const ds = khaiBaoThuongTrus.map(item => ({
             id: item.id,
             ngayTao: formatDate(item.created_at),
-            diaChi: item?.diaChiThuongTru?.xa + ' - ' + item?.diaChiThuongTru?.tinh + ' - ' + item?.diaChiThuongTru?.huyen
+            diaChi: item.diaChiThuongTru.xa + ' - ' + item.diaChiThuongTru.tinh + ' - ' + item.diaChiThuongTru.huyen
             // Thêm các trường khác bạn quan tâm từ item
           }))
           setDanhSach(ds);
+          console.log(ds.length + 'cc')
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
         break;
@@ -167,12 +179,10 @@ export default function PheDuyetHoSoM() {
           const ds = xoaDangKyTamTrus.map(item => ({
             id: item.id,
             ngayTao: formatDate(item.created_at),
-            diaChi: item.coQuanThucHien.xa + ' - ' + item.coQuanThucHien.tinh + ' - ' + item.coQuanThucHien.huyen
+            diaChi: item.diaChiTamTru.xa + ' - ' + item.diaChiTamTru.tinh + ' - ' + item.diaChiTamTru.huyen
             // Thêm các trường khác bạn quan tâm từ item
           }))
-          
           setDanhSach(ds);
-         
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
 
@@ -185,7 +195,7 @@ export default function PheDuyetHoSoM() {
           const ds = xoaDangKyThuongTrus.map(item => ({
             id: item.id,
             ngayTao: formatDate(item.created_at),
-            diaChi: item.coQuanThucHien.xa + ' - ' + item.coQuanThucHien.tinh + ' - ' + item.coQuanThucHien.huyen
+            diaChi: item.diaChiThuongTru.xa + ' - ' + item.diaChiThuongTru.tinh + ' - ' + item.diaChiThuongTru.huyen
             // Thêm các trường khác bạn quan tâm từ item
           }))
           setDanhSach(ds);
@@ -209,8 +219,9 @@ export default function PheDuyetHoSoM() {
 
   return (
     <div className='w-full min-h-screen mt-4 text-center' >
+
       <div className='flex '>
-        <div className='h-screen -mt-6 bg-gray-800'>
+        <div className='h-full -mt-4'>
           <NavLink to='/PheDuyetTaiKhoanM' className='flex w-225 h-10 text-white bg-gray-800  items-center gap-2 p-2 my-2'>
             <MdManageAccounts className='' />
             Phê duyệt tài khoản
@@ -219,10 +230,9 @@ export default function PheDuyetHoSoM() {
             <MdManageAccounts className='' />
             Phê duyệt hồ sơ
           </NavLink>
-
           {/* Form show danh sách các thủ tục*/}
           {showDanhSach && (
-            <div className='w-225 h-auto flex flex-col text-start gap-1 p-1 text-white'
+            <div className='w-225 h-auto flex flex-col text-start bg-slate-500 gap-1 p-1 text-white'
               style={{
                 maxHeight: showDanhSach ? '500px' : '0',
                 overflow: 'hidden',
@@ -262,63 +272,63 @@ export default function PheDuyetHoSoM() {
           )}
         </div>
         {/* Form thông tin  */}
-        <div className='ml-32'>
+        <div className='ml-32 '>
           {/* <div className='p-2'> */}
-          <h1 className='block text-2xl font-fontgg font-bold mb-4'>Danh sách thủ tục</h1>
-          <table className="w-880 min-w-880 table-auto text-center">
-            <thead>
-              <tr className="font-bold w-460 dark:bg-meta-4 text-center bg-slate-400">
-                <th className="min-w-[80px] py-4 text-black dark:text-white">
-                  STT
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  ID
-                </th>
-                <th className="min-w-[550px] py-4 text-black dark:text-white">
-                  Địa chỉ
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  Ngày tạo
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  <FaEye className='m-auto' />
-                </th>
-              </tr>
-            </thead>
-            {danhSach.map((item, index) => (
-              <tbody className='bg-slate-200 ml-32'>
-                <tr>
-                  <td className="border-b border-[#eee] py-3 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                    <p to='' className="font-medium text-black dark:text-white">
-                      {item.id == '-' ? '-' : index + 1}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-red-700 dark:text-red-700">
-                      {item.id}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-black   dark:text-black">
-                      {item.diaChi}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-black   dark:text-black">
-                      {item.ngayTao}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark ">
-                    <div onClick={() => handleViewDetail(item.id)} className="text-black   dark:text-black cursor-pointer">
-                      {item.id == '-' ? '-' : 'Xem hồ sơ'}
-                    </div>
-                  </td>
+            <h1 className='text-3xl font-fontgg font-bold mb-4'>Danh sách thủ tục</h1>
+            <table className="w-880 min-w-880 table-auto text-center">
+              <thead>
+                <tr className="font-bold w-460 dark:bg-meta-4 text-center bg-slate-400">
+                  <th className="min-w-[80px] py-4 text-black dark:text-white">
+                    STT
+                  </th>
+                  <th className="min-w-[150px] py-4 text-black dark:text-white">
+                    ID
+                  </th>
+                  <th className="min-w-[550px] py-4 text-black dark:text-white">
+                    Địa chỉ
+                  </th>
+                  <th className="min-w-[150px] py-4 text-black dark:text-white">
+                    Ngày tạo
+                  </th>
+                  <th className="min-w-[150px] py-4 text-black dark:text-white">
+                    <FaEye className='m-auto' />
+                  </th>
                 </tr>
-              </tbody>
-            ))}
+              </thead>
+              {danhSach.map((item, index) => (
+                <tbody className='bg-slate-200'>
+                  <tr>
+                    <td className="border-b border-[#eee] py-3 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                      <p to='' className="font-medium text-black dark:text-white">
+                        {item.id == '-' ? '-' : index + 1}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+                      <p className="text-red-700 dark:text-red-700">
+                        {item.id}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+                      <p className="text-black   dark:text-black">
+                        {item.diaChi}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
+                      <p className="text-black   dark:text-black">
+                        {item.ngayTao}
+                      </p>
+                    </td>
+                    <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark ">
+                      <div onClick={() => handleViewDetail(item.id)} className="text-black   dark:text-black cursor-pointer">
+                        {item.id == '-' ? '-' : 'Xem hồ sơ'}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              ))}
 
-          </table>
-
+            </table>
+          
 
         </div>
       </div>

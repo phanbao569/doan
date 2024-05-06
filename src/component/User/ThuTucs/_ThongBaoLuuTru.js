@@ -143,7 +143,7 @@ export default function NapThuTuc() {
         diaChiCuThe: "",
         idUser: getIDNguoiThayDoi(),
 
-        lePhi: "",
+        lePhi: "10000",
         trangThai: "",
         idNguoiDuyet: "",
         note: "",

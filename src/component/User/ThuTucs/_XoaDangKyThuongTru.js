@@ -32,7 +32,7 @@ export default function _XoaDangKyThuongTru() {
         },
         noiDungDeNghi: "",
         idUser: getIDNguoiThayDoi(),
-        lePhi: "",
+        lePhi: "10000",
         trangThai: "",
         idNguoiDuyet: "",
         note: "",

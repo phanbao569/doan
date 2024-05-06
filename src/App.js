@@ -112,10 +112,9 @@ function App() {
 
   return (
     <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
+
       <div className="App h-screen">
-
         {role === 'Admin' ? (
-
           <div className='grid-container'>
             {/* <AdminDashboard /> */}
             <SideBar />
@@ -143,8 +142,6 @@ function App() {
             </Routes>
 
           </div>
-
-
         ) : role === 'User' ? (
           checkthongtin ? (
             <div className=''>
@@ -182,15 +179,15 @@ function App() {
                   <Route path="/forgotpass" element={<ForgotPass />} />
                   <Route path="/forgotpass" element={<ForgotPass />} />
                   <Route path="/TraCuu" element={<TraCuuUser />} />
-              <Route path='/changePass' element={<ChangePassword />} />
+                  <Route path='/changePass' element={<ChangePassword />} />
 
                 </Routes>
               </div>
               <FooterM className='' />
 
               {/* <footer className="  ">
-                  <img src={logo} alt="Logo" />
-                </footer> */}
+            <img src={logo} alt="Logo" />
+          </footer> */}
             </div>
           ) : (
             <div>
@@ -202,39 +199,48 @@ function App() {
 
             </div>
           )
-
-
-
+        ) : role === 'Employ' ? (
+          <div>
+            {/* Xử lý cho Employ */}
+            <Routes>
+              {/* Các Route cho Employ */}
+            </Routes>
+          </div>
+        ) : role === 'Manager' ? (
+          <div>
+            {/* Xử lý cho Manager */}
+            <Routes>
+              {/* Các Route cho Manager */}
+            </Routes>
+          </div>
         ) : (
+          // k dang nhap 
+          <div className='h-full min-h-screen'>
 
-
-
-          <div className='h-full'>
-            
-            <HeaderM />
+            <NavUser />
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register/>} />
-              <Route path="/forgotpass" element={<ForgotPass/>} />
+              <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/" element={<HomeM />} />
+              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeUser />} />
               <Route path="/VBPL" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
-              <Route path="/HoSo" element={<HoSoM />} />
-              <Route path="/QLTKM" element={<QLTKM />} />
-              <Route path="/TTUserM" element={<TTUserM />} />
-              <Route path="/TraCuu" element={<TraCuuMaster/>} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
-
-              {/* <Route path="/" element={<HomeM />} />
-              <Route path="/TraCuu" element={<TraCuuM />} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
+              <Route path="/quanlyhoso" element={<TraCuuUser />} />
+              <Route path="/hotrohoidap" element={<Login />} />
+              <Route path="/*" element={<Login />} />
+              <Route path="/thutuc/:id" element={<ThuTuc />} />
 
             </Routes>
             <FooterM />
           </div>
         )}
       </div>
+
+
+
+
     </GlobalContext.Provider>
   );
 }

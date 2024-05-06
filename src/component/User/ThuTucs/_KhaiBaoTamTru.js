@@ -43,10 +43,6 @@ export default function _KhaiBaoTamTru() {
             reader.readAsDataURL(file);
         }
     };
-
-
-
-
     const handleChonhs2 = (event) => {
         const file = event.target.files[0];
         if (file) {

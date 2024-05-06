@@ -49,10 +49,6 @@ export default function _XoaDangKyTamTru() {
             reader.readAsDataURL(file);
         }
     };
-
-
-
-
     const handleChonhs2 = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -136,7 +132,7 @@ export default function _XoaDangKyTamTru() {
         },
         noiDungDeNghi: "",
         idUser: getIDNguoiThayDoi(),
-        lePhi: "",
+        lePhi: "10000",
         trangThai: "",
         idNguoiDuyet: "",
         note: "",

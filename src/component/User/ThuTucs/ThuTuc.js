@@ -36,7 +36,7 @@ function ThuTuc() {
     return (
         <div className="grid grid-cols-5 gap-4 ">
         {/* Left column */}
-        <div className="bg-white p-4 col-span-1">
+        <div className=" p-4 col-span-1">
         <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
         <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
 
@@ -46,7 +46,7 @@ function ThuTuc() {
         <div className="p-4 col-span-3  ">
             {/* Header section */}
             <div className="relative h-48 w-full flex ">
-                <div className="ml-4 text-2xl font-bold justify-content-left m-14">
+                <div className="ml-4 text-4xl  font-bold justify-content-left m-14">
                     {/* Replace placeholders with actual data */}
                     {/* {TTuser.hoTen} */}
                     {/* {user.diaChiCuThe} */}
@@ -216,7 +216,7 @@ function ThuTuc() {
         </div>
 
         {/* Right column */}
-        <div className="bg-white-300 p-4 col-span-1">
+        <div className="p-4 col-span-1">
         <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
         <img class="flex " src={vietnamimg}  alt="vietnamimg "/>
 

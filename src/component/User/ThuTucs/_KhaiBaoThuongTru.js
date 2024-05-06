@@ -140,7 +140,7 @@ export default function _KhaiBaoThuongTru() {
         cccdChuHo: "",
         noiDungDeNghi: "",
         fileHoSoLienQuan: {},
-        lePhi: "22222",
+        lePhi: "10000",
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",

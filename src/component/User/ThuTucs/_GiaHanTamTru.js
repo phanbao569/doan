@@ -61,7 +61,7 @@ export default function NapThuTuc() {
     const HandleSubmit = async () => {
         try {
             console.log(form);
-          await axios.post(apiUrl(ApiConfig.createGiaHanTamTru),form);
+        //   await axios.put(apiUrl(ApiConfig.putGiaHanTamTru),form);
           console.log("thanh cong");
           navigate('/');
         } catch (error) {

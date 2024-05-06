@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.10.53:8888';
+const baseUrl = 'http://192.168.10.247:8888';  
 
 const ApiConfig = {
   login: '/login',
@@ -15,6 +15,7 @@ const ApiConfig = {
   createVBPL:'/createVBPL',
   getAdmin: (id) => `/getUserById/${id}`,
   getAllVBPL:'/getAllVBPL',
+  getTTUser:(idUser) => `/TTUser/${idUser}`,
   getVBPL: (id) => `/getVBPL/${id}`,
   getAllUser:'/admin/getAlluser',
   getTTAdmin: (id) => `/TTNV/get/${id}`,
@@ -37,11 +38,28 @@ const ApiConfig = {
   khaibaothuongtru :'/KhaiBaoThuongTru/create',
   thongbaoluutru :'/ThongBaoLuuTru/create',
   napthutucgiahantamtru: '/GiaHanTamTru/create',
+  getGiaHanTamTru:(id)=>`/GiaHanTamTru/${id}`,
+  putGiaHanTamTru: `/GiaHanTamTru/update`,
+  getKhaiBaoTamTru:(id)=>`/KhaiBaoTamTru/${id} `,
+  putKhaiBaoTamTru: `/KhaiBaoTamTru/update`,
+  getKhaiBaoTamVang:(id)=>`/KhaiBaoTamVang/${id}`,
+  putKhaiBaoTamVang: `/KhaiBaoTamVang/update`,
+  getKhaiBaoThuongTru:(id)=>`/KhaiBaoThuongTru/${id} `,
+  putKhaiBaoThuongTru: `/KhaiBaoThuongTru/update`,
+  getThongBaoLuuTru:(id)=>`/ThongBaoLuuTru/${id} `,
+  putThongBaoLuuTru: `/ThongBaoLuuTru/update`,
+  getXoaDangKyThuongTru:(id)=>`/XoaDangKyThuongTru/${id}`,
+  putXoaDangKyThuongTru: `/XoaDangKyThuongTru/update`,
+  getXoaDangKyTamTru:(id)=>`/XoaDangKyTamTru/${id}`,
+  putXoaDangKyTamTru: `/XoaDangKyTamTru/update`,
   getThongTinUser: (id) => `/TTUser/${id}`,
   getTinhThanhPho: (tinhThanhPho) =>`/ThongKeUser/${tinhThanhPho}`,
   getHuyen:(tinhThanhPho,huyen)=>`/ThongKeUser/${tinhThanhPho}/${huyen}`,
   ThongKeUserFilter:(filter)=>`/ThongKeUserFilter/${filter}`,
   getDonPheDuyet:`/employee/donPheDuyet`,
+  getAllHoSoCheckingByCoQuan:`/getAllHoSoCheckingByCoQuan`,
+
+  
 };
 
 export const apiUrl = (endpoint) => {

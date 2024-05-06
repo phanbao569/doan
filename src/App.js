@@ -56,10 +56,29 @@ import FooterM from './Manager/component/FooterM';
 import HeaderM from './Manager/component/HeaderM';
 import VBPLM from './Manager/component/VBPLM';
 import XemVBPLM from './Manager/component/XemVBPLM';
-import NavM from './Manager/component/Nav';
-import HoSoM from './Manager/component/PheDuyetM';
-import QLTKM from './Manager/component/PheDuyetTaiKhoan';
+import NavM from './Manager/component/NavM';
 import TTUserM from './Manager/component/TTUserM';
+import PheDuyetTaiKhoanM from './Manager/component/PheDuyetTaiKhoanM';
+import PheDuyetHoSoM from './Manager/component/PheDuyetHoSoM';
+import GiaHanTamTruM from './Manager/component/thutuc/GiaHanTamTruM';
+import KhaiBaoTamVangM from './Manager/component/thutuc/KhaiBaoTamVangM';
+import KhaiBaoThuongTruM from './Manager/component/thutuc/KhaiBaoThuongTruM';
+import KhaiBaoTamTruM from './Manager/component/thutuc/KhaiBaoTamTruM';
+
+/// Bảo ngu
+import HoiDapM from './Manager/component/HoiDapM'
+import DanhGiaM from './Manager/component/DanhGiaM'
+import GetAllEmploy from './Manager/component/GetAllEmploy';
+import CreateNV from './Manager/component/CreateNV';
+import GetEmById from './Manager/component/GetEmById';
+import ThongKeHoSo from './Manager/component/ThongKeHoSoM';
+import TKDTB from './Manager/component/TKDTB';
+import XoaDangKyTamTruM from './Manager/component/thutuc/XoaDangKyTamTruM';
+import XoaDangKyThuongTruM from './Manager/component/thutuc/XoaDangKyThuongTruM';
+import ThongBaoLuuTruM from './Manager/component/thutuc/ThongBaoLuuTruM';
+import TraCuuM from './HomeMaster/component/TraCuuMaster';
+import NavMaster from './HomeMaster/component/NavMaster';
+
 export const GlobalContext = createContext();
 
 function App() {
@@ -78,8 +97,7 @@ function App() {
     } else {
 
       localStorage.removeItem('token');
-      navigate('/login');
-      // checkTTUser()
+
     }
   }, []);
 
@@ -158,7 +176,7 @@ function App() {
                     <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
                     <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
                     <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru />} />
-                    
+
                   </Routes>
                 </div>
                 <footer className="  ">
@@ -179,27 +197,44 @@ function App() {
             </div>
           )
         ) : (
-
-
-          <div className='h-full'>
+          <div className='relative'>
             <HeaderM />
-            <NavM/>
+            <NavM />
             <Routes>
               <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register/>} />
-              <Route path="/" element={<HomeM/>} />
-              <Route path="/VBPL" element={<VBPLM/>} />
-              <Route path="/xemVBPL/:id" element={<XemVBPLM/>} />
-              <Route path="/HoSo" element={<HoSoM/>} />
-              <Route path="/QLTKM" element={<QLTKM/>} />
-              <Route path="/TTUserM" element={<TTUserM/>} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeM />} />
+              <Route path="/VBPLM" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
+              <Route path="/PheDuyetHoSoM" element={<PheDuyetHoSoM />} />
+              <Route path="/TTUserM" element={<TTUserM />} />
+              <Route path="/GiaHanTamTruM" element={<GiaHanTamTruM />} />
+              <Route path="/KhaiBaoTamVangM" element={<KhaiBaoTamVangM />} />
+              <Route path="/KhaiBaoThuongTruM" element={<KhaiBaoThuongTruM />} />
+              <Route path="/KhaiBaoTamTruM" element={<KhaiBaoTamTruM />} />
+              <Route path="/ThongBaoLuuTruM" element={<ThongBaoLuuTruM />} />
+              <Route path="/XoaDangKyTamTruM" element={<XoaDangKyTamTruM />} />
+              <Route path="/XoaDangKyThuongTruM" element={<XoaDangKyThuongTruM />} />
+              <Route path="/TraCuuM" element={<TraCuuM />} />
+
+              <Route path="/hoidapm" element={<HoiDapM />} />
+              <Route path="/danhgiam" element={<DanhGiaM />} />
+              <Route path="/getallemploy" element={<GetAllEmploy />} />
+              <Route path="/createNV/:formData" element={<CreateNV />} />
+              <Route path='/xem-employ/:idUser' element={<GetEmById />} />
+              <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
+              <Route path="/tkdtb" element={<TKDTB />} />
+
+
               {/* <Route path="/TraCuu" element={<TraCuuMaster/>} />
               <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
 
 
             </Routes>
-            <FooterM/>
+            {/* <FooterM/> */}
           </div>
+        
         )}
       </div>
     </GlobalContext.Provider>

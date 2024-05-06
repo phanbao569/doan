@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { FaHome } from "react-icons/fa";
 import ApiConfig, { apiUrl } from '../../ApiConfig';
 
-export default function VBPLM() {
+export default function VBPLME() {
     const [formData, setFormData] = useState([
     ]
     );

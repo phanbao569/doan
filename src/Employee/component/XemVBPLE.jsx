@@ -3,7 +3,7 @@ import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../ApiConfig';
 
 
-export default function XemVBPLM() {
+export default function XemVBPLE() {
     const [id, setId] = useState(null);
     const [vb, setVb] = useState(null);
     const [editMode, setEditMode] = useState(false);

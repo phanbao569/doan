@@ -164,7 +164,7 @@ function Login(onClose) {
     }
   };
   return (
-    <div className='h-auto'  >
+    <div className='h-screen'  >
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8 mt-10">
         <div className="flex justify-center items-center">
           <img src={leftImage} alt="Left" className="w-1/4" />
@@ -187,9 +187,9 @@ function Login(onClose) {
                 </div>
               </div>
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <input type="checkbox" id="remember" name="remember" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
-                  <label htmlFor="remember" className="text-sm ml-2 text-gray-700">Nhớ mật khẩu</label>
+                <div className="flex  items-center">
+                  <input type="checkbox" id="remember" name="remember" className="w-3 h-3 text-blue-600 border-gray-300 rounded focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
+                  <label htmlFor="remember" className="text-sm mt-2 ml-2 text-gray-700">Nhớ mật khẩu</label>
 
                 </div>
                 <Link to="/forgotpass" className="text-xs text-blue-500 hover:text-blue-700">Quên mật khẩu?</Link>

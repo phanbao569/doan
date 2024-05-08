@@ -70,7 +70,7 @@ export default function _LichSuHoiDap() {
                             {allPhanHoi.map((phanHoi, index) => (
                                 <tr key={index}>
                                     <td className="px-6 py-4 whitespace-nowrap">{moment(phanHoi?.created_at).format('DD/MM/YYYY')}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{phanHoi?.phanHoi === "" ? <span className="italic">Chưa có phản hồi</span> : phanHoi?.phanHoi}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">{phanHoi?.noiDung === "" ? <span className="italic">Chưa có phản hồi</span> : phanHoi?.noiDung}</td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onClick={() => handleDetail(index)}>Xem</button>
                                     </td>
@@ -78,15 +78,14 @@ export default function _LichSuHoiDap() {
                             ))}
                         </tbody>
                     </table>
-
                     {
                         <div>
                             {showDetail && (
                                 <div className="fixed inset-0 rounded-lg flex justify-center items-center bg-black bg-opacity-50">
                                     <div className="bg-white rounded-lg p-8 max-w-md">
                                         <h2 className="font-bold mb-4">Nội dung Hỏi đáp - {moment(popupdetail?.created_at).format('DD/MM/YYYY')}</h2>
-                                        <div className='bg-gray-100 p-4 rounded-lg'> 
-                                        <p className="mb-4">{popupdetail?.noiDung}</p>
+                                        <div className='bg-gray-100 p-4 rounded-lg'>
+                                            <p className="mb-4">{popupdetail?.noiDung}</p>
                                         </div>
                                         {popupdetail?.phanHoi === "" ? (
                                             <p className="italic mb-4">Chưa có phản hồi</p>

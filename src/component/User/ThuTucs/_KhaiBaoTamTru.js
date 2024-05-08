@@ -4,7 +4,7 @@ import moment from 'moment';
 import { Field, Form, Formik } from 'formik';
 import DiaChi from '../../Diachi';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContext } from '../../../App';
 import ThongTinNguoiKhaiBao from '../ThongTinNguoiKhaiBao';
@@ -12,7 +12,9 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function _KhaiBaoTamTru() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-
+    const location = useLocation();
+    const [VBPL, sethoso] = useState(location.state.VBPL);
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
@@ -120,7 +122,7 @@ export default function _KhaiBaoTamTru() {
     const [isLoaded, setIsLoaded] = useState(true);
     const idUser = getIDNguoiThayDoi();
     const [form, setForm] = useState({
-        tenThuTuc: "Khai báo tạm trú",
+        tenThuTuc: VBPL.tenThuTuc,
         coQuanThucHien: {
             tinh: "",
             huyen: "",
@@ -138,7 +140,7 @@ export default function _KhaiBaoTamTru() {
         noiDungDeNghi: "",
         yKien: "",
         thoiHanTamTru: "",
-        lePhi: 10000,
+        lePhi: VBPL.lePhi,
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
@@ -246,15 +248,14 @@ export default function _KhaiBaoTamTru() {
                                         </div>
                                         <div class=" flex py-8 ">
 
-                                            <div class="w-2/3 flex flex-col ">
+                                        <div class="w-2/3 flex flex-col ">
                                                 <div className=''>
-                                                    <label className='font-bold text-center' > Cơ quan thực hiện </label>
-
+                                                    <label className='font-bold text-center  ' > Trụ sở thực hiện </label>
                                                 </div>
-                                                <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none text-center focus:border-blue-500">
-
-                                                </select>
-
+                                                <input
+                                                    className="text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    value={` Công an  ${form?.coQuanThucHien?.xa} `}
+                                                />
                                             </div>
                                             <div class="w-1/3 flex flex-col ">
                                                 <div>

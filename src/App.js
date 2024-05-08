@@ -112,7 +112,6 @@ function App() {
   }, [isloading]);
 
   const fetchdata = async () => {
-
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(response.data);
@@ -212,6 +211,22 @@ function App() {
               <Routes className="h-screen" >
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
+                  <Route path="/TraCuu" element={<TraCuuUser />} />
+                  <Route path="/forgotpass" element={<ForgotPass />} />
+                  <Route path='/changePass' element={<ChangePassword />} />
+                <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+                <Route path="/login" element={<Login />} />
+              <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeUser />} />
+              <Route path="/VBPL" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/quanlyhoso" element={<TraCuuUser />} />
+              <Route path="/hotrohoidap" element={<Login />} />
+              <Route path="/*" element={<Login />} />
+              <Route path="/thutuc/:id" element={<ThuTuc />} />
               </Routes>
 
             </div>
@@ -236,7 +251,6 @@ function App() {
               <Route path="/XoaDangKyTamTruM" element={<XoaDangKyTamTruM />} />
               <Route path="/XoaDangKyThuongTruM" element={<XoaDangKyThuongTruM />} />
               <Route path="/TraCuuM" element={<TraCuuM />} />
-
               <Route path="/hoidapm" element={<HoiDapM />} />
               <Route path="/danhgiam" element={<DanhGiaM />} />
               <Route path="/getallemploy" element={<GetAllEmploy />} />

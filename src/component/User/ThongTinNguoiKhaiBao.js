@@ -64,14 +64,10 @@ export default function ThongTinNguoiKhaiBao(props) {
         <div class=" flex gap-24 ">
             <div class="w-full flex flex-col ">
                 <div>
-                    <label className='font-bold text-center' > số định danh cá nhân </label>
-
-
+                    <label className='font-bold text-center' > Số định danh cá nhân </label>
                 </div>
                 <input className=" text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     disabled placeholder='Địa chỉ đăng ký tạm trú ' value={user?.cccd} />
-
-
             </div>
             <div class="w-full flex flex-col ">
                 <div>

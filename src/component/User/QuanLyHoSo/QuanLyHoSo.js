@@ -49,8 +49,7 @@ export default function QuanLyHoSo() {
       const response = await axios.get(apiUrl(ApiConfig.getAllQuanLyHoSoUser(getIDNguoiThayDoi())));
       setlistDS(response.data);
       setlistshow(response.data.giaHanTamTrus)
-      console.log(response.data);
-      console.log("thanh cong");
+ 
       setIsLoaded(true);
     } catch (error) {
       console.error('Lỗi khi gửi dữ liệu:', error);

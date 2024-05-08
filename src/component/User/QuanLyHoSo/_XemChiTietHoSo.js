@@ -24,15 +24,11 @@ export default function _XemChiTietHoSo() {
     try {
       console.log(hoso.id);
       console.log(hoso.lePhi);
-
-
       const response = await axios.get(apiUrl(ApiConfig.thanhtoan(hoso.lePhi, hoso.id)));
       // const response = await axios.get(`http://172.21.2.68:8888/pay/${hoso.lePhi}/${hoso.id}`);
-
       console.log(response.data);
       // navigate(response.data);
       window.location.href = response.data;
-
       console.log("thanh cong");
     } catch (error) {
       console.log("an lz ");
@@ -76,14 +72,16 @@ export default function _XemChiTietHoSo() {
                   })()}
                 </span>
               </p>
-
             </div>
           </div>
-
-
-
           <ThongTinNguoiKhaiBao ttuser={ttuser} user={user} />
-
+          <div class="w-full flex flex-col ">
+                <div>
+                    <label className='font-bold text-center' > Phản hồi từ hệ thống </label>
+                </div>
+                <input className=" text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed  dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    disabled placeholder='Địa chỉ đăng ký tạm trú ' value={hoso?.note} />
+            </div>
 
         </div>
 
@@ -98,8 +96,8 @@ export default function _XemChiTietHoSo() {
             <p className="text-sm text-gray-900">{`${hoso.coQuanThucHien.tinh}, ${hoso.coQuanThucHien.huyen}, ${hoso.coQuanThucHien.xa}`}</p>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ khai báo:</label>
-            <p className="text-sm text-gray-900">{hoso.diaChiKhaiBao}</p>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ khai báo,cơ sở (nếu có) :</label>
+            <p className="text-sm text-gray-900">{hoso.tenCoSo}  </p>
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ cụ thể:</label>
@@ -110,13 +108,14 @@ export default function _XemChiTietHoSo() {
             <p className="text-sm text-gray-900">{hoso.noiDungDeNghi}</p>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">Thời hạn:</label>
+            <label className="block text-sm font-semibold text-gray-600 mb-1">Thời hạn (nếu có):</label>
             <p className="text-sm text-gray-900">{hoso.thoiHan}</p>
           </div>
           <div onClick={handleclick} >
             <label className="block text-sm font-semibold text-gray-600 mb-1">Lệ phí:</label>
             <p className="text-sm text-gray-900">{hoso.lePhi} VND</p>
           </div>
+       
           <div>
             <label className="block text-sm font-semibold text-gray-600 mb-1">Hồ sơ liên quan</label>
             <div>

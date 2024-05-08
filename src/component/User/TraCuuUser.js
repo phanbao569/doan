@@ -61,7 +61,7 @@ export default function TraCuuM() {
         setDanhSach(response.data);
 
     }
-
+    
     const handleSendVerificationCode = async () => {
         //toast.error("Vui lòng nhập CCCD");
 
@@ -121,18 +121,26 @@ export default function TraCuuM() {
                                     <div>
 
                                     </div>
-                                    <h2 className="text-lg font-semibold mb-4">Nhập mã xác nhận từ Gmail</h2>
+                                    <h2 className="text-lg flex mx-auto  font-semibold mb-4">Nhập mã xác nhận từ Gmail</h2>
 
                                     <PinInputForm onChange={handlePinInputChange} />
                                     <div>
 
                                     </div>
+                                    <div className='flex mt-2 mx-auto items-center'> 
                                     <button
                                         onClick={checkCode}
-                                        className={`bg-blue-400 flex mx-auto text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800  `}
+                                        className={`bg-blue-400  text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800  `}
                                     >
                                         Xác nhận
                                     </button>
+                                    <button
+                                        onClick={ () => setShowCodeForm(false)}
+                                        className={`bg-blue-400  text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800  `}
+                                    >
+                                        Trở về
+                                    </button>
+                                    </div>
 
 
                                 </div>

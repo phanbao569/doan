@@ -40,24 +40,36 @@ const DiaChi = ({ onSelectCity, onSelectDistrict, onSelectWard }) => {
 
   return (
     <div className='flex gap-4'>
+      <div className='w-1/3 '>
+      <label className='font-bold text-center' > Tỉnh/thành phố </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleCityChange}>
         <option value="" selected>Chọn thành phố</option>
         {cities.map(city => (
           <option key={city.Id} value={city.Id}>{city.Name}</option>
         ))}
       </select>
+      </div>
+      <div className='w-1/3'> 
+      <label className='font-bold text-center' > Quận/huyện </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleDistrictChange}>
         <option value="" selected>Chọn quận huyện</option>
         {districts.map(district => (
           <option key={district.Id} value={district.Id}>{district.Name}</option>
         ))}
       </select>
+      </div>
+      <div className='w-1/3'> 
+      <label className='font-bold text-center' > Phường/xã </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleWardChange}>
         <option value="" selected>Chọn phường xã</option>
         {wards.map(ward => (
           <option key={ward.Id} value={ward.Id}>{ward.Name}</option>
         ))}
       </select>
+      </div>
     </div>
   );
 };

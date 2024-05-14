@@ -21,6 +21,8 @@ export default function ThongTinCaNhan() {
   const { user, ttuser } = useContext(GlobalContext)
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     setttgiadinh(ttuser.ttgiaDinh)
     if (ttuser !== undefined) setIsLoaded(true)
   }, []);

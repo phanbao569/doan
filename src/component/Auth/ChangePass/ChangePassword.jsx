@@ -15,6 +15,8 @@ export default function ChangePassword() {
     })
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+
         const id = getIDNguoiThayDoi();
         setFormChange(prevState => ({
             ...prevState,
@@ -49,23 +51,24 @@ export default function ChangePassword() {
     };
     const handleSummit = async (event) => {
         event.preventDefault();
-         if(error=='The new password is correct'){
-        try {
-            const response = await axios.post(apiUrl(ApiConfig.changePass), formChange);
-            console.log('Response from server:', response.data);
-            if(response.data=='Đổi mật khẩu thành công!')
-            toast.success(response.data);
-        else toast.warning(response.data)
-            if(response.data=='Đổi mật khẩu thành công!')
-            toast.success(response.data);
-        else toast.warning(response.data)
-            // Hiển thị hộp thoại xác nhận thành công
-        } catch (error) {
-            console.error( error);
-            // Hiển thị thông báo lỗi cho người dùng
-            toast.error(error);
-            toast.error(error);
-        }}
+        if (error == 'The new password is correct') {
+            try {
+                const response = await axios.post(apiUrl(ApiConfig.changePass), formChange);
+                console.log('Response from server:', response.data);
+                if (response.data == 'Đổi mật khẩu thành công!')
+                    toast.success(response.data);
+                else toast.warning(response.data)
+                if (response.data == 'Đổi mật khẩu thành công!')
+                    toast.success(response.data);
+                else toast.warning(response.data)
+                // Hiển thị hộp thoại xác nhận thành công
+            } catch (error) {
+                console.error(error);
+                // Hiển thị thông báo lỗi cho người dùng
+                toast.error(error);
+                toast.error(error);
+            }
+        }
         else {
             toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
             toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
@@ -79,7 +82,7 @@ export default function ChangePassword() {
             <div className="container mx-auto px-4 py-8 mt-10">
                 <div className="flex flex-col justify-center items-center">
                     <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-                    <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  '>ĐỔI MẬT KHẨU</div>
+                        <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  '>ĐỔI MẬT KHẨU</div>
 
                         <div className="mb-6 mt-4">
                             <label htmlFor="oldPass" className="text-sm text-center block mb-2 font-medium text-gray-700">Nhập mật khẩu cũ</label>

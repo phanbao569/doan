@@ -15,6 +15,7 @@ function ThuTuc() {
         SetlistShow((prevList) => prevList.includes(data) ? prevList.filter(item => item !== data) : [...prevList, data]);
     };
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchdata();
     }, []);
 

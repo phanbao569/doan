@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import _DanhGiaHoSo from './_DanhGiaHoSo';
 import _HoiDap from './_HoiDap';
@@ -11,6 +11,9 @@ export default function DanhGiaHoiDap() {
   const handleClickView = (e, value) => {
     setoptionView(value)
   }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
   return (

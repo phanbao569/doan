@@ -56,6 +56,8 @@ export default function QuanLyHoSo() {
     }
   }
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     fetchData();
   }, [ttuser]);
 

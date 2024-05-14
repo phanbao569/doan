@@ -18,7 +18,109 @@ export default function _KhaiBaoTamTru() {
         console.log(name, value);
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
+    const handleChonhs1 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
 
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs1: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+
+
+    const handleChonhs2 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs2: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhs3 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs3: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhs4 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs4: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
     const [isLoaded, setIsLoaded] = useState(true);
     const idUser = getIDNguoiThayDoi();
     const [form, setForm] = useState({
@@ -40,24 +142,31 @@ export default function _KhaiBaoTamTru() {
         noiDungDeNghi: "",
         yKien: "",
         thoiHanTamTru: "",
-        fileHoSoLienQuan: {},
         lePhi: 10000,
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        fileHoSoLienQuan: {
+            hs1: "",
+            hs2: "",
+            hs3: "",
+            hs4: "",
+            hoSo5: "",
+            hoSo6: "",
+        },
         created_at: moment().toDate(),
         created_end: '',
     });
     const { user, ttuser } = useContext(GlobalContext)
 
     const HandleSubmit = async () => {
-
+        console.log(form);
 
         if (
             form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
             form.diaChiTamTru.huyen === "" || form.diaChiTamTru.tinh === "" || form.diaChiTamTru.xa === "" || form.thoiHanTamTru === "" || form.thoiHanTamTru === 0 ||
-            form.diaChiCuThe === "" || form.hoTenChuHo == "" || form.cccdChuHo === "" || form.quanHeChuHo == ""
+            form.diaChiCuThe.trim() === "" || form.hoTenChuHo.trim() == "" || form.cccdChuHo.trim() === "" || form.quanHeChuHo.trim() == ""
         ) {
             toast.error("Vui lòng nhập đầy đủ thông tin");
             //   alert("Vui lòng nhập đầy đủ thông tin");
@@ -65,7 +174,7 @@ export default function _KhaiBaoTamTru() {
         }
         else {
             await axios.post(apiUrl(ApiConfig.khaibaotamtru), form);
-            toast.success("Nạp hồ sơ thành công");
+            toast.success("Nôp hồ sơ thành công");
             setTimeout(() => {
                 navigate('/');
             }, 1000);
@@ -305,7 +414,7 @@ export default function _KhaiBaoTamTru() {
                                             </div>
                                         </div>
                                         <div className='flex  py-8  '>
-                                            <div class="w-full flex flex-col ">
+                                            <div class="w-full items-center flex flex-col ">
                                                 <div>
                                                     <label className='font-bold text-center' > Nội dung đề nghị </label>
 
@@ -314,6 +423,14 @@ export default function _KhaiBaoTamTru() {
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />
+
+                                                <label className='mt-2' >Chọn file hồ sơ</label>
+                                                <div className='flex items-center mt-2 ' >
+                                                    <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                    <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                    <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                    <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +442,7 @@ export default function _KhaiBaoTamTru() {
                                 onClick={HandleSubmit}
                                 class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none text-center focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                             >
-                                Nạp hồ sơ
+                                Nôp hồ sơ
                             </button>
                         </div>
 

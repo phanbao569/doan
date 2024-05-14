@@ -32,15 +32,124 @@ export default function _XoaDangKyThuongTru() {
         },
         noiDungDeNghi: "",
         idUser: getIDNguoiThayDoi(),
-        fileHoSoLienQuan: {},
         lePhi: "",
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        fileHoSoLienQuan: {
+            hs1: "",
+            hs2: "",
+            hs3: "",
+            hs4: "",
+            hoSo5: "",
+            hoSo6: "",
+        },
         created_at: moment().toDate(),
         created_end: '',
     });
+    const handleChonhs1 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
 
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs1: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+
+
+
+
+    const handleChonhs2 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs2: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhs3 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+
+
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs3: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleChonhs4 = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                // Chuyển đổi dữ liệu ảnh thành chuỗi base64
+                const base64Image = event.target.result;
+
+                // Cập nhật state hoặc thực hiện bất kỳ thao tác nào bạn muốn với chuỗi base64 này
+                // Ví dụ: cập nhật state formData
+                setForm({
+                    ...form,
+                    fileHoSoLienQuan: {
+                        ...form.fileHoSoLienQuan,
+                        hs4: base64Image
+                    }
+                });
+            };
+
+            // Đọc dữ liệu ảnh dưới dạng base64
+            reader.readAsDataURL(file);
+        }
+    };
     useEffect(() => {
         if (ttuser?.thuongTru?.tinh !== undefined) setchecktt(true)
 
@@ -51,12 +160,12 @@ export default function _XoaDangKyThuongTru() {
         navigate('/thutuc/5d49167e');
     }
     const HandleSubmit = async () => {
-
+        console.log(form);
 
         try {
             if (
                 form.coQuanThucHien.huyen === "" || form.coQuanThucHien.tinh === "" || form.coQuanThucHien.xa === "" ||
-                form.noiDungDeNghi === ""
+                form.noiDungDeNghi.trim() === ""
             ) {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 return;
@@ -64,7 +173,7 @@ export default function _XoaDangKyThuongTru() {
             else {
                 await axios.post(apiUrl(ApiConfig.xoadangkythuongtru), form);
 
-                toast.success("Nạp hồ sơ thành công");
+                toast.success("Nộp hồ sơ thành công");
                 setTimeout(() => {
                     navigate('/');
                 }, 1000);
@@ -79,7 +188,7 @@ export default function _XoaDangKyThuongTru() {
 
         <div>
             {
-                checktt ? (
+                !checktt ? (
                     <div className='h-screen flex items-center justify-center'>
                         <div className="bg-red-100 rounded-lg p-8 w-full max-w-md">
                             <h2 className="text-lg font-semibold mb-4 text-center">Thông báo</h2>
@@ -194,13 +303,22 @@ export default function _XoaDangKyThuongTru() {
                                                         </label>
                                                     </div>
                                                     <div className='flex  py-8  '>
-                                                        <div class="w-full flex flex-col ">
+                                                        <div class="w-full flex flex-col items-center  ">
                                                             <div>
                                                                 <label className='font-bold text-center' > Nội dung đề nghị </label>
 
                                                             </div>
-                                                            <Field onChange={handleInputChange} name="noiDungDeNghi" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Nội dung đề nghị' />
-
+                                                            <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên '
+                                                                name="noiDungDeNghi"
+                                                                onChange={handleInputChange}
+                                                            />
+                                                            <label className='mt-2' >Chọn file hồ sơ</label>
+                                                            <div className='flex items-center mt-2 ' >
+                                                                <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                                <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                                <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                                <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -234,7 +352,7 @@ export default function _XoaDangKyThuongTru() {
                                             onClick={HandleSubmit}
                                             class="text-white  mx-auto  bg-red-500 hover:bg-red-800   focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full p-4 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                                         >
-                                            Nạp hồ sơ
+                                            Nộp hồ sơ
                                         </button>
                                     </div>
 

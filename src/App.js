@@ -1,5 +1,6 @@
 import { Route, Routes, Link, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
+import './index.css'
 import Login from './component/Auth/LoginComponent/Login';
 import Test from './component/Test'
 import Register from './component/Auth/RegisterComponent/Register';
@@ -50,17 +51,29 @@ import _XoaDangKyThuongTru from './component/User/ThuTucs/_XoaDangKyThuongTru';
 import _xemchitiethoso from './component/User/QuanLyHoSo/_XemChiTietHoSo';
 import DanhGiaHoiDap from './component/User/DanhGiaHoiDap/DanhGiaHoiDap';
 import ThongBaoThanhToan from './component/User/ThongBaoThanhToan'
-import HeaderM from './HomeMaster/component/HeaderMaster';
-import FooterM from './HomeMaster/component/FooterMaster';
 import TraCuuM from './HomeMaster/component/TraCuuMaster';
-import HomeM from './HomeMaster/component/HomeMaster';
+import FooterMaster from './HomeMaster/component/FooterMaster';
+import TraCuuMaster from './HomeMaster/component/TraCuuMaster';
+import TraCuuUser from '../src/component/User/TraCuuUser';
+import HomeMaster from './HomeMaster/component/HomeMaster';
 import PhanAnhKienNghi from './HomeMaster/component/PhanAnhKienNghi';
 import ChangePassword from './component/Auth/ChangePass/ChangePassword';
 //route bao lam de lay du lieu nhe
 
+import { ImOpt } from 'react-icons/im';
+import HomeM from './Manager/component/HomeM';
+import FooterM from './Manager/component/FooterM';
+import HeaderM from './Manager/component/HeaderM';
+import VBPLM from './Manager/component/VBPLM';
+import XemVBPLM from './Manager/component/XemVBPLM';
+import NavM from './Manager/component/Nav';
+import HoSoM from './Manager/component/PheDuyetM';
+import QLTKM from './Manager/component/PheDuyetTaiKhoan';
+import TTUserM from './Manager/component/TTUserM';
 export const GlobalContext = createContext();
 
 function App() {
+
   const [role, setRole] = useState('');
   const [user, setUser] = useState();
   const [ttuser, setTTUser] = useState();
@@ -77,22 +90,22 @@ function App() {
     } else {
       localStorage.removeItem('token');
       navigate('/login');
-    // checkTTUser()
-  } 
+      // checkTTUser()
+    }
   }, [isloading]);
 
   const fetchdata = async () => {
-    
+
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(response.data);
       const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(getIDNguoiThayDoi())));
       setTTUser(responseTT.data)
-     if (ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "" && ttuser !== undefined) setcheckthongtin(true);
+      if (ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "" && ttuser !== undefined) setcheckthongtin(true);
       console.log(ttuser);
       setisloading(true);
     } catch (error) {
-      console.error( error);
+      console.error(error);
     }
   };
 
@@ -104,7 +117,7 @@ function App() {
         {role === 'Admin' ? (
 
           <div className='grid-container'>
-            {/* <AdminDashboard /> */}
+          
             <SideBar />
             <Header />
             {/* <NavBar/> */}
@@ -125,7 +138,7 @@ function App() {
               <Route path='/xem-tinh/' element={<CreateManager />} />
               <Route path='xem-tinh/:tinhThanhPho' element={<ThongKeTKTinh />} />
               <Route path='xem-tinh/:tinhThanhPho/:huyen' element={<ThongKeTKHuyen />} />
-              <Route path='/changePass' element={<ChangePassword/>} />
+              <Route path='/changePass' element={<ChangePassword />} />
               {/* <Route path='/updateVBPL' element={<UpDateVBPL />} /> */}
             </Routes>
 
@@ -134,48 +147,51 @@ function App() {
 
         ) : role === 'User' ? (
           checkthongtin ? (
-              <div className=''>
-                {/* Content to render when checkthongtin is true */}
-            <NavUser />
+            <div className=''>
+              {/* Content to render when checkthongtin is true */}
+              <NavUser />
 
-                {/* <NavUser /> */}
-                <div className="container mx-auto mb-24">
-                  <Routes>
-                    <Route path="/NhapThongTinUser" element={<NhapThongTinUser />} />
-                    <Route path="/CapNhatThongTin" element={<CapNhatThongTin />} />
-                    <Route path="/hotrohoidao" element={<DanhGiaHoiDap />} />
-                    <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
-                    <Route path="/" element={<ChonThuTuc />} />
-                    <Route path="/napthutuc/:id" element={<NapThuTuc />} />
-                    <Route path="/thutuc/:id" element={<ThuTuc />} />
-                    <Route path="/thongbaoluutru" element={<THongBaoLuuTru />} />
-                    <Route path="/giahantamtru" element={<_GiaHanTamTru />} />
-                    <Route path="/HomeUser" element={<HomeUser />} />
-                    <Route path="/quanlyhoso" element={<QuanLyHoSo />} />
-                    <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
-                    <Route path="/test" element={<Test />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
-                    <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
-                    <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
-                    <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
-                    <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
-                    <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru/>} />
-                    <Route path="/napthutuc/xoadangkytamtru" element={< _XoaDangKyTamTru/>} />
-                    <Route path="/napthutuc/xoadangkythuongtru" element={< _XoaDangKyThuongTru/>} />
-                    <Route path="/payment-callback?*" element={<ThongBaoThanhToan />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                    <Route path="/forgotpass" element={<ForgotPass />} />
-                  </Routes>
-                </div>
-            <FooterM className=''/>
+              {/* <NavUser /> */}
+              <div className="container min-h-screen mx-auto mb-24">
+                <Routes>
+                  <Route path="/NhapThongTinUser" element={<NhapThongTinUser />} />
+                  <Route path="/CapNhatThongTin" element={<CapNhatThongTin />} />
+                  <Route path="/hotrohoidap" element={<DanhGiaHoiDap />} />
+                  <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+                  <Route path="/" element={<HomeUser />} />
+                  <Route path="/napthutuc/:id" element={<NapThuTuc />} />
+                  <Route path="/thutuc/:id" element={<ThuTuc />} />
+                  <Route path="/thongbaoluutru" element={<THongBaoLuuTru />} />
+                  <Route path="/giahantamtru" element={<_GiaHanTamTru />} />
+                  <Route path="/HomeUser" element={<HomeUser />} />
+                  <Route path="/quanlyhoso" element={<QuanLyHoSo />} />
+                  <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
+                  <Route path="/home" element={<HomeUser />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/forgotpass" element={<ForgotPass />} />
+                  <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
+                  <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
+                  <Route path="/napthutuc/dangkytamtru" element={<_KhaiBaoTamTru />} />
+                  <Route path="/napthutuc/dangkytamvang" element={<_KhaiBaoTamVang />} />
+                  <Route path="/xemchitiethoso" element={<_xemchitiethoso />} />
+                  <Route path="/napthutuc/khaibaothuongtru" element={< _KhaiBaoThuongTru />} />
+                  <Route path="/napthutuc/xoadangkytamtru" element={< _XoaDangKyTamTru />} />
+                  <Route path="/napthutuc/xoadangkythuongtru" element={< _XoaDangKyThuongTru />} />
+                  <Route path="/payment-callback?*" element={<ThongBaoThanhToan />} />
+                  <Route path="/forgotpass" element={<ForgotPass />} />
+                  <Route path="/forgotpass" element={<ForgotPass />} />
+                  <Route path="/TraCuu" element={<TraCuuUser />} />
+              <Route path='/changePass' element={<ChangePassword />} />
 
-                {/* <footer className="  ">
+                </Routes>
+              </div>
+              <FooterM className='' />
+
+              {/* <footer className="  ">
                   <img src={logo} alt="Logo" />
                 </footer> */}
-              </div>
+            </div>
           ) : (
             <div>
               <NavUser />
@@ -183,28 +199,39 @@ function App() {
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
               </Routes>
-              <footer className="">
-                <img src={logo} alt="Logo" />
-              </footer>
+
             </div>
           )
 
 
 
         ) : (
+
+
+
           <div className='h-full'>
             
-            <NavUser />
+            <HeaderM />
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
               <Route path="/forgotpass" element={<ForgotPass/>} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeM />} />
+              <Route path="/VBPL" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/HoSo" element={<HoSoM />} />
+              <Route path="/QLTKM" element={<QLTKM />} />
+              <Route path="/TTUserM" element={<TTUserM />} />
+              <Route path="/TraCuu" element={<TraCuuMaster/>} />
+              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
+
               {/* <Route path="/" element={<HomeM />} />
               <Route path="/TraCuu" element={<TraCuuM />} />
               <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
 
             </Routes>
-            <FooterM className=''/>
+            <FooterM />
           </div>
         )}
       </div>

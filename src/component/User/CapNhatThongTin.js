@@ -50,7 +50,7 @@ export default function CapNhatThongTin() {
                 idTTUser: ttuser?.idTTUser,
                 hoTen: ttuser?.hoTen
             }));
-            if (formttuser.queQuan.tinh == "" || formttuser.queQuan.huyen == "" || formttuser.queQuan.xa == "" || formttuser.noiDKKhaiSinh.tinh == "" || formttuser.noiDKKhaiSinh.huyen == "" || formttuser.noiDKKhaiSinh.xa == "" || formttuser.ngaySinh == "" || formttuser.noiOHienTai == "")
+            if (formttuser.queQuan.tinh == "" || formttuser.queQuan.huyen == "" || formttuser.queQuan.xa == "" || formttuser.noiDKKhaiSinh.tinh == "" || formttuser.noiDKKhaiSinh.huyen == "" || formttuser.noiDKKhaiSinh.xa == "" || formttuser.ngaySinh.trim() == "" || formttuser.noiOHienTai.trim() == "")
                  toast.error("Vui lòng nhập đủ thông tin");
 
             else {
@@ -68,7 +68,7 @@ export default function CapNhatThongTin() {
     }
 
     return (
-        <div>
+        <div className='h-screen'> 
         <ToastContainer />
 
 

@@ -77,7 +77,7 @@
           const kiemTra = getRoleFromToken();
           console.log("role la : " + kiemTra)
 
-          if (kiemTra === "Admin") { window.location.reload() }
+          if (kiemTra === "Admin") {  window.location.reload() }
           else if (kiemTra === 'User'|| kiemTra==='Manager') 
           { 
             navigate('/'); 

@@ -3,7 +3,6 @@ import DiaChi from '../../Diachi';
 import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import { Link } from 'react-router-dom';
-import users from '../../../testdulieu/trangTinh';
 import Pagination from './Pagination';
 import { IoIosSearch } from "react-icons/io";
 import { FcFilledFilter } from "react-icons/fc";

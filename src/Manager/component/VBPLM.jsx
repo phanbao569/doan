@@ -26,7 +26,7 @@ export default function VBPLM() {
     return (
         <div>
             
-            <div className='container' style={{ display: "flex", justifyContent: "space-between", flexDirection: "row-reverse", color: "#000" }}>
+            <div className='container h-screen' style={{ display: "flex", justifyContent: "space-between", flexDirection: "row-reverse", color: "#000" }}>
 
                 <div className='container' style={{ width: "100%", padding: "20px", borderRadius: "5px" }}>
 

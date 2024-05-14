@@ -9,12 +9,14 @@ import ApiConfig, { apiUrl } from '../../../ApiConfig.js'
 import moment from 'moment';
 import { GlobalContext } from '../../../App.js';
 import ThongTinNguoiKhaiBao from '../ThongTinNguoiKhaiBao.js';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function _XoaDangKyTamTru() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-
+    const location = useLocation();
+    const [VBPL, sethoso] = useState(location.state.VBPL);
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
@@ -49,10 +51,6 @@ export default function _XoaDangKyTamTru() {
             reader.readAsDataURL(file);
         }
     };
-
-
-
-
     const handleChonhs2 = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -128,7 +126,7 @@ export default function _XoaDangKyTamTru() {
         }
     };
     const [form, setForm] = useState({
-        tenThuTuc: "Xoá đăng ký tạm trú",
+        tenThuTuc: VBPL.tenThuTuc,
         coQuanThucHien: {
             tinh: "",
             huyen: "",
@@ -136,7 +134,7 @@ export default function _XoaDangKyTamTru() {
         },
         noiDungDeNghi: "",
         idUser: getIDNguoiThayDoi(),
-        lePhi: "",
+        lePhi: VBPL.lePhi,
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
@@ -267,16 +265,15 @@ export default function _XoaDangKyTamTru() {
                                                     </div>
                                                     <div class=" flex py-8 ">
 
-                                                        <div class="w-2/3 flex flex-col ">
-                                                            <div className=''>
-                                                                <label className='font-bold text-center' > Cơ quan thực hiện </label>
-
-                                                            </div>
-                                                            <select class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none text-centerfocus:border-blue-500">
-
-                                                            </select>
-
-                                                        </div>
+                                                    <div class="w-2/3 flex flex-col ">
+                                                <div className=''>
+                                                    <label className='font-bold text-center  ' > Trụ sở thực hiện </label>
+                                                </div>
+                                                <input
+                                                    className="text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    value={` Công an  ${form?.coQuanThucHien?.xa} `}
+                                                />
+                                            </div>
                                                         <div class="w-1/3 flex flex-col ">
                                                             <div>
                                                                 <label className='font-bold text-center' > Số điện thoại </label>

@@ -6,20 +6,18 @@ import { Field, Form, Formik } from 'formik';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils.js';
 //mport  ApiCon,{baseUrl} from '../../../ApiConfig.js'
 import ApiConfig, { apiUrl } from '../../../ApiConfig.js'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 export default function NapThuTuc() {
 
 
     //   const idUser = getIDNguoiThayDoi();
-    const [isLoaded, setIsLoaded] = useState(false);
-    const idUser = getIDNguoiThayDoi();
-    const [form, setForm] = useState({});
-    const [user, setUser] = useState();
-    const [TTuser, setTTUser] = useState();
+    const location = useLocation();
+  
     const currentUrl = window.location.href;
     const idFromUrl = currentUrl.split('/').pop();
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-
+    const [VBPL, sethoso] = useState(location.state.VBPL);
+    console.log(VBPL);
     useEffect(() => {
 
         const currentUrl = window.location.href;
@@ -27,32 +25,32 @@ export default function NapThuTuc() {
         // console.log(idFromUrl);
 
         if (idFromUrl === "594ac7fe") {
-            navigate('/napthutuc/giahantamtru')
+            navigate('/napthutuc/giahantamtru',{ state: { VBPL } })
 
 
 
         }
         if (idFromUrl === "21ab430d") {
 
-            navigate('/napthutuc/dangkytamtru')
+            navigate('/napthutuc/dangkytamtru',{ state: { VBPL } })
 
 
 
         }
         if (idFromUrl === "c3033865") {
-            navigate('/napthutuc/dangkytamvang')
+            navigate('/napthutuc/dangkytamvang',{ state: { VBPL } })
         }
         if (idFromUrl === "b0d416c7") {
-            navigate('/napthutuc/khaibaothuongtru')
+            navigate('/napthutuc/khaibaothuongtru',{ state: { VBPL } })
         }
         if (idFromUrl === "43424481") {
-            navigate('/napthutuc/xoadangkytamtru')
+            navigate('/napthutuc/xoadangkytamtru',{ state: { VBPL } })
         }
         if (idFromUrl === "5d49167e") {
-            navigate('/napthutuc/xoadangkythuongtru')
+            navigate('/napthutuc/xoadangkythuongtru',{ state: { VBPL } })
         }
         if (idFromUrl === "8cbcd99d") {
-            navigate('/napthutuc/thongbaoluutru')
+            navigate('/napthutuc/thongbaoluutru',{ state: { VBPL } })
         }
     }, [idFromUrl]);
     return (

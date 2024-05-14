@@ -66,10 +66,28 @@ import FooterM from './Manager/component/FooterM';
 import HeaderM from './Manager/component/HeaderM';
 import VBPLM from './Manager/component/VBPLM';
 import XemVBPLM from './Manager/component/XemVBPLM';
-import NavM from './Manager/component/Nav';
-import HoSoM from './Manager/component/PheDuyetM';
-import QLTKM from './Manager/component/PheDuyetTaiKhoan';
+import NavM from './Manager/component/NavM';
 import TTUserM from './Manager/component/TTUserM';
+import PheDuyetTaiKhoanM from './Manager/component/PheDuyetTaiKhoanM';
+import PheDuyetHoSoM from './Manager/component/PheDuyetHoSoM';
+import GiaHanTamTruM from './Manager/component/thutuc/GiaHanTamTruM';
+import KhaiBaoTamVangM from './Manager/component/thutuc/KhaiBaoTamVangM';
+import KhaiBaoThuongTruM from './Manager/component/thutuc/KhaiBaoThuongTruM';
+import KhaiBaoTamTruM from './Manager/component/thutuc/KhaiBaoTamTruM';
+
+/// Bảo ngu
+import HoiDapM from './Manager/component/HoiDapM'
+import DanhGiaM from './Manager/component/DanhGiaM'
+import GetAllEmploy from './Manager/component/GetAllEmploy';
+import CreateNV from './Manager/component/CreateNV';
+import GetEmById from './Manager/component/GetEmById';
+import ThongKeHoSo from './Manager/component/ThongKeHoSoM';
+import TKDTB from './Manager/component/TKDTB';
+import XoaDangKyTamTruM from './Manager/component/thutuc/XoaDangKyTamTruM';
+import XoaDangKyThuongTruM from './Manager/component/thutuc/XoaDangKyThuongTruM';
+import ThongBaoLuuTruM from './Manager/component/thutuc/ThongBaoLuuTruM';
+import NavMaster from './HomeMaster/component/NavMaster';
+
 export const GlobalContext = createContext();
 
 function App() {
@@ -89,13 +107,11 @@ function App() {
       setRole(userRole);
     } else {
       localStorage.removeItem('token');
-      navigate('/login');
-      // checkTTUser()
+
     }
   }, [isloading]);
 
   const fetchdata = async () => {
-
     try {
       const response = await axios.get(apiUrl(ApiConfig.getUserById(getIDNguoiThayDoi())));
       setUser(response.data);
@@ -112,10 +128,9 @@ function App() {
 
   return (
     <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
+
       <div className="App h-screen">
-
         {role === 'Admin' ? (
-
           <div className='grid-container'>
           
             <SideBar />
@@ -143,8 +158,6 @@ function App() {
             </Routes>
 
           </div>
-
-
         ) : role === 'User' ? (
           checkthongtin ? (
             <div className=''>
@@ -182,15 +195,15 @@ function App() {
                   <Route path="/forgotpass" element={<ForgotPass />} />
                   <Route path="/forgotpass" element={<ForgotPass />} />
                   <Route path="/TraCuu" element={<TraCuuUser />} />
-              <Route path='/changePass' element={<ChangePassword />} />
+                  <Route path='/changePass' element={<ChangePassword />} />
 
                 </Routes>
               </div>
               <FooterM className='' />
 
               {/* <footer className="  ">
-                  <img src={logo} alt="Logo" />
-                </footer> */}
+            <img src={logo} alt="Logo" />
+          </footer> */}
             </div>
           ) : (
             <div>
@@ -198,43 +211,116 @@ function App() {
               <Routes className="h-screen" >
                 <Route path="*" element={<CapNhatThongTin />} />
                 <Route path="/" element={<CapNhatThongTin />} />
+                  <Route path="/TraCuu" element={<TraCuuUser />} />
+                  <Route path="/forgotpass" element={<ForgotPass />} />
+                  <Route path='/changePass' element={<ChangePassword />} />
+                <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+                <Route path="/login" element={<Login />} />
+              <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeUser />} />
+              <Route path="/VBPL" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/quanlyhoso" element={<TraCuuUser />} />
+              <Route path="/hotrohoidap" element={<Login />} />
+              <Route path="/*" element={<Login />} />
+              <Route path="/thutuc/:id" element={<ThuTuc />} />
               </Routes>
 
             </div>
           )
-
-
-
-        ) : (
-
-
-
-          <div className='h-full'>
-            
-            <HeaderM />
+        ) : role === 'Employ' ? (
+          <div>
+            {/* Xử lý cho Employ */}
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register/>} />
-              <Route path="/forgotpass" element={<ForgotPass/>} />
+            <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<HomeM />} />
+              <Route path="/VBPLM" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
+              <Route path="/PheDuyetHoSoM" element={<PheDuyetHoSoM />} />
+              <Route path="/TTUserM" element={<TTUserM />} />
+              <Route path="/GiaHanTamTruM" element={<GiaHanTamTruM />} />
+              <Route path="/KhaiBaoTamVangM" element={<KhaiBaoTamVangM />} />
+              <Route path="/KhaiBaoThuongTruM" element={<KhaiBaoThuongTruM />} />
+              <Route path="/KhaiBaoTamTruM" element={<KhaiBaoTamTruM />} />
+              <Route path="/ThongBaoLuuTruM" element={<ThongBaoLuuTruM />} />
+              <Route path="/XoaDangKyTamTruM" element={<XoaDangKyTamTruM />} />
+              <Route path="/XoaDangKyThuongTruM" element={<XoaDangKyThuongTruM />} />
+              <Route path="/TraCuuM" element={<TraCuuM />} />
+              <Route path="/hoidapm" element={<HoiDapM />} />
+              <Route path="/danhgiam" element={<DanhGiaM />} />
+              <Route path="/getallemploy" element={<GetAllEmploy />} />
+              <Route path="/createNV/:formData" element={<CreateNV />} />
+              <Route path='/xem-employ/:idUser' element={<GetEmById />} />
+              <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
+              <Route path="/tkdtb" element={<TKDTB />} />
+
+            </Routes>
+          </div>
+        ) : role === 'Manager' ? (
+          <div>
+            {/* Xử lý cho Manager */}
+            <Routes>
+            <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeM />} />
+              <Route path="/VBPLM" element={<VBPLM />} />
+              <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
+              <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
+              <Route path="/PheDuyetHoSoM" element={<PheDuyetHoSoM />} />
+              <Route path="/TTUserM" element={<TTUserM />} />
+              <Route path="/GiaHanTamTruM" element={<GiaHanTamTruM />} />
+              <Route path="/KhaiBaoTamVangM" element={<KhaiBaoTamVangM />} />
+              <Route path="/KhaiBaoThuongTruM" element={<KhaiBaoThuongTruM />} />
+              <Route path="/KhaiBaoTamTruM" element={<KhaiBaoTamTruM />} />
+              <Route path="/ThongBaoLuuTruM" element={<ThongBaoLuuTruM />} />
+              <Route path="/XoaDangKyTamTruM" element={<XoaDangKyTamTruM />} />
+              <Route path="/XoaDangKyThuongTruM" element={<XoaDangKyThuongTruM />} />
+              <Route path="/TraCuuM" element={<TraCuuM />} />
+
+              <Route path="/hoidapm" element={<HoiDapM />} />
+              <Route path="/danhgiam" element={<DanhGiaM />} />
+              <Route path="/getallemploy" element={<GetAllEmploy />} />
+              <Route path="/createNV/:formData" element={<CreateNV />} />
+              <Route path='/xem-employ/:idUser' element={<GetEmById />} />
+              <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
+              <Route path="/tkdtb" element={<TKDTB />} />
+
+            </Routes>
+          </div>
+        ) : (
+          // k dang nhap 
+          <div className='h-full min-h-screen'>
+
+            <NavUser />
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/ChonThuTuc" element={<ChonThuTuc />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgotpass" element={<ForgotPass />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<HomeUser />} />
               <Route path="/VBPL" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
-              <Route path="/HoSo" element={<HoSoM />} />
-              <Route path="/QLTKM" element={<QLTKM />} />
-              <Route path="/TTUserM" element={<TTUserM />} />
-              <Route path="/TraCuu" element={<TraCuuMaster/>} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} />
-
-              {/* <Route path="/" element={<HomeM />} />
-              <Route path="/TraCuu" element={<TraCuuM />} />
-              <Route path="/PhanAnh" element={<PhanAnhKienNghi />} /> */}
+              <Route path="/quanlyhoso" element={<TraCuuUser />} />
+              <Route path="/hotrohoidap" element={<Login />} />
+              <Route path="/*" element={<Login />} />
+              <Route path="/thutuc/:id" element={<ThuTuc />} />
 
             </Routes>
             <FooterM />
           </div>
+        
         )}
       </div>
+
+
+
+
     </GlobalContext.Provider>
   );
 }

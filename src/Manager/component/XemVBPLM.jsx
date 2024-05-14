@@ -60,7 +60,7 @@ export default function XemVBPLM() {
 
 
     return (
-        <div>
+        <div className='h-screen'>
 
             {vb ? (
                 <div className='ml-10'>

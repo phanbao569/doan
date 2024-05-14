@@ -6,8 +6,10 @@ import { getIDNguoiThayDoi } from '../../../util/jwtUtils';
 import axios from 'axios';
 import ThongTinNguoiKhaiBao from '../ThongTinNguoiKhaiBao';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function HoiDap(props) {
+    const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
     const { user, ttuser } = props;
     //console.log(user);
@@ -39,6 +41,9 @@ export default function HoiDap(props) {
                     ...prevForm,
                     noiDung: ""
                   }));
+                  setTimeout(() => {
+                    navigate('/');
+                }, 1000);
             }
          
               

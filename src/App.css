@@ -1,4 +1,3 @@
-
 .App {
   position: relative;
   box-sizing: border-box;
@@ -72,3 +71,4 @@
     transform: rotate(360deg);
   }
 }
+

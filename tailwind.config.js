@@ -35,6 +35,7 @@ module.exports = {
         650: '650px',
         685: '685px',
         800: '800px',
+        1100:'1100px',
         '90vh': '90vh',
       },
       minWidth: {
@@ -43,11 +44,11 @@ module.exports = {
         620: '620px',
       },
       screens: {
+        xs: '480px',
         sm: '640px',
         md: '768px',
-        lg: '1024px',
+        lg: '860px',
         xl: '1280px',
-        '2xl': '1536px',
       },
       colors: {
         headingColor: '#2e2e2e',

@@ -34,7 +34,7 @@ function Form(props) {
         console.table(form);
 
         try {
-            toast.error("Vui lòng nhập đầy đủ thông tin");
+          
             if (form.noiDung.trim() == "" || form.mucDoDanhGia.trim() == "") {
                 toast.error("Vui lòng nhập đầy đủ thông tin");
                 return;

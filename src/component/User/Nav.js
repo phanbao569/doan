@@ -29,14 +29,14 @@ export default function HeaderM() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
-    // window.location.reload();
+    window.location.reload();
   };
-  useEffect(() => {
-    if (tokenExpired) {
-      handleLogout();
-    }
+  // useEffect(() => {
+  //   // if (tokenExpired) {
+  //   //   handleLogout();
+  //   // }
 
-  }, [tokenExpired]);
+  // }, [tokenExpired]);
 
   return (
     <div>

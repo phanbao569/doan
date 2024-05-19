@@ -59,6 +59,7 @@ const ApiConfig = {
   getXoaDangKyThuongTru:(id)=>`/XoaDangKyThuongTru/${id}`,
   putXoaDangKyThuongTru: `/XoaDangKyThuongTru/update`,
   getXoaDangKyTamTru:(id)=>`/XoaDangKyTamTru/${id}`,
+  taoDanhGiaHoSo: '/createDanhGiaHoSo',
   putXoaDangKyTamTru: `/XoaDangKyTamTru/update`,
   getThongTinUser: (id) => `/TTUser/${id}`,
   thanhtoan :(id,lephi)=>`/pay/${id}/${lephi}`,

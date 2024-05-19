@@ -127,7 +127,7 @@ function App() {
 
 
   return (
-    <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser }}>
+    <GlobalContext.Provider value={{ user, setUser, ttuser, setTTUser,setRole }}>
 
       <div className="App h-screen">
         {role === 'Admin' ? (

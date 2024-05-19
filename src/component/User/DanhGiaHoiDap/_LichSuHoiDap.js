@@ -70,7 +70,14 @@ export default function _LichSuHoiDap() {
                             {allPhanHoi.map((phanHoi, index) => (
                                 <tr key={index}>
                                     <td className="px-6 py-4 whitespace-nowrap">{moment(phanHoi?.created_at).format('DD/MM/YYYY')}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{phanHoi?.noiDung === "" ? <span className="italic">Chưa có phản hồi</span> : phanHoi?.noiDung}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        {phanHoi?.noiDung === "" ? (
+                                            <span className="italic">Chưa có phản hồi</span>
+                                        ) : (
+                                            phanHoi?.noiDung.length > 40 ? phanHoi?.noiDung.slice(0, 40) + '...' : phanHoi?.noiDung
+                                        )}
+                                    </td>
+
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <button className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" onClick={() => handleDetail(index)}>Xem</button>
                                     </td>

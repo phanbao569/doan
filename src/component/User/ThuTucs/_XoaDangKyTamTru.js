@@ -16,7 +16,7 @@ export default function _XoaDangKyTamTru() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
@@ -265,15 +265,15 @@ export default function _XoaDangKyTamTru() {
                                                     </div>
                                                     <div class=" flex py-8 ">
 
-                                                    <div class="w-2/3 flex flex-col ">
-                                                <div className=''>
-                                                    <label className='font-bold text-center  ' > Trụ sở thực hiện </label>
-                                                </div>
-                                                <input
-                                                    className="text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value={` Công an  ${form?.coQuanThucHien?.xa} `}
-                                                />
-                                            </div>
+                                                        <div class="w-2/3 flex flex-col ">
+                                                            <div className=''>
+                                                                <label className='font-bold text-center  ' > Trụ sở thực hiện </label>
+                                                            </div>
+                                                            <input
+                                                                className="text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                value={` Công an  ${form?.coQuanThucHien?.xa} `}
+                                                            />
+                                                        </div>
                                                         <div class="w-1/3 flex flex-col ">
                                                             <div>
                                                                 <label className='font-bold text-center' > Số điện thoại </label>
@@ -305,12 +305,21 @@ export default function _XoaDangKyTamTru() {
                                                                 name="noiDungDeNghi"
                                                                 onChange={handleInputChange}
                                                             />
-                                                            <label className='mt-2' >Chọn file hồ sơ</label>
-                                                            <div className='flex items-center mt-2 ' >
-                                                                <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
-                                                                <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
-                                                                <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
-                                                                <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                            <div class='bg-yellow-200 w-full d-flex rounded-3xl mt-3	'>
+                                                                <label className='text-xl font-family-sans mx-auto' >
+
+                                                                    Hồ sơ liên quan ( Vui lòng gửi ảnh giấy tờ lên )
+                                                                </label>
+                                                            </div>
+                                                            <div className='flex  items-center mt-2 ' >
+                                                                <div className='flex flex-col' >
+                                                                    <input className='my-2' type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                                    <input className='my-2' type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                                </div>
+                                                                <div className='flex flex-col' >
+                                                                    <input className='my-2' type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                                    <input className='my-2' type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

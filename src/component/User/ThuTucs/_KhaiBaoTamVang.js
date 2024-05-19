@@ -384,12 +384,21 @@ export default function _KhaiBaoTamVang() {
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />
-                                                <label className='mt-2' >Chọn file hồ sơ</label>
-                                                <div className='flex items-center mt-2 ' >
-                                                    <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
-                                                    <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
-                                                    <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
-                                                    <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                              <div class='bg-yellow-200 w-full d-flex rounded-3xl mt-3	'>
+                                                    <label className='text-xl font-family-sans mx-auto' >
+
+                                                        Hồ sơ liên quan ( Vui lòng gửi ảnh giấy tờ lên )
+                                                    </label>
+                                                </div>
+                                                <div className='flex  items-center mt-2 ' >
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                        <input className='my-2' type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                    </div>
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                        <input className='my-2' type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                    </div>
                                                 </div>
 
                                             </div>

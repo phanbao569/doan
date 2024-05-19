@@ -20,10 +20,10 @@ export default function NapThuTuc() {
 
     //   const iduser? = getIDNguoiThayDoi();
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-  
+
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
-    
+
     const [isLoaded, setIsLoaded] = useState(true);
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -343,14 +343,17 @@ export default function NapThuTuc() {
 
                                                     }}
                                                 />
-                                                <div>
-                                                    <label className='font-bold text-center ' > Địa chỉ cụ thể  </label>
-                                                    <label className='text-red-500' >  </label>
-
-                                                </div>
                                                 <div className='flex' >
-                                                    <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
-                                                    <Field onChange={handleInputChange} type="number" min="0" name="thoiHanTamTru" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
+                                                    <div className='w-3/4 flex flex-col' >
+                                                        <div>
+                                                            <label className='font-bold text-center ' > Địa chỉ cụ thể  </label>
+                                                        </div>
+                                                        <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
+                                                    </div>
+                                                    <div className='flex flex-col' >
+                                                        <label className='font-bold text-center ' > Thời hạn tạm trú ( số ngày)  </label>
+                                                        <Field onChange={handleInputChange} type="number" min="0" name="thoiHanTamTru" class=" border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Thời hạn tạm trú' />
+                                                    </div>
                                                 </div>
 
                                             </div>
@@ -394,12 +397,21 @@ export default function NapThuTuc() {
                                                     {/* <span id="selectedFileName">{form.}</span> */}
 
                                                 </div>
-                                                <label className='mt-2' >Chọn file hồ sơ</label>
-                                                <div className='flex items-center mt-2 ' >
-                                                    <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
-                                                    <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
-                                                    <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
-                                                    <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                <div class='bg-yellow-200 w-full d-flex mt-2 rounded-3xl	'>
+                                                    <label className='text-xl font-family-sans mx-auto' >
+
+                                                        Hồ sơ liên quan ( Vui lòng up ảnh giấy tờ liên quan )
+                                                    </label>
+                                                </div>
+                                                <div className='flex  items-center mt-2 ' >
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                        <input className='my-2' type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                    </div>
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                        <input className='my-2' type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                    </div>
                                                 </div>
                                             </div>
 

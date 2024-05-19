@@ -14,7 +14,7 @@ export default function _KhaiBaoTamTru() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
@@ -248,7 +248,7 @@ export default function _KhaiBaoTamTru() {
                                         </div>
                                         <div class=" flex py-8 ">
 
-                                        <div class="w-2/3 flex flex-col ">
+                                            <div class="w-2/3 flex flex-col ">
                                                 <div className=''>
                                                     <label className='font-bold text-center  ' > Trụ sở thực hiện </label>
                                                 </div>
@@ -332,8 +332,11 @@ export default function _KhaiBaoTamTru() {
 
                                             }}
                                         />
-                                        <div class="w-full flex flex-col "  >
-                                            Thông tin chủ hộ
+                                                            <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
+                                            <label className='text-xl font-family-sans mx-auto' >
+
+                                               THÔNG TIN CHỦ HỘ
+                                            </label>
                                         </div>
                                         <div className='flex  py-8  '>
 
@@ -343,7 +346,7 @@ export default function _KhaiBaoTamTru() {
                                                     <label className='font-bold text-center' > Họ và Tên </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-center focus:border-blue-500" placeholder='Họ tên '
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-center focus:border-blue-500" 
                                                     name="hoTenChuHo"
                                                     onChange={handleInputChange}
                                                 />
@@ -364,7 +367,7 @@ export default function _KhaiBaoTamTru() {
                                                     <label className='font-bold text-center' > Quan hệ với chủ hộ </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-center focus:border-blue-500" placeholder='Họ tên '
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-center focus:border-blue-500" 
                                                     name="quanHeChuHo"
                                                     onChange={handleInputChange}
                                                 />
@@ -373,7 +376,7 @@ export default function _KhaiBaoTamTru() {
                                             </div>
                                             <div class="w-full flex flex-col ">
                                                 <div>
-                                                    <label className='font-bold text-center' > Thời hạn gia hạn</label>
+                                                    <label className='font-bold text-center' > Thời hạn gia hạn (theo ngày )</label>
 
                                                 </div>
                                                 <Field
@@ -414,19 +417,27 @@ export default function _KhaiBaoTamTru() {
                                             <div class="w-full items-center flex flex-col ">
                                                 <div>
                                                     <label className='font-bold text-center' > Nội dung đề nghị </label>
-
                                                 </div>
                                                 <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none text-center  focus:border-blue-500" placeholder='Nội dung đề nghị '
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />
 
-                                                <label className='mt-2' >Chọn file hồ sơ</label>
-                                                <div className='flex items-center mt-2 ' >
-                                                    <input type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
-                                                    <input type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
-                                                    <input type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
-                                                    <input type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                <div class='bg-yellow-200 w-full d-flex rounded-3xl mt-3	'>
+                                                    <label className='text-xl font-family-sans mx-auto' >
+
+                                                        Hồ sơ liên quan ( Vui lòng gửi ảnh giấy tờ lên )
+                                                    </label>
+                                                </div>
+                                                <div className='flex  items-center mt-2 ' >
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs1" name="hs1" onChange={handleChonhs1} />
+                                                        <input className='my-2' type="file" id="hs2" name="hs2" onChange={handleChonhs2} />
+                                                    </div>
+                                                    <div className='flex flex-col' >
+                                                        <input className='my-2' type="file" id="hs3" name="hs3" onChange={handleChonhs3} />
+                                                        <input className='my-2' type="file" id="hs4" name="hs4" onChange={handleChonhs4} />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

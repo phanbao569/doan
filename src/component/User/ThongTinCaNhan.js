@@ -156,7 +156,7 @@ export default function ThongTinCaNhan() {
 
                   <div className="mb-4 flex mt-3">
                     <label className="mb-2 w-1/3 text-center mt-4">Tên Chủ Hộ:</label>
-                    <input type="text" id="tenChuHo" value={ttgiadinh.tenChuHo} name="tenChuHo" className="w-full px-3 py-2 border rounded-md" />
+                    <input type="text" id="tenChuHo" value={ttgiadinh?.tenChuHo} name="tenChuHo" className="w-full px-3 py-2 border rounded-md" />
                   </div>
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">

@@ -32,7 +32,6 @@ function Form(props) {
     console.log(user);
     const handleSubmit = async () => {
         console.table(form);
-
         try {
           
             if (form.noiDung.trim() == "" || form.mucDoDanhGia.trim() == "") {

@@ -49,7 +49,7 @@ export default function QuanLyHoSo() {
       const response = await axios.get(apiUrl(ApiConfig.getAllQuanLyHoSoUser(getIDNguoiThayDoi())));
       setlistDS(response.data);
       setlistshow(response.data.giaHanTamTrus)
- 
+
       setIsLoaded(true);
     } catch (error) {
       console.error('Lỗi khi gửi dữ liệu:', error);
@@ -120,7 +120,12 @@ export default function QuanLyHoSo() {
                     {Object.entries(listshow).map(([id, item]) => (
                       <tr key={id}>
                         <td className="px-6 py-4 whitespace-nowrap">{parseInt(id) + 1}</td>
-                        <td className="px-6  py-4 whitespace-nowrap">{item?.tenThuTuc} </td>
+                        <td className="px-6  py-4 whitespace-nowrap">
+
+                          {
+                            item?.tenThuTuc.length > 20 ? item?.tenThuTuc.slice(0, 20) + '...' : item?.tenThuTuc
+
+                          }                         </td>
 
                         <td className="px-6 py-4 whitespace-nowrap"> {moment(item?.created_at).format('DD/MM/YYYY')}  </td>
                         <td className="px-6 py-4 whitespace-nowrap">{item?.diaChiCuThe}</td>

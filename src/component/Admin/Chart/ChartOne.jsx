@@ -149,7 +149,7 @@ let tong = 0
             </span>
             <div className="w-full">
               <p className="font-semibold text-secondary">Total Sales</p>
-              <p className="text-sm font-medium">12.04.2022 - 12.05.2022</p>
+              <p className="text-sm  font-medium">12.04.2022 - 12.05.2022</p>
             </div>
           </div>
         </div>

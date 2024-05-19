@@ -8,6 +8,7 @@ import { IoIosSearch } from "react-icons/io";
 import { FcFilledFilter } from "react-icons/fc";
 import { RiFilterLine } from "react-icons/ri";
 import Loading from '../../../Loading';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function TTUser() {
 
@@ -92,15 +93,19 @@ export default function TTUser() {
     try {
       const response = await axios.delete(apiUrl(ApiConfig.deleteAccount(id)));
         
-        alert( response.data);
-        window.location.reload();
+        toast.success(response.data);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+        
     } catch (error) {
 
-        console.error('Lỗi khi xóa người dùng:', error.data);
+        toast.error('Lỗi khi xóa người dùng:'+ error.data);
     }
 }; 
   return (
   <div>
+    <ToastContainer/>
     <div>
      
      <div className="flex  flex-row justify-around">

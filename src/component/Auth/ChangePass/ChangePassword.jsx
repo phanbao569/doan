@@ -86,19 +86,19 @@ export default function ChangePassword() {
 
                         <div className="mb-6 mt-4">
                             <label htmlFor="oldPass" className="text-sm text-center block mb-2 font-medium text-gray-700">Nhập mật khẩu cũ</label>
-                            <input type="password" id="oldPass" placeholder="Mật khẩu" name="oldPass" onChange={handleChangeInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
+                            <input type="password" id="oldPass" placeholder="Mật khẩu cũ" name="oldPass" onChange={handleChangeInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="newPass" className="text-sm  text-center block mb-2 font-medium text-gray-700">Nhập mật khẩu mới</label>
-                            <input type="password" id="newPass" placeholder="Mật khẩu" name="newPass" onChange={handleChangeInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
+                            <input type="password" id="newPass" placeholder="Mật khẩu mới" name="newPass" onChange={handleChangeInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="newPassAgain" className="text-sm text-center block mb-2 font-medium text-gray-700">Nhập lại mật khẩu mới</label>
-                            <input type="password" id="newPassAgain" placeholder="Mật khẩu" name="newPassAgain" onChange={handleChangeInputAg} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
+                            <input type="password" id="newPassAgain" placeholder="Nhập lại mật khẩu" name="newPassAgain" onChange={handleChangeInputAg} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
                             {error === 'The new password is wrong' ? (<h1 className="text-xs block mb-2 font-medium text-red-700">{error}</h1>) : (<h1 className="text-xs block mb-2 font-medium text-green-700">{error}</h1>)}
                         </div>
                         <div className="mb-6 mx-auto flex ">
-                            <button onClick={handleSummit} type="button" className="mx-auto bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Xác nhận</button>
+                            <button onClick={handleSummit} type="button" className="mx-auto bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Xác nhận</button>
                         </div>
                     </div>
                 </div>

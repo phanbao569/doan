@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getIDNguoiThayDoi,isTokenExpired } from '../../../util/jwtUtils';
 import axios from 'axios';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import { ToastContainer, toast } from 'react-toastify';
 export default function VBPL() {
   const [formData, setFormData]= useState({
     tenThuTuc:'',
@@ -32,16 +33,27 @@ export default function VBPL() {
       console.log(idNTD);
     }
   }, []);
-  
+  const validateFormData = () => {
+    for (const key in formData) {
+      if (formData[key] === '') {
+        return false;
+      }
+    }
+    return true;
+  };
   const handleSubmit = async (event) => {
    event.preventDefault();
-  
+   if (!validateFormData()) {
+    toast.warn('Bạn phải nhập đầy đủ thông tin văn bản pháp luật')
+    return;
+  }
     console.log('Dữ liệu được gửi đi:', formData);
     try {
        const response = await axios.post(apiUrl(ApiConfig.createVBPL), formData);
       console.log('Response from server:', response.data);
+      toast.success('Thêm văn bản pháp luật thành công!', response.data)
     } catch (error) {
-      alert('Thêm thất bại do ' + error.data);
+      toast.error('Thêm văn bạn pháp luật bại thất bại do ' + error.data);
       
     }
   }
@@ -55,7 +67,9 @@ export default function VBPL() {
   }
   
   return (
+    
     <div className='grid-container' style={{ display: "flex", justifyContent: "center", alignItems: "center" ,marginTop:"20px"}}>
+      <ToastContainer/>
       <div className='' style={{ width: "60%", padding: "20px", border: "1px solid #ccc", borderRadius: "5px", backgroundColor: "#f9f9f9" }}>
       
       <div>

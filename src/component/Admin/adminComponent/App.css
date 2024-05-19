@@ -11,7 +11,7 @@ body {
 .icon {
   vertical-align: middle;
   line-height: 1px;
-  font-size: 20px;
+  font-size: 24px;
 }
 .icon_header {
   vertical-align: middle;
@@ -296,7 +296,16 @@ input[type="email"] {
   }
 
   .menu-icon {
-    display: inline;
+    display: flex; /* Hiển thị các biểu tượng theo chiều ngang */
+    align-items: center;
+  }
+  .menu-icon .icon{
+    margin-right: 40px;
+    line-height: 1px;
+  font-size: 24px; 
+  }
+  .menu-icon .icon:hover{
+    color: blue;
   }
 
   .sidebar-title > span {

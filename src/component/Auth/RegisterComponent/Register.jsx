@@ -98,7 +98,7 @@ export default function Register() {
 
       return;
     }
-    if (check) {
+    if (check || !check) {
       try {
         const response = await axios.post(apiUrl(ApiConfig.register), formData);
 
@@ -157,14 +157,24 @@ export default function Register() {
     // Kiểm tra các trường thông tin
     for (const key in formData) {
       if (formData.hasOwnProperty(key)) {
+        // Kiểm tra các trường dữ liệu trực tiếp của formData
         if (!formData[key]) {
-          toast.warning(`Vui lòng nhập đầy đủ thông tin ${key}`);
-
-          return;
+          if (key !== 'diaChiDKTK') {
+            toast.warning(`Vui lòng nhập đầy đủ thông tin ${key}`);
+            return;
+          }
+        } else if (key === 'diaChiDKTK') {
+          // Nếu là trường địa chỉ, kiểm tra các trường con (tỉnh, huyện, xã)
+          const addressFields = Object.keys(formData[key]);
+          for (const field of addressFields) {
+            if (!formData[key][field]) {
+              toast.warning(`Vui lòng nhập đầy đủ thông tin ${field}`);
+              return;
+            }
+          }
         }
       }
     }
-
 
     // Kiểm tra các trường ảnh trong anhcccd
     for (const key in formData.anhCCCD) {
@@ -175,6 +185,10 @@ export default function Register() {
         }
       }
     }
+      if(formData.cccd.length!=12 || isNaN(formData.cccd))  {
+        toast.error('mã số CCCD không hợp lệ');
+        return;
+      }
     if (!phoneNumberRegex.test(formData.sdt.toString())) {
       toast.error('Số điện thoại không hợp lệ');
       return;
@@ -195,6 +209,7 @@ export default function Register() {
 
 
       const response = await axios.post(apiUrl(ApiConfig.registerCheck), formData);
+      
       console.log('Response from server:', response.data);
       formData.codeHashed = response.data;
 
@@ -202,7 +217,14 @@ export default function Register() {
 
       setShowConfirmationDialog(true);
     } catch (error) {
-      toast.error('đăng kí thất bại do ' + error.response.data);
+      // toast.error('đăng kí thất bại do ' + error.response.data);
+      if (error.response && error.response.data) {
+        toast.error('đăng kí thất bại do ' + error.response.data);
+      } else if (error.message) {
+        toast.error('đăng kí thất bại do ' + error.message);
+      } else {
+        toast.error('đăng kí thất bại do lỗi không xác định từ máy chủ');
+      }
 
     }
   }
@@ -212,7 +234,7 @@ export default function Register() {
   // ham lay thongtin tu form
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-
+    
     if (name === 'sdt') {
       // Biểu thức chính quy để kiểm tra số điện thoại
 

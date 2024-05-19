@@ -126,7 +126,7 @@ export default function _KhaiBaoThuongTru() {
     };
     const [isLoaded, setIsLoaded] = useState(true);
     const [form, setForm] = useState({
-        tenThuTUc: VBPL.tenThuTuc,
+        tenThuTuc: VBPL.tenThuTuc,
         coQuanThucHien: {
             tinh: "",
             huyen: "",

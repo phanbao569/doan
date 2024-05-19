@@ -43,7 +43,7 @@ export default function _XemChiTietHoSo() {
   }
   console.log(check);
   return (
-    <div className="max-w-4xl min-h-screen mx-auto px-4 ">
+    <div className="max-w-4xl min-h-screen mx-auto bg-white px-4 ">
       <div className="p-6">
         <h1 className="text-3xl mx-auto font-semibold mb-4 text-center">{hoso.tenThuTuc} </h1>
         <div  >
@@ -117,22 +117,22 @@ export default function _XemChiTietHoSo() {
           </div>
        
           <div>
-            <label className="block text-sm font-semibold text-gray-600 mb-1">Hồ sơ liên quan</label>
+            <label className="block text-sm font-semibold  text-gray-600 mb-1">Hồ sơ liên quan</label>
             <div>
-              <div>
+              <div className='flex' >
                 {hoso && hoso.fileHoSoLienQuan && (
                   <>
                     {hoso.fileHoSoLienQuan.hs1 && (
-                      <img src={hoso.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
+                      <img className='mr-2'  src={hoso.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
                     )}
                     {hoso.fileHoSoLienQuan.hs2 && (
-                      <img src={hoso.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
+                      <img className='mr-2'  src={hoso.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
                     )}
                     {hoso.fileHoSoLienQuan.hs3 && (
-                      <img src={hoso.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
+                      <img className='mr-2'  src={hoso.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
                     )}
                     {hoso.fileHoSoLienQuan.hs4 && (
-                      <img src={hoso.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
+                      <img className='mr-2'  src={hoso.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
                     )}
                   </>
                 )}

@@ -95,16 +95,28 @@ export default function ThongTinCaNhan() {
                 </tr>
                 <tr>
                   <th scope="row">Địa chỉ Tạm trú </th>
-                  <td>
-                    {ttuser?.tamTru?.tinh } - {ttuser?.tamTru?.huyen } - {ttuser?.tamTru?.xa }
-                    {/* {ttuser?.thuongTru?.tinh } - {ttuser?.thuongTru?.huyen } - {ttuser?.thuongTru?.xa } */}
-                  </td>
+                  {
+                    ttuser?.tamTru ?
+                      <td>
+                        {ttuser?.tamTru?.tinh} - {ttuser?.tamTru?.huyen} - {ttuser?.tamTru?.xa}
+                        {/* {ttuser?.thuongTru?.tinh } - {ttuser?.thuongTru?.huyen } - {ttuser?.thuongTru?.xa } */}
+                      </td> :
+                      <td>
+                        chưa có thông tin
+                      </td>
+                  }
+
                 </tr>
                 <tr>
                   <th scope="row">Địa chỉ Tạm trú cụ thể</th>
-                  <td>
-                    {ttuser?.diaChiTTCuThe} - Thời hạn đến : {moment(ttuser.thoiHanTamTru).format('DD-MM-YYYY')}
-                  </td>
+                  {ttuser?.diaChiTTCuThe ?
+                    <td>
+                      {ttuser?.diaChiTTCuThe} - Thời hạn đến : {moment(ttuser.thoiHanTamTru).format('DD-MM-YYYY')}
+                    </td> :
+                    <td>
+                      chưa có thông tin
+                    </td>
+                  }
                 </tr>
                 <tr>
                   <th scope="row">Thông tin gia đình</th>

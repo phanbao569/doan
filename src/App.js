@@ -181,7 +181,6 @@ function App() {
                   <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
                   <Route path="/home" element={<HomeUser />} />
                   <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<Login />} />
                   <Route path="/forgotpass" element={<ForgotPass />} />
                   <Route path="/napthutuc/giahantamtru" element={<_GiaHanTamTru />} />
                   <Route path="/napthutuc/thongbaoluutru" element={<_ThongBaoLuuTru />} />
@@ -199,7 +198,10 @@ function App() {
 
                 </Routes>
               </div>
-              <FooterM className='' />
+              <footer>
+
+              <FooterM className='bg-red-500' />
+              </footer>
 
               {/* <footer className="  ">
             <img src={logo} alt="Logo" />

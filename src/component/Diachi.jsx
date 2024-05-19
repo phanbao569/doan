@@ -20,44 +20,71 @@ const DiaChi = ({ onSelectCity, onSelectDistrict, onSelectWard }) => {
 
   const handleCityChange = (e) => {
     const selectedCityId = e.target.value;
-    const selectedCity = cities.find(city => city.Id === selectedCityId);
-    setDistricts(selectedCity.Districts);
-    onSelectCity(selectedCity.Name);
+    if (selectedCityId) {
+      const selectedCity = cities.find(city => city.Id === selectedCityId);
+      setDistricts(selectedCity ? selectedCity.Districts : []);
+      onSelectCity(selectedCity ? selectedCity.Name : '');
+    } else {
+      setDistricts([]);
+      setWards([]);
+      onSelectCity('');
+    }
   };
 
   const handleDistrictChange = (e) => {
     const selectedDistrictId = e.target.value;
-    const selectedDistrict = districts.find(district => district.Id === selectedDistrictId);
-    setWards(selectedDistrict.Wards);
-    onSelectDistrict(selectedDistrict.Name);
+    if (selectedDistrictId) {
+      const selectedDistrict = districts.find(district => district.Id === selectedDistrictId);
+      setWards(selectedDistrict ? selectedDistrict.Wards : []);
+      onSelectDistrict(selectedDistrict ? selectedDistrict.Name : '');
+    } else {
+      setWards([]);
+      onSelectDistrict('');
+    }
   };
 
   const handleWardChange = (e) => {
     const selectedWardId = e.target.value;
-    const selectedWWard = wards.find(ward => ward.Id === selectedWardId);
-    onSelectWard(selectedWWard.Name);
+    if (selectedWardId) {
+      const selectedWard = wards.find(ward => ward.Id === selectedWardId);
+      onSelectWard(selectedWard ? selectedWard.Name : '');
+    } else {
+      onSelectWard('');
+    }
   };
 
   return (
     <div className='flex gap-4'>
+      <div className='w-1/3 '>
+      <label className='font-bold text-center' > Tỉnh/thành phố </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleCityChange}>
         <option value="" selected>Chọn thành phố</option>
         {cities.map(city => (
           <option key={city.Id} value={city.Id}>{city.Name}</option>
         ))}
       </select>
+      </div>
+      <div className='w-1/3'> 
+      <label className='font-bold text-center' > Quận/huyện </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleDistrictChange}>
         <option value="" selected>Chọn quận huyện</option>
         {districts.map(district => (
           <option key={district.Id} value={district.Id}>{district.Name}</option>
         ))}
       </select>
+      </div>
+      <div className='w-1/3'> 
+      <label className='font-bold text-center' > Phường/xã </label>
+
       <select className="form-select form-select-sm mb-3" onChange={handleWardChange}>
         <option value="" selected>Chọn phường xã</option>
         {wards.map(ward => (
           <option key={ward.Id} value={ward.Id}>{ward.Name}</option>
         ))}
       </select>
+      </div>
     </div>
   );
 };

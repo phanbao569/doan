@@ -39,7 +39,6 @@ export default function TTAmdin() {
 
     const fetchData = async () => {
         try {
-            // const response = await axios.get(`http://172.16.0.147:8888/getUserById/${id}`);
             const response = await axios.get(apiUrl(ApiConfig.getAdmin(id)));
             const data = response.data;
             setFormData(data);
@@ -51,7 +50,6 @@ export default function TTAmdin() {
     const fetchTTNV = async () => {
         setIsLoading(false)
         try {
-            // const response = await axios.get(`http://172.16.0.147:8888/TTNV/get/${id}`);
             const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
             const data = response.data;
 
@@ -265,7 +263,7 @@ export default function TTAmdin() {
                                         </label>
                                         {!isEditable ? (
                                             <input type="text" className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" id="coQuan"
-                                                value={`${formTTNV.coQuan.tinh}-${formTTNV.coQuan.huyen}-${formTTNV.coQuan.xa}`}
+                                            value={`${formTTNV.coQuan?.tinh ?? ""}-${formTTNV.coQuan?.huyen ?? ""}-${formTTNV.coQuan?.xa ?? ""}`}
                                                 readOnly />
                                         ) : (
                                             <DiaChi

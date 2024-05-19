@@ -1,18 +1,17 @@
-import React, { Component, useContext, useEffect, useState } from 'react'
-import logodang from './img/logodang.png'
-import logo from './img/footer.jpg'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import Logo from '../../Manager/img/logo.png'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from "react-icons/fa";
-import NapThuTuc from './ThuTucs/NapThuTuc';
-import { getFullNameFromToken, getIDNguoiThayDoi, isTokenExpired } from '../../util/jwtUtils';
-import axios from 'axios';
-import ApiConfig, { apiUrl } from '../../ApiConfig';
-import { GlobalContext } from '../../App';
+import { FaHome } from "react-icons/fa";
+import { CiLogout } from "react-icons/ci";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { MdManageSearch } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 
-export default function Nav() {
+
+export default function HeaderM() {
   const [isOpen, setIsOpen] = useState(false);
-  const idUser = getIDNguoiThayDoi();
-  const { setUser, setTTUser,setqueQuan,setcheckthongtin ,ttuser } = useContext(GlobalContext)
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -30,102 +29,44 @@ export default function Nav() {
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
+    // window.location.reload();
   };
-  const fetchdata = async () => {
-    try {
-      const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-      setUser(()=>response.data);
-      const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
-      setTTUser(()=>responseTT.data)
-    if (ttuser?.hoTen != "" && ttuser?.hoTen !== null && ttuser?.ngaySinh !== null && ttuser?.ngaysinh !== "") setcheckthongtin(true);
-      console.log(ttuser);
-    } catch (error) {
-      console.error('sai gi do :', error);
+  useEffect(() => {
+    if (tokenExpired) {
+      handleLogout();
     }
-  };
-    useEffect(() => {
-      fetchdata();
-        if (!tokenExpired) {
-            const expirationTime = localStorage.getItem('exp');
-            const timeLeft = expirationTime - Date.now()/1000;
-                if (timeLeft){
-                const timeout = setTimeout(() => {
-                    handleLogout();
-                }, timeLeft);
-                return () => clearTimeout(timeout);
-            }
-        }
-    }, [tokenExpired, handleLogout]);
-// console.log(localStorage.getItem('exp')+": "+Date.now())
-   
 
+  }, [tokenExpired]);
 
   return (
-    <nav className=" py-4 bg-yellow-100">
-      <div className="container mx-auto flex justify-center items-center gap-4 px-4">
-        <div class="text-gray  w-1/4 flex justify-start text-XL">
-          <img src={logodang} alt="Logo" />
-          <div className='mt-2 ml-2'>
-            <label > DỊCH VỤ CÔNG  </label>
-            <label > QUẢN LÝ CƯ TRÚ  </label>
-          </div>
-
+    <div>
+      <div className='flex w-full h-28 content-center items-center bg-gradient-to-r from-white via-white to-zinc-700'  >
+        <div className='flex'>
+        <NavLink to={'/'}>
+                <img src={Logo} className='w-16 h-16 ml-28' alt="logo" />
+            </NavLink>
+            <div className='ml-4'>
+                <p className='text-3xl  text-red-700 font-fontgg '>Quản lý nhân khẩu quốc gia</p>
+                <p className='font-fontgg'>Hành chính phục vụ</p>
+            </div>
         </div>
-        <ul className="flex space-x-4   w-full  justify-center items-center ">
-          <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              <Link to="/ChonThuTuc" > Thủ tục hành chính</Link>
-            </a>
-          </li>
-          <a href="#" className="text-gray h-42 hover:text-gray-500">
-            <Link to="/ChonThuTuc" > Nộp hồ sơ trực tuyến</Link>
-          </a>
-          <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              <Link to="/quanlyhoso" > Tra cứu hồ sơ </Link>
-
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              Phản ánh - Kiến nghị
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray hover:text-gray-500">
-              Hỗ trợ - hỏi đáp
-            </a>
-          </li>
-          <li>
-            <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">
-              Khảo sát
-            </Link>
-          </li>
-        </ul>
-        <div class="text-gray font-bold w-1/4 flex justify-end text-lg">
+      
 
 
+        <div className='w-375 h-14'>
           {tokenExpired ? (
-            < div className=' flex ' >
-              <Link to="/login" style={{ textDecoration: 'none' }}>
-                <button class=" mr-4 text-xs bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                  Đăng nhập
-                </button>
-
-
-
-              </Link>
-              <Link to="/register" >
-                <button class=" text-xs bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">
-                  Đăng ký
-                </button>
-
-              </Link>
-            </div  >
+            <div>
+              <NavLink to='/Login' className='w-32  h-10 flex absolute right-60 p-1 border-solid border-2 rounded-md justify-center content-center hover:bg-zinc-700 hover:text-gray-100 hover:border-white'>
+                Đăng nhập
+              </NavLink>
+              <NavLink to='/register' className='w-32 h-10 flex absolute right-20 p-1 border-solid border-2 rounded-md justify-center content-center  hover:bg-zinc-700 hover:text-gray-100 hover:border-white'>
+                Đăng ký
+              </NavLink>
+            </div>
           ) : (
-            <div className="relative w-3/4 ">
+            <div className="absolute flex right-4 text-lg ">
               <div className="" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                <div className="bg-gray-100 is-bordered  px-8 py-2 rounded-md cursor-pointer  flex ">
+                <div className=" is-bordered  px-8 py-2 rounded-md cursor-pointer  flex gap-3 ">
                   <FaUserAlt className=' mt-2' />
                   <label className='mt-1' >
                     {fullName}
@@ -133,23 +74,49 @@ export default function Nav() {
                 </div>
 
                 {isOpen && (
-                    <div className="absolute w-full bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
-                        <div className="  py-1">
-                            <Link to={'/thongtincanhan'} className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Thông tin cá nhân</Link>
-                            <div className="px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">Quản lý hồ sơ</div>
-                            <div onClick={handleLogout} className="px-4 py-2 text-gray-800 hover:bg-red-200 text-xs ">Đăng xuất</div>
-                        </div>
+                  <div className="absolute w-225 bg-white border border-gray-300 rounded-md shadow-lg " onMouseLeave={handleMouseLeave}>
+                    <div className="py-1 w-96 h-36 flex flex-col">
+                      <NavLink to='/thongtincanhan' className="w-1/2 gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs "><FaRegUser/>  Thông tin cá nhân</NavLink>
+                      <NavLink to='/quanlyhoso' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><MdManageSearch /> Quản lý hồ sơ</NavLink>
+                      <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><RiLockPasswordLine /> Đổi mật khẩu</NavLink>
+                      <div onClick={() => { handleLogout() }} className="gap-2 w-1/2 flex px-4 py-2 text-gray-800 hover:bg-red-200 text-xs "><CiLogout />  Đăng xuất</div>
                     </div>
+                  </div>
                 )}
               </div>
             </div>
+
           )}
-
-
-
         </div>
 
+
+
       </div>
-    </nav>
+      <div className='flex items-center justify-center h-10 bg-stone-200'>
+        <NavLink to={'/'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white" >
+        <Link to="/" > <FaHome className='size-6' /></Link>
+          
+        </NavLink>
+
+        <NavLink to={'/ChonThuTuc'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to="/ChonThuTuc" > Thủ tục hành chính</Link>
+        </NavLink>
+        <NavLink to={'/ChonThuTuc'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to="/ChonThuTuc" > Nộp hồ sơ trực tuyến</Link>
+        </NavLink>
+        <NavLink to={'/quanlyhoso'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to="/quanlyhoso" > Tra cứu hồ sơ </Link>
+        </NavLink>
+        <NavLink to={'/hotrohoidap'} className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to="/hotrohoidap" > Hỗ trợ - hỏi đáp </Link>
+        </NavLink>
+        <div className="h-full py-2 px-5  text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        <Link to={'https://docs.google.com/forms/d/e/1FAIpQLSes5un4jt6RyfYr3s8uk5yWyA9M2XmgPjufKOBt081ple8jEA/viewform'} href="#" className="text-gray hover:text-gray-500">
+              Khảo sát
+            </Link>
+        </div>
+      </div>
+    </div>
+
   )
 }

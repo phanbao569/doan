@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import logo from '../img/quochuyvietnam.jpg'
 import giahantamtru from '../img/giahantamtru.jpg'
 import xoadangkytamtru from '../img/xoadangkytamtru.jpg'
@@ -9,15 +9,16 @@ import khaibaothuongtru from '../img/khaibaothuongtru.jpg'
 import xoadangkythuongtru from '../img/xoadangkythuongtru.jpg'
 import { Link } from 'react-router-dom'
 export default function ChonThuTuc() {
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
-        <div className="container h-screen mb-10 h-screen  mx-auto py-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 h-screen  gap-4">
+        <div className="container mb-10  h-screen mx-auto py-8">
+            <div className="grid grid-cols-4 md:grid-cols-4 p-12  gap-4">
                 {/* Khối 1 */}
                 <div    >
                     <Link to={`/thutuc/594ac7fe`} >
                         <img src={giahantamtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
-
                     </Link>
 
                 </div>
@@ -55,7 +56,7 @@ export default function ChonThuTuc() {
                 </div>
                 {/* Khối 6 */}
                 <div >
-                    <Link to={`/thutuc/giahantamtru`} >
+                    <Link to={`/thutuc/b0d416c7`} >
 
                         <img src={khaibaothuongtru} alt="logo" className="w-full h-full  rounded-lg shadow-md " />
                     </Link>

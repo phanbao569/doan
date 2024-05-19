@@ -53,7 +53,7 @@ function EditForm({ formData, handleInputChange, handleSubmit }) {
               <textarea onChange={handleInputChange} id="ketQuaThucHien" name="ketQuaThucHien" style={{ width: "100%", padding: "10px", border: "1px solid #ccc", borderRadius: "5px", boxSizing: "border-box" }} value={formData.ketQuaThucHien}></textarea>
             </div>
   
-            <button onClick={handleSubmit} style={{ width: "100%", padding: "10px", marginTop: "10px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>Gửi</button>
+            <button onClick={handleSubmit} style={{ width: "100%", padding: "10px", marginTop: "10px", backgroundColor: "#007bff", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}>Sửa</button>
           </form>
         </div>
       </div>

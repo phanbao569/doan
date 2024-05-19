@@ -11,7 +11,7 @@ const ThuTucGiaHanTamTru = () => { // Functional component
   }, );
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://172.21.3.222:8888/getVBPL/594ac7fe');
+      const response = await axios.get('http://172.21.2.68:8888/getVBPL/594ac7fe');
       console.log(response);
     } catch (error) {
       console.error('???:', error);

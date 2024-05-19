@@ -1,69 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import { BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill, BsFillGearFill}from 'react-icons/bs'
-import { MdAccountBox,MdMoney } from "react-icons/md";
+import { BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill, BsFillGearFill } from 'react-icons/bs'
+import { MdAccountBox, MdMoney } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { GoLaw } from "react-icons/go";
 import './App.css';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useLocation } from 'react-router-dom';
 export default function SideBar() {
     const [isOpen, setIsOpen] = useState(false);
     const handleUserClick = () => {
         setIsOpen(!isOpen);
     };
+    const [currentPage, setCurrentPage] = useState('');
+    const location = useLocation();
 
-  return (
-    
-<aside id="sidebar" className="">
-        <div className='sidebar-title'>
-            <div className='sidebar-brand'>
-                <Link to="/">
-                <RiAdminFill  className='icon_header'/> MYADMIN
-                </Link>
-                
+    useEffect(() => {
+        setCurrentPage(location.pathname);
+    }, [location]);
+    return (
+
+        <aside id="sidebar" className="">
+            <div className='sidebar-title '>
+                <div className='sidebar-brand'>
+                    <Link to="/">
+                        <RiAdminFill className='icon_header' /> MYADMIN
+                    </Link>
+
+                </div>
+                <span className='icon close_icon'>X</span>
             </div>
-            <span className='icon close_icon'>X</span>
-        </div>
 
-        <ul className='sidebar-list'>
-            <li className='sidebar-list-item'>
-                <Link to="/thongtinadmin">
-                    <BsGrid1X2Fill className='icon'/> THÔNG TIN CỦA TÔI
+            <ul className='sidebar-list'>
+                {/* <li className='sidebar-list-item'>
+                <Link className=' flex flex-row items-center' to="/thongtinadmin">
+                    <BsGrid1X2Fill className='icon'/>
+                     <span class="ml-2">THÔNG TIN CỦA TÔI</span> 
                 </Link> 
-            </li>
-            <li className='sidebar-list-item'onClick={handleUserClick}>
-                    <div >
-                        <BsPeopleFill className='icon'/> THÔNG TIN USER
-                    </div>
-                </li>
-                {isOpen && (
-                        <ul className="">
-                            <li className='sidebar-list-item'><Link to="/thongtinuser">USER</Link></li>
-                            <li className=' sidebar-list-item'><Link to="/thongtinemploy">EMPLOYEE</Link></li>
-                            <li className=' sidebar-list-item'><Link to="/thongtinmanager">MANAGER</Link></li>
-                        </ul>
-                    )}
-            <li className='sidebar-list-item'>
-                <Link to="thongketaikhoan">
-                    <MdAccountBox className='icon'/> THỐNG KÊ TÀI KHOẢN
+            </li> */}
+                <Link to='/thongtinuser'>
+                    <li className={`sidebar-list-item ${currentPage === '/thongtinuser' ? 'active' : ''}`}>
+                        <div className=' flex flex-row items-center' >
+                            <BsPeopleFill className='icon' />
+                            <span class="ml-2">THÔNG TIN TÀI KHOẢN</span>
+                        </div>
+                    </li>
                 </Link>
-            </li>
 
-            <li className='sidebar-list-item'>
-                <Link to="homedash">
-                    <BsFillArchiveFill className='icon'/>THỐNG KÊ HỒ SƠ
+                <Link to="thongketaikhoan" className={`sidebar-list-item ${currentPage === '/thongketaikhoan' ? 'active' : ''}`}>
+                    <div className=' flex flex-row items-center'  >
+                        <MdAccountBox className='icon' />
+                        <span class="ml-2">THỐNG KÊ TÀI KHOẢN</span>
+                    </div>
                 </Link>
-            </li>
-            <li className='sidebar-list-item'>
-                <Link to="thongkedoanhthu">
-                    <MdMoney className='icon'/>THỐNG KÊ DOANH THU
+
+                <Link to="thongkehoso" className={`sidebar-list-item ${currentPage === '/thongkehoso' ? 'active' : ''}`}>
+                    <div className=' flex flex-row items-center' >
+                        <BsFillArchiveFill className='icon' />
+                        <span class="ml-2">THỐNG KÊ HỒ SƠ</span>
+                    </div>
                 </Link>
-            </li>
-            <li className='sidebar-list-item'>
-                <Link to="TTVBPL">
-                <GoLaw className='icon'/>VĂN BẢN PHÁP LUẬT
+
+                <Link to="thongkedoanhthu" className={`sidebar-list-item ${currentPage === '/thongkedoanhthu' ? 'active' : ''}`}>
+                    <div className=' flex flex-row items-center' >
+                        <MdMoney className='icon' />
+                        <span class="ml-2">THỐNG KÊ DOANH THU</span>
+                    </div>
                 </Link>
-            </li>
-        </ul>
-    </aside>
-  )
+
+                <Link to="TTVBPL" className={`sidebar-list-item ${currentPage === '/TTVBPL' ? 'active' : ''}`}>
+                    <div className=' flex flex-row items-center' >
+                        <GoLaw className='icon' />
+                        <span class="ml-2">VĂN BẢN PHÁP LUẬT</span>
+                    </div>
+                </Link>
+            </ul>
+        </aside>
+    )
 }

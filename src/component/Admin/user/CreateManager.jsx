@@ -3,6 +3,7 @@ import React from 'react'
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import DiaChi from '../../Diachi';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 export default function CreateManager() {
     const [formData, setFormData] = useState({
         cccd: '',
@@ -35,21 +36,22 @@ export default function CreateManager() {
             const response = await axios.post(apiUrl(ApiConfig.createManager),formData)
             const respondata= response.data
             console.log("đăng kí thành công"+respondata)
+            toast.success('Đăng kí tài khoản '+ formData.cccd+ ' thành công!')
         } catch (error) {
           if (error.response) {
             // Nếu có phản hồi từ server
             console.error("Đăng ký không thành công do lỗi phản hồi từ server: ", JSON.stringify(error.response.data));
-            alert("Đăng ký không thành công do lỗi phản hồi từ server: " + error.response.data);
+            toast.error("Đăng ký không thành công do lỗi phản hồi từ server: " + error.response.data);
         } else {
             // Nếu không có phản hồi từ server (có thể là lỗi mạng hoặc lỗi khác)
             console.error("Đăng ký không thành công do lỗi không có phản hồi từ server: ", error);
-            alert("Đăng ký không thành công do lỗi không có phản hồi từ server: " + error.message);
+            toast.error("Đăng ký không thành công do lỗi không có phản hồi từ server: " + error.message);
         }
         }
     }
   return (
     <div className='h-atuo'  >
-
+<ToastContainer/>
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center">
           <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">

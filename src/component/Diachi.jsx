@@ -20,22 +20,37 @@ const DiaChi = ({ onSelectCity, onSelectDistrict, onSelectWard }) => {
 
   const handleCityChange = (e) => {
     const selectedCityId = e.target.value;
-    const selectedCity = cities.find(city => city.Id === selectedCityId);
-    setDistricts(selectedCity.Districts);
-    onSelectCity(selectedCity.Name);
+    if (selectedCityId) {
+      const selectedCity = cities.find(city => city.Id === selectedCityId);
+      setDistricts(selectedCity ? selectedCity.Districts : []);
+      onSelectCity(selectedCity ? selectedCity.Name : '');
+    } else {
+      setDistricts([]);
+      setWards([]);
+      onSelectCity('');
+    }
   };
 
   const handleDistrictChange = (e) => {
     const selectedDistrictId = e.target.value;
-    const selectedDistrict = districts.find(district => district.Id === selectedDistrictId);
-    setWards(selectedDistrict.Wards);
-    onSelectDistrict(selectedDistrict.Name);
+    if (selectedDistrictId) {
+      const selectedDistrict = districts.find(district => district.Id === selectedDistrictId);
+      setWards(selectedDistrict ? selectedDistrict.Wards : []);
+      onSelectDistrict(selectedDistrict ? selectedDistrict.Name : '');
+    } else {
+      setWards([]);
+      onSelectDistrict('');
+    }
   };
 
   const handleWardChange = (e) => {
     const selectedWardId = e.target.value;
-    const selectedWWard = wards.find(ward => ward.Id === selectedWardId);
-    onSelectWard(selectedWWard.Name);
+    if (selectedWardId) {
+      const selectedWard = wards.find(ward => ward.Id === selectedWardId);
+      onSelectWard(selectedWard ? selectedWard.Name : '');
+    } else {
+      onSelectWard('');
+    }
   };
 
   return (

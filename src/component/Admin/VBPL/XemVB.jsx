@@ -4,6 +4,7 @@ import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import { useParams } from 'react-router-dom';
 import { GiAutoRepair } from "react-icons/gi";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { ToastContainer, toast } from 'react-toastify';
 export default function XemVB() {
   let { id } = useParams();
 
@@ -64,13 +65,26 @@ export default function XemVB() {
       [name]: value,
     });
   };
-
-  const handleSubmit = async () => {
+  const validateFormData = () => {
+    for (const key in formData) {
+      if (formData[key] === '') {
+        return false;
+      }
+    }
+    return true;
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateFormData()) {
+      toast.warn('Bạn phải nhập đầy đủ các trường!');
+      return;
+    }
     try {
       await axios.put(apiUrl(ApiConfig.updateVBPL), formData);
       // setVb(formData);
 
       setEditMode(false);
+      toast.success('Cập nhật văn bản pháp luật thành công')
     } catch (error) {
       console.error('Update VB error:', error);
     }
@@ -82,7 +96,7 @@ export default function XemVB() {
 
   return (
     <div>
-
+<ToastContainer/>
       {vb ? (
         editMode ? (<div className='grid-container' style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "20px" }}>
           <div className='' style={{ width: "60%", padding: "20px", border: "1px solid #ccc", borderRadius: "5px", backgroundColor: "#f9f9f9" }}>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import XemVB from './XemVB';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import { ToastContainer, toast } from 'react-toastify';
 export default function TTVBPL() {
     const [formData,setFormData]=useState([
     ]
@@ -27,11 +28,15 @@ export default function TTVBPL() {
       try {
         const response = await axios.delete(apiUrl(ApiConfig.deleteVBPL(id)));
           
-          alert( response.data);
-          window.location.reload();
+          toast.success( response.data);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+          
       } catch (error) {
 
           console.error('Lỗi khi xóa mục:', error.data);
+          toast.error('Lỗi khi xóa mục:'+ error.data)
       }
   }; 
 
@@ -40,7 +45,7 @@ export default function TTVBPL() {
             
       
       <div className='' style={{ display: "flex", justifyContent: "space-between", flexDirection: "row-reverse",color:"#000" }}>
-       
+       <ToastContainer/>
       {/* <div className='container' style={{ width: "100%", padding: "20px", borderRadius: "5px"}}>
       <Link to={`/VBPL`} className='button-xemvb'>Thêm mới</Link>
                 <table style={{ width:"90%", margin: "0 auto", borderCollapse: "collapse" }}>

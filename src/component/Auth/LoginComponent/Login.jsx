@@ -97,7 +97,7 @@
           toast.error('xác nhận thất bại.' + error.data);
         }
       } else {
-        alert("bạn nhập mã xác nhận chưa đúng")
+        toast.warn("bạn nhập mã xác nhận chưa đúng")
       }
     };
     // hàm xử lí dăng nhập 1* tức là chưa cần mail mới chỉ ở xác nhận tk và mật khẩu
@@ -133,12 +133,12 @@
         } else {
           console.error('Response or response.data is undefined');
           // Hiển thị thông báo lỗi cho người dùng
-          alert('Đăng nhập thất bại: Không có dữ liệu từ máy chủ.');
+          toast.error('Đăng nhập thất bại: Không có dữ liệu từ máy chủ.');
         }
       } catch (error) {
         // setShowErrAlert(true);
-        setShowWarningAlert(true)
-        console.error('Đăng nhập thất bại 2:', error.response?.data || error.message);
+        toast.error('Đăng nhập thất bại :'+ (error.response?.data || error.message))
+        console.error('Đăng nhập thất bại 3:', error.response?.data || error.message);
         
         // alert('Đăng nhập thất bại:' + (error.response?.data || error.message));
       }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify, BsPeopleFill, BsFillArchiveFill } from 'react-icons/bs'
 import './App.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,13 +7,16 @@ import SideBar from './Sidebar';
 import { MdAccountBox, MdLogout, MdMoney } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { GoLaw } from 'react-icons/go';
+import { GlobalContext } from '../../../App';
 function Header() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
+    setRole("")
     navigate('/login');
-    window.location.reload()
+   // window.location.reload()
   };
+  const { user, ttuser,setRole } = useContext(GlobalContext)
 
   const tokenExpired = isTokenExpired();
 

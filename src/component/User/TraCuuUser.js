@@ -103,7 +103,7 @@ export default function TraCuuM() {
                     <input className='w-880 h-12 pl-2 ml-4 border ' type="number" min={0} maxLength={12} placeholder='Số CCCD *' onChange={handleCccdChange} />
                     <button className='flex text-white border h-12 items-center ml-4 bg-zinc-700 p-2 gap-2' onClick={handleSendVerificationCode} >
                         {/* <FaSistrix className='size-6 ml-2 ' /> */}
-                        Gửi mã xác nhận
+                        Tìm kiếm
                     </button>
                 </div>)}
 

@@ -7,8 +7,10 @@ import { CiLogout } from "react-icons/ci";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdManageSearch } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
+import { GlobalContext } from '../../App';
 export default function HeaderM() {
     const [isOpen, setIsOpen] = useState(false);
+    const { user, ttuser,setRole } = useContext(GlobalContext)
 
     const handleMouse = () => {
         setIsOpen(!isOpen);
@@ -18,14 +20,16 @@ export default function HeaderM() {
     const tokenExpired = isTokenExpired();
     const handleLogout = () => {
         localStorage.removeItem('token');
+        setRole('')
+       // window.location.reload();
         navigate('/login');
     };
 
-    useEffect(() => {
-        if (tokenExpired) {
-            handleLogout();
-        }
-    }, [tokenExpired]);
+    // useEffect(() => {
+    //     if (tokenExpired) {
+    //         handleLogout();
+    //     }
+    // }, [tokenExpired]);
 
     return (
         <div className="flex font-fontgg sm:flex-row w-full bg-gradient-to-r from-white via-white to-zinc-700">

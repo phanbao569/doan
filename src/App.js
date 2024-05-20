@@ -321,10 +321,6 @@ function App() {
 
         )}
       </div>
-
-
-
-
     </GlobalContext.Provider>
   );
 }

@@ -38,17 +38,18 @@ export default function HomeM() {
           <img src="https://th.bing.com/th/id/R.8e2cbe8fba458b0b00affc2604e89a36?rik=si%2faKUDCQVl3Cg&riu=http%3a%2f%2fhopdong.einvoice.com.vn%2fContent%2fimages%2fhopdong%2fVanBanLuat.jpg&ehk=S7%2buKh8d39hGCnaK1d6aZ3voezAYCqv7Zb0YvoISMrE%3d&risl=&pid=ImgRaw&r=0" alt="" />
         </div>
         <div className="image-item">
-          <img src="https://images.unsplash.com/photo-1700842240282-8db1cb01dbf4?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-        </div>
-        <div className="image-item">
-          <img src="https://images.unsplash.com/photo-1701221366380-e97f961f0bbc?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-        </div>
-        <div className="image-item">
           <img src="https://images.unsplash.com/photo-1682695796795-cc287af78a2b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
         </div>
         <div className="image-item">
-          <img src="https://images.unsplash.com/photo-1701221366380-e97f961f0bbc?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+          <img src="https://giasudiem10.edu.vn/wp-content/uploads/2023/06/5-dieu-bac-ho-day.jpg" className='w-full h-full' alt="" />
         </div>
+        <div className="image-item">
+          <img src="https://sohanews.sohacdn.com/zoom/600_315/2013/daituog-97c3a.jpg" className='w-full h-full' alt="" />
+        </div>
+        <div className="image-item">
+          <img src="https://giasudiem10.edu.vn/wp-content/uploads/2023/06/5-dieu-bac-ho-day.jpg" className='w-full h-full' alt="" />
+        </div>
+        
       </Slider>
 
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">

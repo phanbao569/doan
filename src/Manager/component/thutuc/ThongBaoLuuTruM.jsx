@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, {  useEffect, useState } from 'react'
 import ApiConfig, { apiUrl } from '../../../ApiConfig.js';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getIDNguoiThayDoi } from '../../../util/jwtUtils.js';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function ThongBaoLuuTruM() {
     const location = useLocation();
+    const Navigate=useNavigate();
     const [id, setid] = useState(location.state.value);
     const idM=getIDNguoiThayDoi();
     console.log(id);
@@ -62,14 +64,36 @@ export default function ThongBaoLuuTruM() {
     })
     const handClickConfirm = async () => {  
         form.idNguoiDuyet =idM;
-        const res = await axios.put(apiUrl(ApiConfig.putThongBaoLuuTru),form);
-        console.log(res.data);
+        form.trangThai="Paying"
+        HandleSubmit();        
     }
     const handClickNotConfirm=async () => {  
         form.idNguoiDuyet =idM;
-        const res = await axios.delete(apiUrl(ApiConfig.deleteThongBaoLuuTru(id)));
-        console.log(res.data);
+        form.trangThai="Cancelled";
+        HandleSubmit();
+
     }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+    };
+    const HandleSubmit = async () => {
+        try{
+        if (form.note.trim() == "") {
+            toast.error("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+        else {
+            toast.success("Done!");
+            await axios.put(apiUrl(ApiConfig.putThongBaoLuuTru),form);
+            setTimeout(() => {
+                Navigate('/PheDuyetHoSoM');
+            }, 1000);
+        }} 
+        catch (error) {
+            console.error('Lỗi khi gửi dữ liệu:', error);
+        }
+    };
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         console.log(date.toISOString().split("T")[0]);
@@ -80,6 +104,7 @@ export default function ThongBaoLuuTruM() {
     };
     return (
         <div className="min-h-screen font-fontgg ">
+            <ToastContainer/>
             <div className='w-[1100px] relative flex gap-2 text-center mt-6 mb-3 m-auto p-4 items-center'>
                 <h1 className='flex-1 text-3xl font-fontgg'>Thông báo lưu trú</h1>
                 <div className='absolute right-0 text-start px-2 text-red-900 bg-white w-150 shadow-md rounded'>Lệ phí: {form.lePhi}</div>
@@ -181,13 +206,20 @@ export default function ThongBaoLuuTruM() {
                         </div>
                     </div>
                 </div>
-
-
-                <div className="flex justify-center gap-2">
-                    <button onClick={handClickConfirm} type="submit" className="w-52 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Duyệt</button>
-                    <button onClick={handClickNotConfirm} type="submit" className="w-52 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Không duyệt</button>
+                <div>
+                    <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Note</h1>
+                    <div className='mt-2'>
+                        <div className="mb-2 flex flex-1 ">
+                            <input name='note' onChange={handleInputChange} className="w-full h-20 bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" />
+                        </div>
+                    </div>
                 </div>
+
             </form>
+            <div className="flex justify-center gap-2 mt-3">
+                <button onClick={handClickConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Duyệt</button>
+                <button onClick={handClickNotConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Không duyệt</button>
+            </div>
             <Link to='/PheDuyetHoSoM' className='ml-52 text-sm underline decoration-1 hover:text-red-600 '>Back</Link>
         </div>
 

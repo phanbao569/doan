@@ -5,6 +5,7 @@ import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { MdManageAccounts } from "react-icons/md";
 import { FaCaretRight, FaEye } from "react-icons/fa";
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
+import { ToastContainer } from 'react-toastify';
 
 export default function PheDuyetHoSoM() {
 
@@ -16,6 +17,7 @@ export default function PheDuyetHoSoM() {
   const [khaiBaoThuongTrus, setKhaiBaoThuongTrus] = useState([]);
   const [khaiBaoTamTrus, setKhaiBaoTamTrus] = useState([]);
   const [showDanhSach, setShowDanhSach] = useState(false);
+  const [showThongTin, setShowThongTin] = useState(false);
   const id = getIDNguoiThayDoi();
   const [danhSach, setDanhSach] = useState([]);
   const navigate = useNavigate();
@@ -53,14 +55,13 @@ export default function PheDuyetHoSoM() {
       default:
         break;
     }
-
   }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
         let data = response.data.coQuan;
+        console.log(data);
         const response2 = await axios.post(apiUrl(ApiConfig.getAllHoSoCheckingByCoQuan), data);
         setGiaHanTamTrus(response2.data.giaHanTamTrus);
         setThongBaoLuuTrus(response2.data.thongsetthongBaoLuuTrus);
@@ -95,10 +96,9 @@ export default function PheDuyetHoSoM() {
             // Thêm các trường khác bạn quan tâm từ item
           }))
           setDanhSach(ds);
-
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
-
+        setShowThongTin(true);
         break;
       // Xử lý hiển thị dữ liệu tương ứng với khaiBaoTamTrus
       case 'khaiBaoTamTrus':
@@ -112,9 +112,10 @@ export default function PheDuyetHoSoM() {
             // Thêm các trường khác bạn quan tâm từ item
           }))
           setDanhSach(ds);
+
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
-
+        setShowThongTin(true);
         break;
       // Xử lý hiển thị dữ liệu tương ứng với khaiBaoTamVangs
       case 'khaiBaoTamVangs':
@@ -127,8 +128,10 @@ export default function PheDuyetHoSoM() {
             diaChi: item.diaChi.xa + ' - ' + item.diaChi.tinh + ' - ' + item.diaChi.huyen
           }))
           setDanhSach(ds);
+
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
+        setShowThongTin(true);
         break;
       // Xử lý hiển thị dữ liệu tương ứng với khaiBaoThuongTrus
       case 'khaiBaoThuongTrus':
@@ -143,6 +146,8 @@ export default function PheDuyetHoSoM() {
           setDanhSach(ds);
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
+        setShowThongTin(true);
+
         break;
       // Xử lý hiển thị dữ liệu tương ứng với thongBaoLuuTrus
       case 'thongBaoLuuTrus':
@@ -158,6 +163,7 @@ export default function PheDuyetHoSoM() {
           setDanhSach(ds);
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
+        setShowThongTin(true);
         break;
       // Xử lý hiển thị dữ liệu tương ứng với xoaDangKyTamTrus
       case 'xoaDangKyTamTrus':
@@ -170,11 +176,10 @@ export default function PheDuyetHoSoM() {
             diaChi: item.coQuanThucHien.xa + ' - ' + item.coQuanThucHien.tinh + ' - ' + item.coQuanThucHien.huyen
             // Thêm các trường khác bạn quan tâm từ item
           }))
-          
           setDanhSach(ds);
-         
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
+        setShowThongTin(true);
 
         break;
       // Xử lý hiển thị dữ liệu tương ứng với xoaDangKyThuongTrus
@@ -189,8 +194,10 @@ export default function PheDuyetHoSoM() {
             // Thêm các trường khác bạn quan tâm từ item
           }))
           setDanhSach(ds);
+
         }
         else setDanhSach([{ id: '-', ngayTao: '-', diaChi: '-' }]);
+        setShowThongTin(true);
         break;
       default:
         setType(type);
@@ -209,6 +216,7 @@ export default function PheDuyetHoSoM() {
 
   return (
     <div className='w-full min-h-screen mt-4 text-center' >
+      <ToastContainer />
       <div className='flex '>
         <div className='h-screen -mt-6 bg-gray-800'>
           <NavLink to='/PheDuyetTaiKhoanM' className='flex w-225 h-10 text-white bg-gray-800  items-center gap-2 p-2 my-2'>
@@ -262,65 +270,57 @@ export default function PheDuyetHoSoM() {
           )}
         </div>
         {/* Form thông tin  */}
-        <div className='ml-32'>
-          {/* <div className='p-2'> */}
-          <h1 className='block text-2xl font-fontgg font-bold mb-4'>Danh sách thủ tục</h1>
-          <table className="w-880 min-w-880 table-auto text-center">
-            <thead>
-              <tr className="font-bold w-460 dark:bg-meta-4 text-center bg-slate-400">
-                <th className="min-w-[80px] py-4 text-black dark:text-white">
-                  STT
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  ID
-                </th>
-                <th className="min-w-[550px] py-4 text-black dark:text-white">
-                  Địa chỉ
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  Ngày tạo
-                </th>
-                <th className="min-w-[150px] py-4 text-black dark:text-white">
-                  <FaEye className='m-auto' />
-                </th>
-              </tr>
-            </thead>
-            {danhSach.map((item, index) => (
-              <tbody className='bg-slate-200 ml-32'>
+        {showThongTin && (
+          <div className='w-full'>
+            {/* <div className='p-2'> */}
+            <h1 className='block text-2xl font-fontgg font-bold mb-4'>Danh sách thủ tục</h1>
+            <table className="w-full pb-8 text-sm text-center  rtl:text-right text-gray-500 dark:text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-600">
                 <tr>
-                  <td className="border-b border-[#eee] py-3 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                    <p to='' className="font-medium text-black dark:text-white">
-                      {item.id == '-' ? '-' : index + 1}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-red-700 dark:text-red-700">
-                      {item.id}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-black   dark:text-black">
-                      {item.diaChi}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                    <p className="text-black   dark:text-black">
-                      {item.ngayTao}
-                    </p>
-                  </td>
-                  <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark ">
-                    <div onClick={() => handleViewDetail(item.id)} className="text-black   dark:text-black cursor-pointer">
-                      {item.id == '-' ? '-' : 'Xem hồ sơ'}
-                    </div>
-                  </td>
+                  <th scope="col" className="px-6 py-3">
+                    STT
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    ID
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Địa chỉ
+                  </th>
+                  <th scope="col" className="px-7 py-3">
+                    Ngày tạo
+                  </th>
+                  <th scope="col" className="px-7 py-3">
+                    <FaEye className='m-auto' />
+                  </th>
                 </tr>
+              </thead>
+              <tbody>
+                {danhSach.map((item, index) => (
+                  <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {item.id == '-' ? '-' : index + 1}
+                    </th>
+                    <td className="px-6 py-4">
+                      {item.id}
+                    </td>
+                    <td className="px-6 py-4">
+                      {item.diaChi}
+                    </td>
+                    <td className="px-6 py-4">
+                      {item.ngayTao}
+                    </td>
+
+                    <td className="px-6 py-4 ">
+                      <div onClick={() => handleViewDetail(item.id)} className="text-black   dark:text-black cursor-pointer">
+                        {item.id == '-' ? '-' : 'Xem hồ sơ'}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-            ))}
-
-          </table>
-
-
-        </div>
+            </table>
+          </div>
+        )}
       </div>
     </div >
 

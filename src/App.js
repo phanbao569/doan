@@ -220,7 +220,7 @@ function App() {
           <div>
             {/* Xử lý cho Employ */}
             <Routes>
-            <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<HomeM />} />
               <Route path="/VBPLM" element={<VBPLM />} />
@@ -248,11 +248,13 @@ function App() {
             </Routes>
           </div>
         ) : role === 'Manager' ? (
-          <div>
+          <div className='h-full min-h-screen'>
             {/* Xử lý cho Manager */}
+            <HeaderM/>
+            <NavM/>
             <Routes>
-            <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register/>} />
               <Route path="/" element={<HomeM />} />
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
@@ -275,13 +277,14 @@ function App() {
               <Route path='/xem-employ/:idUser' element={<GetEmById />} />
               <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
               <Route path="/tkdtb" element={<TKDTB />} />
-
+              <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
+              <Route path="/changePass" element={<ChangePassword />} />
             </Routes>
+            <FooterM />
           </div>
         ) : (
           // k dang nhap 
           <div className='h-full min-h-screen'>
-
             <NavUser />
             <Routes>
               <Route path="/login" element={<Login />} />
@@ -296,11 +299,10 @@ function App() {
               <Route path="/hotrohoidap" element={<Login />} />
               <Route path="/*" element={<Login />} />
               <Route path="/thutuc/:id" element={<ThuTuc />} />
-
             </Routes>
             <FooterM />
           </div>
-        
+
         )}
       </div>
 

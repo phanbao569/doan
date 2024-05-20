@@ -3,20 +3,19 @@ import Logo from '../img/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getFullNameFromToken, isTokenExpired } from '../../util/jwtUtils';
 import { FaUserAlt } from 'react-icons/fa';
-
+import { CiLogout } from "react-icons/ci";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { MdManageSearch } from "react-icons/md";
+import { FaRegUser } from "react-icons/fa";
 export default function HeaderM() {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleMouse = () => {
         setIsOpen(!isOpen);
     };
-
-
     const navigate = useNavigate();
     const fullName = getFullNameFromToken();
-
     const tokenExpired = isTokenExpired();
-
     const handleLogout = () => {
         localStorage.removeItem('token');
         navigate('/login');
@@ -31,7 +30,7 @@ export default function HeaderM() {
     return (
         <div className="flex font-fontgg sm:flex-row w-full bg-gradient-to-r from-white via-white to-zinc-700">
             <div className="flex flex-1 ml-28 justify-center sm:justify-start items-center p-4">
-                <NavLink to={'/'} onClick={handleLogout}>
+                <NavLink to={'/'} >
                     <img src={Logo} className="w-16 h-16" alt="logo" />
                 </NavLink>
                 <div className="flex-1 ml-4">
@@ -57,20 +56,25 @@ export default function HeaderM() {
                         </NavLink>
                     </div>
                 ) : (
-                    <div className="">
+                    <div className="flex-1">
                         <div className="flex items-center relative">
-                            <div onClick={handleMouse} className=" px-8 py-2 rounded-md cursor-pointer flex items-center gap-3 ">
-                                <FaUserAlt />
-                                <label className='hover:cursor-pointer'>{fullName}</label>
+                            <div onClick={handleMouse} className=" absolute right-28 rounded-md cursor-pointer flex items-center gap-3 ">
+                                <label className='hover:cursor-pointer hover:text-white'>{fullName}</label>
                             </div>
                             {isOpen && (
-                                <div className=" absolute right-0 top-[2px] mt-10 w-48 bg-white border border-gray-300 rounded-md shadow-lg" >
+                                <div className=" absolute right-9    top-[2px] mt-3 w-48 bg-white border border-gray-300 rounded-md shadow-lg" >
                                     {/* <NavLink to="/thongtincanhan" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">
                                         Thông tin cá nhân
                                     </NavLink> */}
-                                    <p onClick={handleLogout} className="block px-4 py-2 text-gray-800 hover:bg-red-200 text-sm cursor-pointer">
-                                        Đăng xuất
-                                    </p>
+                                    <NavLink to='/thongtincanhan' className="w-full gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">
+                                        <FaRegUser />  Thông tin cá nhân
+                                    </NavLink>
+                                    <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">
+                                        <RiLockPasswordLine /> Đổi mật khẩu
+                                    </NavLink>
+                                    <NavLink onClick={handleLogout} className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">
+                                        <CiLogout />Đăng xuất
+                                    </NavLink>
                                 </div>
                             )}
                         </div>

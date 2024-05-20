@@ -1,11 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { PureComponent } from 'react';
-import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts'
-import { Link } from 'react-router-dom';
-import ReactApexChart from 'react-apexcharts';
+import { PieChart, Pie, Legend, Tooltip, Cell, LineChart, Line } from 'recharts'
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
-import { IoIosSearch } from "react-icons/io";
 import ApiConfig, { apiUrl } from '../../ApiConfig';
 import GetYears from './GetYears'
 export default function ThongKeHoSo() {
@@ -16,13 +12,11 @@ export default function ThongKeHoSo() {
   })
   const [coQuanM, setCoQuanM] = useState({})
   const [tKM, setTKM] = useState({})
-  const [filter, setFilter] = useState({
-    filterText: '',
-  })
+
   const [show, setShow] = useState({})
   const fetchdata = async () => {
     try {
-      const response = await axios.get(`http://192.168.10.72:8888/TTNV/get/${id}`)
+      const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
       // setCoQuanM(response.data.coQuan)
       // console.log(response.data.coQuan);
       setFormData({ ...formData, coQuan: response.data.coQuan });
@@ -31,14 +25,13 @@ export default function ThongKeHoSo() {
     } catch {
 
     }
-
   }
   const fetchdata2 = async () => {
     console.log(formData)
     if (formData !== null) {
       try {
 
-        const response2 = await axios.post(`http://192.168.10.72:8888/getThongKeHoSoCoQuan`, formData)
+        const response2 = await axios.post(apiUrl(ApiConfig.getThongKeHoSoCoQuan), formData);
         console.log(response2.data.body);
 
         setTKM(response2.data.body)
@@ -92,8 +85,8 @@ export default function ThongKeHoSo() {
   const tongC = tinhCancel();
   const tongD = tinhDone();
   const data01 = [
-    { name: 'Đơn đã duyệt', value: tongD, color: '#72ca9d' },
-    { name: 'Đơn đã hủy', value: tongC, color: '#E54646' },
+    { name: 'Đơn đã duyệt', value: tongD, color: '#34D399' },
+    { name: 'Đơn đã hủy', value: tongC, color: '#EF4444' },
   ];
   const handleYearChange = (year) => {
     setFormData((prevFormSend) => ({
@@ -102,33 +95,44 @@ export default function ThongKeHoSo() {
     }));
   };
   return (
-    <div>
-      <h2> tổng hs: {tongC}-{tongD}</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <div className='bg-white text-black max-w-24 '>
-          <GetYears onChange={handleYearChange} /></div>
-
-
+    <div className='min-h-screen mt-10'>
+      <div className='flex text-black absolute right-32 max-w-48 items-center'>
+        <h2> Năm:</h2>
+        <GetYears onChange={handleYearChange} />
       </div>
-      <PieChart width={400} height={400}>
-        <Pie
-          dataKey="value"
-          data={data01}
-          cx={200}
-          cy={200}
-          innerRadius={40}
+      <div className='flex ml-28 item-center justify-center'>
+        <PieChart width={400} height={400}>
+          <Pie
+            dataKey="value"
+            data={data01}
+            cx={200}
+            cy={200}
 
-          label
-        >
-          {
-            data01.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))
-          }
-        </Pie>
-        <Tooltip />
-      </PieChart>
+            innerRadius={40}
 
+            label
+          >
+            {
+              data01.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+              ))
+            }
+          </Pie>
+          <Tooltip />
+        </PieChart>
+        <div className='w-300 pt-28 ml-8'>
+          <div className='flex gap-3 items-center  mb-3'>
+            <div className='w-12 mb-1 h-4 text-center bg-emerald-400'>
+            </div>
+            Tổng hồ sơ đã duyệt
+          </div>
+          <div className='flex gap-3 items-center mb-3'>
+            <div className='w-12 mb-1 h-4 text-center bg-red-500'>
+            </div>
+            Tổng hồ sơ đã hủy
+          </div>
+        </div>
+      </div>
 
       <div>
         <div className="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -153,7 +157,7 @@ export default function ThongKeHoSo() {
                 <th scope="col" className="px-6 py-3 w-1/6">
                   Đơn duyệt
                 </th>
-                <th scope="col" className="px-6 py-3 w-1/6">
+                <th scope="col" className=" px-6 py-3 w-1/6 whitespace-nowrap">
                   Đơn hủy
                 </th>
               </tr>
@@ -166,11 +170,11 @@ export default function ThongKeHoSo() {
                       {index + 1}
                     </td>
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      {value.hoTen}
+                      {key}
                     </th>
 
                     <td className="px-6 py-4">
-                      {key}
+                      {value.hoTen}
                     </td>
                     <td className="px-6 py-4">
                       {value.cccd}
@@ -178,10 +182,10 @@ export default function ThongKeHoSo() {
                     <td className="px-6 py-4">
                       {value.email}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-12 py-4">
                       {value.Done}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-12 py-4">
                       {value.Cancelled ? (value.Cancelled) : (0)}
                     </td>
 

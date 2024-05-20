@@ -79,7 +79,7 @@ export default function HeaderM() {
                       <NavLink to='/thongtincanhan' className="w-1/2 gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs "><FaRegUser/>  Thông tin cá nhân</NavLink>
                       <NavLink to='/quanlyhoso' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><MdManageSearch /> Quản lý hồ sơ</NavLink>
                       <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-1/2 hover:bg-gray-200 text-xs "><RiLockPasswordLine /> Đổi mật khẩu</NavLink>
-                      <div onClick={() => { handleLogout() }} className="gap-2 w-1/2 flex px-4 py-2 text-gray-800 hover:bg-red-200 text-xs "><CiLogout />  Đăng xuất</div>
+                      <NavLink  onClick={() => { handleLogout() }}  className="gap-2 w-1/2 flex px-4 py-2 text-gray-800 hover:bg-red-200 text-xs "><CiLogout />  Đăng xuất</NavLink>
                     </div>
                   </div>
                 )}

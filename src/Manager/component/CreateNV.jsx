@@ -41,7 +41,7 @@ export default function CreateNV() {
         event.preventDefault();
         console.log("dữ liệu gửi đi:", JSON.stringify(formData))
         try {
-            const response = await axios.post('http://192.168.10.233:8888/manager/createEmployee',formData)
+            const response = await axios.post(apiUrl(ApiConfig.createEmployee),formData)
             const respondata= response.data
             console.log("đăng kí thành công"+respondata)
         } catch (error) {
@@ -67,7 +67,6 @@ export default function CreateNV() {
             <div className="mb-6">
               <label htmlFor="username" className="text-sm block mb-2 font-medium text-gray-700">CCCD đăng kí</label>
               <input type="text" id="cccd" placeholder="CCCD đăng kí" name="cccd" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
-
             </div>
             <div className="mb-6">
               <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Mật khẩu</label>

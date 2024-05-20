@@ -2,36 +2,100 @@ import React, { useContext, useEffect, useState } from 'react'
 import QR from '../img/image.png'
 import ApiConfig, { apiUrl } from '../../ApiConfig';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { getIDNguoiThayDoi } from '../../util/jwtUtils';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function TTUserM() {
-    // const [user, setUser] = useState()
-    // const [ttuser, setTTUser] = useState()
-    // const location = useLocation();
-    // // Lấy props được truyền từ đối tượng location
-    // const [idUser, setidUser] = useState(location.state.value);
-    const { user, ttuser, setttuser } = useState()
-    // const fetchdata = async () => {
-    //     try {
-    //         const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
-    //         setUser(() => response.data);
-    //         const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
-    //         setTTUser(() => responseTT.data)
-    //         setIsLoaded(true)
-    //     } catch (error) {
-    //         console.error('sai gi do :', error);
-    //     }
-    // };
-    // const [isLoaded, setIsLoaded] = useState(false);
+    const [ttuser, setTTUser] = useState()
+    const location = useLocation();
+    const idM = getIDNguoiThayDoi();
+    const Navigate = useNavigate();
+    // Lấy props được truyền từ đối tượng location
+    const [idUser, setidUser] = useState(location.state.value);
+    const [form, setForm] = useState({
+        anhCCCD: {
+            anhMat: "",
+            anhMatSau: "",
+            anhMatTruoc: ""
+        },
+        cccd: "",
+        code: "",
+        codeHashed: "",
+        created_at: "",
+        diaChiDKTK: {
+            huyen: "",
+            tinh: "",
+            xa: ""
+        },
+        email: "",
+        hoTen: "",
+        idNguoiDuyet: "",
+        idUser: "",
+        matKhau: "",
+        role: "",
+        sdt: "",
+        tinhTrangTK: "",
+    });
+    // const { user, ttuser, setttuser } = useState()
+    const fetchdata = async () => {
+        try {
+            const response = await axios.get(apiUrl(ApiConfig.getUserById(idUser)));
+            setForm(() => response.data);
+            const responseTT = await axios.get(apiUrl(ApiConfig.getThongTinUser(idUser)));
+            setTTUser(() => responseTT.data)
+            setIsLoaded(true)
+        } catch (error) {
+            console.error('sai gi do :', error);
+        }
+    };
 
-    // useEffect(() => {
-    //     fetchdata()
+    const handClickConfirm = async () => {
+        form.idNguoiDuyet = idM;
+        try {
+            toast.success("Done!");
+            console.log(form.data);
+            await axios.post(apiUrl(ApiConfig.pheDuyetTaiKhoanOK), form);
+            setTimeout(() => {
+                Navigate('/PheDuyetHoSoM');
+            }, 1000);
+        }
+        catch (error) {
+            console.error('Lỗi khi gửi dữ liệu:', error);
+        }
+    }
+    const handClickNotConfirm = async () => {
+        form.idNguoiDuyet = idM;
+        try {
+            toast.success("Done!");
+            await axios.post(apiUrl(ApiConfig.pheDuyetTaiKhoanKOOK), form);
+            console.log(form.data);
+            setTimeout(() => {
+                Navigate('/PheDuyetHoSoM');
+            }, 1000);
+        }
+        catch (error) {
+            console.error('Lỗi khi gửi dữ liệu:', error);
+        }
 
-    // }, [isLoaded]);
-    // console.log(user);
+    }
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        fetchdata()
+    }, [isLoaded]);
+    console.log(ttuser);
     return (
         <div className='min-h-screen font-fontgg font-light'>
-            <div className="panel panel-info ">
+            <ToastContainer />
+            <div className=" panel panel-info ">
                 <div className="panel-heading h-12 ">
                     <label className=" font-fontgg font-bold panel-title text-xl text-center mt-4">Thông tin cá nhân</label>
                 </div>
@@ -48,12 +112,11 @@ export default function TTUserM() {
                             </tr>
                             <tr>
                                 <p >Họ và tên</p>
-                                <td>{user?.hoTen}</td>
+                                <td>{form?.hoTen}</td>
                             </tr>
                             <tr>
                                 <p >Quê quán</p>
                                 <td>
-                                    {`${ttuser?.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
                                 </td>
                             </tr>
                             <tr>
@@ -62,29 +125,28 @@ export default function TTUserM() {
                             </tr>
                             <tr>
                                 <p >Số CMND/CCCD</p>
-                                <td>{user?.cccd}</td>
+                                <td>{form?.cccd}</td>
                             </tr>
                             <tr>
                                 <p >Ngày cấp CMND/CCCD</p>
                                 <td >
-                                    {user?.created_at}
+                                    {/* {formatDate(form?.created_at)} */}
                                 </td>
                             </tr>
                             <tr>
                                 <p >Nơi cấp CMND/CCCD</p>
                                 <td >
-                                    {`${ttuser?.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
                                 </td>
                             </tr>
                             <tr>
                                 <p >Di động</p>
                                 <td >
-                                    {user?.sdt}
+                                    {form?.sdt}
                                 </td>
                             </tr>
                             <tr>
                                 <p >Email</p>
-                                <td >{user?.email} </td>
+                                <td >{form?.email} </td>
                             </tr>
 
                             <tr>
@@ -100,17 +162,23 @@ export default function TTUserM() {
                             <tr>
                                 <th className='font-normal' >Hình ảnh</th>
                                 <td className='flex gap-4' >
-                                    <img src={user?.anhCCCD?.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
-                                    <img src={user?.anhCCCD?.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
-                                    <img src={user?.anhCCCD?.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                                    <img src={form?.anhCCCD?.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                                    <img src={form?.anhCCCD?.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
+                                    <img src={form?.anhCCCD?.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
 
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    {/*                                    <a type="button" class="btn btn-default" href="*/}{/*">*/}{/*</a>*/}
+                    {/*                                    <a type="button" class="btn btn-default" href="{/*">*/}{/*</a>*/}
                 </div>
+                <div className="flex justify-center gap-2 mt-3 pb-5">
+                    <button onClick={handClickConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Duyệt</button>
+                    <button onClick={handClickNotConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Không duyệt</button>
+                </div>
+                <Link to='/PheDuyetHoSoM' className='ml-52 text-sm underline decoration-1 hover:text-red-600 '>Back</Link>
             </div>
+
             {/* {isLoaded ? (
             ) : (
                 <div role="status">

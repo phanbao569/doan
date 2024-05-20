@@ -123,7 +123,7 @@ export default function QuanLyHoSo() {
                         <td className="px-6  py-4 whitespace-nowrap">
 
                           {
-                            item?.tenThuTuc.length > 20 ? item?.tenThuTuc.slice(0, 20) + '...' : item?.tenThuTuc
+                            item?.tenThuTuc?.length > 20 ? item?.tenThuTuc.slice(0, 20) + '...' : item?.tenThuTuc
 
                           }                         </td>
 

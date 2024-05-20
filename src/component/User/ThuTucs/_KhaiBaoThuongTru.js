@@ -17,7 +17,7 @@ export default function _KhaiBaoThuongTru() {
 
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
-    
+
     const handleInputChange = (event) => {
         const { name, value } = event.target
         console.log(name, value);
@@ -341,8 +341,12 @@ export default function _KhaiBaoThuongTru() {
 
                                             }}
                                         />
-                                        <div class="w-full flex flex-col "  >
-                                            Thông tin chủ hộ
+
+                                        <div class='bg-yellow-200 w-full d-flex rounded-3xl	'>
+
+                                            <label className='text-xl font-family-sans mx-auto' >
+                                                THÔNG TIN CHỦ HỘ
+                                            </label>
                                         </div>
                                         <div className='flex  py-8  '>
 
@@ -416,7 +420,7 @@ export default function _KhaiBaoThuongTru() {
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />
-                                               <div class='bg-yellow-200 w-full d-flex rounded-3xl mt-3	'>
+                                                <div class='bg-yellow-200 w-full d-flex rounded-3xl mt-3	'>
                                                     <label className='text-xl font-family-sans mx-auto' >
 
                                                         Hồ sơ liên quan ( Vui lòng gửi ảnh giấy tờ lên )

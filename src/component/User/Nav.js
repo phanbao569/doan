@@ -98,9 +98,9 @@ export default function HeaderM() {
           
         </NavLink>
 
-        <NavLink to={'/ChonThuTuc'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
+        {/* <NavLink to={'/ChonThuTuc'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
         <Link to="/ChonThuTuc" > Thủ tục hành chính</Link>
-        </NavLink>
+        </NavLink> */}
         <NavLink to={'/ChonThuTuc'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white">
         <Link to="/ChonThuTuc" > Nộp hồ sơ trực tuyến</Link>
         </NavLink>

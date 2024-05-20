@@ -66,7 +66,8 @@ export default function ThongTinCaNhan() {
                 <tr>
                   <th scope="row">Ngày cấp CMND/CCCD</th>
                   <td >
-                    {user?.created_at}
+                    
+                    {user?.created_at.slice(8)}
                   </td>
                 </tr>
                 <tr>

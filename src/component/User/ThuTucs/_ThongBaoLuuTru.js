@@ -176,7 +176,8 @@ export default function NapThuTuc() {
                 return;
             }
             else {
-                await axios.post(apiUrl(ApiConfig.thongbaoluutru), form);
+               const check = await axios.post(apiUrl(ApiConfig.thongbaoluutru), form);
+               console.log(check);
                 toast.success("Nộp hồ sơ thành công");
                 setTimeout(() => {
                     navigate('/');
@@ -295,7 +296,7 @@ export default function NapThuTuc() {
 
                                                 </div>
                                                 <select onChange={handleInputChange} name="loaiHinhCoSo" class="block w-2/3 mx-auto bg-white border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500">
-                                                <option value="">Chọn loại hình cơ sử</option>
+                                                <option value="">Chọn loại hình cơ sở</option>
                                                     <option value="Ký túc sinh viên">Ký túc sinh viên</option>
                                                     <option value="Nhà ngăn phòng cho thuê">Nhà ngăn phòng cho thuê </option>
                                                     <option value="Cơ sở du lịch<">Cơ sở du lịch</option>

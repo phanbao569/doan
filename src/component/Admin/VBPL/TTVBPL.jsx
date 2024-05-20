@@ -5,23 +5,23 @@ import XemVB from './XemVB';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
 import { ToastContainer, toast } from 'react-toastify';
 export default function TTVBPL() {
-    const [formData,setFormData]=useState([
-    ]
-);
+  const [formData, setFormData] = useState([
+  ]
+  );
 
-    useEffect(() => {
-      fetchVBPL();
-    }, []);
-  
-    const fetchVBPL = async () => {
-      try {
-        const response = await axios.get(apiUrl(ApiConfig.getAllVBPL));
-        setFormData(response.data);
-        
-      } catch (error) {
-        console.error('Fetch products error:', error);
-      }
-    };
+  useEffect(() => {
+    fetchVBPL();
+  }, []);
+
+  const fetchVBPL = async () => {
+    try {
+      const response = await axios.get(apiUrl(ApiConfig.getAllVBPL));
+      setFormData(response.data);
+
+    } catch (error) {
+      console.error('Fetch products error:', error);
+    }
+  };
 
     console.log(formData)
     const handleDelete = async (id) => {
@@ -75,25 +75,25 @@ export default function TTVBPL() {
                 </table>
 
             </div> */}
-            <div className="mx-auto w-4/5 mt-4">
+      <div className="mx-auto w-4/5 mt-4">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-600">
             <tr>
               <th scope="col" className="px-6 py-3">
-              Tên văn pháp luật
+                Tên văn pháp luật
               </th>
               <th scope="col" className="px-6 py-3">
-              Cơ Quan Thực Hiện
+                Cơ Quan Thực Hiện
               </th>
               <th scope="col" className="px-6 py-3">
-              Ngày thay đổi
+                Ngày thay đổi
               </th>
               <th scope="col" className="px-6 py-3 text-center">
-              <Link to={`/VBPL`} className='mt-10 '  >
-      <button type="button"
-       class="text-white bg-blue-700 hover:bg-blue-800 px-4 py-2 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  px-12 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-       >Thêm mới</button>
-        </Link>
+                <Link to={`/VBPL`} className='mt-10 '  >
+                  <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 px-4 py-2 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  px-12 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  >Thêm mới</button>
+                </Link>
               </th>
 
             </tr>
@@ -113,9 +113,9 @@ export default function TTVBPL() {
                 </td>
                 <td className="px-6 py-4 text-center">
                   <Link to={`/xem-vb/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>
-                  <button onClick={() => handleDelete(item.id)}  className="ml-2 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                  <button onClick={() => handleDelete(item.id)} className="ml-2 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
                 </td>
-               
+
               </tr>
             ))}
           </tbody>
@@ -130,9 +130,9 @@ export default function TTVBPL() {
           goToPage={goToPage}
         /> */}
       </div>
-    
-        </div>
-    )
+
+    </div>
+  )
 
 }
 

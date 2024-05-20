@@ -4,6 +4,8 @@ import ApiConfig, { apiUrl } from '../../ApiConfig';
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { MdManageAccounts } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
+
 
 export default function PheDuyetTaiKhoanM() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
@@ -31,6 +33,7 @@ export default function PheDuyetTaiKhoanM() {
         };
         fetchData();
     }, []);
+
     return (
         <div className='w-full min-h-screen text-center mt-4'>
             <div className='flex h-full '>
@@ -44,57 +47,59 @@ export default function PheDuyetTaiKhoanM() {
                         Phê duyệt hồ sơ
                     </NavLink>
                 </div>
-                <div className='flex gap-8 justify-center ml-32'>
+                <div className='flex w-full justify-center'>
                     {danhSach ? (
-                        <div className='p-2'>
-                            <h1 className='text-2xl font-fontgg font-bold pb-5'>Danh sách tài khoản</h1>
-                            <table className="w-880 min-w-[800px] table-auto text-center">
-                                <thead>
-                                    <tr className="font-bold w-460 dark:bg-meta-4 text-center bg-slate-400">
-                                        <th className=" min-w-[150px] py-4 text-black dark:text-white xl:pl-11">
+                        <div className='w-full'>
+                            <h1 className='w-full text-2xl  font-fontgg font-bold pb-3'>Danh sách tài khoản</h1>
+                            <table className="w-full pb-8 text-sm text-center  rtl:text-right text-gray-500 dark:text-gray-500">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-600">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">
                                             STT
                                         </th>
-                                        <th className=" min-w-[150px] py-4 text-black dark:text-white xl:pl-11">
-                                            Họ và Tên
+                                        <th scope="col" className="px-6 py-3">
+                                            Họ và tên
                                         </th>
-                                        <th className="min-w-[150px] py-4 text-black dark:text-white">
+                                        <th scope="col" className="px-6 py-3">
                                             Email
                                         </th>
-                                        <th className="min-w-[120px] py-4 text-black dark:text-white">
+                                        <th scope="col" className="px-7 py-3">
                                             Địa chỉ
+                                        </th>
+                                        <th scope="col" className="px-7 py-3">
+                                            <FaEye className='m-auto' />
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className='bg-slate-200'>
-                                    {danhSach.map((item, index) => (
-                                        <tr key={index} >
-                                            <td className="border-b border-[#eee] py-3 px-4  dark:border-strokedark">
-                                                <p className="text-black dark:text-white">
-                                                    {index+1}
-                                                </p>
+                                <tbody>
+                                        {danhSach.map((item, index) => (
+
+                                        <tr key={index} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {index + 1}
+                                            </th>
+                                            <td className="px-6 py-4">
+                                                {item.hoTen}
                                             </td>
-                                            <td className="border-b border-[#eee] py-3 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                                            <td className="px-6 py-4">
+                                                {item.email}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {item.diaChiDKTK.tinh}
+                                            </td>
+                                            <td className="px-6 py-4">
                                                 <div onClick={() => handleViewDetail(item.idUser)} className="font-medium text-black dark:text-white cursor-pointer">
-                                                    {item.hoTen}
+                                                    Xem tài khoản
                                                 </div>
                                             </td>
-                                            <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark">
-                                                <p className="text-black dark:text-white">
-                                                    {item.email}
-                                                </p>
-                                            </td>
-                                            <td className="border-b border-[#eee] py-3 px-4 dark:border-strokedark ">
-                                                <p className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium `}>
-                                                    {item.diaChiDKTK.tinh}
-                                                </p>
-                                            </td>
+
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
                     ) : (
-                        <div class=" text-center ml-56">
+                        <div class=" text-center ">
                             <div role="status">
                                 <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />

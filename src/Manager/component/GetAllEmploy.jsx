@@ -12,32 +12,23 @@ export default function GetAllEmploy() {
     })
     const fetchdata = async () => {
         try {
-            const response = await axios.get(`http://192.168.10.72:8888/TTNV/get/${id}`)
+            const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
             setFormData(response.data.coQuan)
             console.log(response.data.coQuan);
-
-
         } catch {
-
         }
-
     }
     const fetchdata2 = async () => {
-
         if (formData !== null) {
             try {
-
-                const response2 = await axios.post(`http://192.168.10.72:8888/manager/getAllEmployee`, formData)
+                const response2 = await axios.post(apiUrl(ApiConfig.getAllEmployee), formData)
                 console.log(response2.data, 'thông tin toàn bộ nhân viên của 6699');
-                const respondata = response2.data
-                setAllNV(respondata)
-
+                const respondata = response2.data;
+                setAllNV(respondata);
             } catch {
 
             }
         }
-
-
     }
     useEffect(() => {
         fetchdata();
@@ -78,8 +69,8 @@ export default function GetAllEmploy() {
         <div className='min-h-screen'>
             <div className='text-center'>
                 <h1 className='p-4 text-3xl font-fontgg'>Danh sách nhân viên</h1>
-                <div className="m-2 relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-500">
+                <div className=" m-2  relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-500">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-600">
                             <tr>
                                 <th scope="col" className="px-6 py-3 w-1/6">
@@ -93,7 +84,7 @@ export default function GetAllEmploy() {
                                     sdt
                                 </th>
                                 
-                                <th scope="col" className="px-6 py-3 w-1/6">
+                                <th scope="col" className="pl-6 py-3 w-1/6">
                                     <Link to={{
                                         pathname: `/createNV/${JSON.stringify(formData)}`,
                                         data: formData
@@ -132,9 +123,8 @@ export default function GetAllEmploy() {
                                     <td className="px-6 py-4">
                                         {item.sdt}
                                     </td>
-                                    <td className="px-6 py-4 flex items-center">
-
-                                        <div className="flex items-center space-x-3.5">
+                                    <td className="px-6 py-4 text-center">
+                                        <div className="flex flex-1 items-center justify-center space-x-3.5">
                                             <Link to={`/xem-employ/${item.idUser}`} className="text-primary">
 
                                                 <svg

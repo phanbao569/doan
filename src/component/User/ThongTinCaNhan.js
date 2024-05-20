@@ -50,8 +50,7 @@ export default function ThongTinCaNhan() {
                 <tr>
                   <th scope="row">Quê quán</th>
                   <td>
-
-                    {`${ttuser.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
+                    {`${ttuser?.queQuan?.tinh}-${ttuser?.queQuan?.huyen}-${ttuser?.queQuan?.xa}`}
 
                   </td>
                 </tr>

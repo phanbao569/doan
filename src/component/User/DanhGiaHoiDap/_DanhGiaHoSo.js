@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 function Form(props) {
     const { user, ttuser, hoSo } = props;
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-
+    const [abc] = "";
     const [form, setform] = useState(
         {
             id: "",

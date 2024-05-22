@@ -419,15 +419,15 @@ export default function Register() {
                 <div className="">
                   <label htmlFor="anhCccdMatSau" className="text-sm block mb-2 font-medium text-gray-700">Ảnh mặt sau CCCD</label>
                   <input type="file" id="anhCccdMatSau" name="anhMatSau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleAnhCccdMatSauChange} />
-                </div>
               </div>
+                </div>
 
-            </form>
-            <div className="flex flex-col justify-center text-center p-4 ">
+            <div type = "submit" className="flex flex-col justify-center text-center p-4 ">
               <button  className="bg-red-500  justify-center mx-auto w-1/3 hover:bg-red-600 text-white font-bold py-2  rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng ký</button>
             <Link to="/login" className="text-xs mt-4 justify-center  text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
 
             </div>
+            </form>
           </div>
 
           <img src={leftImage} alt="Right" className=" w-1/4" />

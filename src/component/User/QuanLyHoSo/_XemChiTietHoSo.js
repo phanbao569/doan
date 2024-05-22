@@ -101,7 +101,12 @@ export default function _XemChiTietHoSo() {
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-600 mb-1">Địa chỉ cụ thể:</label>
-            <p className="text-sm text-gray-900">{hoso.diaChiCuThe}</p>
+            <p className="text-sm text-gray-900">{hoso.diaChiCuThe} - 
+            {hoso?.diaChi?.tinh ? `${hoso?.diaChi?.tinh} ${hoso?.diaChi?.huyen} ${hoso?.diaChi?.xa}` : ""}
+            {hoso?.diaChiLuuTru?.tinh ? `${hoso?.diaChiLuuTru?.tinh} ${hoso?.diaChiLuuTru?.huyen} ${hoso?.diaChiLuuTru?.xa}` : ""}
+            {hoso?.diaChiTamTru?.tinh ? `${hoso?.diaChiTamTru?.tinh} ${hoso?.diaChiTamTru?.huyen} ${hoso?.diaChiTamTru?.xa}` : ""}
+
+              </p>
           </div>
           <div>
             <label className="block text-sm font-semibold text-gray-600 mb-1">Nội dung đề nghị:</label>

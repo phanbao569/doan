@@ -17,9 +17,9 @@ export default function DanhGiaHoiDap() {
 
 
   return (
-    <div className="flex h-screen mt-11 ">
+    <div className="flex h-screen mt-4 bg-gray-100 rounded-xl ">
       <div className="w-64 bg-white shadow-md">
-        <div className="p-4">
+        <div className="p-4 bg ">
           <h1 className="text-2xl font-bold mb-4">Danh sách hồ sơ</h1>
           <div className='gap-4 flex flex-col' >
 

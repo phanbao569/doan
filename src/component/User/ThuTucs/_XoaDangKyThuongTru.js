@@ -22,7 +22,7 @@ export default function _XoaDangKyThuongTru() {
         setForm(prevState => ({ ...prevState, [name]: value }))
     }
     const { user, ttuser } = useContext(GlobalContext)
-    const [checktt, , setchecktt] = useState(false)
+    const [checktt, Setchecktt] = useState(false)
     const [isLoaded, setIsLoaded] = useState(true);
 
     const [form, setForm] = useState({
@@ -48,9 +48,9 @@ export default function _XoaDangKyThuongTru() {
         },
         created_at: moment().toDate(),
         created_end: '',
-        hoTen : ttuser.hoTen,
-        gioiTinh : ttuser.gioiTinh,
-        email : user.email,
+        hoTen: ttuser.hoTen,
+        gioiTinh: ttuser.gioiTinh,
+        email: user.email,
     });
     const handleChonhs1 = (event) => {
         const file = event.target.files[0];
@@ -152,11 +152,12 @@ export default function _XoaDangKyThuongTru() {
         }
     };
     useEffect(() => {
-        if (ttuser?.thuongTru?.tinh !== undefined) setchecktt(true)
+         if (ttuser?.thuongTru?.tinh !== undefined) 
+            Setchecktt(true)
 
         //   fetchdata();
 
-    }, []);
+    }, [checktt]);
 
     const handleBack = () => {
         navigate('/thutuc/5d49167e');

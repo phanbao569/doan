@@ -268,7 +268,7 @@ export default function _KhaiBaoThuongTru() {
                                                 </div>
                                                 <input
                                                     className="text-center mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    value={` Công an  ${form?.coQuanThucHien?.xa} `}
+                                                    value={` Công an ${form?.coQuanThucHien?.xa} `}
                                                 />
                                             </div>
                                             <div class="w-1/3 flex flex-col ">
@@ -300,10 +300,10 @@ export default function _KhaiBaoThuongTru() {
 
                                             <div class="w-full flex flex-col ">
                                                 <div className=''>
-                                                    <label className='font-bold text-center' > Địa chỉ tạm trú cụ thể </label>
+                                                    <label className='font-bold text-center' > Địa thường trú cụ thể </label>
 
                                                 </div>
-                                                <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký tạm trú ' />
+                                                <Field onChange={handleInputChange} name="diaChiCuThe" class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Địa chỉ đăng ký thường trú ' />
 
 
                                             </div>
@@ -359,7 +359,7 @@ export default function _KhaiBaoThuongTru() {
                                                     <label className='font-bold text-center' > Họ và Tên </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên '
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" 
                                                     name="tenChuHo"
                                                     onChange={handleInputChange}
                                                 />
@@ -380,7 +380,7 @@ export default function _KhaiBaoThuongTru() {
                                                     <label className='font-bold text-center' > Quan hệ với chủ hộ </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên '
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" 
                                                     name="quanHeChuHo"
                                                     onChange={handleInputChange}
                                                 />
@@ -419,7 +419,7 @@ export default function _KhaiBaoThuongTru() {
                                                     <label className='font-bold text-center' > Nội dung đề nghị </label>
 
                                                 </div>
-                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" placeholder='Họ tên '
+                                                <Field class="border w-3/4 border-gray-300 bg-white h-10 px-3 rounded-md mx-auto text-sm focus:outline-none focus:border-blue-500" 
                                                     name="noiDungDeNghi"
                                                     onChange={handleInputChange}
                                                 />

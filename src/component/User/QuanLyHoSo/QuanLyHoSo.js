@@ -108,7 +108,7 @@ export default function QuanLyHoSo() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 font-bold text-center text-xs  text-gray-500 uppercase tracking-wider">Số Thứ Tự</th>
+                      <th className="px-6 py-3 font-bold text-center text-xs  text-gray-500 uppercase tracking-wider">STT</th>
                       <th className="px-6 py-3 font-bold text-center text-xs  text-gray-500 uppercase tracking-wider">Tên Mục</th>
                       <th className="px-6 py-3 font-bold text-center text-xs  text-gray-500 uppercase tracking-wider">Ngày Tạo</th>
                       <th className="px-6 py-3 font-bold text-center text-xs  text-gray-500 uppercase tracking-wider">Nơi khai báo</th>
@@ -128,7 +128,13 @@ export default function QuanLyHoSo() {
                           }                         </td>
 
                         <td className="px-6 py-4 whitespace-nowrap"> {moment(item?.created_at).format('DD/MM/YYYY')}  </td>
-                        <td className="px-6 py-4 whitespace-nowrap">{item?.diaChiCuThe}</td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {
+                            item?.diaChiCuThe?.length > 20 ? item?.diaChiCuThe.slice(0, 20) + '...' : item?.diaChiCuThe
+
+                          }
+
+                        </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           {(() => {
                             switch (item?.trangThai) {

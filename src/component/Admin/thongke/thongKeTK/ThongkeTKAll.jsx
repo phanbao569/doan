@@ -119,6 +119,13 @@ const handleFilterSubmit = async()=>{
 useEffect(() => {
   fetchThongke()
 }, []);
+const handleKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    handleFilterSubmit(e);
+  }
+};
+
   return (
     <div>
       
@@ -128,7 +135,7 @@ useEffect(() => {
         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
         <div className="relative ">
           <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none "></div>
-          <input type="search" id="filterText" className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search CCCD, NAME..."   onChange={handleFilterChange}/>
+          <input type="search" id="filterText"  className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search CCCD, NAME..."   onChange={handleFilterChange} onKeyDown={handleKeyDown}/>
           <button onClick={handleFilterSubmit} type="button" className="text-white absolute right-2.5 bottom-3.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </div>
       </form>
@@ -181,13 +188,13 @@ useEffect(() => {
         {item[1].Tổng}
       </td>
       <td className="px-6 py-4">
-        {item[1].User}
+        {item[1].User==null?0:item[1].User}
       </td>
       <td className="px-6 py-4">
-        {item[1].Manager}
+        {item[1].Manager==null?0:item[1].Manager}
       </td>
       <td className="px-6 py-4">
-        {item[1].Employee}
+        {item[1].Employee==null?0:item[1].Employee}
       </td>
     </tr>
 ):null

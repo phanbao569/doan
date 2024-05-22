@@ -82,7 +82,7 @@
           const kiemTra = getRoleFromToken();
           console.log("role la : " + kiemTra)
 
-          if (kiemTra === "Admin") {  window.location.reload() }
+          if (kiemTra === "Admin") { navigate('/thongkehoso'); window.location.reload(); }
           else if (kiemTra === 'User'|| kiemTra==='Manager') 
           { 
             navigate('/'); 
@@ -127,6 +127,17 @@
 
       // setShowWarningAlert(true);
       e.preventDefault();
+      if(formLogin.cccd==""&&formLogin.matKhau==""){
+        toast.warn('Bạn phải nhập đầy đủ thông tin CCCD, mật khẩu để đăng nhập');
+        return
+      } else if (formLogin.cccd==""){
+        toast.warn('Bạn phải nhập CCCD để đăng nhập');
+        return
+      }
+      else if (formLogin.matKhau==""){
+        toast.warn('Bạn phải nhập mật khẩu để đăng nhập');
+        return
+      }
       try {
         console.log(formLogin);
         const response = await axios.post(apiUrl(ApiConfig.sendEmailLogin), formLogin);

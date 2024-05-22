@@ -207,6 +207,8 @@ export default function KhaiBaoTamTruM() {
                         <input value={form.tenChuHo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                     <div className="mb-6 flex-1">
+                     
+                     
                         <label className="block text-gray-700 text-sm font-bold mb-2">Quan hệ với chủ hộ</label>
                         <input value={form.quanHeChuHo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>

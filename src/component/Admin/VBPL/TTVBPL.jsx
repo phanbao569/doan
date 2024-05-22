@@ -109,7 +109,7 @@ export default function TTVBPL() {
                   {item.coQuanThucHien}
                 </td>
                 <td className="px-6 py-4">
-                  {item.updated_at}
+                  {(item.updated_at).slice(8)}
                 </td>
                 <td className="px-6 py-4 text-center">
                   <Link to={`/xem-vb/${item.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</Link>

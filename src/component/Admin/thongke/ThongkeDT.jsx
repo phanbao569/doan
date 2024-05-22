@@ -57,23 +57,44 @@ const caculateTotalMonney=(data)=>{
 }
 const totalMonney=caculateTotalMonney(chartData)
 
-console.log(totalMonney+'đây là tổng doanh thu')
-console.log(chartData,'chartdata')
+// console.log(totalMonney+'đây là tổng doanh thu')
+// console.log(chartData,'chartdata')
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+};
   return (
-    <main className='main-container'>
-          <div className='main-title'>
-              <h3></h3>
-          </div>
+    // <main className='main-container'>
+    //       <div className='main-title'>
+    //           <h3></h3>
+    //       </div>
 
-          <div className='main-cards'>
-              <div className='card'>
-                  <div className='card-inner'>
-                      <h3>TỔNG DOANH THU</h3>
-                      <FcMoneyTransfer className='card_icon'/>
-                  </div>
-                  <h1>{totalMonney}</h1>
-              </div>
-             
+    //       <div className='main-cards'>
+    //           <div className='card'>
+    //               {/* <div className='card-inner'> */}
+    //                   {/* <h3>TỔNG DOANH THU</h3>
+    //                   <FcMoneyTransfer className='card_icon'/> */}
+    //               {/* </div> */}
+    //               {/* <h1>{Intl.NumberFormat('vi-VN').format(totalMonney)} VNĐ</h1> */}
+    //           </div>
+    <main className='main-container'>
+    <div className='main-title'>
+      <h3></h3>
+    </div>
+
+    <div className='main-cards'>
+
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg card">
+        <div class="flex items-center mb-4 card-inner">
+          <div class="bg-gray-100 rounded-full p-2 mr-2">
+            <FcMoneyTransfer alt="Icon" class="w-6 h-6 filter-purple " />
+          </div>
+          <h2 class="text-lg font-semibold filter-purple">TỔNG HỒ SƠ</h2>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+          <div class="text-lg font-bold filter-purple ml-4">{Intl.NumberFormat('vi-VN').format(totalMonney)} VNĐ</div>
+        </div>
+      </div>
+              
               <div className='text-black'>
             <GetYears onChange={handleYearChange} /></div>
           <div className='text-black'>
@@ -99,9 +120,9 @@ console.log(chartData,'chartdata')
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="Month" />
                   <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Monney" fill="#8884d8" />
+                  <Tooltip formatter={(value) => formatCurrency(value)} />
+                  <Legend formatter={() => 'Doanh thu'}/>
+                  <Bar dataKey="Monney" name="Doanh thu" fill="#8884d8" />
                  
                   </BarChart>
               </ResponsiveContainer>
@@ -121,9 +142,9 @@ console.log(chartData,'chartdata')
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="Month" />
                   <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="Monney" stroke="#8884d8" activeDot={{ r: 8 }} />
+                  <Tooltip formatter={(value) => formatCurrency(value)} />
+                  <Legend formatter={() => 'Doanh thu'}/>
+                  <Line type="monotone" dataKey="Monney" name="Doanh thu" stroke="#8884d8" activeDot={{ r: 8 }} />
                 
                   </LineChart>
               </ResponsiveContainer>

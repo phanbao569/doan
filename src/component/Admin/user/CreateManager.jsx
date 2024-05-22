@@ -28,9 +28,17 @@ export default function CreateManager() {
             const {name,value} =event.target
             setFormData(prevState =>({...prevState,[name]:value}))}
 
-            
+            const isFormValid = () => {
+              const { cccd, matKhau, hoTen, email, sdt, diaChiDKTK } = formData;
+              return cccd && matKhau && hoTen && email && sdt && diaChiDKTK.tinh && diaChiDKTK.huyen && diaChiDKTK.xa;
+          };   
          const  handleSubmit= async(event)=>{
+       
         event.preventDefault();
+        if (!isFormValid()) {
+          toast.error('Vui lòng nhập đầy đủ thông tin!');
+          return;
+      }
         console.log("dữ liệu gửi đi:", JSON.stringify(formData))
         try {
             const response = await axios.post(apiUrl(ApiConfig.createManager),formData)
@@ -54,7 +62,7 @@ export default function CreateManager() {
 <ToastContainer/>
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center">
-          <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+          <div className="w-full max-w-[540px] bg-white rounded-lg shadow-md p-8">
             <h1 className="text-2xl font-bold text-center mb-4">Tạo tài khoản manager</h1>
             <form action="#">
               <div className="mb-6">

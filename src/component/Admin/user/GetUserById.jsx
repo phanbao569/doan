@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import ApiConfig, { apiUrl } from '../../../ApiConfig';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function GetUserById() {
     const { idUser } = useParams();
@@ -38,11 +39,12 @@ export default function GetUserById() {
                 const response = await axios.put(apiUrl(ApiConfig.updateUser), formData)
                 const data = response.data;
                 console.log(data)
-                alert("thành công")
+                toast.success("Cập nhật thông tin thành công")
 
                 //xử lí tạo post thông tin từ fromNV đưa đến backend
             } catch (error) {
                 console.error('Lỗi khi lấy dữ liệu từ API:' + error);
+                toast.error("error")
             }
         }
     }
@@ -66,6 +68,7 @@ export default function GetUserById() {
     };
     return (
         <div className="flex justify-center items-center h-screen">
+            <ToastContainer/>
             <div className="w-full max-w-screen-md mx-auto">
                 <div className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4 grid grid-cols-2 gap-4">
@@ -78,14 +81,14 @@ export default function GetUserById() {
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="idUser" className="font-bold mb-2">Id</label>
-                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="idUser" value={formData.idUser} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
+                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="idUser" value={formData.idUser} onChange={(e) => { handleChange(e) }} readOnly />
                       
                             <label htmlFor="hoTen" className="font-bold mb-2">Họ và tên</label>
-                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hoTen" value={formData.hoTen} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
+                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hoTen" value={formData.hoTen} onChange={(e) => { handleChange(e) }} readOnly />
                 
                     
                             <label htmlFor="cccd" className="font-bold mb-2">Số CCCD</label>
-                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cccd" value={formData.cccd} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
+                            <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cccd" value={formData.cccd} onChange={(e) => { handleChange(e) }} readOnly />
                   
                         </div>
 
@@ -164,7 +167,7 @@ export default function GetUserById() {
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="email" className="font-bold mb-2">Email</label>
-                            <input type="email" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" value={formData.email} onChange={(e) => { handleChange(e); }} readOnly={!isEditable} />
+                            <input type="email" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" value={formData.email} onChange={(e) => { handleChange(e); }} readOnly />
                             
                            
                         

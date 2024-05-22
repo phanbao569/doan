@@ -54,7 +54,7 @@ export default function ThongBaoLuuTruM() {
         created_at: '', // Định dạng ngày tháng năm
         created_end: '',
     });
-    const { TTUser, setTTUser } = useState({
+    const [ TTUser, setTTUser ] = useState({
         hoTen: "",
         ngaySinh: "",
         gioiTinh: "''",
@@ -96,7 +96,6 @@ export default function ThongBaoLuuTruM() {
     };
     const formatDate = (dateString) => {
         const date = new Date(dateString);
-        console.log(date.toISOString().split("T")[0]);
         const day = date.getDate().toString().padStart(2, '0');
         const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear();
@@ -152,36 +151,30 @@ export default function ThongBaoLuuTruM() {
                         </div>
                         <div className="mb-6 flex-1">
                             <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Địa chỉ cụ thể:</label>
-                            <input type="text" id="huyen" name="huyen" className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <input type="text" id="huyen" value={form.diaChiCuThe} name="huyen" className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
                 </div>
                 <div className='flex gap-8'>
                     <div className="flex-1 mb-6">
                         <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">Tên cơ sở lưu trú:</label>
-                        <input type="text" id="huyen" name="huyen" value={form.thoiHanTamTru} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <input type="text" id="huyen" name="huyen" value={form.tenCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                     <div className="flex-1 mb-6">
                         <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">Loại hình cơ sở:</label>
-                        <input type="text" id="huyen" name="huyen" value={form.created_at} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <input type="text" id="huyen" name="huyen" value={form.loaiHinhCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                    <div className="flex-1 mb-6">
-                        <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
-                        <input type="text" id="huyen" name="huyen" value={form.fileHoSoLienQuan} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+                  
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div className="mb-6 flex-1">
                         <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
                         <input type="text" id="huyen" name="huyen" value={TTUser?.hoTen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                    <div className="mb-6 flex-1">
-                        <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">Ngày tháng năm sinh:</label>
-                        <input type="text" id="huyen" name="huyen" value={formatDate(TTUser.ngaySinh)} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+                    
                     <div className="mb-6 flex-1">
                         <label htmlFor="gioiTinh" className="block text-gray-700 text-sm font-bold mb-2">Giới tính:</label>
-                        <input type="text" id="huyen" name="huyen" value={TTUser?.gioiTinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <input type="text" id="huyen" name="huyen" value={form?.gioiTinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                 </div>
                 <div className='flex justify-between gap-3'>
@@ -189,23 +182,32 @@ export default function ThongBaoLuuTruM() {
                         <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
                         <input type="text" id="huyen" name="huyen" value={TTUser?.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                    <div className="mb-6 flex-1">
-                        <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">SĐT:</label>
-                        <input type="text" id="huyen" name="huyen" value={TTUser?.sdt} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
-                    <div className="mb-6 flex-1">
-                        <label htmlFor="gioiTinh" className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input type="text" id="huyen" name="huyen" value={TTUser?.email} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+                    
                 </div>
-                <div>
-                    <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3' value={form.noiDungDeNghi}>Nội dung đề nghị</h1>
-                    <div className='mt-2'>
-                        <div className="mb-6 flex flex-1 ">
-                            <input type="text" id="huyen" name="huyen" className="w-full h-20 bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                <div className='flex justify-between gap-3'>
+                    <div className="mb-6 flex-1">
+                        <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
+                        <div className='flex' >
+                            {form && form.fileHoSoLienQuan && (
+                                <>
+                                    {form.fileHoSoLienQuan.hs1 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs2 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs3 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs4 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
+              
                 <div>
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Note</h1>
                     <div className='mt-2'>

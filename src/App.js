@@ -87,6 +87,9 @@ import XoaDangKyTamTruM from './Manager/component/thutuc/XoaDangKyTamTruM';
 import XoaDangKyThuongTruM from './Manager/component/thutuc/XoaDangKyThuongTruM';
 import ThongBaoLuuTruM from './Manager/component/thutuc/ThongBaoLuuTruM';
 import NavMaster from './HomeMaster/component/NavMaster';
+import TTCaNhanManager from './Manager/component/TTCaNhanManager';
+import DiaChi from './component/Diachi';
+import NavE from './Employee/component/NavE';
 
 export const GlobalContext = createContext();
 
@@ -233,13 +236,14 @@ function App() {
 
             </div>
           )
-        ) : role === 'Employ' ? (
+        ) : role === 'Employee' ? (
           <div>
             {/* Xử lý cho Employ */}
+            <HeaderM/>
+            <NavE/>
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/" element={<HomeM />} />
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
               <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
@@ -255,12 +259,14 @@ function App() {
               <Route path="/TraCuuM" element={<TraCuuM />} />
               <Route path="/hoidapm" element={<HoiDapM />} />
               <Route path="/danhgiam" element={<DanhGiaM />} />
+              
               <Route path="/getallemploy" element={<GetAllEmploy />} />
               <Route path="/createNV/:formData" element={<CreateNV />} />
               <Route path='/xem-employ/:idUser' element={<GetEmById />} />
               <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
               <Route path="/tkdtb" element={<TKDTB />} />
-
+              <Route path="/TTCaNhanManager" element={<TTCaNhanManager />} />
+              <Route path="/DiaChi" element={<DiaChi />} />
             </Routes>
           </div>
         ) : role === 'Manager' ? (
@@ -271,7 +277,6 @@ function App() {
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
-              <Route path="/" element={<HomeM />} />
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
               <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
@@ -293,10 +298,11 @@ function App() {
               <Route path='/xem-employ/:idUser' element={<GetEmById />} />
               <Route path="/thongkehosobaolamcholong" element={<ThongKeHoSo />} />
               <Route path="/tkdtb" element={<TKDTB />} />
-              <Route path="/thongtincanhan" element={<ThongTinCaNhan />} />
+              <Route path="/TTCaNhanManager" element={<TTCaNhanManager />} />
+              <Route path="/DiaChi" element={<DiaChi />} />
+
               <Route path="/changePass" element={<ChangePassword />} />
             </Routes>
-            <FooterM />
           </div>
         ) : (
           // k dang nhap 

@@ -2,7 +2,7 @@ import React from 'react';
 import { FaHome } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
-export default function NavM() {
+export default function NavE() {
     return (
         <div className="flex items-center justify-center h-10 bg-stone-200 text-xs sm:text-sm">
             <NavLink to={'/'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white    ">
@@ -28,11 +28,7 @@ export default function NavM() {
                     Hồi đáp
                 </NavLink>
             </div>
-            <div>
-                <NavLink to={'/thongkehosobaolamcholong'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white    ">
-                    Thống kê
-                </NavLink>
-            </div>
+          
             <div>
                 <NavLink to={'/getallemploy'} className="h-full py-2 px-5 text-lg font-fontgg hover:bg-zinc-700 hover:text-white    ">
                     Quản lý hồ sơ

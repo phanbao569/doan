@@ -36,6 +36,7 @@ const ApiConfig = {
   oderByLow: '/ThongKeUserTangDan',
   // createManager:'/admin/createUser',
   getAllHoSoCheckingByCoQuan: '/getAllHoSoCheckingByCoQuan',
+  getThongKeDoanhThuByCoQuan:`/getThongKeDoanhThuByCoQuan`,
   createGiaHanTamTru: '/GiaHanTamTru/create',
   updatethongtinuser: '/TTUser/update',
   khaibaotamtru: '/KhaiBaoTamTru/create',

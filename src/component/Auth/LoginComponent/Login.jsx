@@ -83,11 +83,16 @@
           console.log("role la : " + kiemTra)
 
           if (kiemTra === "Admin") { navigate('/thongkehoso'); window.location.reload(); }
-          else if (kiemTra === 'User'|| kiemTra==='Manager') 
+          else if (kiemTra === 'User') 
           { 
             navigate('/'); 
             window.location.reload() 
-          };
+          }
+          else if (kiemTra === 'Manager' && kiemTra === 'Employee') 
+            { 
+              navigate('/'); 
+              window.location.reload() 
+            };
 
 
           console.log(timeToken() + " : " + Date.now() / 1000)

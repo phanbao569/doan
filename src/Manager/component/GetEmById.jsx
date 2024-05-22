@@ -89,8 +89,13 @@ export default function GetEmById() {
                     <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="chucVu" value={formData.chucVu} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
                 </div> */}
                         <div className="flex flex-col">
-                            <label htmlFor="cccd" className="font-bold mb-2">Ảnh mặt</label>
-                            <img src={formData?.anhCCCD?.anhMat} alt="Ảnh mặt" />
+                           <label htmlFor="cccd" className="font-bold mb-2">Ảnh mặt</label>
+                           <div className='flex'>
+                            <img className='mr-2' src={formData?.anhCCCD?.anhMat} style={{ width: '100px', height: '100px' }} />
+                            <img className='mr-2' src={formData?.anhCCCD?.anhMatTruoc} style={{ width: '100px', height: '100px' }} />
+                            <img className='mr-2' src={formData?.anhCCCD?.anhMatSau} style={{ width: '100px', height: '100px' }} />
+                            
+                           </div>
                         </div>
 
                         {isEditable ? (

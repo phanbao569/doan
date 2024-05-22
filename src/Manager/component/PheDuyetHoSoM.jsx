@@ -64,7 +64,7 @@ export default function PheDuyetHoSoM() {
         console.log(data);
         const response2 = await axios.post(apiUrl(ApiConfig.getAllHoSoCheckingByCoQuan), data);
         setGiaHanTamTrus(response2.data.giaHanTamTrus);
-        setThongBaoLuuTrus(response2.data.thongsetthongBaoLuuTrus);
+        setThongBaoLuuTrus(response2.data.thongBaoLuuTrus);
         setKhaiBaoTamVangs(response2.data.khaiBaoTamVangs);
         setKhaiBaoThuongTrus(response2.data.khaiBaoThuongTrus);
         setKhaiBaoTamTrus(response2.data.khaiBaoTamTrus);

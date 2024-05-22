@@ -111,56 +111,43 @@ export default function TTUserM() {
                                 </td>
                             </tr>
                             <tr>
-                                <p >Họ và tên</p>
+                                <th >Họ và tên</th>
                                 <td>{form?.hoTen}</td>
                             </tr>
-                            <tr>
-                                <p >Quê quán</p>
-                                <td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <p>Ngày sinh</p>
+                         
+                            {/* <tr>
+                                <th>Ngày sinh</th>
                                 <td> {ttuser?.ngaySinh} </td>
-                            </tr>
+                            </tr> */}
                             <tr>
-                                <p >Số CMND/CCCD</p>
+                                <th >Số CMND/CCCD</th>
                                 <td>{form?.cccd}</td>
                             </tr>
+                           
+                         
                             <tr>
-                                <p >Ngày cấp CMND/CCCD</p>
-                                <td >
-                                    {/* {formatDate(form?.created_at)} */}
-                                </td>
-                            </tr>
-                            <tr>
-                                <p >Nơi cấp CMND/CCCD</p>
-                                <td >
-                                </td>
-                            </tr>
-                            <tr>
-                                <p >Di động</p>
+                                <th >Di động</th>
                                 <td >
                                     {form?.sdt}
                                 </td>
                             </tr>
                             <tr>
-                                <p >Email</p>
+                                <th >Email</th>
                                 <td >{form?.email} </td>
                             </tr>
 
-                            <tr>
-                                <p >Địa chỉ</p>
+                            {/* <tr>
+                                <th >Địa chỉ</th>
                                 <td>
                                     {ttuser?.noiOHienTai}
                                 </td>
-                            </tr>
+                            </tr> */}
                             <tr>
-                                <p >Loại tài khoản</p>
+                                <th >Loại tài khoản</th>
                                 <td>Tài khoản công dân</td>
                             </tr>
                             <tr>
-                                <th className='font-normal' >Hình ảnh</th>
+                                <th >Hình ảnh</th>
                                 <td className='flex gap-4' >
                                     <img src={form?.anhCCCD?.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
                                     <img src={form?.anhCCCD?.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />

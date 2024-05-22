@@ -70,7 +70,7 @@ export default function HeaderM() {
                                     {/* <NavLink to="/thongtincanhan" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">
                                         Thông tin cá nhân
                                     </NavLink> */}
-                                    <NavLink to='/thongtincanhan' className="w-full gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">
+                                    <NavLink to='/TTCaNhanManager' className="w-full gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">
                                         <FaRegUser />  Thông tin cá nhân
                                     </NavLink>
                                     <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">

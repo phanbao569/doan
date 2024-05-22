@@ -116,7 +116,7 @@ function ThuTuc() {
                     </div>
                     {(listShow.includes(3)) && (
                         <div className="dropdown-content text-center">
-                            {VBPL.cachThucThucHien}
+                            {VBPL.trinhTuThucHien}
 
                         </div>
                     )}
@@ -126,7 +126,7 @@ function ThuTuc() {
                 {/* Thời gian giải quyết  */}
                 <div className="w-full mt-4 border border-red-400 rounded-md">
                     <div className='bg-gray-200 flex' >
-                        <label className='w-5/6 flex'><strong className='text-center ml-24 ' >Thời gian giải quyếtt</strong></label>
+                        <label className='w-5/6 flex'><strong className='text-center ml-24 ' >Thời gian giải quyết</strong></label>
                         <button className='item-end' onClick={() => handleClickVBPL(4)}>
                             {(listShow.includes(4)) ? <AiFillCaretUp /> : <AiFillCaretDown />}
                         </button>
@@ -186,14 +186,14 @@ function ThuTuc() {
 
                 <div className="w-full mt-4 border border-red-400 rounded-md">
                     <div className='bg-gray-200 flex' >
-                        <label className='w-5/6 flex'><strong className='text-center ml-24 '>Cơ cứ pháp lý </strong></label>
+                        <label className='w-5/6 flex'><strong className='text-center ml-24 '>Căn cứ pháp lý </strong></label>
                         <button className='item-end' onClick={() => handleClickVBPL(8)}>
                             {(listShow.includes(8)) ? <AiFillCaretUp /> : <AiFillCaretDown />}
                         </button>
                     </div>
                     {(listShow.includes(8)) && (
                         <div className="dropdown-content text-center">
-                            {/* {VBPL.canCuPhapLy} */}
+                            {VBPL?.canCuPhapLy}
                         </div>
                     )}
                 </div>
@@ -208,7 +208,7 @@ function ThuTuc() {
                     </div>
                     {(listShow.includes(9)) && (
                         <div className="dropdown-content text-center">
-                            {VBPL.canCuPhapLy}
+                            {VBPL.ketQuaThucHien}
                         </div>
                     )}
                 </div>

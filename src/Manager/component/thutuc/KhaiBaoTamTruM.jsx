@@ -137,6 +137,7 @@ export default function KhaiBaoTamTruM() {
                             <input value={form.coQuanThucHien.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
+                    
                 </div>
                 <div>
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Thông tin đề nghị đăng ký tạm trú</h1>
@@ -192,24 +193,42 @@ export default function KhaiBaoTamTruM() {
                         <label className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
                         <input value={TTUser.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                    <div className="mb-6 flex-1">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">SĐT:</label>
-                        <input value={TTUser.sdt} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
-                    <div className="mb-6 flex-1">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+                  
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div className="mb-6 flex-1">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Tên chủ hộ:</label>
-                        <input value={form.tenChuHo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <input value={form?.tenChuHo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                     <div className="mb-6 flex-1">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Quan hệ với chủ hộ</label>
                         <input value={form.quanHeChuHo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
+                </div>
+                <div className='flex justify-between gap-3'>
+                    <div className="mb-6 flex-1">
+                        <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
+                        <div className='flex' >
+                            {form && form.fileHoSoLienQuan && (
+                                <>
+                                    {form.fileHoSoLienQuan.hs1 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs2 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs3 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs4 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                </>
+                            )}
+                        </div>
+
+                    </div>
+
                 </div>
                 <div>
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Nội dung đề nghị</h1>

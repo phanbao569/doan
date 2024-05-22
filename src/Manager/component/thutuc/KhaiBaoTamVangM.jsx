@@ -190,23 +190,42 @@ export default function KhaiBaoTamVangM() {
                         <label className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
                         <input  value={TTUser?.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                    <div className="mb-6 flex-1">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">SĐT:</label>
-                        <input  value={TTUser?.sdt} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
-                    <div className="mb-6 flex-1">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-                        <input  value={TTUser?.email} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+                 
                 </div>
-                <div>
-                    <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3' value={form.noiDungDeNghi}>Nội dung đề nghị</h1>
+                <div className='flex justify-between gap-3'>
+                    <div className="mb-6 flex-1">
+                        <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
+                        <div className='flex' >
+                            {form && form.fileHoSoLienQuan && (
+                                <>
+                                    {form.fileHoSoLienQuan.hs1 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs1} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs2 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs2} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs3 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs3} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                    {form.fileHoSoLienQuan.hs4 && (
+                                        <img className='mr-2' src={form.fileHoSoLienQuan.hs4} style={{ width: '100px', height: '100px' }} />
+                                    )}
+                                </>
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {/* <div>
+                    <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3' >Nội dung đề nghị</h1>
                     <div className='mt-2'>
                         <div className="mb-6 flex flex-1 ">
-                            <input className="w-full h-20 bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <input value={form?.noiDungDeNghi} className="w-full h-20 bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div>
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Note</h1>
                     <div className='mt-2'>

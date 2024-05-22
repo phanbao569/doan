@@ -148,6 +148,9 @@ export default function _XoaDangKyTamTru() {
         },
         created_at: moment().toDate(),
         created_end: '',
+        hoTen : ttuser.hoTen,
+        gioiTinh : ttuser.gioiTinh,
+        email : user.email,
     });
 
     useEffect(() => {

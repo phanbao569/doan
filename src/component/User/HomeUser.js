@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slider from 'react-slick';
 import { FaSistrix, FaChevronLeft, FaChevronRight, FaQuestion } from "react-icons/fa";
 import { Link, NavLink } from 'react-router-dom';
@@ -21,16 +21,18 @@ export default function HomeM() {
     prevArrow: <FaChevronLeft type='button' className='slick-prev' />,
     nextArrow: <FaChevronRight type='button' className='slick-next' />
   };
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+  }, []);
   return (
     <div className=' z-10 w-full h-auto items-center justify-between mb-4'>
 
 
       <div className='flex w-full h-150 bg-my-image bg-cover justify-center content-center pt-12'>
-        <input className='w-300 h-12 pl-2 border ' type="" placeholder='Nhập từ khóa tìm kiếm' />
-        <button className='bg-white w-150 text-gray-500 h-12  border'>Tìm kiếm nâng cao</button>
-        <button className='bg-white  h-12 '>
-          <FaSistrix className='size-6 m-2' />
-        </button>
+     
       </div>
       <div></div>
       <Slider {...settings} className='mt-16'>

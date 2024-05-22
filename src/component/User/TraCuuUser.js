@@ -19,6 +19,9 @@ export default function TraCuuM() {
     const [code, setCode] = useState('');
     const [maXacNhan, setMaXacNhan] = useState('');
     const [danhSach, setDanhSach] = useState('');
+
+    const itemsPerPage = 10;
+
     const handlePinInputChange = (pinValue) => {
         setCode(pinValue);
     };
@@ -27,11 +30,21 @@ export default function TraCuuM() {
         console.log(cccd);
     };
 
+    const [page, setPage] = useState(0);
+
+    const handleClickNext = () => {
+        setPage(page + 1);
+    };
+
+    const handleClickPrev = () => {
+        setPage(page - 1);
+    };
+
     const handleCodeChange = (event) => {
         setCode(event.target.value);
         console.log(code);
     }
-    
+
     const checkCode = async (event) => {
         event.preventDefault();
         if (!code) {
@@ -76,7 +89,7 @@ export default function TraCuuM() {
                 setShowCccdForm(false);
                 setShowCodeForm(true);
                 toast.success("Mã xác nhận đã được gửi qua email!");
-              //  handlSendCode();
+                //  handlSendCode();
             } else {
                 // Nếu CCCD không tồn tại, hiển thị thông báo lỗi
                 toast.error("CCCD không tồn tại!");
@@ -90,7 +103,7 @@ export default function TraCuuM() {
 
 
     return (
-        <div className=''>
+        <div className='flex'>
             {/* Nav */}
             <ToastContainer />
 
@@ -157,14 +170,17 @@ export default function TraCuuM() {
                 )}
 
                 {/* Hiển thị danh sách hồ sơ tìm kiếm */}
-                <div className=' mt-10 flex justify-center'>
+                <div className='flex justify-center'>
                     {showDanhSach && (
                         <div>
                             {danhSach ? (
-                                <div className='mt-8 p-4'>
+                                <div className='mb-10 p-4'>
                                     <table className="w-full min-w-[800px] table-auto text-center border-collapse">
                                         <thead>
-                                            <tr className="bg-red-500 text-white">
+                                            <tr className="bg-red-400 rounded-lg  text-white">
+                                            <th className="py-4 px-6 font-medium">
+                                                    STT
+                                                </th>
                                                 <th className="py-4 px-6 font-medium">
                                                     Tên thủ tục
                                                 </th>
@@ -177,22 +193,21 @@ export default function TraCuuM() {
                                             </tr>
                                         </thead>
                                         <tbody className='bg-gray-100'>
-                                            {danhSach.map((item, index) => (
+                                            {danhSach.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((item, index) => (
                                                 <tr key={index} className="hover:bg-gray-200">
-                                                    <td className="border-b border-gray-300 py-4 px-6">
-                                                        <h5 className="font-medium text-gray-800">
-                                                            {item.tenThuTuc}
-                                                        </h5>
+                                                     <td className="border-b border-gray-300 py-4 px-6">
+                                                        <h5 className="font-medium text-gray-800">{index+1}</h5>
                                                     </td>
                                                     <td className="border-b border-gray-300 py-4 px-6">
-                                                        <p className="text-gray-800">
-                                                            {moment(item.ngayTao).format('DD/MM/YYYY')}
-                                                        </p>
+                                                        <h5 className="font-medium text-gray-800">{item.tenThuTuc}</h5>
+                                                    </td>
+                                                    <td className="border-b border-gray-300 py-4 px-6">
+                                                        <p className="text-gray-800">{moment(item.ngayTao).format('DD/MM/YYYY')}</p>
                                                     </td>
                                                     <td className="border-b border-gray-300 py-4 px-6">
                                                         <span
                                                             className={`inline-block rounded-full py-1 px-3 text-sm font-medium  
-                                                            ${item.trangThai === 'Done' ? 'bg-green-200 text-green-800' :
+                                        ${item.trangThai === 'Done' ? 'bg-green-200 text-green-800' :
                                                                     item.trangThai === 'Cancelled' ? 'bg-red-200 text-red-800' :
                                                                         item.trangThai === 'Paying' ? 'bg-blue-200 text-blue-800' :
                                                                             'bg-yellow-200 text-yellow-800'}`}
@@ -204,6 +219,22 @@ export default function TraCuuM() {
                                             ))}
                                         </tbody>
                                     </table>
+                                    <div className="flex mt-10 justify-center w-full">
+                                        <button
+                                            className="mr-2 px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400 disabled:text-gray-200"
+                                            disabled={page === 0}
+                                            onClick={handleClickPrev}
+                                        >
+                                            Trở về
+                                        </button>
+                                        <button
+                                            className="ml-2 px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-400 disabled:text-gray-200"
+                                            disabled={(page + 1) * itemsPerPage >= danhSach.length}
+                                            onClick={handleClickNext}
+                                        >
+                                            Xem thêm
+                                        </button>
+                                    </div>
                                 </div>
 
                             ) : (

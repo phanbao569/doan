@@ -17,10 +17,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Loading from '../../../Loading.jsx';
 export default function NapThuTuc() {
 
+   // const {user,ttuser } = useContext(GlobalContext)
 
     //   const iduser? = getIDNguoiThayDoi();
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
-
+    
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
 
@@ -129,6 +130,8 @@ export default function NapThuTuc() {
             reader.readAsDataURL(file);
         }
     };
+   // const { user, ttuser } = useContext(GlobalContext)
+   const { user, ttuser } = useContext(GlobalContext)
 
     const [form, setForm] = useState({
         tenThuTuc: VBPL.tenThuTuc,
@@ -146,7 +149,9 @@ export default function NapThuTuc() {
         noiDungDeNghi: "",
         yKien: "",
         thoiHanTamTru: 0,
-
+        hoTen : ttuser?.hoTen,
+        gioiTinh : ttuser?.gioiTinh,
+        email : user?.email,
         lePhi: VBPL.lePhi,
         idUser: getIDNguoiThayDoi(),
         trangThai: "",
@@ -164,7 +169,6 @@ export default function NapThuTuc() {
         created_end: '',
 
     });
-    const { user, ttuser } = useContext(GlobalContext)
     const [listDS, setlistDS] = useState(Object);
     useEffect(() => {
         // window.location.reload();

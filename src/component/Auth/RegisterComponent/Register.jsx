@@ -363,8 +363,8 @@ export default function Register() {
         <div className="flex justify-center items-center gap-8">
           <img src={leftImage} alt="Left" className="w-1/4 " />
 
-          <div className=" max-w-md bg-white rounded-lg shadow-md p-8 mr-12 ">
-          <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  '>ĐĂNG KÝ TÀI KHOẢN</div>
+          <div className="w-2/3  bg-white rounded-lg shadow-md p-4  ">
+          <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  p-4 '>ĐĂNG KÝ TÀI KHOẢN</div>
 
             <form action="#" className='mt-4' >
               <div className="mb-6">
@@ -421,10 +421,13 @@ export default function Register() {
                   <input type="file" id="anhCccdMatSau" name="anhMatSau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleAnhCccdMatSauChange} />
                 </div>
               </div>
-              <button type="submit" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng kí</button>
 
             </form>
-            <Link to="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
+            <div className="flex flex-col justify-center text-center p-4 ">
+              <button  className="bg-red-500  justify-center mx-auto w-1/3 hover:bg-red-600 text-white font-bold py-2  rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng ký</button>
+            <Link to="/login" className="text-xs mt-4 justify-center  text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
+
+            </div>
           </div>
 
           <img src={leftImage} alt="Right" className=" w-1/4" />

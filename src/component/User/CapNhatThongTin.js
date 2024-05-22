@@ -37,6 +37,7 @@ export default function CapNhatThongTin() {
         diaChiTTCuThe: "",
         ngaySinh: "",
         noiOHienTai: "",
+        gioiTinh: "",
         ttgiaDinh: {
             tenChuHo: "",
             tv1: "",
@@ -45,6 +46,7 @@ export default function CapNhatThongTin() {
             nsTV2: "",
             tv3: "",
             nsTV3: "",
+            
         }
     });
     const [ttgiadinh, setttgiadinh] = useState({
@@ -85,7 +87,7 @@ export default function CapNhatThongTin() {
                 idTTUser: ttuser?.idTTUser,
                 hoTen: ttuser?.hoTen
             }));
-            if (formttuser.queQuan.tinh == "" || formttuser.queQuan.huyen == "" || formttuser.queQuan.xa == "" || formttuser.noiDKKhaiSinh.tinh == "" || formttuser.noiDKKhaiSinh.huyen == "" || formttuser.noiDKKhaiSinh.xa == "" || formttuser.ngaySinh.trim() == "" || formttuser.noiOHienTai.trim() == "" || formttuser.ttgiaDinh.tenChuHo.trim() == "") {
+            if (formttuser.queQuan.tinh == "" || formttuser.queQuan.huyen == "" || formttuser.queQuan.xa == "" || formttuser.noiDKKhaiSinh.tinh == "" || formttuser.noiDKKhaiSinh.huyen == "" || formttuser.noiDKKhaiSinh.xa == "" || formttuser.ngaySinh.trim() == "" || formttuser.noiOHienTai.trim() == "" || formttuser.ttgiaDinh.tenChuHo.trim() == ""|| formttuser.gioiTinh == "") {
 
                 toast.error("Vui lòng nhập đủ thông tin");
                 console.log(formttuser);
@@ -132,7 +134,8 @@ export default function CapNhatThongTin() {
                         <input type="text" id="email" value={user?.email} className="input-field" disabled />
                     </div>
 
-                    <div className="mb-5">
+                    <div className="mb-5 flex w-full">
+                        <div className='w-3/4'>
                         <label htmlFor="ngaySinh" className="block mb-2 text-sm font-medium text-gray-900">
                             Ngày sinh
                         </label>
@@ -143,6 +146,20 @@ export default function CapNhatThongTin() {
                             onChange={handleInputChange}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
+                        </div>
+                        <div className='ml-4 w-1/4'>
+                        <label htmlFor="ngaySinh" className="block mb-2 text-sm font-medium text-gray-900">
+                            Giới tính
+                        </label>
+                      <select onChange={handleInputChange} id="gioiTinh" name='gioiTinh' > 
+                        <option value="">Chọn giới tính</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Nữ">Khác</option>
+  
+                      </select>
+                        </div>
+                        
                     </div>
 
                     <div className="mb-5">

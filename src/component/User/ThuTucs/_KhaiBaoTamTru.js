@@ -14,6 +14,7 @@ export default function _KhaiBaoTamTru() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
+    const { user, ttuser } = useContext(GlobalContext)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -145,6 +146,9 @@ export default function _KhaiBaoTamTru() {
         trangThai: "",
         idNguoiDuyet: "",
         note: "",
+        hoTen : ttuser.hoTen,
+        gioiTinh : ttuser.gioiTinh,
+        email : user.email,
         fileHoSoLienQuan: {
             hs1: "",
             hs2: "",
@@ -156,7 +160,6 @@ export default function _KhaiBaoTamTru() {
         created_at: moment().toDate(),
         created_end: '',
     });
-    const { user, ttuser } = useContext(GlobalContext)
 
     const HandleSubmit = async () => {
         console.log(form);

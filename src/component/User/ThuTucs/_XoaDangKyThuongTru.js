@@ -48,6 +48,9 @@ export default function _XoaDangKyThuongTru() {
         },
         created_at: moment().toDate(),
         created_end: '',
+        hoTen : ttuser.hoTen,
+        gioiTinh : ttuser.gioiTinh,
+        email : user.email,
     });
     const handleChonhs1 = (event) => {
         const file = event.target.files[0];

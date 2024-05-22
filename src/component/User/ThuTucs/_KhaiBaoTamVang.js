@@ -15,6 +15,7 @@ export default function _KhaiBaoTamVang() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
+    const { user, ttuser } = useContext(GlobalContext)
     
     const [isLoaded, setIsLoaded] = useState(true);
     const handleInputChange = (event) => {
@@ -140,6 +141,9 @@ export default function _KhaiBaoTamVang() {
         diaChiCuThe: "",
         ngayVang: '',
         ngayVe: '',
+        hoTen : ttuser.hoTen,
+        gioiTinh : ttuser.gioiTinh,
+        email : user.email,
         lyDoTamVang: "",
         lePhi: VBPL.lePhi,
         idUser: getIDNguoiThayDoi(),
@@ -158,7 +162,6 @@ export default function _KhaiBaoTamVang() {
         created_end: '',
 
     });
-    const { user, ttuser } = useContext(GlobalContext)
 
     useEffect(() => {
         // window.location.reload();

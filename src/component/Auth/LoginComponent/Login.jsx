@@ -19,7 +19,12 @@
       cccd: "",
       matKhau: "",
     });
-
+    useEffect(() => {
+      window.scrollTo(0, 0);
+  
+      
+    }, []);
+  
     const [contextErr, setContextErr] = useState(false)
     const [code, setCode] = useState('');
     const [codeHash, setCodeHash] = useState('');

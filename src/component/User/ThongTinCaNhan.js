@@ -59,6 +59,10 @@ export default function ThongTinCaNhan() {
                   <td> {ttuser?.ngaySinh} </td>
                 </tr>
                 <tr>
+                  <th scope="row">GiớI tính</th>
+                  <td> {ttuser?.gioiTinh} </td>
+                </tr>
+                <tr>
                   <th scope="row">Số CMND/CCCD</th>
                   <td>{user?.cccd}</td>
                 </tr>

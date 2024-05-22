@@ -17,6 +17,7 @@ export default function _KhaiBaoThuongTru() {
 
     const location = useLocation();
     const [VBPL, sethoso] = useState(location.state.VBPL);
+    const { user, ttuser } = useContext(GlobalContext)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -158,9 +159,11 @@ export default function _KhaiBaoThuongTru() {
         note: "",
         created_at: moment().toDate(),
         created_end: "",
+        hoTen : ttuser.hoTen,
+        gioiTinh : ttuser.gioiTinh,
+        email : user.email,
     });
 
-    const { user, ttuser } = useContext(GlobalContext)
     useEffect(() => {
 
         if (ttuser !== undefined) setIsLoaded(true);

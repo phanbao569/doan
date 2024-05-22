@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.10.43:8888';
+const baseUrl = 'http://192.168.10.184:8888';
 
 const ApiConfig = {
   login: '/login',
@@ -36,6 +36,7 @@ const ApiConfig = {
   oderByLow: '/ThongKeUserTangDan',
   // createManager:'/admin/createUser',
   getAllHoSoCheckingByCoQuan: '/getAllHoSoCheckingByCoQuan',
+  getThongKeDoanhThuByCoQuan:`/getThongKeDoanhThuByCoQuan`,
   createGiaHanTamTru: '/GiaHanTamTru/create',
   updatethongtinuser: '/TTUser/update',
   khaibaotamtru: '/KhaiBaoTamTru/create',

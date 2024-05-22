@@ -39,7 +39,7 @@ export default function TKDTB() {
     const fetchdata = async () => {
         try {
 
-            const response = await axios.get(`http://192.168.10.72:8888/TTNV/get/${id}`)
+            const response = await axios.get(apiUrl(ApiConfig.getTTAdmin(id)));
             // setCoQuanM(response.data.coQuan)
             // console.log(response.data.coQuan);
             setFormData({ ...formData, coQuan: response.data.coQuan })
@@ -55,13 +55,13 @@ export default function TKDTB() {
             try {
 
 
-                const response2 = await axios.post(`http://192.168.10.72:8888/getThongKeDoanhThuByCoQuan`, formData)
+                const response2 = await axios.post(apiUrl(ApiConfig.getThongKeDoanhThuByCoQuan), formData)
                 console.log(response2.data);
 
                 setMoney(response2.data)
                 const chartDataArray = Object.entries(response2.data).map(([Month, Monney]) => ({
                     Month: parseInt(Month), // Chuyển đổi month thành kiểu số nguyên
-                   Monney,
+                    Monney,
                 }));
                 setChartData(chartDataArray);
 
@@ -78,25 +78,19 @@ export default function TKDTB() {
     useEffect(() => {
         fetchdata2()
     }, [formData]);
-
-    const tinhTong = () => {
+    const TongTien = () => {
         let tong = 0;
-        Object.entries(total).forEach(([key, value]) => {
-            const tien = parseInt(value.tien);
-            if (!isNaN(tien)) { // Kiểm tra nếu tien là số hợp lệ
-                tong = tong + tien;
+        // Duyệt qua từng cặp key-value trong đối tượng money
+        Object.values(money).forEach((value) => {
+            // Kiểm tra xem giá trị có phải là một số không và không phải là NaN
+            if (!isNaN(value)) {
+                // Cộng giá trị vào tổng
+                tong += parseInt(value);
             }
         });
         return tong;
     };
 
-
-
-    const tongD = tinhTong();
-    const data01 = [
-        { name: 'Đơn đã duyệt', value: tongD, color: '#72ca9d' },
-
-    ];
     const handleYearChange = (year) => {
         setFormData((prevFormSend) => ({
             ...prevFormSend,
@@ -108,74 +102,78 @@ export default function TKDTB() {
     // setFormData(currentYear)
     return (
         <main className='main-container'>
-          <div className='main-title'>
-              <h3></h3>
-          </div>
+            <div className='main-title'>
+                <h3></h3>
+            </div>
 
-          <div className='main-cards'>
-              <div className='card'>
-                  <div className='card-inner'>
-                      <h3>TỔNG DOANH THU</h3>
-                      <FcMoneyTransfer className='card_icon'/>
-                  </div>
-                  <h1>đoán xem</h1>
-              </div>
-             
-              <div className='text-black'>
-            <GetYears onChange={handleYearChange} /></div>
-         
-          {/* <button  className="text-black" onClick={handleSummit}>gửi</button> */}
-          </div>
+            <div className='main-cards'>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>TỔNG DOANH THU</h3>
+                        <FcMoneyTransfer className='card_icon' />
+                    </div>
+                    <h1>{TongTien() + " VNĐ"}</h1>
+                </div>
 
-          <div className='charts'>
-          <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-              width={500}
-              height={300}
-              data={chartData}
-              margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-              }}
-              >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="Month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="Monney" fill="#8884d8" />
-                 
-                  </BarChart>
-              </ResponsiveContainer>
+                <div className='text-black'>
+                    <GetYears onChange={handleYearChange} /></div>
 
-              <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                  width={500}
-                  height={300}
-                  data={chartData}
-                  margin={{
-                      top: 5,
-                      right: 30,
-                      left: 20,
-                      bottom: 5,
-                  }}
-                  >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="Month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="Monney" stroke="#8884d8" activeDot={{ r: 8 }} />
-                
-                  </LineChart>
-              </ResponsiveContainer>
-              
-          </div>
-       
-          
-          
-      </main>
+                {/* <button  className="text-black" onClick={handleSummit}>gửi</button> */}
+            </div>
+
+            <div className='charts'>
+                <div className='bg-white p-2'>
+
+                    <ResponsiveContainer width="100%" height="100%">
+                        <BarChart
+                            width={500}
+                            height={300}
+                            data={chartData}
+                            margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="Month" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="Monney" fill="#8884d8" />
+
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className='bg-white p-2'>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <LineChart
+                            width={500}
+                            height={300}
+                            data={chartData}
+                            margin={{
+                                top: 5,
+                                right: 30,
+                                left: 20,
+                                bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="Month" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Line type="monotone" dataKey="Monney" stroke="#8884d8" activeDot={{ r: 8 }} />
+
+                        </LineChart>
+                    </ResponsiveContainer>
+                </div>
+
+            </div>
+
+
+
+        </main>
     )
 }

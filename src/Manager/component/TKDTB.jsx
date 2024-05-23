@@ -101,7 +101,7 @@ export default function TKDTB() {
     // const currentYear = new Date().getFullYear();
     // setFormData(currentYear)
     return (
-        <main className='main-container'>
+        <main className='min-h-screen main-container'>
             <div className='main-title'>
                 <h3></h3>
             </div>

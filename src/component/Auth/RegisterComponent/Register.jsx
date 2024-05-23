@@ -185,10 +185,10 @@ export default function Register() {
         }
       }
     }
-      if(formData.cccd.length!=12 || isNaN(formData.cccd))  {
-        toast.error('mã số CCCD không hợp lệ');
-        return;
-      }
+    if (formData.cccd.length != 12 || isNaN(formData.cccd)) {
+      toast.error('mã số CCCD không hợp lệ');
+      return;
+    }
     if (!phoneNumberRegex.test(formData.sdt.toString())) {
       toast.error('Số điện thoại không hợp lệ');
       return;
@@ -209,7 +209,7 @@ export default function Register() {
 
 
       const response = await axios.post(apiUrl(ApiConfig.registerCheck), formData);
-      
+
       console.log('Response from server:', response.data);
       formData.codeHashed = response.data;
 
@@ -234,7 +234,7 @@ export default function Register() {
   // ham lay thongtin tu form
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-    
+
     if (name === 'sdt') {
       // Biểu thức chính quy để kiểm tra số điện thoại
 
@@ -356,15 +356,14 @@ export default function Register() {
   };
   return (
 
-    <div className='h-atuo '  >
+    <div className='min-h-screen '  >
       <ToastContainer />
-
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center gap-8">
           <img src={leftImage} alt="Left" className="w-1/4 " />
 
           <div className="w-2/3  bg-white rounded-lg shadow-md p-4  ">
-          <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  p-4 '>ĐĂNG KÝ TÀI KHOẢN</div>
+            <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  p-4 '>ĐĂNG KÝ TÀI KHOẢN</div>
 
             <form action="#" className='mt-4' >
               <div className="mb-6">
@@ -374,7 +373,7 @@ export default function Register() {
               </div>
               <div className="mb-6">
                 <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Mật khẩu</label>
-                <input type="password" id="password" placeholder="Mật khẩu" name="matKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+                <input autoComplete="new-password" type="password" id="password" placeholder="Mật khẩu" name="matKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
                 {errPass && <p className="text-xs text-red-600">{errPass}</p>}
               </div>
               <div className="mb-6">
@@ -422,12 +421,11 @@ export default function Register() {
                 </div>
               </div>
 
+              <div type="submit" className="flex flex-col justify-center text-center p-4 ">
+                <button className="bg-red-500  justify-center mx-auto w-1/3 hover:bg-red-600 text-white font-bold py-2  rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng ký</button>
+                <Link to="/login" className="text-xs mt-4 justify-center  text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
+              </div>
             </form>
-            <div className="flex flex-col justify-center text-center p-4 ">
-              <button  className="bg-red-500  justify-center mx-auto w-1/3 hover:bg-red-600 text-white font-bold py-2  rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Đăng ký</button>
-            <Link to="/login" className="text-xs mt-4 justify-center  text-blue-500 hover:text-blue-700">Bạn đã có tài khoản ! Đăng nhập </Link>
-
-            </div>
           </div>
 
           <img src={leftImage} alt="Right" className=" w-1/4" />
@@ -451,20 +449,23 @@ export default function Register() {
                 onChange={(event) => setCode(event.target.value)}
               /> */}
                 <PinInputForm onChange={(value) => setCode(value)} />
-                <button
-                  onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
-                  className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
-                >
-                  Xác nhận
-                </button>
+                <div className='flex justify-center m-2'>
 
-                <button
-                  onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
+                  <button
+                    onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
+                    className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
+                  >
+                    Xác nhận
+                  </button>
 
-                  className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
-                >
-                  Đóng
-                </button>
+                  <button
+                    onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
+
+                    className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
+                  >
+                    Đóng
+                  </button>
+                </div>
               </div>
               <a onClick={handleConfirmAgainMail} href="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn chưa mã xác nhận? Gửi lại mã...</a>
 

@@ -70,10 +70,10 @@ export default function HeaderM() {
                                     {/* <NavLink to="/thongtincanhan" className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">
                                         Thông tin cá nhân
                                     </NavLink> */}
-                                    <NavLink to='/TTCaNhanManager' className="w-full gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">
+                                    <NavLink onClick={()=>setIsOpen(false)} to='/TTCaNhanManager' className="w-full gap-2  flex px-4 py-2 text-gray-800 hover:bg-gray-200 text-xs ">
                                         <FaRegUser />  Thông tin cá nhân
                                     </NavLink>
-                                    <NavLink to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">
+                                    <NavLink onClick={()=>setIsOpen(false)}  to='/changePass' className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">
                                         <RiLockPasswordLine /> Đổi mật khẩu
                                     </NavLink>
                                     <NavLink onClick={handleLogout} className="px-4 py-2 gap-2 flex text-gray-800 w-full hover:bg-gray-200 text-xs ">

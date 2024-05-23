@@ -217,8 +217,8 @@ export default function PheDuyetHoSoM() {
   return (
     <div className='w-full min-h-screen mt-4 text-center' >
       <ToastContainer />
-      <div className='flex '>
-        <div className='h-screen -mt-6 bg-gray-800'>
+      <div className='flex min-h-screen'>
+        <div className='min-h-screen -mt-6 bg-gray-800'>
           <NavLink to='/PheDuyetTaiKhoanM' className='flex w-225 h-10 text-white bg-gray-800  items-center gap-2 p-2 my-2'>
             <MdManageAccounts className='' />
             Phê duyệt tài khoản

@@ -99,19 +99,14 @@ export default function TTUserM() {
                 <div className="panel-heading h-12 ">
                     <label className=" font-fontgg font-bold panel-title text-xl text-center mt-4">Thông tin cá nhân</label>
                 </div>
-                <div className="h-full  flex justify-center panel-body">
-                    <table className="w-880 table table-bordered shadow-md ">
+                <div className="h-auto  flex justify-center panel-body">
+                    <table className="w-656 table table-bordered shadow-md ">
                         <colgroup>
                             <col width="38%" />
                         </colgroup>
                         <tbody className='font-normal'>
                             <tr>
-                                <td colSpan={2} className='mx-auto' style={{ textAlign: 'center' }}>
-                                    <img src={QR} className='mx-auto w-36 ' alt="QR" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th >Họ và tên</th>
+                                <th className='h-10' >Họ và tên</th>
                                 <td>{form?.hoTen}</td>
                             </tr>
                          
@@ -120,35 +115,29 @@ export default function TTUserM() {
                                 <td> {ttuser?.ngaySinh} </td>
                             </tr> */}
                             <tr>
-                                <th >Số CMND/CCCD</th>
+                                <th className='h-10'>Số CMND/CCCD</th>
                                 <td>{form?.cccd}</td>
                             </tr>
                            
                          
                             <tr>
-                                <th >Di động</th>
+                                <th className='h-10' >Di động</th>
                                 <td >
                                     {form?.sdt}
                                 </td>
                             </tr>
                             <tr>
-                                <th >Email</th>
+                                <th className='h-10'>Email</th>
                                 <td >{form?.email} </td>
                             </tr>
 
-                            {/* <tr>
-                                <th >Địa chỉ</th>
-                                <td>
-                                    {ttuser?.noiOHienTai}
-                                </td>
-                            </tr> */}
                             <tr>
-                                <th >Loại tài khoản</th>
+                                <th className='h-10'>Loại tài khoản</th>
                                 <td>Tài khoản công dân</td>
                             </tr>
                             <tr>
-                                <th >Hình ảnh</th>
-                                <td className='flex gap-4' >
+                                <th className=''>Hình ảnh</th>
+                                <td className='flex gap-4 ' >
                                     <img src={form?.anhCCCD?.anhMat} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
                                     <img src={form?.anhCCCD?.anhMatSau} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
                                     <img src={form?.anhCCCD?.anhMatTruoc} alt="Ảnh mặt" style={{ width: '100px', height: '100px' }} />
@@ -163,7 +152,7 @@ export default function TTUserM() {
                     <button onClick={handClickConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Duyệt</button>
                     <button onClick={handClickNotConfirm} className="w-52 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Không duyệt</button>
                 </div>
-                <Link to='/PheDuyetHoSoM' className='ml-52 text-sm underline decoration-1 hover:text-red-600 '>Back</Link>
+                <Link to='/PheDuyetHoSoM' className='ml-52 pb-10 text-sm underline decoration-1 hover:text-red-600 '>Back</Link>
             </div>
 
             {/* {isLoaded ? (

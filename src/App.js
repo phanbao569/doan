@@ -267,6 +267,8 @@ function App() {
               <Route path="/tkdtb" element={<TKDTB />} />
               <Route path="/TTCaNhanManager" element={<TTCaNhanManager />} />
               <Route path="/DiaChi" element={<DiaChi />} />
+              <Route path="/ChangePass" element={<ChangePassword />} />
+
             </Routes>
           </div>
         ) : role === 'Manager' ? (

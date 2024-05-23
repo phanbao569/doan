@@ -67,9 +67,9 @@ export default function GetEmById() {
         });
     };
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center min-h-screen">
             <ToastContainer />
-            <div className="w-full max-w-screen-md mx-auto">
+            <div className="w-full max-w-screen-md mx-auto mt-10">
                 <div className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4 grid grid-cols-2 gap-4">
                         <div className="flex flex-col">
@@ -88,7 +88,7 @@ export default function GetEmById() {
                     <label htmlFor="chucVu" className="font-bold mb-2">Chức vụ</label>
                     <input type="text" className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="chucVu" value={formData.chucVu} onChange={(e) => { handleChange(e) }} readOnly={!isEditable} />
                 </div> */}
-                        <div className="flex flex-col">
+                        {/* <div className="flex flex-col">
                            <label htmlFor="cccd" className="font-bold mb-2">Ảnh mặt</label>
                            <div className='flex'>
                             <img className='mr-2' src={formData?.anhCCCD?.anhMat} style={{ width: '100px', height: '100px' }} />
@@ -96,7 +96,7 @@ export default function GetEmById() {
                             <img className='mr-2' src={formData?.anhCCCD?.anhMatSau} style={{ width: '100px', height: '100px' }} />
                             
                            </div>
-                        </div>
+                        </div> */}
 
                         {isEditable ? (
                             <div className="flex flex-col">
@@ -142,17 +142,14 @@ export default function GetEmById() {
                     {isEditable ? (
                         <div className="flex flex-col">
                             <label htmlFor="tinhTrangTK" className="font-bold mb-2">Chức vụ</label>
-                            <select
+                            <input
                                 className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="role"
                                 value={formData.role}
                                 onChange={(e) => handleChange(e)}
-                            >
-                                <option value="User">User</option>
-                                <option value="Employee">Employee</option>
-                                <option value="Mangager">Mangager</option>
-                                <option value="Admin">Admin</option>
-                            </select>
+                            readOnly>
+                                
+                            </input>
 
                         </div>
                     ) : (

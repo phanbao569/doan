@@ -57,7 +57,7 @@ export default function ThongBaoLuuTruM() {
     const [ TTUser, setTTUser ] = useState({
         hoTen: "",
         ngaySinh: "",
-        gioiTinh: "''",
+        gioiTinh: "",
         cccd: "",
         sdt: "",
         email: ""
@@ -113,20 +113,20 @@ export default function ThongBaoLuuTruM() {
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Cơ quan thực hiện</h1>
                     <div className='flex gap-8 mt-2 justify-center '>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="idNguoiDuyet" className="block text-gray-700 text-sm font-bold mb-2">ID Người duyệt:</label>
-                            <input type="text" id="huyen" name="huyen" value={idM} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">ID Người duyệt:</label>
+                            <input  name="huyen" value={idM} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">Tỉnh:</label>
-                            <input type="text" id="tinh" name="tinh" value={form?.coQuanThucHien?.tinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">Tỉnh:</label>
+                            <input value={form?.coQuanThucHien?.tinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="huyen" className="block text-gray-700 text-sm font-bold mb-2">Huyện:</label>
-                            <input type="text" id="huyen" name="huyen" value={form?.coQuanThucHien?.huyen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">Huyện:</label>
+                            <input  value={form?.coQuanThucHien?.huyen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1 ">
-                            <label htmlFor="huyen" className="block text-gray-700 text-sm font-bold mb-2">Xã:</label>
-                            <input type="text" id="huyen" name="huyen" value={form?.coQuanThucHien?.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">Xã:</label>
+                            <input  value={form?.coQuanThucHien?.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
                 </div>
@@ -134,59 +134,57 @@ export default function ThongBaoLuuTruM() {
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Thông tin đề nghị lưu trú</h1>
                     <div className='flex gap-8 mt-2 '>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="id" className="block text-gray-700 text-sm font-bold mb-2">ID:</label>
-                            <input type="text" id="huyen" name="huyen" value={form?.idUser} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">ID:</label>
+                            <input  value={form?.idUser} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">Tỉnh:</label>
-                            <input type="text" id="tinh" name="tinh" value={form?.diaChiLuuTru?.tinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Tỉnh:</label>
+                            <input  value={form?.diaChiLuuTru?.tinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="huyen" className="block text-gray-700 text-sm font-bold mb-2">Huyện:</label>
-                            <input type="text" id="huyen" name="huyen" value={form?.diaChiLuuTru?.huyen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label  className="block text-gray-700 text-sm font-bold mb-2">Huyện:</label>
+                            <input  value={form?.diaChiLuuTru?.huyen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="xa" className="block text-gray-700 text-sm font-bold mb-2">Xã:</label>
-                            <input type="text" id="huyen" name="huyen" value={form?.diaChiLuuTru?.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Xã:</label>
+                            <input  value={form?.diaChiLuuTru?.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                         <div className="mb-6 flex-1">
-                            <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Địa chỉ cụ thể:</label>
-                            <input type="text" id="huyen" value={form.diaChiCuThe} name="huyen" className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Địa chỉ cụ thể:</label>
+                            <input  value={form.diaChiCuThe} name="huyen" className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
                 </div>
                 <div className='flex gap-8'>
                     <div className="flex-1 mb-6">
-                        <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">Tên cơ sở lưu trú:</label>
-                        <input type="text" id="huyen" name="huyen" value={form.tenCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <label  className="block text-gray-700 text-sm font-bold mb-2">Tên cơ sở lưu trú:</label>
+                        <input  value={form.tenCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                     <div className="flex-1 mb-6">
-                        <label htmlFor="thoiHanTamTru" className="block text-gray-700 text-sm font-bold mb-2">Loại hình cơ sở:</label>
-                        <input type="text" id="huyen" name="huyen" value={form.loaiHinhCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <label className="block text-gray-700 text-sm font-bold mb-2">Loại hình cơ sở:</label>
+                        <input  value={form.loaiHinhCoSo} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                   
                 </div>
                 <div className='flex justify-between gap-3'>
                     <div className="mb-6 flex-1">
-                        <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
-                        <input type="text" id="huyen" name="huyen" value={TTUser?.hoTen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <label  className="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
+                        <input  value={TTUser?.hoTen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                     
                     <div className="mb-6 flex-1">
-                        <label htmlFor="gioiTinh" className="block text-gray-700 text-sm font-bold mb-2">Giới tính:</label>
-                        <input type="text" id="huyen" name="huyen" value={form?.gioiTinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        <label  className="block text-gray-700 text-sm font-bold mb-2">Giới tính:</label>
+                        <input  value={TTUser?.gioiTinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                    </div>
+                    <div className="mb-6 flex-1">
+                        <label  className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
+                        <input value={TTUser?.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                 </div>
+
                 <div className='flex justify-between gap-3'>
                     <div className="mb-6 flex-1">
-                        <label htmlFor="diaChiCuThe" className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
-                        <input type="text" id="huyen" name="huyen" value={TTUser?.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
-                    
-                </div>
-                <div className='flex justify-between gap-3'>
-                    <div className="mb-6 flex-1">
-                        <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
+                        <label  className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>
                         <div className='flex' >
                             {form && form.fileHoSoLienQuan && (
                                 <>

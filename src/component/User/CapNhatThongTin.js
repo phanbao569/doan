@@ -11,6 +11,8 @@ import { FaEdit } from "react-icons/fa";
 export default function CapNhatThongTin() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate để chuyển trang(có thể dùng routes,Link)
 
+
+    
     useEffect(() => {
         setformttuer(prevState => ({
             ...prevState,

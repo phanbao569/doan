@@ -32,10 +32,10 @@ export default function NavM() {
                         Thống kê
                     </NavLink>
                     {isOpen && (
-                        <div className="absolute bg-white border border-gray-300 rounded-md shadow-lg p-2 mt-2">
-                            <NavLink to={'/tkdtb'} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">Thống kê doanh thu</NavLink>
-                            <NavLink to={'/thongkehosobaolamcholong'} className="block px-4 py-2 text-gray-800 hover:bg-gray-200 text-sm">Thống kê hồ sơ</NavLink>
-                        </div>
+                        <div className="absolute w-44 bg-zinc-700 mt-1">
+                            <NavLink to={'/tkdtb'} className="block px-4 py-2 text-white  hover:bg-zinc-400 hover:text-black text-sm">Thống kê doanh thu</NavLink>
+                            <NavLink to={'/thongkehosobaolamcholong'} className="block px-4 py-2  text-white hover:text-black hover:bg-zinc-400 text-sm">Thống kê hồ sơ</NavLink>
+                        </div>  
                     )}
                 </div>
             <div>

@@ -74,14 +74,14 @@ export default function ChangePassword() {
     };
     return (
 
-        <div className='h-atuo'  >
+        <div className='min-h-screen font-fontgg'  >
             <ToastContainer />
 
             <div className="container mx-auto px-4 py-8 mt-10">
                 <div className="flex flex-col justify-center items-center">
                     <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-                        <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  '>ĐỔI MẬT KHẨU</div>
-
+                        <div className='text-2xl  bg-red-400 text-center rounded-md mx-auto p-2  '>ĐỔI MẬT KHẨU</div>
+                        <hr/>
                         <div className="mb-6 mt-4">
                             <label htmlFor="oldPass" className="text-sm text-center block mb-2 font-medium text-gray-700">Nhập mật khẩu cũ</label>
                             <input type="password" id="oldPass" placeholder="Mật khẩu cũ" name="oldPass" onChange={handleChangeInput} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />

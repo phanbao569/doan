@@ -66,7 +66,7 @@ function Header() {
 
 
 
-      <div className='header-left'></div>
+      <div  className='header-left'></div>
       <div className='header-right'>
      
         <BsPersonCircle className='icon' onClick={toggleSidebar} />
@@ -76,10 +76,12 @@ function Header() {
               <Link to='/thongtinadmin' className="flex flex-row items-center text-blue-400 hover:text-blue-600 cursor-pointer">
                 <BsPersonCircle />
                 <span onClick={()=>setIsOpen(false)} class="ml-2">My Profile</span>
+                <span onClick={()=>setIsOpen(false)} class="ml-2">My Profile</span>
               </Link>
 
               <Link className="flex flex-row items-center hover:text-black cursor-pointer" to='/changePass'>
                 <RiLockPasswordFill />
+                <span onClick={()=>setIsOpen(false)} class="ml-2">ChangePassword</span>
                 <span onClick={()=>setIsOpen(false)} class="ml-2">ChangePassword</span>
               </Link>
 

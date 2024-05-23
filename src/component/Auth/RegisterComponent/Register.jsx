@@ -185,10 +185,10 @@ export default function Register() {
         }
       }
     }
-      if(formData.cccd.length!=12 || isNaN(formData.cccd))  {
-        toast.error('mã số CCCD không hợp lệ');
-        return;
-      }
+    if (formData.cccd.length != 12 || isNaN(formData.cccd)) {
+      toast.error('mã số CCCD không hợp lệ');
+      return;
+    }
     if (!phoneNumberRegex.test(formData.sdt.toString())) {
       toast.error('Số điện thoại không hợp lệ');
       return;
@@ -209,7 +209,7 @@ export default function Register() {
 
 
       const response = await axios.post(apiUrl(ApiConfig.registerCheck), formData);
-      
+
       console.log('Response from server:', response.data);
       formData.codeHashed = response.data;
 
@@ -234,7 +234,7 @@ export default function Register() {
   // ham lay thongtin tu form
   const handleInputChange = (event) => {
     const { name, value, files } = event.target;
-    
+
     if (name === 'sdt') {
       // Biểu thức chính quy để kiểm tra số điện thoại
 
@@ -356,15 +356,14 @@ export default function Register() {
   };
   return (
 
-    <div className='h-atuo '  >
+    <div className='min-h-screen '  >
       <ToastContainer />
-
       <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center gap-8">
           <img src={leftImage} alt="Left" className="w-1/4 " />
 
           <div className="w-2/3  bg-white rounded-lg shadow-md p-4  ">
-          <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  p-4 '>ĐĂNG KÝ TÀI KHOẢN</div>
+            <div className='text-2xl bg-red-400 text-center rounded-md mx-auto  p-4 '>ĐĂNG KÝ TÀI KHOẢN</div>
 
             <form action="#" className='mt-4' >
               <div className="mb-6">
@@ -451,20 +450,23 @@ export default function Register() {
                 onChange={(event) => setCode(event.target.value)}
               /> */}
                 <PinInputForm onChange={(value) => setCode(value)} />
-                <button
-                  onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
-                  className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
-                >
-                  Xác nhận
-                </button>
+                <div className='flex justify-center m-2'>
 
-                <button
-                  onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
+                  <button
+                    onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
+                    className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
+                  >
+                    Xác nhận
+                  </button>
 
-                  className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
-                >
-                  Đóng
-                </button>
+                  <button
+                    onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
+
+                    className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
+                  >
+                    Đóng
+                  </button>
+                </div>
               </div>
               <a onClick={handleConfirmAgainMail} href="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn chưa mã xác nhận? Gửi lại mã...</a>
 

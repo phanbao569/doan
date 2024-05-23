@@ -58,7 +58,7 @@ export default function ForgotPass() {
         for (const key in formQuenMatKhau) {
             if (formQuenMatKhau.hasOwnProperty(key)) {
                 if (!formQuenMatKhau[key]) {
-                    alert(`Bạn phải nhập đầy đủ thông tin ở ${key}`);
+                    toast.warn(`Bạn phải nhập đầy đủ thông tin ở ${key}`);
                     return;
                 }
             }
@@ -138,7 +138,6 @@ export default function ForgotPass() {
         if (checkMK == formQuenMatKhau.matKhauMoi) {
             try {
                 const response = await axios.post(apiUrl(ApiConfig.setNewPassword), formQuenMatKhau);
-
                 console.log('hàm xử đổi mật khẩu:' + response.data);
                 toast.success(response.data)
                 console.log('2 mật khẩu là:' + formQuenMatKhau.matKhauMoi + "và" + checkMK)
@@ -147,10 +146,14 @@ export default function ForgotPass() {
                 setShowConfirmationDialog(false);
                 setShowNhapMKDialog(false)
                 // Hiển thị thông báo xác nhận thành công cho người dùng
+                setTimeout(() => {
+                    Navigate('/login');
+                }, 1000);
 
             } catch (error) {
                 console.error('Xác nhận thất bại:', error);
                 // Hiển thị thông báo lỗi cho người dùng
+                toast.error('mã xác nhận xác nhận sai.' + error.data);
                 toast.error('mã xác nhận xác nhận sai.' + error.data);
             }
         } else {
@@ -161,9 +164,9 @@ export default function ForgotPass() {
 
     //xử lí api
     return (
-        <div className='h-atuo'  >
+        <div className='min-h-screen'  >
             <ToastContainer />
-            <div className="container mx-auto px-4 py-8 mt-32">
+            <div className="container mx-auto px-4 py-8 mt-10">
                 <div className="flex justify-center items-center">
 
                     <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
@@ -173,12 +176,12 @@ export default function ForgotPass() {
                             <input onChange={handleChange} type="text" id="cccd" placeholder="CCCD" name="cccd" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" />
 
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-6 text-center">
                             {/* viết hàm check tài khoản ở đây handleCheckCCCD  */}
                             <button onClick={() => {
                                 handleCheckCCCD()
                                 // setShowConfirmationDialog(true)
-                            }} type="button" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">lấy mã</button>
+                            }} type="button" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Lấy mã</button>
                         </div>
 
                     </div>
@@ -202,20 +205,22 @@ export default function ForgotPass() {
                                     onChange={(event) => setCode(event.target.value)}
                                 /> */}
                                 <PinInputForm onChange={(value) => setCode(value)} />
-                                <button
-                                    onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
-                                    className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
-                                >
-                                    Xác nhận
-                                </button>
+                                <div className='flex justify-center p-2'>
+                                    <button
+                                        onClick={handleConfirmationSubmit} disabled={timeLeft === 0}
+                                        className={`bg-blue-400 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600 hover:text-gray-800 ${timeLeft === 0 && 'opacity-50 cursor-not-allowed'}`}
+                                    >
+                                        Xác nhận
+                                    </button>
 
-                                <button
-                                    onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
+                                    <button
+                                        onClick={() => { setShowConfirmationDialog(false); resetTime(); }}
 
-                                    className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
-                                >
-                                    Đóng
-                                </button>
+                                        className="text-gray-600 py-2 px-4 rounded border border-gray-600 focus:outline-none focus:border-gray-800 transition-colors duration-300 hover:bg-gray-200 hover:text-gray-800"
+                                    >
+                                        Đóng
+                                    </button>
+                                </div>
                             </div>
                             <a onClick={handleConfirmAgainMail} href="/login" className="text-xs text-blue-500 hover:text-blue-700">Bạn chưa mã xác nhận? Gửi lại mã...</a>
 

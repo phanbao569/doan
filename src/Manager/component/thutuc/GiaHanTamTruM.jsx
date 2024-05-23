@@ -30,8 +30,6 @@ export default function GiaHanTamTruM() {
         console.log(form.id);
 
     }, []);
-
-
     const [form, setForm] = useState({
         id: "",
         tenThuTuc: "Gia hạn tạm trú",
@@ -70,7 +68,7 @@ export default function GiaHanTamTruM() {
         form.idNguoiDuyet = idM;
         form.trangThai = "Paying";
         HandleSubmit();
- 
+
     }
     const handClickNotConfirm = async () => {
         form.idNguoiDuyet = idM;
@@ -83,18 +81,19 @@ export default function GiaHanTamTruM() {
         setForm({ ...form, [name]: value });
     };
     const HandleSubmit = async () => {
-        try{
-        if (form.note.trim() == "") {
-            toast.error("Vui lòng nhập đầy đủ thông tin");
-            return;
+        try {
+            if (form.note.trim() == "") {
+                toast.error("Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+            else {
+                toast.success("Done!");
+                await axios.put(apiUrl(ApiConfig.putGiaHanTamTru), form);
+                setTimeout(() => {
+                    Navigate('/PheDuyetHoSoM');
+                }, 1000);
+            }
         }
-        else {
-            toast.success("Done!");
-            await axios.put(apiUrl(ApiConfig.putGiaHanTamTru), form);
-            setTimeout(() => {
-                Navigate('/PheDuyetHoSoM');
-            }, 1000);
-        }} 
         catch (error) {
             console.error('Lỗi khi gửi dữ liệu:', error);
         }
@@ -135,6 +134,7 @@ export default function GiaHanTamTruM() {
                         </div>
                     </div>
                 </div>
+
                 <div>
                     <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Thông tin đề nghị gia hạn tạm trú</h1>
                     <div className='flex gap-8 mt-2 '>
@@ -152,24 +152,38 @@ export default function GiaHanTamTruM() {
                         </div>
                         <div className="mb-6 flex-1">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Giới tính:</label>
-                       
+
                             <input value={TTUser.gioiTinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                       
+                        </div>
+                        <div className="mb-6 flex-1">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
+                            <input value={TTUser.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        </div>
+                        
+                    </div>
+                    <h1 className='font-bold text-center bg-orange-300 p-3 rounded mb-3'>Địa chỉ đề nghị gia hạn tạm trú</h1>
+                    <div className='flex gap-8 mt-2 '>
+                      
+                        <div className="mb-6 flex-1">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Tỉnh:</label>
+                            <input value={form.diaChiTamTru.tinh} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        </div>
+                        <div className="mb-6 flex-1">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Huyện:</label>
+                            <input value={form.diaChiTamTru.huyen} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
+                        </div>
+                        <div className="mb-6 flex-1">
+                            <label className="block text-gray-700 text-sm font-bold mb-2">Xã:</label>
+                            <input value={form.diaChiTamTru.xa} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                         </div>
                     </div>
                 </div>
                 <div className='flex justify-between gap-3'>
-                    <div className="mb-6 flex-1">
-                        <label className="block text-gray-700 text-sm font-bold mb-2">Số định danh cá nhân:</label>
-                        <input value={TTUser.cccd} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
-                    </div>
+
                     <div className="mb-6 flex-1">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Địa chỉ cụ thể:</label>
                         <input value={form?.diaChiCuThe} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
-                 
-                </div>
-                <div className='flex gap-8'>
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2">Thời hạn đăng ký:</label>
                         <input value={form.thoiHanTamTru + " ngày"} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
@@ -179,6 +193,8 @@ export default function GiaHanTamTruM() {
                         <input value={formatDate(form.created_at)} className="w-full bg-white text-gray-700 border rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" readOnly />
                     </div>
                 </div>
+              
+
                 <div className='flex justify-between gap-3'>
                     <div className="mb-6 flex-1">
                         <label htmlFor="tinh" className="block text-gray-700 text-sm font-bold mb-2">File hồ sơ liên quan:</label>

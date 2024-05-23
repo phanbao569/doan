@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getIDNguoiThayDoi } from '../../util/jwtUtils';
 import ApiConfig, { apiUrl } from '../../ApiConfig';
+import { ToastContainer, toast } from 'react-toastify';
 export default function GetAllEmploy() {
     const id = getIDNguoiThayDoi();
     const [formData, setFormData] = useState({})
@@ -57,16 +58,15 @@ export default function GetAllEmploy() {
     const handleDelete = async (id) => {
         try {
             const response = await axios.delete(apiUrl(ApiConfig.deleteAccount(id)));
-
-            alert(response.data);
-            window.location.reload();
+            toast.success("Xóa nhân viên thành công")
+            // window.location.reload();
         } catch (error) {
-
             console.error('Lỗi khi xóa người dùng:', error.data);
         }
     };
     return (
         <div className='min-h-screen'>
+            <ToastContainer/>
             <div className='text-center'>
                 <h1 className='p-4 text-3xl font-fontgg'>Danh sách nhân viên</h1>
                 <div className=" m-2  relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -24,6 +24,7 @@ export default function SideBar() {
                     <div >
                         <RiAdminFill className='icon_header' /> MYADMIN
                     </div>
+                    </div>
 
                 </div>
                 <span className='icon close_icon'>X</span>

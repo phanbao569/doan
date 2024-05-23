@@ -57,9 +57,9 @@ export default function CreateNV() {
         }
     }
   return (
-    <div className='h-atuo'  >
+    <div className='min-h-creen'  >
 
-    <div onSubmit={handleSubmit} className="container mx-auto px-4 py-8">
+    <div onSubmit={handleSubmit} className="container  mx-auto px-4 py-8">
       <div className="flex justify-center items-center">
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
           <h1 className="text-2xl font-bold text-center mb-4">Tạo tài khoản employee</h1>

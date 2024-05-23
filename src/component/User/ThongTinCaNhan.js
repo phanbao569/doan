@@ -115,7 +115,7 @@ export default function ThongTinCaNhan() {
                   <th scope="row">Địa chỉ Tạm trú cụ thể</th>
                   {ttuser?.diaChiTTCuThe ?
                     <td>
-                      {ttuser?.diaChiTTCuThe} - Thời hạn đến : {moment(ttuser.thoiHanTamTru).format('DD-MM-YYYY')}
+                      {ttuser?.diaChiTTCuThe} 
                     </td> :
                     <td>
                       chưa có thông tin

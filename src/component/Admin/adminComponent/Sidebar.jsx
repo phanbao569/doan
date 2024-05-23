@@ -21,9 +21,8 @@ export default function SideBar() {
         <aside id="sidebar" className="">
             <div className='sidebar-title '>
                 <div className='sidebar-brand'>
-                    <div >
+                    <div>
                         <RiAdminFill className='icon_header' /> MYADMIN
-                    </div>
                     </div>
 
                 </div>

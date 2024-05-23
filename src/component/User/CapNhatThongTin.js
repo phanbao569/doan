@@ -97,15 +97,17 @@ export default function CapNhatThongTin() {
             else {
                 const respont = await axios.put(apiUrl(ApiConfig.updatethongtinuser), formttuser);
                 toast.success("Cập nhật thành công");
-                window.location.reload();
                 navigate("/ChonThuTuc")
+                setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
+                //window.location.reload();
             }
         }
         catch (error) {
             toast.warning("Đã có lỗi xảy ra , vui lòng thử lại");
 
-            console.log(error);
-            console.log(formttuser);
+      
 
         }
     }

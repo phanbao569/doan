@@ -129,6 +129,10 @@ export default function ForgotPass() {
     // hàm xử lí đổi mật khẩu
     const handleConfirmPassSubmit = async (event) => {
         event.preventDefault();
+        if(checkMK==""|| formQuenMatKhau.matKhauMoi=="") {
+            toast.warn("vui lòng không để trống thông tin")
+            return
+        }
         console.log(checkMK + " " + formQuenMatKhau.matKhauMoi)
         console.log(" xx" + formQuenMatKhau.cccd)
         if (checkMK == formQuenMatKhau.matKhauMoi) {
@@ -136,7 +140,7 @@ export default function ForgotPass() {
                 const response = await axios.post(apiUrl(ApiConfig.setNewPassword), formQuenMatKhau);
 
                 console.log('hàm xử đổi mật khẩu:' + response.data);
-                alert('hàm xử đổi mật khẩu:' + response.data)
+                toast.success(response.data)
                 console.log('2 mật khẩu là:' + formQuenMatKhau.matKhauMoi + "và" + checkMK)
                 // Chuyển hướng người dùng đến trang chính của ứng dụng
                 // alert('nhập mã chính xác! ');
@@ -147,10 +151,10 @@ export default function ForgotPass() {
             } catch (error) {
                 console.error('Xác nhận thất bại:', error);
                 // Hiển thị thông báo lỗi cho người dùng
-                alert('mã xác nhận xác nhận sai.' + error.data);
+                toast.error('mã xác nhận xác nhận sai.' + error.data);
             }
         } else {
-            alert("bạn nhập mật khẩu không khớp")
+            toast.error("bạn nhập mật khẩu không khớp")
         }
     };
     //kiểm tra mật khẩu
@@ -232,7 +236,7 @@ export default function ForgotPass() {
                            </div>
                            <div className="mb-6">
                                <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Mật khẩu</label>
-                               <input type="password" id="password" placeholder="Mật khẩu" name="matKhauMoi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleChange} />
+                               <input type="password" id="password" placeholder="Mật khẩu" name="matKhauMoi" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" autoComplete="new-password" onChange={handleChange} />
                            </div>
                            <div className="mb-6">
                                <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Nhập lại mật khẩu</label>

@@ -275,7 +275,6 @@ function App() {
             <HeaderM/>
             <NavM/>
             <Routes>
-              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register/>} />
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />

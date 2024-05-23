@@ -374,7 +374,7 @@ export default function Register() {
               </div>
               <div className="mb-6">
                 <label htmlFor="password" className="text-sm block mb-2 font-medium text-gray-700">Mật khẩu</label>
-                <input type="password" id="password" placeholder="Mật khẩu" name="matKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" onChange={handleInputChange} />
+                <input type="password" id="password" placeholder="Mật khẩu" name="matKhau" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-0 focus:ring-blue-500 focus:ring-opacity-50" autoComplete="new-password" onChange={handleInputChange} />
                 {errPass && <p className="text-xs text-red-600">{errPass}</p>}
               </div>
               <div className="mb-6">

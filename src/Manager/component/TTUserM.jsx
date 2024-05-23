@@ -100,7 +100,7 @@ export default function TTUserM() {
                     <label className=" font-fontgg font-bold panel-title text-xl text-center mt-4">Thông tin cá nhân</label>
                 </div>
                 <div className="h-full  flex justify-center panel-body">
-                    <table className="w-880 mb-32 table table-bordered shadow-md ">
+                    <table className="w-880 table table-bordered shadow-md ">
                         <colgroup>
                             <col width="38%" />
                         </colgroup>

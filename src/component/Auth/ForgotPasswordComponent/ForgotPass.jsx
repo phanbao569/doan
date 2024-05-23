@@ -138,7 +138,7 @@ export default function ForgotPass() {
         if (checkMK == formQuenMatKhau.matKhauMoi) {
             try {
                 const response = await axios.post(apiUrl(ApiConfig.setNewPassword), formQuenMatKhau);
-                console.log('hàm xử đổi mật khẩu:' + response.data);
+                console.log( response.data);
                 toast.success(response.data)
                 console.log('2 mật khẩu là:' + formQuenMatKhau.matKhauMoi + "và" + checkMK)
                 // Chuyển hướng người dùng đến trang chính của ứng dụng
@@ -154,7 +154,7 @@ export default function ForgotPass() {
                 console.error('Xác nhận thất bại:', error);
                 // Hiển thị thông báo lỗi cho người dùng
                 toast.error('mã xác nhận xác nhận sai.' + error.data);
-                toast.error('mã xác nhận xác nhận sai.' + error.data);
+               
             }
         } else {
             toast.error("bạn nhập mật khẩu không khớp")

@@ -229,7 +229,6 @@ function App() {
               <Route path="/VBPL" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
               <Route path="/quanlyhoso" element={<TraCuuUser />} />
-              <Route path="/hotrohoidap" element={<Login />} />
               <Route path="/*" element={<Login />} />
               <Route path="/thutuc/:id" element={<ThuTuc />} />
               </Routes>
@@ -242,8 +241,8 @@ function App() {
             <HeaderM/>
             <NavE/>
             <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              {/* <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} /> */}
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
               <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />
@@ -277,7 +276,7 @@ function App() {
             <HeaderM/>
             <NavM/>
             <Routes>
-              <Route path="/register" element={<Register/>} />
+             
               <Route path="/VBPLM" element={<VBPLM />} />
               <Route path="/xemVBPL/:id" element={<XemVBPLM />} />
               <Route path="/PheDuyetTaiKhoanM" element={<PheDuyetTaiKhoanM />} />

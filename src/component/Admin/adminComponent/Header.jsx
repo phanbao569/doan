@@ -14,9 +14,9 @@ function Header() {
     localStorage.removeItem('token');
     setRole("")
     navigate('/login');
-   // window.location.reload()
+    // window.location.reload()
   };
-  const { user, ttuser,setRole } = useContext(GlobalContext)
+  const { user, ttuser, setRole } = useContext(GlobalContext)
 
   const tokenExpired = isTokenExpired();
 
@@ -66,21 +66,23 @@ function Header() {
 
 
 
-      <div  className='header-left'></div>
+      <div className='header-left'></div>
       <div className='header-right'>
-     
+
         <BsPersonCircle className='icon' onClick={toggleSidebar} />
         {isOpen && (
           <div className='form-container absolute top-0 right-0 z-10 mt-14 mr-2 max-w-lg rounded-lg bg-white w-56'>
             <ul className="flex flex-col gap-3 border-b border-stroke px-6 py-7.5 dark:border-strokedark text-gray-500 p-4">
               <Link to='/thongtinadmin' className="flex flex-row items-center text-blue-400 hover:text-blue-600 cursor-pointer">
                 <BsPersonCircle />
-                <span onClick={()=>setIsOpen(false)} class="ml-2">My Profile</span>
+                <span onClick={() => setIsOpen(false)} class="ml-2">My Profile</span>
+
               </Link>
 
               <Link className="flex flex-row items-center hover:text-black cursor-pointer" to='/changePass'>
                 <RiLockPasswordFill />
-                <span onClick={()=>setIsOpen(false)} class="ml-2">ChangePassword</span>
+                <span onClick={() => setIsOpen(false)} class="ml-2">ChangePassword</span>
+
               </Link>
 
 

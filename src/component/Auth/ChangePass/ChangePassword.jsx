@@ -68,7 +68,7 @@ export default function ChangePassword() {
             }
         }
         else {
-            toast.error('đã nói phải nhập lại mật khẩu mới cho đúng rồi mà -_-')
+            toast.error('Mật khẩu nhập lại không trùng mật khẩu mới')
            
         }
     };
